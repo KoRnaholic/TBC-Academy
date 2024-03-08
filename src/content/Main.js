@@ -4,7 +4,7 @@ import MacBook from "../images/macbook.jpg";
 
 function Main() {
   return (
-    <div className="flex gap-14 justify-center items-center p-10 text-slate-700">
+    <div className="flex flex-col lg:flex-row  gap-14 justify-center items-center p-10 text-slate-700  ">
       <div
         className="bg-cover bg-center h-72 w-72 flex justify-center
         items-end transition ease-in-out delay-150

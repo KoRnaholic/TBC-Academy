@@ -2,17 +2,18 @@ import logo from "../icons/logo.svg";
 import search from "../icons/search.svg";
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
+import menu from "../icons/menu.svg";
 
 function Header() {
   return (
-    <header className="py-5 px-20 bg-slate-50">
+    <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50">
       <nav className="flex justify-between items-center">
         <div>
           <img src={logo} alt="logo" width="40px" />
         </div>
 
         <div>
-          <ul className="flex gap-8 text-lg">
+          <ul className="hidden lg:flex gap-8 text-lg">
             <li className="border-b-4 border-transparent hover:border-black">
               <a href="/">Home</a>
             </li>
@@ -32,7 +33,7 @@ function Header() {
         </div>
 
         <div>
-          <ul className="flex gap-5 items-center">
+          <ul className="hidden lg:flex gap-5 items-center">
             <li>
               <img
                 className="cursor-pointer"
@@ -58,6 +59,10 @@ function Header() {
               />
             </li>
           </ul>
+        </div>
+
+        <div className="lg:hidden cursor-pointer">
+          <img src={menu} alt="menu" width="35px" />
         </div>
       </nav>
     </header>
