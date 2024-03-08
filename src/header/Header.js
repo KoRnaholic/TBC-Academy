@@ -9,7 +9,7 @@ function Header() {
     <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50">
       <nav className="flex justify-between items-center">
         <div>
-          <img src={logo} alt="logo" width="40px" />
+          <img src={logo} alt="logo" width="50px" />
         </div>
 
         <div>
@@ -27,7 +27,7 @@ function Header() {
               <a href="/">Contact</a>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Home</a>
+              <a href="/">Blog</a>
             </li>
           </ul>
         </div>
