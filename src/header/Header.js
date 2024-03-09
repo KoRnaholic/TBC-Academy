@@ -1,4 +1,3 @@
-import logo from "../icons/logo.svg";
 import search from "../icons/search.svg";
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
@@ -9,7 +8,9 @@ function Header() {
     <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50">
       <nav className="flex justify-between items-center">
         <div>
-          <img src={logo} alt="logo" width="50px" />
+          <div className="logo">
+            Open<span className="text-yellow-300">Market</span>
+          </div>
         </div>
 
         <div>

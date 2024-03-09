@@ -25,7 +25,7 @@ function Footer() {
             Privacy Policy
           </a>
         </div>
-        <div className="w-full text-center">&copy; 2024 Your Company Name</div>
+        <div className="w-full text-center">&copy; 2024 OpenMarket</div>
       </div>
     </footer>
   );

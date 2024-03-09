@@ -8,9 +8,9 @@ function Banner() {
     >
       <div className="flex flex-col gap-6 items-center justify-center text-white size-2/3 lg:gap-16 lg">
         <h1 className="text-4xl lg:text-7xl">Select Your New Perfect Style</h1>
-        <p>
-          asdaskdjasdj asdjasdjas adasdijiquwjqd asdasasd <br /> sssssssss
-          asdasd asd asdas dasd asdasdas sad asd asasd asd asads asd
+        <p className="text-xl">
+          Discover the Latest in Tech: Shop our Exciting Selection of Gadgets
+          and Gear Today!
         </p>
         <button
           className="py-3 px-7 mt-8 bg-slate-700 hover:bg-slate-800  rounded-full transition ease-in-out delay-150
