@@ -1,3 +1,4 @@
+import Button from "../UI/Button";
 import bannerImg from "../images/banner.jpg";
 
 function Banner() {
@@ -12,12 +13,7 @@ function Banner() {
           Discover the Latest in Tech: Shop our Exciting Selection of Gadgets
           and Gear Today!
         </p>
-        <button
-          className="py-3 px-7 mt-8 bg-slate-700 hover:bg-slate-800  rounded-full transition ease-in-out delay-150
-        hover:-translate-y-1 hover:scale-100 duration-300"
-        >
-          SHOP NOW
-        </button>
+        <Button forBanner={true}>SHOP NOW</Button>
       </div>
     </div>
   );
