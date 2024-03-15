@@ -1,8 +1,8 @@
 function Footer() {
   return (
-    <footer className=" mt-16 bg-gray-600 text-white p-8">
-      <div className="flex flex-col gap-5 justify-center items-center lg:flex lg:flex-row lg:justify-between">
-        <div className=" flex flex-col justify-center items-center w-full mb-4 md:mb-0">
+    <footer className="mt-16 bg-gray-600 text-white p-8">
+      <div className="flex flex-col lg:flex-row lg:justify-between">
+        <div className="flex flex-col justify-center items-center w-full mb-4 lg:mb-0">
           <h4 className="text-lg font-semibold mb-2">
             Subscribe to our newsletter
           </h4>
@@ -17,15 +17,28 @@ function Footer() {
             </button>
           </div>
         </div>
-        <div className="w-full text-center mb-4 md:mb-0">
-          <a href="/terms" className="mr-4">
-            Terms and Conditions
-          </a>
-          <a href="/privacy" className="mr-4">
-            Privacy Policy
-          </a>
+        <div className="hidden lg:flex lg:items-center ">
+          <ul className="flex gap-8 text-lg">
+            <li className="border-b-4 border-transparent hover:border-black">
+              <a href="/">Home</a>
+            </li>
+            <li className="border-b-4 border-transparent hover:border-black">
+              <a href="/">Shop</a>
+            </li>
+            <li className="border-b-4 border-transparent hover:border-black">
+              <a href="/">About</a>
+            </li>
+            <li className="border-b-4 border-transparent hover:border-black">
+              <a href="/">Contact</a>
+            </li>
+            <li className="border-b-4 border-transparent hover:border-black">
+              <a href="/">Blog</a>
+            </li>
+          </ul>
         </div>
-        <div className="w-full text-center">&copy; 2024 OpenMarket</div>
+        <div className="w-full lg:flex lg:justify-center lg:items-center  text-center lg:text-right">
+          &copy; 2024 OpenMarket
+        </div>
       </div>
     </footer>
   );
