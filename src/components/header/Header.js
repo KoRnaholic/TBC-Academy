@@ -1,4 +1,3 @@
-import search from "../icons/search.svg";
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
 import menu from "../icons/menu.svg";
@@ -35,14 +34,6 @@ function Header() {
 
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
-            <li>
-              <img
-                className="cursor-pointer"
-                src={search}
-                alt="logo1"
-                width="30px"
-              />
-            </li>
             <li>
               <img
                 className="cursor-pointer"
