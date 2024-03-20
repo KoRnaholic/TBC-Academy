@@ -1,7 +1,7 @@
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
 import menu from "../icons/menu.svg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -16,19 +16,54 @@ function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg">
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/">Home</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "border-b-4 border-black" : ""
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/shop">Shop</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "border-b-4 border-black" : ""
+                }
+                to="/shop"
+              >
+                Shop
+              </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/about">About</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "border-b-4 border-black" : ""
+                }
+                to="/about"
+              >
+                About
+              </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/contact">Contact</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "border-b-4 border-black" : ""
+                }
+                to="/contact"
+              >
+                Contact
+              </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/blog">Blog</Link>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "border-b-4 border-black" : ""
+                }
+                to="/blog"
+              >
+                Blog
+              </NavLink>
             </li>
           </ul>
         </div>
