@@ -1,7 +1,7 @@
 export function Search(props) {
   return (
     <>
-      <div className="mt-10 flex gap-2 items-center  mx-auto max-w-lg">
+      <div className="mt-1 mb-4 flex gap-2 items-center  mx-auto max-w-lg">
         <input
           className="w-full border border-gray-300 rounded-full py-2 px-4 leading-tight focus:outline-none focus:border-slate-500"
           type="text"
