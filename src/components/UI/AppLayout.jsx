@@ -6,7 +6,7 @@ export default function AppLayout(props) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="p-8 flex-grow">
+      <main className="p-8 flex-grow  dark:bg-slate-700">
         <Outlet />
       </main>
       <Footer />

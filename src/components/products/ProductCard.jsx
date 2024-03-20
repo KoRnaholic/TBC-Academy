@@ -8,7 +8,7 @@ export default function ProductCard({ products }) {
         return (
           <div
             key={index}
-            className="max-w-[250px] max-h-[350px] mx-auto bg-slate-50 shadow-lg rounded-lg  transition ease-in-out delay-150
+            className="max-w-[250px] max-h-[350px] mx-auto bg-slate-50 dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-150
           hover:-translate-y-1 hover:scale-110 duration-300"
           >
             <img
