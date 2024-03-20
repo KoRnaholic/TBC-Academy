@@ -3,7 +3,7 @@ import Button from "../UI/Button";
 
 const Contact = () => {
   return (
-    <div className="bg-gradient-to-r  flex flex-col items-center justify-center">
+    <div className="bg-gradient-to-r lg:mt-8  flex flex-col items-center justify-center">
       <div className="bg-white px-4 md:px-8 rounded-lg shadow-lg w-full md:w-1/2">
         <div>
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">

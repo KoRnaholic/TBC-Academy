@@ -47,7 +47,6 @@ export default function Home() {
   return (
     <div>
       <Search />
-
       <div className="flex  overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5 max-h-[430px]">
         <ProductCard products={products} />
       </div>
