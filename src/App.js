@@ -1,24 +1,31 @@
 import "./App.css";
+import AppLayout from "./components/UI/AppLayout";
 import { Search } from "./components/UI/Search";
 // import Main from "./components/content/Main";
 import Footer from "./components/footer/Footer";
 // import Banner from "./components/header/Banner";
 import Header from "./components/header/Header";
-import Products from "./components/products/Products";
+import Home from "./components/pages/Home";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/contact",
+        element: <div>Contact</div>,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      {/* <Banner /> */}
-      {/* <Main /> */}
-      <Search />
-      <main className="p-8 flex-grow ">
-        <Products />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,4 +1,5 @@
-import ProductCard from "./ProductCard";
+import React from "react";
+import ProductCard from "../products/ProductCard";
 import laptop from "../images/laptop.jpg";
 import smartphone from "../images/smartphone1.jpg";
 import MacBook from "../images/macbook.jpg";
@@ -41,8 +42,7 @@ const products = [
     image: laptop,
   },
 ];
-
-export default function Products(props) {
+export default function Home() {
   return (
     <div
       className="flex  overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5"

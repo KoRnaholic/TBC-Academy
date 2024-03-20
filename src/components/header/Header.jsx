@@ -1,6 +1,7 @@
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
 import menu from "../icons/menu.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,19 +16,19 @@ function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg">
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Shop</a>
+              <Link to="/shop">Shop</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Blog</a>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
