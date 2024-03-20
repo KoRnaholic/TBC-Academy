@@ -46,7 +46,7 @@ export default function Products(props) {
   return (
     <div
       className="flex  overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5"
-      style={{ maxHeight: "450px" }}
+      style={{ maxHeight: "430px" }}
     >
       <ProductCard products={products} />
     </div>
