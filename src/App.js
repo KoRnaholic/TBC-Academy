@@ -1,24 +1,40 @@
 import "./App.css";
-import { Search } from "./components/UI/Search";
-// import Main from "./components/content/Main";
-import Footer from "./components/footer/Footer";
-// import Banner from "./components/header/Banner";
-import Header from "./components/header/Header";
-import Products from "./components/products/Products";
+import AppLayout from "./components/UI/AppLayout";
+import Blog from "./components/pages/Blog";
+import Contact from "./components/pages/Contact";
+import Home from "./components/pages/Home";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/shop",
+        element: <div>shop</div>,
+      },
+      {
+        path: "/about",
+        element: <div>about</div>,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      {/* <Banner /> */}
-      {/* <Main /> */}
-      <Search />
-      <main className="p-8 flex-grow ">
-        <Products />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

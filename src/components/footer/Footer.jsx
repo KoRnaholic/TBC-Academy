@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
-    <footer className="mt-16 bg-gray-600 text-white p-8">
+    <footer className=" bg-gray-600 text-white p-8">
       <div className="flex flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center items-center w-full mb-4 lg:mb-0">
           <h4 className="text-lg font-semibold mb-2">
@@ -20,19 +22,19 @@ function Footer() {
         <div className="hidden lg:flex lg:items-center ">
           <ul className="flex gap-8 text-lg">
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Shop</a>
+              <Link to="/shop">Shop</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <a href="/">Blog</a>
+              <Link to="/blog">Blog</Link>
             </li>
           </ul>
         </div>
