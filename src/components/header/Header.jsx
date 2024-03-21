@@ -1,7 +1,7 @@
 import user from "../icons/user.svg";
 import cart from "../icons/cart.svg";
 import menu from "../icons/menu.svg";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function Header() {
@@ -28,7 +28,7 @@ function Header() {
 
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
-            <li className="border-b-4 border-transparent hover:border-black dark:bg-slate-700">
+            <li className="border-b-4 border-transparent hover:border-black ">
               <NavLink
                 className={({ isActive }) =>
                   isActive ? "border-b-4 border-black" : ""
