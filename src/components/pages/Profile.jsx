@@ -8,7 +8,7 @@ export default function Profile(props) {
         <div className="bg-white px-4 md:px-8 rounded-lg shadow-lg w-full md:w-1/2">
           <div>
             <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
-              Contact Us
+              Profile info
             </h1>
             <div className="mb-4 flex flex-col md:flex-row md:justify-between">
               <div className="mb-2 md:mb-0">
