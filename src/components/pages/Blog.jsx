@@ -152,7 +152,7 @@ const articles = [
 ];
 export default function Blog() {
   return (
-    <div className="overflow-y-auto h-1/2">
+    <div className="overflow-y-auto max-h-[430px]">
       {articles.map((article) => {
         return <Article article={article} />;
       })}
