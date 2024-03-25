@@ -43,9 +43,9 @@ function Header() {
                 className={({ isActive }) =>
                   isActive ? "border-b-4 border-black" : ""
                 }
-                to="/shop"
+                to="/profile"
               >
-                Shop
+                Profile
               </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
