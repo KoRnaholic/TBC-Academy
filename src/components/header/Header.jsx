@@ -43,9 +43,9 @@ function Header() {
                 className={({ isActive }) =>
                   isActive ? "border-b-4 border-black" : ""
                 }
-                to="/shop"
+                to="/profile"
               >
-                Shop
+                Profile
               </NavLink>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
@@ -128,7 +128,7 @@ function Header() {
           </ul>
         </div>
 
-        <div className="lg:hidden cursor-pointer">
+        <div className="lg:hidden dark:invert cursor-pointer">
           <img src={menu} alt="menu" width="35px" />
         </div>
       </nav>
