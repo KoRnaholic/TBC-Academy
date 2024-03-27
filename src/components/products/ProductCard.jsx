@@ -9,7 +9,7 @@ export default function ProductCard({ products }) {
           <div
             key={index}
             className="max-w-[250px] max-h-[350px] mx-auto bg-slate-50 dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-0
-          hover:-translate-y-1 hover:scale-110 duration-300"
+          hover:-translate-y-1 hover:scale-105 duration-300"
           >
             <img
               className="w-full  object-cover object-center"

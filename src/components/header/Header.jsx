@@ -128,7 +128,7 @@ function Header() {
           </ul>
         </div>
 
-        <div className="lg:hidden cursor-pointer">
+        <div className="lg:hidden dark:invert cursor-pointer">
           <img src={menu} alt="menu" width="35px" />
         </div>
       </nav>
