@@ -2,7 +2,7 @@ export default function Article({ article }) {
   return (
     <>
       <div className="py-4 flex flex-col items-center justify-center">
-        <div className="p-4 bg-slate-100 w-1/2 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300">
+        <div className="p-4 bg-slate-100 w-3/4 sm:w-1/2 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300">
           <div className="flex flex-col gap-2 items-start font-sans text-slate-700">
             <h2 className="text-2xl font-bold">{article.title}</h2>
             <img

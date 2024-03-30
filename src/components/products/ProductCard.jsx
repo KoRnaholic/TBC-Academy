@@ -4,7 +4,7 @@ export default function ProductCard({ products }) {
   return (
     <>
       {products.map((product, index) => {
-        const { title, description, image } = product;
+        const { title, description, image, price } = product;
         return (
           <div
             key={index}
@@ -20,7 +20,7 @@ export default function ProductCard({ products }) {
               <h2 className="text-gray-900 font-bold text-xl mb-2">{title}</h2>
               <p className="text-gray-700 text-base">{description}</p>
               <div className="mt-3 flex items-center justify-between">
-                <span className="text-gray-900 font-bold">$119.99</span>
+                <span className="text-gray-900 font-bold">${price}</span>
                 <Button>Add to Cart</Button>
               </div>
             </div>

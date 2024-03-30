@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button";
 
-export default function Profile(props) {
+export default function Profile() {
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+  console.log(password, confPassword);
+
   return (
     <div className="flex justify-center mt-10">
       <div className="bg-gradient-to-r lg:mt-8 p-4 md:p-8 rounded-lg shadow-lg w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 dark:bg-gray-800">
@@ -38,6 +42,8 @@ export default function Profile(props) {
               Password
             </label>
             <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
               name="password"
@@ -52,6 +58,8 @@ export default function Profile(props) {
               Confirm Password
             </label>
             <input
+              value={confPassword}
+              onChange={(e) => setConfPassword(e.target.value)}
               type="password"
               id="confirm-password"
               name="confirm-password"
