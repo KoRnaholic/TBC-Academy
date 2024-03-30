@@ -80,10 +80,23 @@ const products = [
 export default function Home() {
   const [product, setProduct] = useState(products);
   const [sortBy, setSortBy] = useState("");
+  const [search, setSearch] = useState("");
+  console.log(search);
 
+  //Searching
+  const handleSearch = (value) => {
+    const currentProduct = products.filter((product) =>
+      product.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setProduct(currentProduct);
+    setSearch(value);
+  };
+
+  //Sorting
   const handleSort = (criteria) => {
     if (criteria === "input") {
       setProduct(products);
+      setSearch("");
     }
     if (criteria === "price") {
       const sortedByPrice = [...product].sort((a, b) => a.price - b.price);
@@ -100,7 +113,12 @@ export default function Home() {
 
   return (
     <div>
-      <Search setSort={handleSort} sortBy={sortBy} />
+      <Search
+        setSort={handleSort}
+        sortBy={sortBy}
+        search={search}
+        setSearch={handleSearch}
+      />
       <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5 max-h-[430px]">
         <ProductCard products={product} />
       </div>
