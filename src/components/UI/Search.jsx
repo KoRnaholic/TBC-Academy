@@ -15,7 +15,7 @@ export function Search({ sortBy, setSort, search, setSearch }) {
             value={sortBy}
             onChange={(e) => setSort(e.target.value)}
           >
-            <option value="input">Sort By</option>
+            <option value="input">Default Sort</option>
             <option value="price">Price</option>
             <option value="name">Name</option>
           </select>

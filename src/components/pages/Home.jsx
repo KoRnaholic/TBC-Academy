@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ProductCard from "../products/ProductCard";
 import laptop from "../images/laptop.jpg";
 import smartphone from "../images/smartphone1.jpg";
@@ -81,15 +81,23 @@ export default function Home() {
   const [product, setProduct] = useState(products);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
-  console.log(search);
+  const debounceTimeout = useRef(null);
 
-  //Searching
+  //Searching with debounce
   const handleSearch = (value) => {
-    const currentProduct = products.filter((product) =>
-      product.title.toLowerCase().includes(value.toLowerCase())
-    );
-    setProduct(currentProduct);
     setSearch(value);
+
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+
+    debounceTimeout.current = setTimeout(() => {
+      const currentProduct = products.filter((product) =>
+        product.title.toLowerCase().includes(value.trim().toLowerCase())
+      );
+      setProduct(currentProduct);
+      console.log(search);
+    }, 500);
   };
 
   //Sorting
