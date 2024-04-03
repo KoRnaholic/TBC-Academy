@@ -1,4 +1,5 @@
-import Button from "../UI/Button";
+import Image from "next/image";
+import Button from "@/components/UI/Button";
 
 export default function ProductCard({ products }) {
   return (
@@ -11,10 +12,11 @@ export default function ProductCard({ products }) {
             className="max-w-[250px] max-h-[350px] mx-auto bg-slate-50 dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-0
           hover:-translate-y-1 hover:scale-105 duration-300"
           >
-            <img
+            <Image
               className="w-full  object-cover object-center"
               src={image}
               alt="product"
+              priority
             />
             <div className="p-4">
               <h2 className="text-gray-900 font-bold text-xl mb-2">{title}</h2>

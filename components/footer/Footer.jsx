@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
-function Footer() {
+export default function Footer() {
   return (
     <footer className=" bg-gray-600 text-white p-8">
       <div className="flex flex-col lg:flex-row lg:justify-between">
@@ -22,19 +22,19 @@ function Footer() {
         <div className="hidden lg:flex lg:items-center ">
           <ul className="flex gap-8 text-lg">
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/shop">Shop</Link>
+              <Link href="/profile">Profile</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/about">About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/contact">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link to="/blog">Blog</Link>
+              <Link href="/blog">Blog</Link>
             </li>
           </ul>
         </div>
@@ -45,5 +45,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

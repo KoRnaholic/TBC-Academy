@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../UI/Button";
+import Button from "@/components/UI/Button";
 
 const Contact = () => {
   return (
@@ -9,7 +9,7 @@ const Contact = () => {
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Contact Us
           </h1>
-          <div className="mb-4 flex flex-col md:flex-row md:justify-between">
+          <div className="mb-4 gap-2 flex flex-col md:flex-row md:justify-between">
             <div className="mb-2 md:mb-0">
               <h2 className="text-xl font-semibold dark:text-white">
                 Our Address
