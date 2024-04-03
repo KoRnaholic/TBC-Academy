@@ -3,18 +3,20 @@ import user from "@/public/icons/user.svg";
 import cart from "@/public/icons/cart.svg";
 import menu from "@/public/icons/menu.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
   const [dark, setDark] = useState(false);
 
-  if (dark) {
-    document.documentElement.classList.add("dark");
-  } else if (!dark) {
-    document.documentElement.classList.remove("dark");
-  }
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else if (!dark) {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [dark]);
 
   function toggleDarkMode() {
     setDark((prev) => !prev);
