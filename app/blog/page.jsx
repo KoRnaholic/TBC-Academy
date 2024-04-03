@@ -1,6 +1,6 @@
 import React from "react";
-import Article from "../content/Article";
-import image from "../images/smartphone.jpg";
+import Article from "@/components/article/Article";
+import image from "@/public/images/smartphone.jpg";
 
 const articles = [
   {
@@ -153,8 +153,8 @@ const articles = [
 export default function Blog() {
   return (
     <div className="overflow-y-auto max-h-[550px]">
-      {articles.map((article) => {
-        return <Article article={article} />;
+      {articles.map((article, index) => {
+        return <Article key={index} article={article} />;
       })}
     </div>
   );

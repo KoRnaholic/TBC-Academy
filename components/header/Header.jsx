@@ -1,10 +1,13 @@
-import user from "../icons/user.svg";
-import cart from "../icons/cart.svg";
-import menu from "../icons/menu.svg";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+"use client";
+import user from "@/public/icons/user.svg";
+import cart from "@/public/icons/cart.svg";
+import menu from "@/public/icons/menu.svg";
 
-function Header() {
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+export default function Header() {
   const [dark, setDark] = useState(false);
 
   if (dark) {
@@ -29,54 +32,52 @@ function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
             <li className="border-b-4 border-transparent hover:border-black ">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 border-black" : ""
-                }
-                to="/"
+              <Link
+                // className={isActive ? "border-b-4 border-black" : ""}
+                href="/"
               >
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 border-black" : ""
-                }
-                to="/profile"
+              <Link
+                // className={({ isActive }) =>
+                //   isActive ? "border-b-4 border-black" : ""
+                // }
+                href="/profile"
               >
                 Profile
-              </NavLink>
+              </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 border-black" : ""
-                }
-                to="/about"
+              <Link
+                // className={({ isActive }) =>
+                //   isActive ? "border-b-4 border-black" : ""
+                // }
+                href="/about"
               >
                 About
-              </NavLink>
+              </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 border-black" : ""
-                }
-                to="/contact"
+              <Link
+                // className={({ isActive }) =>
+                //   isActive ? "border-b-4 border-black" : ""
+                // }
+                href="/contact"
               >
                 Contact
-              </NavLink>
+              </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "border-b-4 border-black" : ""
-                }
-                to="/blog"
+              <Link
+                // className={({ isActive }) =>
+                //   isActive ? "border-b-4 border-black" : ""
+                // }
+                href="/blog"
               >
                 Blog
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>
@@ -110,30 +111,26 @@ function Header() {
               </div>
             </li>
             <li>
-              <img
-                className="cursor-pointer dark:invert"
+              <Image
+                className="cursor-pointer w-[25px] dark:invert"
                 src={user}
                 alt="logo2"
-                width="25px"
               />
             </li>
             <li>
-              <img
-                className="cursor-pointer dark:invert"
+              <Image
+                className="cursor-pointer w-[25px] dark:invert"
                 src={cart}
                 alt="logo3"
-                width="25px"
               />
             </li>
           </ul>
         </div>
 
-        <div className="lg:hidden dark:invert cursor-pointer">
-          <img src={menu} alt="menu" width="35px" />
+        <div className="lg:hidden dark:invert w-[35px] cursor-pointer">
+          <Image src={menu} alt="menu" width="35px" />
         </div>
       </nav>
     </header>
   );
 }
-
-export default Header;

@@ -1,9 +1,10 @@
+"use client";
 import React, { useRef, useState } from "react";
-import ProductCard from "../products/ProductCard";
-import laptop from "../images/laptop.jpg";
-import smartphone from "../images/smartphone1.jpg";
-import MacBook from "../images/macbook.jpg";
-import { Search } from "../UI/Search";
+import ProductCard from "@/components/products/ProductCard";
+import laptop from "@/public/images/laptop.jpg";
+import smartphone from "@/public/images/smartphone1.jpg";
+import MacBook from "@/public/images/macbook.jpg";
+import { Search } from "@/components/search/Search";
 
 const products = [
   {
