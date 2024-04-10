@@ -1,9 +1,8 @@
 "use client";
 
-import Button from "@/components/UI/Button";
-import ProductCard from "@/components/products/ProductCard";
+import Loading from "@/app/loading";
 import Image from "next/image";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 const URL = "https://dummyjson.com/products";
 
 export default function Products({ params }) {
@@ -115,9 +114,7 @@ export default function Products({ params }) {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center ">
-          <div className="border-8 border-gray-200 h-32 w-32 rounded-full animate-spin"></div>
-        </div>
+        <Loading />
       )}
     </>
   );

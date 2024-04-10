@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Article({ blogs }) {
   return (
@@ -26,7 +27,7 @@ export default function Article({ blogs }) {
           </p>
           <p>Meal Type: {blogs.mealType.join(", ")}</p>
           <button className="bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">
-            Read More
+            <Link href={`blog/${blogs.id}`}>Read More</Link>
           </button>
         </div>
       </div>

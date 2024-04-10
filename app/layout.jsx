@@ -17,9 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="flex flex-col min-h-screen">
         <Header />
-        <main className="p-8 flex-grow  dark:bg-slate-700">
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </main>
+        <main className="p-8 flex-grow  dark:bg-slate-700">{children}</main>
         <Footer />
       </body>
     </html>
