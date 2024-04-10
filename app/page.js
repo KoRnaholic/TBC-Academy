@@ -1,10 +1,11 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "@/components/products/ProductCard";
 import laptop from "@/public/images/laptop.jpg";
 import smartphone from "@/public/images/smartphone1.jpg";
 import MacBook from "@/public/images/macbook.jpg";
 import { Search } from "@/components/search/Search";
+const URL = "https://dummyjson.com/products";
 
 const products = [
   {
@@ -79,10 +80,21 @@ const products = [
   },
 ];
 export default function Home() {
-  const [product, setProduct] = useState(products);
+  const [product, setProduct] = useState([]);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
   const debounceTimeout = useRef(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setProduct(data.products);
+      console.log(data.products);
+    };
+
+    fetchProducts();
+  }, []);
 
   //Searching with debounce
   const handleSearch = (value) => {
@@ -128,7 +140,7 @@ export default function Home() {
         search={search}
         setSearch={handleSearch}
       />
-      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5 max-h-[430px]">
+      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5 max-h-[440px]">
         <ProductCard products={product} />
       </div>
     </div>
