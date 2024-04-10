@@ -84,6 +84,7 @@ export default function Home() {
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
   const debounceTimeout = useRef(null);
+  console.log(product);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -99,24 +100,24 @@ export default function Home() {
   //Searching with debounce
   const handleSearch = (value) => {
     setSearch(value);
-
+    console.log(value);
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
 
     debounceTimeout.current = setTimeout(() => {
-      const currentProduct = products.filter((product) =>
+      const currentProduct = product.filter((product) =>
         product.title.toLowerCase().includes(value.trim().toLowerCase())
       );
       setProduct(currentProduct);
-      console.log(search);
     }, 500);
   };
 
   //Sorting
   const handleSort = (criteria) => {
     if (criteria === "input") {
-      setProduct(products);
+      const sortedById = [...product].sort((a, b) => a.id - b.id);
+      setProduct(sortedById);
       setSearch("");
     }
     if (criteria === "price") {
@@ -140,7 +141,7 @@ export default function Home() {
         search={search}
         setSearch={handleSearch}
       />
-      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-16 gap-5 max-h-[440px]">
+      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-5 max-h-[480px]">
         <ProductCard products={product} />
       </div>
     </div>
