@@ -3,15 +3,11 @@ import React, { useRef, useState } from "react";
 import ProductCard from "@/components/products/ProductCard";
 import { Search } from "@/components/search/Search";
 
-const URL = "https://dummyjson.com/products";
-
 export default function MainProduct({ data }) {
   const [product, setProduct] = useState(data);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
   const debounceTimeout = useRef(null);
-
-  console.log(product);
 
   //Searching with debounce
   const handleSearch = (value) => {
@@ -22,7 +18,7 @@ export default function MainProduct({ data }) {
     }
 
     debounceTimeout.current = setTimeout(() => {
-      const currentProduct = product.filter((product) =>
+      const currentProduct = data.filter((product) =>
         product.title.toLowerCase().includes(value.trim().toLowerCase())
       );
       setProduct(currentProduct);
