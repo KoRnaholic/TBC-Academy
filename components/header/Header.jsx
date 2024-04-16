@@ -6,6 +6,8 @@ import menu from "@/public/icons/menu.svg";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Logout } from "@/app/actions";
+import LogOut from "../UI/Logout";
 
 export default function Header() {
   const [dark, setDark] = useState(false);
@@ -111,6 +113,9 @@ export default function Header() {
                   </label>
                 </div>
               </div>
+            </li>
+            <li>
+              <LogOut />
             </li>
             <li>
               <Image
