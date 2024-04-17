@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 export default function LoginPage() {
   const cookieStore = cookies();
   const cookie = cookieStore.get("auth");
-  console.log(cookie);
+  console.log(cookie?.value);
   if (cookie?.value) {
     redirect("/");
   }
@@ -30,6 +30,7 @@ export default function LoginPage() {
               type="username"
               name="username"
               placeholder="Username"
+              required
             />
             <div className="relative">
               <input
@@ -37,6 +38,7 @@ export default function LoginPage() {
                 type="password"
                 name="password"
                 placeholder="Password"
+                required
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +107,12 @@ export default function LoginPage() {
 
         {/* image */}
         <div className="md:block hidden w-1/2">
-          <Image className="rounded-2xl" src={background} alt="login" />
+          <Image
+            className="rounded-2xl"
+            src={background}
+            alt="login"
+            priority
+          />
         </div>
       </div>
     </section>
