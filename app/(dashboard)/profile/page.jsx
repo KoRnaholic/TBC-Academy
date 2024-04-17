@@ -1,11 +1,12 @@
-"use client";
-import React, { useState } from "react";
+// "use client";
+// import React, { useState } from "react";
 import Button from "@/components/UI/Button";
+import ProfileInfo from "@/components/UI/ProfileInfo";
 
 export default function Profile() {
-  const [password, setPassword] = useState("");
-  const [confPassword, setConfPassword] = useState("");
-  console.log(password, confPassword);
+  // const [password, setPassword] = useState("");
+  // const [confPassword, setConfPassword] = useState("");
+  // console.log(password, confPassword);
 
   return (
     <div className="flex justify-center mt-10">
@@ -14,24 +15,8 @@ export default function Profile() {
           <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Profile info
           </h1>
-          <div className="mb-4 flex flex-col md:flex-row md:justify-between">
-            <div className="mb-2 md:mb-0">
-              <h2 className="text-xl dark:text-white font-semibold">Name</h2>
-              <p className="text-gray-700 dark:text-gray-300">John</p>
-            </div>
-            <div className="mb-2 md:mb-0">
-              <h2 className="text-xl font-semibold dark:text-white ">
-                Last Name{" "}
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300">Smith</p>
-            </div>
-            <div className="mb-2 md:mb-0">
-              <h2 className="text-xl font-semibold dark:text-white ">Email</h2>
-              <p className="text-gray-700 dark:text-gray-300">
-                JohnSmith@example.com
-              </p>
-            </div>
-          </div>
+
+          <ProfileInfo />
         </div>
 
         <form className="mb-4">
@@ -43,8 +28,8 @@ export default function Profile() {
               Password
             </label>
             <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              // value={password}
+              // onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
               name="password"
@@ -59,8 +44,8 @@ export default function Profile() {
               Confirm Password
             </label>
             <input
-              value={confPassword}
-              onChange={(e) => setConfPassword(e.target.value)}
+              // value={confPassword}
+              // onChange={(e) => setConfPassword(e.target.value)}
               type="password"
               id="confirm-password"
               name="confirm-password"

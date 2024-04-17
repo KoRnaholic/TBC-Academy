@@ -46,7 +46,7 @@ export default function MainProduct({ data }) {
   };
 
   return (
-    <div>
+    <div className="p-8 flex-grow  dark:bg-slate-700">
       <Search
         setSort={handleSort}
         sortBy={sortBy}

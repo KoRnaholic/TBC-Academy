@@ -1,25 +1,10 @@
 "use client";
-
-import Loading from "@/app/loading";
+import ProductLoading from "@/app/(dashboard)/products/loading";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-const URL = "https://dummyjson.com/products";
+import React, { useState } from "react";
 
-export default function Products({ params }) {
-  const [product, setProduct] = useState([]);
-
+export default function SingleProduct({ data }) {
   const [selectedImage, setSelectedImage] = useState(null);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch(`${URL}/${params.id}`);
-      const data = await response.json();
-      setProduct(data);
-      console.log(data);
-    };
-
-    fetchProducts();
-  }, [params.id, setProduct]);
 
   const {
     title,
@@ -32,7 +17,7 @@ export default function Products({ params }) {
     category,
     thumbnail,
     images,
-  } = product;
+  } = data;
 
   return (
     <>
@@ -91,6 +76,7 @@ export default function Products({ params }) {
                 </span>
               </div>
             </div>
+
             {selectedImage !== null && (
               <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-60 flex items-center justify-center">
                 <div className="max-w-6xl mx-auto">
@@ -114,7 +100,7 @@ export default function Products({ params }) {
           </div>
         </div>
       ) : (
-        <Loading />
+        <ProductLoading />
       )}
     </>
   );
