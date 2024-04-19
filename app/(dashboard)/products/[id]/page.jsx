@@ -1,14 +1,20 @@
-import Loading from "@/app/loading";
 import SingleProduct from "@/components/main-product/SingleProduct";
+import { fetchProducts } from "@/utils/helpers";
 const URL = "https://dummyjson.com/products";
 
-export default async function Products({ params }) {
-  const response = await fetch(`${URL}/${params.id}`);
-  const data = await response.json();
+export async function generateStaticParams() {
+  const response = await fetch(URL);
+  const products = await response.json();
 
-  return (
-    <>
-      <SingleProduct data={data} />
-    </>
-  );
+  const paths = products.products.map((product) => ({
+    params: { id: `/products/${product.id}` },
+  }));
+
+  return paths;
+}
+
+export default async function Products({ params }) {
+  const data = await fetchProducts(URL, params.id);
+
+  return <SingleProduct data={data} />;
 }

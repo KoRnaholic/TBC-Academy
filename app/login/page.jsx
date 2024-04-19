@@ -15,7 +15,7 @@ export default function LoginPage() {
             If you are already a member, easily log in
           </p>
 
-          <form action={Login} className="flex flex-col gap-4">
+          <form action="/api" method="POST" className="flex flex-col gap-4">
             <input
               className="p-2 mt-8 rounded-xl border"
               type="username"
