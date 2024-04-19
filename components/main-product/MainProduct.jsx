@@ -53,7 +53,7 @@ export default function MainProduct({ data }) {
         search={search}
         setSearch={handleSearch}
       />
-      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-5 max-h-[480px]">
+      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-5 max-h-[580px]">
         <ProductCard products={product} />
       </div>
     </div>

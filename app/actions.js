@@ -4,30 +4,25 @@ import { redirect } from "next/navigation";
 
 //Login server action
 export async function Login(formData) {
-  try {
-    const response = await fetch("https://dummyjson.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: formData.get("username"),
-        password: formData.get("password"),
-      }),
-    });
+  const response = await fetch("https://dummyjson.com/auth/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: formData.get("username"),
+      password: formData.get("password"),
+    }),
+  });
 
-    if (!response.ok) {
-      throw new Error("Failed to log in");
-    }
+  // if (!response.ok) {
+  //   throw new Error("Failed to log in");
+  // }
 
-    const user = await response.json();
-    const cookieStore = cookies();
-    cookieStore.set("auth", JSON.stringify(user));
+  const user = await response.json();
+  const cookieStore = cookies();
+  cookieStore.set("auth", JSON.stringify(user));
 
-    if (user.username === formData.get("username")) {
-      return redirect("/");
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-    // Handle error (e.g., show an error message to the user)
+  if (response.ok && user.username === formData.get("username")) {
+    return redirect("/");
   }
 }
 

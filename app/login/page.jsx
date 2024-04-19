@@ -2,17 +2,8 @@ import React from "react";
 import background from "../../public/images/login-background.jpg";
 import Image from "next/image";
 import { Login } from "../actions";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 
 export default function LoginPage() {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get("auth");
-  console.log(cookie?.value);
-  if (cookie?.value) {
-    redirect("/");
-  }
-
   return (
     <section className="bg-cyan-700 min-h-screen flex items-center justify-center ">
       {/* login container */}
