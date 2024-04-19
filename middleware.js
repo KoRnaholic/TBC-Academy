@@ -8,6 +8,7 @@ const protectedRoutes = [
   "/blog",
   "/about",
 ];
+
 const publicRoutes = ["/login"];
 
 export function middleware(request) {
