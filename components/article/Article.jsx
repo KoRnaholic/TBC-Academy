@@ -6,7 +6,7 @@ export default function Article({ blogs }) {
     <div className="py-4 flex items-center justify-center">
       <div
         key={blogs.id}
-        className="p-4 gap-6 bg-slate-100 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300 flex flex-col sm:flex-row"
+        className="p-4 gap-6 bg-slate-100 dark:bg-slate-500 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300 flex flex-col sm:flex-row"
       >
         <div className="flex-1">
           <Image
