@@ -16,12 +16,15 @@ export async function POST(request) {
 
   const user = await res.json();
   const cookieStore = cookies();
+  if (user.message === "Invalid credentials") {
+    return redirect("/login");
+  }
   cookieStore.set("auth", JSON.stringify(user));
+  console.log(user.message);
 
   if (res.ok && user.username === formData.get("username")) {
     return redirect("/");
   }
-
   return Response.json(user);
 }
 

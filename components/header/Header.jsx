@@ -2,27 +2,25 @@
 import user from "@/public/icons/user.svg";
 import cart from "@/public/icons/cart.svg";
 import menu from "@/public/icons/menu.svg";
+import light from "@/public/icons/light.svg";
+import dark from "@/public/icons/dark.svg";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Logout } from "@/app/actions";
 import LogOut from "../UI/Logout";
+import { useTheme } from "next-themes";
 
 export default function Header() {
-  const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { setTheme, resolvedTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
+
+  console.log(resolvedTheme);
 
   useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else if (!dark) {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [dark]);
-
-  function toggleDarkMode() {
-    setDark((prev) => !prev);
-  }
+    setMounted(true);
+  }, []);
 
   return (
     <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50 dark:bg-slate-600">
@@ -89,28 +87,67 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
             <li>
-              <div className="justify-center flex flex-row items-center transition-all ease-in-out">
-                <div className="flex flex-row justify-between toggle">
-                  <label
-                    htmlFor="dark-toggle"
-                    className="flex items-center cursor-pointer"
+              <div>
+                <div className="inline-block relative">
+                  <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className={`${
+                      resolvedTheme === "light" ? "bg-gray-200" : "bg-gray-500"
+                    }  text-gray-600 font-semibold py-2 px-3 rounded-full inline-flex items-center`}
                   >
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        name="dark-mode"
-                        id="dark-toggle"
-                        className="checkbox hidden"
-                        onClick={toggleDarkMode}
-                      />
-                      <div className="block border-[1px] dark:border-white border-slate-800 w-10 h-6 rounded-full"></div>
-                      <div
-                        className={`dot absolute left-1 top-1 dark:bg-white bg-slate-600 w-4 h-4 rounded-full transition ${
-                          dark ? "translate-x-full" : ""
-                        }`}
-                      ></div>
-                    </div>
-                  </label>
+                    <span className="mr-1">
+                      {resolvedTheme === "light" ? (
+                        <Image
+                          className="cursor-pointer w-[25px] dark:invert"
+                          src={light}
+                          alt="light"
+                        />
+                      ) : (
+                        <Image
+                          className="cursor-pointer w-[25px] dark:invert"
+                          src={dark}
+                          alt="dark"
+                        />
+                      )}
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <ul className="absolute bg-white border rounded-md mt-1">
+                      <li>
+                        <button
+                          onClick={() => {
+                            setTheme("light");
+                            setIsOpen(false);
+                          }}
+                          className={`block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                        >
+                          Light
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => {
+                            setTheme("system");
+                            setIsOpen(false);
+                          }}
+                          className={`block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none `}
+                        >
+                          System
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => {
+                            setTheme("dark");
+                            setIsOpen(false);
+                          }}
+                          className={`block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none`}
+                        >
+                          Dark
+                        </button>
+                      </li>
+                    </ul>
+                  )}
                 </div>
               </div>
             </li>
