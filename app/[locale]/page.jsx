@@ -10,11 +10,9 @@ export default async function Home() {
   const response = await fetch(URL);
   const data = await response.json();
 
-  const t = await getTranslations("Index");
   return (
     <div className="flex flex-col  min-h-screen">
       <Header />
-      {t("title")}
 
       <MainProduct data={data.products} />
       <Footer />

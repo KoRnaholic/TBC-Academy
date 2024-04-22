@@ -1,11 +1,15 @@
+"use client";
 import Image from "next/image";
 import Button from "@/components/UI/Button";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 
 export default function ProductCard({ products }) {
+  const locale = useLocale();
+
   const router = useRouter();
   const handleClick = (id) => {
-    router.push(`/en/products/${id}`);
+    router.push(`/products/${id}`);
   };
 
   return (
@@ -37,7 +41,9 @@ export default function ProductCard({ products }) {
               </p>
               <div className="mt-3 flex items-center justify-between">
                 <span className="text-gray-900 font-bold">${price}</span>
-                <Button>Show More </Button>
+                <Button>
+                  {locale === "en" ? "Show more" : "სრულად ნახვა"}
+                </Button>
               </div>
             </div>
           </div>

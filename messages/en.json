@@ -1,5 +1,25 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "navigation": {
+      "home": "Home",
+      "profile": "Profile",
+      "about": "About",
+      "contact": "Contact",
+      "blog": "Blog",
+      "logout": "Logout"
+    },
+    "subscription": {
+      "newsletter": "Subscribe to our newsletter",
+      "subscribe": "Subscribe"
+    }
+  },
+  "Profile": {
+    "profileinfo": "Profile Info",
+    "name": "Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmpassword": "Confirm Password",
+    "save": "Save"
   }
 }

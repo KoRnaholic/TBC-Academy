@@ -1,5 +1,25 @@
 {
   "Index": {
-    "title": "სალამი !"
+    "navigation": {
+      "home": "მთავარი",
+      "profile": "პროფილი",
+      "about": "შესახებ",
+      "contact": "კონტაქტი",
+      "blog": "ბლოგი",
+      "logout": "გამოსვლა"
+    },
+    "subscription": {
+      "newsletter": "გამოიწერეთ ჩვენი გვერდი",
+      "subscribe": "გამოწერე"
+    }
+  },
+  "Profile": {
+    "profileinfo": "ინფორმაცია",
+    "name": "სახელი",
+    "lastname": "გვარი",
+    "email": "მეილი",
+    "password": "პაროლი",
+    "confirmpassword": "გაიმეორეთ პაროლი",
+    "save": "შენახვა"
   }
 }

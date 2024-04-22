@@ -1,7 +1,9 @@
-import React from "react";
 import { Logout } from "@/app/actions";
+import { useTranslations } from "next-intl";
 
-export default function LogOut(props) {
+export default function LogOut() {
+  // const t = useTranslations("Index");
+  // console.log(t);
   return (
     <>
       <form action={Logout}>

@@ -2,17 +2,17 @@
 import user from "@/public/icons/user.svg";
 import cart from "@/public/icons/cart.svg";
 import menu from "@/public/icons/menu.svg";
-import light from "@/public/icons/light.svg";
-import dark from "@/public/icons/dark.svg";
-import system from "@/public/icons/system.svg";
 
 import Link from "next/link";
 import Image from "next/image";
 import LogOut from "../UI/Logout";
-import { useTheme } from "next-themes";
+
 import Theme from "../UI/Theme";
+import { useLocale } from "next-intl";
 
 export default function Header() {
+  const t = useLocale();
+
   return (
     <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50 dark:bg-slate-600">
       <nav className="flex justify-between items-center">
@@ -25,52 +25,22 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
             <li className="border-b-4 border-transparent hover:border-black ">
-              <Link
-                // className={isActive ? "border-b-4 border-black" : ""}
-                href="/"
-              >
-                Home
+              <Link href={`/${t}`}>
+                {t === "en" ? "Home" : "მთავარი"}
+                {/* {t("navigation.home")} */}
               </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/profile"
-              >
-                Profile
-              </Link>
+              <Link href="/profile">{t === "en" ? "Profile" : "პროფილი"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/about"
-              >
-                About
-              </Link>
+              <Link href="/about">{t === "en" ? "About" : "შესახებ"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/contact"
-              >
-                Contact
-              </Link>
+              <Link href="/contact">{t === "en" ? "Contact" : "კონტაქტი"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/blog"
-              >
-                Blog
-              </Link>
+              <Link href="/blog">{t === "en" ? "Blog" : "ბლოგი"}</Link>
             </li>
           </ul>
         </div>
