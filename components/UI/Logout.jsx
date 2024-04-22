@@ -1,13 +1,13 @@
 import { Logout } from "@/app/actions";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function LogOut() {
-  // const t = useTranslations("Index");
+  const t = useLocale("Index");
   // console.log(t);
   return (
     <>
-      <form action={Logout}>
-        <button>Logout</button>
+      <form action="/api" method="GET">
+        <button>{t === "en" ? "Log out" : "გამოსვლა"}</button>
       </form>
     </>
   );

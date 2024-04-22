@@ -1,25 +1,26 @@
 import React from "react";
 import background from "../../../public/images/login-background.jpg";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations("Login");
+  console.log(t);
   return (
     <section className="bg-cyan-700 min-h-screen flex items-center justify-center ">
       {/* login container */}
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
         <div className="md:w-1/2 px-8 md:px-16">
-          <h2 className="font-bold text-2xl text-sky-800">Login</h2>
-          <p className="text-xs mt-4 text-[#002D74]">
-            If you are already a member, easily log in
-          </p>
+          <h2 className="font-bold text-2xl text-sky-800"> {t("name")}</h2>
+          <p className="text-xs mt-4 text-[#002D74]">{t("member")}</p>
 
           <form action="/api" method="POST" className="flex flex-col gap-4">
             <input
               className="p-2 mt-8 rounded-xl border"
               type="username"
               name="username"
-              placeholder="Username"
+              placeholder={`${t("username")}`}
               required
             />
             <div className="relative">
@@ -27,7 +28,7 @@ export default function LoginPage() {
                 className="p-2 rounded-xl border w-full"
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder={`${t("password")}`}
                 required
               />
               <svg
@@ -46,13 +47,13 @@ export default function LoginPage() {
               type="submit"
               className="bg-sky-900 rounded-xl text-white py-2 hover:scale-105 duration-300"
             >
-              Login
+              {t("login")}
             </button>
           </form>
 
           <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
             <hr className="border-gray-400" />
-            <p className="text-center text-sm">OR</p>
+            <p className="text-center text-sm">{t("or")}</p>
             <hr className="border-gray-400" />
           </div>
 
@@ -80,17 +81,17 @@ export default function LoginPage() {
                 d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
               />
             </svg>
-            Login with Google
+            {t("google")}
           </button>
 
           <div className="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
-            <a href="#">Forgot your password?</a>
+            <a href="#">{t("forgotpassword")}</a>
           </div>
 
           <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
-            <p>Don&apos;t have an account?</p>
+            <p>{t("account")}</p>
             <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
-              Register
+              {t("register")}
             </button>
           </div>
         </div>

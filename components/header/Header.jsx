@@ -9,6 +9,7 @@ import LogOut from "../UI/Logout";
 
 import Theme from "../UI/Theme";
 import { useLocale } from "next-intl";
+import LangSwitcher from "../UI/Lang-switcher";
 
 export default function Header() {
   const t = useLocale();
@@ -47,6 +48,9 @@ export default function Header() {
 
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
+            <li>
+              <LangSwitcher />
+            </li>
             <li>
               <Theme />
             </li>

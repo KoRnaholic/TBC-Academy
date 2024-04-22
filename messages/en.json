@@ -1,4 +1,16 @@
 {
+  "Login": {
+    "name": "Login",
+    "member": "If you are already a member, easily log in",
+    "username": "Username",
+    "password": "Password",
+    "login": "Login",
+    "or": "OR",
+    "google": "Login with Google",
+    "forgotpassword": "Forgot your password?",
+    "account": "Don't have an account?",
+    "register": "Register"
+  },
   "Index": {
     "navigation": {
       "home": "Home",
@@ -21,5 +33,8 @@
     "password": "Password",
     "confirmpassword": "Confirm Password",
     "save": "Save"
+  },
+  "Blog": {
+    "showmore": "Show More"
   }
 }

@@ -1,7 +1,9 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Article({ blogs }) {
+  const t = useTranslations("Blog");
   return (
     <div className="py-4 flex items-center justify-center">
       <div
@@ -27,7 +29,7 @@ export default function Article({ blogs }) {
           </p>
           <p>Meal Type: {blogs.mealType.join(", ")}</p>
           <button className="bg-slate-600 hover:bg-slate-800 text-white font-bold py-2 px-4 rounded">
-            <Link href={`blog/${blogs.id}`}>Read More</Link>
+            <Link href={`blog/${blogs.id}`}>{t("showmore")}</Link>
           </button>
         </div>
       </div>

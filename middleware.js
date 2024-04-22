@@ -1,15 +1,6 @@
 import { NextResponse } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
-
-// export default createMiddleware({
-//   // A list of all locales that are supported
-//   locales: ["en", "ka"],
-
-//   // Used when no locale matches
-//   defaultLocale: "en",
-// });
-
 const protectedRoutes = [
   "/",
   "/en",
@@ -24,7 +15,9 @@ const protectedRoutes = [
 const publicRoutes = ["/login"];
 
 export default async function middleware(request) {
+  //Middleware for rout protections
   const cookie = request.cookies.get("auth")?.value;
+  const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
   const isProtectedRoute =
@@ -38,26 +31,23 @@ export default async function middleware(request) {
   if (isProtectedRoute && !cookie) {
     return NextResponse.redirect(new URL("/login", request.nextUrl));
   }
-
   if (isPublicRoute && cookie) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
-
   if (path === "/" && cookie) {
-    return NextResponse.redirect(new URL("/en", request.nextUrl));
+    return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
   }
 
   //Middleware for internationalization
   const defaultLocale = request.headers.get("ka") || "en";
-
   // Step 2: Create and call the next-intl middleware (example)
+
   const handleI18nRouting = createIntlMiddleware({
     locales: ["en", "ka"],
     defaultLocale,
   });
   const response = handleI18nRouting(request);
 
-  // Step 3: Alter the response (example)
   response.headers.set("ka", defaultLocale);
 
   return response;

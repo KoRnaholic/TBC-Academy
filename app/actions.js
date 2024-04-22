@@ -27,9 +27,9 @@ import { redirect } from "next/navigation";
 // }
 
 //LogOut server action
-export async function Logout() {
-  const cookieStore = cookies();
-  cookieStore.delete("auth");
+// export async function Logout() {
+//   const cookieStore = cookies();
+//   cookieStore.delete("auth");
 
-  return redirect("/login");
-}
+//   return redirect("/login");
+// }

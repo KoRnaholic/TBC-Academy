@@ -23,13 +23,14 @@ export async function POST(request) {
   console.log(user.message);
 
   if (res.ok && user.username === formData.get("username")) {
-    return redirect("/en");
+    return redirect("/");
   }
   return Response.json(user);
 }
 
 export async function GET() {
-  const res = await fetch("https://dummyjson.com/users");
-  const data = res.json();
-  return Response.json(data);
+  const cookieStore = cookies();
+  cookieStore.delete("auth");
+
+  redirect("/login");
 }
