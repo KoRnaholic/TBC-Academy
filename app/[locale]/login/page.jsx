@@ -1,7 +1,6 @@
 import React from "react";
-import background from "../../public/images/login-background.jpg";
+import background from "../../../public/images/login-background.jpg";
 import Image from "next/image";
-import { Login } from "../actions";
 
 export default function LoginPage() {
   return (

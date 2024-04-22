@@ -1,7 +1,19 @@
 import { NextResponse } from "next/server";
 
+import createIntlMiddleware from "next-intl/middleware";
+
+// export default createMiddleware({
+//   // A list of all locales that are supported
+//   locales: ["en", "ka"],
+
+//   // Used when no locale matches
+//   defaultLocale: "en",
+// });
+
 const protectedRoutes = [
   "/",
+  "/en",
+  "/ka",
   "/profile",
   "/contact",
   "/products",
@@ -11,7 +23,7 @@ const protectedRoutes = [
 
 const publicRoutes = ["/login"];
 
-export function middleware(request) {
+export default async function middleware(request) {
   const cookie = request.cookies.get("auth")?.value;
 
   const path = request.nextUrl.pathname;
@@ -30,8 +42,31 @@ export function middleware(request) {
   if (isPublicRoute && cookie) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
+
+  if (path === "/" && cookie) {
+    return NextResponse.redirect(new URL("/en", request.nextUrl));
+  }
+
+  //Middleware for internationalization
+  const defaultLocale = request.headers.get("ka") || "en";
+
+  // Step 2: Create and call the next-intl middleware (example)
+  const handleI18nRouting = createIntlMiddleware({
+    locales: ["en", "ka"],
+    defaultLocale,
+  });
+  const response = handleI18nRouting(request);
+
+  // Step 3: Alter the response (example)
+  response.headers.set("ka", defaultLocale);
+
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|.*\\.png$).*)",
+    "/",
+    "/(ka|en)/:path*",
+  ],
 };

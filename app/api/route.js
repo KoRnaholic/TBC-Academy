@@ -23,7 +23,7 @@ export async function POST(request) {
   console.log(user.message);
 
   if (res.ok && user.username === formData.get("username")) {
-    return redirect("/");
+    return redirect("/en");
   }
   return Response.json(user);
 }

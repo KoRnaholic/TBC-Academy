@@ -1,5 +1,5 @@
 "use client";
-import ProductLoading from "@/app/(dashboard)/products/loading";
+import ProductLoading from "@/app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -48,22 +48,26 @@ export default function SingleProduct({ data }) {
                 ))}
               </div>
             </div>
-            <div className="w-2/3 h-full px-6 py-4">
+            <div className="w-2/3 h-full px-6 py-4 ">
               <div className="font-bold text-xl mb-2">{title}</div>
               <p className="text-gray-700 text-base">{description}</p>
               <div className="flex items-center justify-between mt-4">
-                <span className="font-bold text-gray-900">${price}</span>
-                <span className="text-sm text-gray-600">
+                <span className="font-bold text-gray-900 dark:text-white">
+                  ${price}
+                </span>
+                <span className="text-sm text-gray-600 dark:text-white">
                   Discount: {discountPercentage}%
                 </span>
               </div>
-              <div className="flex items-center mt-2">
-                <span className="text-sm text-gray-600 mr-1">Rating:</span>
+              <div className="flex items-center  mt-2">
+                <span className="text-sm text-gray-600 dark:text-white mr-1">
+                  Rating:
+                </span>
                 <div className="Stars" style={{ "--rating": rating }}></div>
-                <span className="ml-1">{rating?.toFixed(1)}</span>
+                <span className="ml-1 ">{rating?.toFixed(1)}</span>
               </div>
               <div className="mt-4">
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-white">
                   Available: {stock} in stock
                 </span>
               </div>

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function ProductCard({ products }) {
   const router = useRouter();
   const handleClick = (id) => {
-    router.push(`products/${id}`);
+    router.push(`/en/products/${id}`);
   };
 
   return (

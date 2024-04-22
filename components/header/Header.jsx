@@ -6,7 +6,6 @@ import light from "@/public/icons/light.svg";
 import dark from "@/public/icons/dark.svg";
 import system from "@/public/icons/system.svg";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import LogOut from "../UI/Logout";
