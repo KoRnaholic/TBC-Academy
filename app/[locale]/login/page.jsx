@@ -12,8 +12,8 @@ export default function LoginPage() {
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
         <div className="md:w-1/2 px-8 md:px-16">
-          <h2 className="font-bold text-2xl text-sky-800"> {t("name")}</h2>
-          <p className="text-xs mt-4 text-[#002D74]">{t("member")}</p>
+          <h2 className="font-bold text-2xl text-[#fe624c]">Login</h2>
+          <p className="text-xs mt-4 text-[#fe624c]"></p>
 
           <form action="/api" method="POST" className="flex flex-col gap-4">
             <input
@@ -45,7 +45,7 @@ export default function LoginPage() {
             </div>
             <button
               type="submit"
-              className="bg-sky-900 rounded-xl text-white py-2 hover:scale-105 duration-300"
+              className="bg-[#fe624c] rounded-xl text-white py-2 hover:scale-105 duration-300"
             >
               {t("login")}
             </button>
@@ -84,11 +84,11 @@ export default function LoginPage() {
             {t("google")}
           </button>
 
-          <div className="mt-5 text-xs border-b border-[#002D74] py-4 text-[#002D74]">
+          <div className="mt-5 text-xs border-b border-[#fe624c] py-4 text-[#fe624c]">
             <a href="#">{t("forgotpassword")}</a>
           </div>
 
-          <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+          <div className="mt-3 text-xs flex justify-between items-center text-[#fe624c]">
             <p>{t("account")}</p>
             <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
               {t("register")}
