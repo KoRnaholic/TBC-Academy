@@ -1,7 +1,7 @@
 // "use client";
 // import React, { useState } from "react";
-import Button from "@/components/UI/Button";
-import ProfileInfo from "@/components/UI/ProfileInfo";
+import Button from "../../../../components/UI/Button";
+import ProfileInfo from "../../../../components/UI/ProfileInfo";
 import { useTranslations } from "next-intl";
 
 export default function Profile() {
@@ -56,7 +56,7 @@ export default function Profile() {
           </div>
 
           <Button
-            type="submit"
+            // type="submit"
             styles="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none"
           >
             {t("save")}

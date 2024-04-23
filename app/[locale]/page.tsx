@@ -1,6 +1,6 @@
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
-import MainProduct from "@/components/main-product/MainProduct";
+import Footer from "../../components/footer/Footer";
+import Header from "../../components/header/Header";
+import MainProduct from "../../components/main-product/MainProduct";
 import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
