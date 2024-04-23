@@ -1,4 +1,3 @@
-import { Logout } from "@/app/actions";
 import { useLocale, useTranslations } from "next-intl";
 
 export default function LogOut() {

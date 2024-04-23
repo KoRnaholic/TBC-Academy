@@ -1,5 +1,5 @@
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme/theme-provider";
+import { ThemeProvider } from "../../components/theme/theme-provider";
 
 export const metadata = {
   title: "OpenMarket",

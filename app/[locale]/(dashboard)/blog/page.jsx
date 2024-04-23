@@ -1,4 +1,4 @@
-import Article from "@/components/article/Article";
+import Article from "../../../../components/article/Article";
 
 const URL = "https://dummyjson.com/recipes";
 export default async function Blog() {

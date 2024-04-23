@@ -1,7 +1,7 @@
 "use client";
-import user from "@/public/icons/user.svg";
-import cart from "@/public/icons/cart.svg";
-import menu from "@/public/icons/menu.svg";
+import user from "../../public/icons/user.svg";
+import cart from "../../public/icons/cart.svg";
+import menu from "../../public/icons/menu.svg";
 
 import Link from "next/link";
 import Image from "next/image";

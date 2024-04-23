@@ -1,5 +1,5 @@
 "use client";
-import ProductLoading from "@/app/[locale]/(dashboard)/products/loading";
+import ProductLoading from "../../app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
 

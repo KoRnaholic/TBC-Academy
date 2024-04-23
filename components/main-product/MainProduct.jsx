@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
-import ProductCard from "@/components/products/ProductCard";
-import { Search } from "@/components/search/Search";
+import ProductCard from "../products/ProductCard";
+import { Search } from "../search/Search";
 
 export default function MainProduct({ data }) {
   const [product, setProduct] = useState(data);

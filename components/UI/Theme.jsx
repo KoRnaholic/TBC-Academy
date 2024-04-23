@@ -1,5 +1,5 @@
-import light from "@/public/icons/light.svg";
-import dark from "@/public/icons/dark.svg";
+import light from "../../public/icons/light.svg";
+import dark from "../../public/icons/dark.svg";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import Image from "next/image";

@@ -1,4 +1,4 @@
-import { fetchProducts } from "@/utils/helpers";
+import { fetchProducts } from "../../../../../utils/helpers";
 import Image from "next/image";
 import React from "react";
 const URL = "https://dummyjson.com/recipes/";

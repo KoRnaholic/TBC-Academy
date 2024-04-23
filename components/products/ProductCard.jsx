@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Button from "@/components/UI/Button";
+import Button from "../UI/Button";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 

@@ -1,5 +1,5 @@
-import SingleProduct from "@/components/main-product/SingleProduct";
-import { fetchProducts } from "@/utils/helpers";
+import SingleProduct from "../../../../../components/main-product/SingleProduct";
+import { fetchProducts } from "../../../../../utils/helpers";
 const URL = "https://dummyjson.com/products";
 
 export async function generateStaticParams() {
