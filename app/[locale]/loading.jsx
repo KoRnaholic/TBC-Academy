@@ -1,9 +1,10 @@
 "use client";
+import Header from "@/components/header/Header";
 import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex items-center mt-28 justify-center w-full flex-grow text-gray-900 dark:text-gray-100 dark:bg-gray-950">
+    <div className="flex items-center mt-28 justify-center w-full flex-grow text-gray-900 dark:text-gray-100 dark:bg-gray-500">
       <div>
         <h1 className="text-xl md:text-7xl font-bold flex items-center">
           L

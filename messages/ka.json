@@ -1,0 +1,40 @@
+{
+  "Login": {
+    "name": "შესვლა",
+    "member": "თუ უკვე წევრი ხართ, მარტივად შედით სისტემაში",
+    "username": "სახელი",
+    "password": "პაროლი",
+    "login": "შესვლა",
+    "or": "ან",
+    "google": "Google-ით შესვლა",
+    "forgotpassword": "დაგავიწყდა პაროლი?",
+    "account": "არ გაქვს ანგარიში?",
+    "register": "რეგისტრაცია"
+  },
+  "Index": {
+    "navigation": {
+      "home": "მთავარი",
+      "profile": "პროფილი",
+      "about": "შესახებ",
+      "contact": "კონტაქტი",
+      "blog": "ბლოგი",
+      "logout": "გამოსვლა"
+    },
+    "subscription": {
+      "newsletter": "გამოიწერეთ ჩვენი გვერდი",
+      "subscribe": "გამოწერე"
+    }
+  },
+  "Profile": {
+    "profileinfo": "ინფორმაცია",
+    "name": "სახელი",
+    "lastname": "გვარი",
+    "email": "მეილი",
+    "password": "პაროლი",
+    "confirmpassword": "გაიმეორეთ პაროლი",
+    "save": "შენახვა"
+  },
+  "Blog": {
+    "showmore": "სრულად ნახვა"
+  }
+}

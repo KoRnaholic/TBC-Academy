@@ -1,11 +1,13 @@
-import React from "react";
 import { Logout } from "@/app/actions";
+import { useLocale, useTranslations } from "next-intl";
 
-export default function LogOut(props) {
+export default function LogOut() {
+  const t = useLocale("Index");
+  // console.log(t);
   return (
     <>
-      <form action={Logout}>
-        <button>Logout</button>
+      <form action="/api" method="GET">
+        <button>{t === "en" ? "Log out" : "გამოსვლა"}</button>
       </form>
     </>
   );

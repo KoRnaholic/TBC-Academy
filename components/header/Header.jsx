@@ -3,26 +3,16 @@ import user from "@/public/icons/user.svg";
 import cart from "@/public/icons/cart.svg";
 import menu from "@/public/icons/menu.svg";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Logout } from "@/app/actions";
 import LogOut from "../UI/Logout";
 
+import Theme from "../UI/Theme";
+import { useLocale } from "next-intl";
+import LangSwitcher from "../UI/Lang-switcher";
+
 export default function Header() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else if (!dark) {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [dark]);
-
-  function toggleDarkMode() {
-    setDark((prev) => !prev);
-  }
+  const t = useLocale();
 
   return (
     <header className="py-5 px-5 lg:py-5 lg:px-20 bg-slate-50 dark:bg-slate-600">
@@ -36,52 +26,22 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
             <li className="border-b-4 border-transparent hover:border-black ">
-              <Link
-                // className={isActive ? "border-b-4 border-black" : ""}
-                href="/"
-              >
-                Home
+              <Link href={`/${t}`}>
+                {t === "en" ? "Home" : "მთავარი"}
+                {/* {t("navigation.home")} */}
               </Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/profile"
-              >
-                Profile
-              </Link>
+              <Link href="/profile">{t === "en" ? "Profile" : "პროფილი"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/about"
-              >
-                About
-              </Link>
+              <Link href="/about">{t === "en" ? "About" : "შესახებ"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/contact"
-              >
-                Contact
-              </Link>
+              <Link href="/contact">{t === "en" ? "Contact" : "კონტაქტი"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
-              <Link
-                // className={({ isActive }) =>
-                //   isActive ? "border-b-4 border-black" : ""
-                // }
-                href="/blog"
-              >
-                Blog
-              </Link>
+              <Link href="/blog">{t === "en" ? "Blog" : "ბლოგი"}</Link>
             </li>
           </ul>
         </div>
@@ -89,34 +49,12 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
             <li>
-              <div className="justify-center flex flex-row items-center transition-all ease-in-out">
-                <div className="flex flex-row justify-between toggle">
-                  <label
-                    htmlFor="dark-toggle"
-                    className="flex items-center cursor-pointer"
-                  >
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        name="dark-mode"
-                        id="dark-toggle"
-                        className="checkbox hidden"
-                        onClick={toggleDarkMode}
-                      />
-                      <div className="block border-[1px] dark:border-white border-slate-800 w-10 h-6 rounded-full"></div>
-                      <div
-                        className={`dot absolute left-1 top-1 dark:bg-white bg-slate-600 w-4 h-4 rounded-full transition ${
-                          dark ? "translate-x-full" : ""
-                        }`}
-                      ></div>
-                    </div>
-                  </label>
-                </div>
-              </div>
+              <LangSwitcher />
             </li>
             <li>
-              <LogOut />
+              <Theme />
             </li>
+
             <li>
               <Image
                 className="cursor-pointer w-[25px] dark:invert"
@@ -130,6 +68,9 @@ export default function Header() {
                 src={cart}
                 alt="logo3"
               />
+            </li>
+            <li>
+              <LogOut />
             </li>
           </ul>
         </div>

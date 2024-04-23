@@ -1,14 +1,25 @@
+import { fetchProducts } from "@/utils/helpers";
 import Image from "next/image";
 import React from "react";
 const URL = "https://dummyjson.com/recipes/";
 
+export async function generateStaticParams() {
+  const response = await fetch(URL);
+  const blogs = await response.json();
+
+  const paths = blogs.recipes.map((blog) => ({
+    params: { id: `/blog/${blog.id}` },
+  }));
+
+  return paths;
+}
+
 export default async function SingleBlog({ params }) {
-  const response = await fetch(`${URL}${params.id}`);
-  const data = await response.json();
+  const data = await fetchProducts(URL, params.id);
 
   return (
     <div className="flex  items-center justify-center">
-      <div className="p-4 gap-6 bg-slate-100 w-full  lg:w-4/6 rounded-lg shadow-lg transform transition-transform  flex flex-col sm:flex-row">
+      <div className="p-4 gap-6 bg-slate-100 dark:bg-slate-500 w-full  lg:w-4/6 rounded-lg shadow-lg transform transition-transform  flex flex-col sm:flex-row">
         <div className="">
           <Image
             src={data.image}
