@@ -2,25 +2,9 @@
 import React, { useRef, useState } from "react";
 import ProductCard from "../products/ProductCard";
 import { Search } from "../search/Search";
+import { DataResponse } from "../../types/types";
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-interface ProductsResponse {
-  data: Product[];
-}
-
-export default function MainProduct({ data }: ProductsResponse) {
+export default function MainProduct({ data }: DataResponse) {
   const [product, setProduct] = useState(data);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");

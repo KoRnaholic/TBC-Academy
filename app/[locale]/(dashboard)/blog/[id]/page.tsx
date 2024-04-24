@@ -1,30 +1,8 @@
 import { fetchProducts } from "../../../../../utils/helpers";
 import Image from "next/image";
 import React from "react";
+import { BlogObject, Recipes } from "../../../../../types/types";
 const URL = "https://dummyjson.com/recipes/";
-
-interface Recipes {
-  id: number;
-  name: string;
-  ingredients: string[];
-  instructions: string[];
-  prepTimeMinutes: number;
-  cookTimeMinutes: number;
-  servings: number;
-  difficulty: string;
-  cuisine: string;
-  caloriesPerServing: number;
-  tags: string[];
-  userId: number;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  mealType: string[];
-}
-
-interface BlogObject {
-  recipes: Recipes[];
-}
 
 interface Params {
   id: string;
@@ -34,7 +12,7 @@ export async function generateStaticParams() {
   const blogs: BlogObject = await response.json();
 
   const paths = blogs.recipes.map((blog) => ({
-    params: { id: `/blog/${blog.id}` },
+    id: blog.id.toString(),
   }));
 
   return paths;

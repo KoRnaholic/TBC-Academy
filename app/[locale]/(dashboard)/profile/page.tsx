@@ -1,13 +1,8 @@
-// "use client";
-// import React, { useState } from "react";
 import Button from "../../../../components/UI/Button";
 import ProfileInfo from "../../../../components/UI/ProfileInfo";
 import { useTranslations } from "next-intl";
 
 export default function Profile() {
-  // const [password, setPassword] = useState("");
-  // const [confPassword, setConfPassword] = useState("");
-  // console.log(password, confPassword);
   const t = useTranslations("Profile");
   console.log(t);
   return (
@@ -30,8 +25,6 @@ export default function Profile() {
               {t("password")}
             </label>
             <input
-              // value={password}
-              // onChange={(e) => setPassword(e.target.value)}
               type="password"
               id="password"
               name="password"
@@ -46,8 +39,6 @@ export default function Profile() {
               {t("confirmpassword")}
             </label>
             <input
-              // value={confPassword}
-              // onChange={(e) => setConfPassword(e.target.value)}
               type="password"
               id="confirm-password"
               name="confirm-password"
@@ -55,10 +46,7 @@ export default function Profile() {
             />
           </div>
 
-          <Button
-            // type="submit"
-            styles="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none"
-          >
+          <Button styles="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none">
             {t("save")}
           </Button>
         </form>

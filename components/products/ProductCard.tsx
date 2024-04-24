@@ -3,23 +3,7 @@ import Image from "next/image";
 import Button from "../UI/Button";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-interface ProductsResponse {
-  products: Product[];
-}
+import { ProductsResponse } from "../../types/types";
 
 export default function ProductCard({ products }: ProductsResponse) {
   const locale = useLocale();

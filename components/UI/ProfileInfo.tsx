@@ -1,12 +1,7 @@
 import React from "react";
 import { cookies } from "next/headers";
 import { useTranslations } from "next-intl";
-
-interface userObj {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { userObj } from "../../types/types";
 
 export default function ProfileInfo() {
   const cookieStore = cookies();

@@ -1,11 +1,5 @@
 import { useLocale } from "next-intl";
-
-interface SearchProps {
-  setSort: (sortBy: string) => void;
-  sortBy: string;
-  search: string;
-  setSearch: (search: string) => void;
-}
+import { SearchProps } from "../../types/types";
 
 export function Search({ sortBy, setSort, search, setSearch }: SearchProps) {
   const locale = useLocale();

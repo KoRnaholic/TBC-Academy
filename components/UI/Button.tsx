@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ButtonProps {
-  children: React.ReactNode;
-  styles?: string;
-  type?: string;
-}
+import { ButtonProps } from "../../types/types";
 
 export default function Button({ children, styles }: ButtonProps) {
   return (
