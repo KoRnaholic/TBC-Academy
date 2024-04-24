@@ -1,9 +1,9 @@
 import React from "react";
 
-type ButtonProps = {
+interface ButtonProps {
   children: React.ReactNode;
   styles: string;
-};
+}
 
 export default function Button({ children, styles }: ButtonProps) {
   return (
