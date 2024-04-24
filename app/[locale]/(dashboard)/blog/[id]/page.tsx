@@ -3,9 +3,35 @@ import Image from "next/image";
 import React from "react";
 const URL = "https://dummyjson.com/recipes/";
 
+interface Recipes {
+  id: number;
+  name: string;
+  ingredients: string[];
+  instructions: string[];
+  prepTimeMinutes: number;
+  cookTimeMinutes: number;
+  servings: number;
+  difficulty: string;
+  cuisine: string;
+  caloriesPerServing: number;
+  tags: string[];
+  userId: number;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  mealType: string[];
+}
+
+interface BlogObject {
+  recipes: Recipes[];
+}
+
+interface Params {
+  id: string;
+}
 export async function generateStaticParams() {
   const response = await fetch(URL);
-  const blogs = await response.json();
+  const blogs: BlogObject = await response.json();
 
   const paths = blogs.recipes.map((blog) => ({
     params: { id: `/blog/${blog.id}` },
@@ -14,8 +40,8 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function SingleBlog({ params }) {
-  const data = await fetchProducts(URL, params.id);
+export default async function SingleBlog({ params }: { params: Params }) {
+  const data: Recipes = await fetchProducts(URL, params.id);
 
   return (
     <div className="flex  items-center justify-center">
