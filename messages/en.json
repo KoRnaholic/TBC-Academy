@@ -36,5 +36,14 @@
   },
   "Blog": {
     "showmore": "Show More"
+  },
+  "Contact": {
+    "contactus": "Contacts Us",
+    "address": "Out Adress",
+    "number": "Phone Number",
+    "email": "Email",
+    "name": "Name",
+    "message": "Message",
+    "submit": "Submit"
   }
 }

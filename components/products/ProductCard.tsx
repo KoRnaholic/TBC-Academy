@@ -4,11 +4,28 @@ import Button from "../UI/Button";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
-export default function ProductCard({ products }) {
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+interface ProductsResponse {
+  products: Product[];
+}
+
+export default function ProductCard({ products }: ProductsResponse) {
   const locale = useLocale();
 
   const router = useRouter();
-  const handleClick = (id) => {
+  const handleClick = (id: number) => {
     router.push(`/products/${id}`);
   };
 
