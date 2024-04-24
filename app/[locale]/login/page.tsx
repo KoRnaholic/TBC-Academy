@@ -3,11 +3,12 @@ import background from "../../../public/images/login-background.jpg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-export default function LoginPage() {
+const LoginPage: React.FC = () => {
   const t = useTranslations("Login");
   console.log(t);
+  
   return (
-    <section className="bg-cyan-700 min-h-screen flex items-center justify-center ">
+    <section className="bg-cyan-700 min-h-screen flex items-center justify-center">
       {/* login container */}
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
@@ -109,3 +110,5 @@ export default function LoginPage() {
     </section>
   );
 }
+
+export default LoginPage;
