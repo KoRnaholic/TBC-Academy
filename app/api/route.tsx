@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Cookies } from "next/cookies";
+import { cookies } from "next/headers";
 
 export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData();
@@ -15,13 +15,13 @@ export async function POST(request: Request): Promise<Response> {
   });
 
   const user = await res.json();
-  const cookies = new Cookies(request, null);
+  const cookieStore = cookies();
 
   if (user.message === "Invalid credentials") {
     return redirect("/login");
   }
 
-  cookies.set("auth", JSON.stringify(user));
+  cookieStore.set("auth", JSON.stringify(user));
   console.log(user.message);
 
   if (res.ok && user.username === formData.get("username")) {
@@ -31,9 +31,9 @@ export async function POST(request: Request): Promise<Response> {
   return new Response(JSON.stringify(user));
 }
 
-export async function GET(request: Request): Promise<Response> {
-  const cookies = new Cookies(request, null);
-  cookies.delete("auth");
+export async function GET(): Promise<Response> {
+  const cookieStore = cookies();
+  cookieStore.delete("auth");
 
   return redirect("/login");
 }

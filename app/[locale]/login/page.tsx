@@ -3,10 +3,10 @@ import background from "../../../public/images/login-background.jpg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   const t = useTranslations("Login");
   console.log(t);
-  
+
   return (
     <section className="bg-cyan-700 min-h-screen flex items-center justify-center">
       {/* login container */}
@@ -109,6 +109,6 @@ const LoginPage: React.FC = () => {
       </div>
     </section>
   );
-}
+};
 
 export default LoginPage;
