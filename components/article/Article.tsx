@@ -2,7 +2,26 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Article({ blogs }) {
+interface Recipes {
+  id: number;
+  name: string;
+  ingredients: string[];
+  instructions: string[];
+  prepTimeMinutes: number;
+  cookTimeMinutes: number;
+  servings: number;
+  difficulty: string;
+  cuisine: string;
+  caloriesPerServing: number;
+  tags: string[];
+  userId: number;
+  image: string;
+  rating: number;
+  reviewCount: number;
+  mealType: string[];
+}
+
+export default function Article({ blogs }: { blogs: Recipes }) {
   const t = useTranslations("Blog");
   return (
     <div className="py-4 flex items-center justify-center">
