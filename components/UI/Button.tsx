@@ -2,7 +2,8 @@ import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
-  styles: string;
+  styles?: string;
+  type?: string;
 }
 
 export default function Button({ children, styles }: ButtonProps) {

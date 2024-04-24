@@ -20,7 +20,7 @@ interface Recipes {
 }
 
 interface DataObject {
-  products: Recipes[];
+  recipes: Recipes[];
 }
 
 const URL = "https://dummyjson.com/recipes";
@@ -30,7 +30,7 @@ export default async function Blog() {
 
   return (
     <div className="overflow-y-auto max-h-[550px]">
-      {data.products.map((blog, index) => {
+      {data.recipes.map((blog, index) => {
         return <Article key={index} blogs={blog} />;
       })}
     </div>

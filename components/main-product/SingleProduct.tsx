@@ -80,7 +80,7 @@ export default function SingleProduct({ data }: SingleProductProps) {
                 <span className="text-sm text-gray-600 dark:text-white mr-1">
                   Rating:
                 </span>
-                <div className="Stars" style={{ "--rating": rating }}></div>
+                <div className="Stars"></div>
                 <span className="ml-1 ">{rating?.toFixed(1)}</span>
               </div>
               <div className="mt-4">

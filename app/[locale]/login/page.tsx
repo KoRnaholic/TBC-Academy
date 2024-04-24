@@ -18,7 +18,7 @@ const LoginPage = () => {
 
           <form action="/api" method="POST" className="flex flex-col gap-4">
             <input
-              className="p-2 mt-8 rounded-xl border"
+              className="p-2 mt-8 rounded-xl border dark:bg-[#cbd4e3] dark:text-slate-900 dark:placeholder:text-slate-400"
               type="username"
               name="username"
               placeholder={`${t("username")}`}
@@ -26,7 +26,7 @@ const LoginPage = () => {
             />
             <div className="relative">
               <input
-                className="p-2 rounded-xl border w-full"
+                className="p-2 rounded-xl border w-full dark:bg-[#cbd4e3] dark:text-slate-900 dark:placeholder:text-slate-400"
                 type="password"
                 name="password"
                 placeholder={`${t("password")}`}
