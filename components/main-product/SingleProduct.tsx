@@ -3,8 +3,25 @@ import ProductLoading from "../../app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function SingleProduct({ data }) {
-  const [selectedImage, setSelectedImage] = useState(null);
+interface Product {
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+interface SingleProductProps {
+  data: Product;
+}
+
+export default function SingleProduct({ data }: SingleProductProps) {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const {
     title,
