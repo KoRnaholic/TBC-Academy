@@ -1,23 +1,24 @@
 "use client";
 import React, { useRef, useState } from "react";
-import ProductCard from "@/components/products/ProductCard";
-import { Search } from "@/components/search/Search";
+import ProductCard from "../products/ProductCard";
+import { Search } from "../search/Search";
+import { DataResponse } from "../../types/types";
 
-export default function MainProduct({ data }) {
+export default function MainProduct({ data }: DataResponse) {
   const [product, setProduct] = useState(data);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
-  const debounceTimeout = useRef(null);
+  const debounceTimeout = useRef<number | null>(null);
 
   //Searching with debounce
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     setSearch(value);
     console.log(value);
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
 
-    debounceTimeout.current = setTimeout(() => {
+    debounceTimeout.current = window.setTimeout(() => {
       const currentProduct = data.filter((product) =>
         product.title.toLowerCase().includes(value.trim().toLowerCase())
       );
@@ -26,7 +27,7 @@ export default function MainProduct({ data }) {
   };
 
   //Sorting
-  const handleSort = (criteria) => {
+  const handleSort = (criteria: string) => {
     if (criteria === "input") {
       const sortedById = [...product].sort((a, b) => a.id - b.id);
       setProduct(sortedById);

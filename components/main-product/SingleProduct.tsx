@@ -1,10 +1,27 @@
 "use client";
-import ProductLoading from "@/app/[locale]/(dashboard)/products/loading";
+import ProductLoading from "../../app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function SingleProduct({ data }) {
-  const [selectedImage, setSelectedImage] = useState(null);
+interface Product {
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+
+interface SingleProductProps {
+  data: Product;
+}
+
+export default function SingleProduct({ data }: SingleProductProps) {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const {
     title,
@@ -63,7 +80,7 @@ export default function SingleProduct({ data }) {
                 <span className="text-sm text-gray-600 dark:text-white mr-1">
                   Rating:
                 </span>
-                <div className="Stars" style={{ "--rating": rating }}></div>
+                <div className="Stars"></div>
                 <span className="ml-1 ">{rating?.toFixed(1)}</span>
               </div>
               <div className="mt-4">

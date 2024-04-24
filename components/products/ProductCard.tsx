@@ -1,14 +1,15 @@
 "use client";
 import Image from "next/image";
-import Button from "@/components/UI/Button";
+import Button from "../UI/Button";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
+import { ProductsResponse } from "../../types/types";
 
-export default function ProductCard({ products }) {
+export default function ProductCard({ products }: ProductsResponse) {
   const locale = useLocale();
 
   const router = useRouter();
-  const handleClick = (id) => {
+  const handleClick = (id: number) => {
     router.push(`/products/${id}`);
   };
 

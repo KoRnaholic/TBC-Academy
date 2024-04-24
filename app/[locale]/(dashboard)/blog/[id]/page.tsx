@@ -1,21 +1,25 @@
-import { fetchProducts } from "@/utils/helpers";
+import { fetchProducts } from "../../../../../utils/helpers";
 import Image from "next/image";
 import React from "react";
+import { BlogObject, Recipes } from "../../../../../types/types";
 const URL = "https://dummyjson.com/recipes/";
 
+interface Params {
+  id: string;
+}
 export async function generateStaticParams() {
   const response = await fetch(URL);
-  const blogs = await response.json();
+  const blogs: BlogObject = await response.json();
 
   const paths = blogs.recipes.map((blog) => ({
-    params: { id: `/blog/${blog.id}` },
+    id: blog.id.toString(),
   }));
 
   return paths;
 }
 
-export default async function SingleBlog({ params }) {
-  const data = await fetchProducts(URL, params.id);
+export default async function SingleBlog({ params }: { params: Params }) {
+  const data: Recipes = await fetchProducts(URL, params.id);
 
   return (
     <div className="flex  items-center justify-center">

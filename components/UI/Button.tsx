@@ -1,6 +1,7 @@
 import React from "react";
+import { ButtonProps } from "../../types/types";
 
-export default function Button({ children, styles }) {
+export default function Button({ children, styles }: ButtonProps) {
   return (
     <>
       <button

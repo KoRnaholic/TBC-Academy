@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/components/header/Header";
+
 import React from "react";
 
 export default function Loading() {

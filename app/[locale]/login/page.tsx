@@ -3,11 +3,12 @@ import background from "../../../public/images/login-background.jpg";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-export default function LoginPage() {
+const LoginPage = () => {
   const t = useTranslations("Login");
   console.log(t);
+
   return (
-    <section className="bg-cyan-700 min-h-screen flex items-center justify-center ">
+    <section className="bg-cyan-700 min-h-screen flex items-center justify-center">
       {/* login container */}
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
@@ -17,7 +18,7 @@ export default function LoginPage() {
 
           <form action="/api" method="POST" className="flex flex-col gap-4">
             <input
-              className="p-2 mt-8 rounded-xl border"
+              className="p-2 mt-8 rounded-xl border dark:bg-[#cbd4e3] dark:text-slate-900 dark:placeholder:text-slate-400"
               type="username"
               name="username"
               placeholder={`${t("username")}`}
@@ -25,7 +26,7 @@ export default function LoginPage() {
             />
             <div className="relative">
               <input
-                className="p-2 rounded-xl border w-full"
+                className="p-2 rounded-xl border w-full dark:bg-[#cbd4e3] dark:text-slate-900 dark:placeholder:text-slate-400"
                 type="password"
                 name="password"
                 placeholder={`${t("password")}`}
@@ -108,4 +109,6 @@ export default function LoginPage() {
       </div>
     </section>
   );
-}
+};
+
+export default LoginPage;

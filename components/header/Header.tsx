@@ -1,7 +1,7 @@
 "use client";
-import user from "@/public/icons/user.svg";
-import cart from "@/public/icons/cart.svg";
-import menu from "@/public/icons/menu.svg";
+import user from "../../public/icons/user.svg";
+import cart from "../../public/icons/cart.svg";
+import menu from "../../public/icons/menu.svg";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -26,10 +26,7 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
             <li className="border-b-4 border-transparent hover:border-black ">
-              <Link href={`/${t}`}>
-                {t === "en" ? "Home" : "მთავარი"}
-                {/* {t("navigation.home")} */}
-              </Link>
+              <Link href={`/${t}`}>{t === "en" ? "Home" : "მთავარი"}</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-black">
               <Link href="/profile">{t === "en" ? "Profile" : "პროფილი"}</Link>
@@ -76,7 +73,7 @@ export default function Header() {
         </div>
 
         <div className="lg:hidden dark:invert w-[35px] cursor-pointer">
-          <Image src={menu} alt="menu" width="35px" />
+          <Image src={menu} alt="menu" width={35} />
         </div>
       </nav>
     </header>
