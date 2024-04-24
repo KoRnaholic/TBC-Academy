@@ -6,7 +6,7 @@ export default function ProfileInfo() {
   const cookieStore = cookies();
   const cookie = cookieStore.get("auth");
   const jsonString = cookie?.value;
-  const userObj = JSON.parse(jsonString);
+  const userObj = JSON.parse(jsonString || "");
   const { firstName, lastName, email } = userObj;
   console.log(userObj.username);
 
