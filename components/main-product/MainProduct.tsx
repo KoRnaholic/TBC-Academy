@@ -3,21 +3,38 @@ import React, { useRef, useState } from "react";
 import ProductCard from "../products/ProductCard";
 import { Search } from "../search/Search";
 
-export default function MainProduct({ data }) {
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: string[];
+}
+interface ProductsResponse {
+  data: Product[];
+}
+
+export default function MainProduct({ data }: ProductsResponse) {
   const [product, setProduct] = useState(data);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
-  const debounceTimeout = useRef(null);
+  const debounceTimeout = useRef<number | null>(null);
 
   //Searching with debounce
-  const handleSearch = (value) => {
+  const handleSearch = (value: string) => {
     setSearch(value);
     console.log(value);
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }
 
-    debounceTimeout.current = setTimeout(() => {
+    debounceTimeout.current = window.setTimeout(() => {
       const currentProduct = data.filter((product) =>
         product.title.toLowerCase().includes(value.trim().toLowerCase())
       );
@@ -26,7 +43,7 @@ export default function MainProduct({ data }) {
   };
 
   //Sorting
-  const handleSort = (criteria) => {
+  const handleSort = (criteria: string) => {
     if (criteria === "input") {
       const sortedById = [...product].sort((a, b) => a.id - b.id);
       setProduct(sortedById);
