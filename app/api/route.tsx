@@ -1,7 +1,7 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
-export async function POST(request) {
+export async function POST(request: Request): Promise<Response> {
   const formData = await request.formData();
   const res = await fetch("https://dummyjson.com/auth/login", {
     method: "POST",
@@ -16,21 +16,24 @@ export async function POST(request) {
 
   const user = await res.json();
   const cookieStore = cookies();
+
   if (user.message === "Invalid credentials") {
     return redirect("/login");
   }
+
   cookieStore.set("auth", JSON.stringify(user));
   console.log(user.message);
 
   if (res.ok && user.username === formData.get("username")) {
     return redirect("/");
   }
-  return Response.json(user);
+
+  return new Response(JSON.stringify(user));
 }
 
-export async function GET() {
+export async function GET(): Promise<Response> {
   const cookieStore = cookies();
   cookieStore.delete("auth");
 
-  redirect("/login");
+  return redirect("/login");
 }
