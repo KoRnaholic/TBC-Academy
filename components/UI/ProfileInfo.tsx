@@ -2,12 +2,18 @@ import React from "react";
 import { cookies } from "next/headers";
 import { useTranslations } from "next-intl";
 
+interface userObj {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
 export default function ProfileInfo() {
   const cookieStore = cookies();
   const cookie = cookieStore.get("auth");
   const jsonString = cookie?.value;
-  const userObj = JSON.parse(jsonString);
-  const { firstName, lastName, email } = userObj;
+  const userObj = JSON.parse(jsonString || "");
+  const { firstName, lastName, email }: userObj = userObj;
   console.log(userObj.username);
 
   const t = useTranslations("Profile");
