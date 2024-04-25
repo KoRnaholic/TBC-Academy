@@ -1,6 +1,7 @@
 import "./globals.css";
 import { ThemeProvider } from "../../components/theme/theme-provider";
 import { ReactNode } from "react";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata = {
   title: "OpenMarket",
@@ -18,7 +19,8 @@ export default function LocaleLayout({
   children,
   params: { locale },
 }: LocaleLayoutProps) {
-  console.log(locale);
+  unstable_setRequestLocale(locale);
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">

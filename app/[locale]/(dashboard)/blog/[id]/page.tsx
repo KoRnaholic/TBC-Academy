@@ -12,10 +12,16 @@ export async function generateStaticParams() {
   const blogs: BlogObject = await response.json();
 
   const paths = blogs.recipes.map((blog) => ({
+    locale: "en",
     id: blog.id.toString(),
   }));
+  const paths2 = blogs.recipes.map((blog) => ({
+    locale: "ka",
+    id: blog.id.toString(),
+  }));
+  console.log(paths);
 
-  return paths;
+  return paths.concat(paths2);
 }
 
 export default async function SingleBlog({ params }: { params: Params }) {
