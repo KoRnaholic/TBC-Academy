@@ -5,7 +5,9 @@ import Header from "../../../components/header/Header";
 import React from "react";
 interface DashboardLayoutProps {
   children: JSX.Element;
-  params: any;
+  params: {
+    locale: string;
+  };
 }
 
 export default function DashboardLayout({
@@ -16,7 +18,7 @@ export default function DashboardLayout({
   return (
     <div className="flex flex-col  min-h-screen">
       <Header />
-      <main className="p-8 flex-grow  dark:bg-slate-700">{children}</main>
+      <main className="">{children}</main>
       <Footer />
     </div>
   );

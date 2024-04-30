@@ -8,7 +8,7 @@ export default function Button({ children, styles }: ButtonProps) {
         className={`${
           styles
             ? styles
-            : "hover:bg-slate-800 px-4 py-2 bg-gray-600 text-white text-xs font-bold  rounded"
+            : "hover:bg-[#051922] px-4 py-2 bg-[#F28123]  text-white text-medium font-base  rounded-full"
         } `}
       >
         {children}

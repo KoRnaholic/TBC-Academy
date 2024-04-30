@@ -35,9 +35,9 @@ export default async function middleware(request: NextRequest) {
   if (isPublicRoute && cookie) {
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
-  if (path === "/" && cookie) {
-    return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
-  }
+  // if (path === "/" && cookie) {
+  //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
+  // }
 
   //Middleware for internationalization
   const defaultLocale = request.headers.get("ka") || "en";
@@ -46,7 +46,9 @@ export default async function middleware(request: NextRequest) {
   const handleI18nRouting = createIntlMiddleware({
     locales: ["en", "ka"],
     defaultLocale,
+    localePrefix: "never",
   });
+
   const response = handleI18nRouting(request);
 
   response.headers.set("ka", defaultLocale);

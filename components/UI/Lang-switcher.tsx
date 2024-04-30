@@ -12,9 +12,8 @@ export default function LangSwitcher() {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e.target.value;
-    const extractedPath = path.slice(4);
     startTransition(() => {
-      router.replace(`/${nextLocale}/${extractedPath}`);
+      router.replace(`/${nextLocale}/${path}`);
     });
   };
   return (

@@ -5,7 +5,7 @@ export function Search({ sortBy, setSort, search, setSearch }: SearchProps) {
   const locale = useLocale();
   return (
     <>
-      <div className="mt-1 mb-4 flex gap-2 items-center  mx-auto max-w-lg">
+      <div className="mt-5 mb-4 flex gap-2 items-center  mx-auto max-w-lg">
         <input
           className="w-full dark:bg-slate-500 border dark:placeholder:text-white border-gray-300 rounded-full py-2 px-4 leading-tight focus:outline-none focus:border-slate-500"
           type="text"
@@ -15,7 +15,7 @@ export function Search({ sortBy, setSort, search, setSearch }: SearchProps) {
         />
         <div className="relative">
           <select
-            className="appearance-none rounded-full bg-slate-500 hover:bg-slate-700 dark:hover:bg-slate-800 text-white font-bold py-2 px-4 focus:outline-none"
+            className="appearance-none rounded-full bg-[#f28023d4] hover:bg-[#051922] dark:hover:bg-slate-800 text-white hover:text-[#F28123] font-bold py-2 px-4 focus:outline-none"
             value={sortBy}
             onChange={(e) => setSort(e.target.value)}
           >

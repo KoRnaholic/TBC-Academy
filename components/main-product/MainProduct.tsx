@@ -9,6 +9,7 @@ export default function MainProduct({ data }: DataResponse) {
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
   const debounceTimeout = useRef<number | null>(null);
+  // console.log(product);
 
   //Searching with debounce
   const handleSearch = (value: string) => {
@@ -48,13 +49,24 @@ export default function MainProduct({ data }: DataResponse) {
 
   return (
     <div className="p-8 flex-grow  dark:bg-slate-700">
+      <div className="flex flex-col gap-2 justify-center items-center p-10">
+        <h1 className="text-4xl md:text-5xl">
+          <span className="text-[#F28123]">Our</span> Products
+        </h1>
+        <hr className="w-16 h-1 bg-[#F28123] border-none" />
+        <p className="mt-2 w-2/3 md:w-1/3 text-center text-gray-400">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
+          fuga quas itaque eveniet beatae optio.
+        </p>
+      </div>
+
       <Search
         setSort={handleSort}
         sortBy={sortBy}
         search={search}
         setSearch={handleSearch}
       />
-      <div className="flex overflow-y-auto flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-5 max-h-[580px]">
+      <div className="flex overflow-y-auto mt-10  flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-10 max-h-[580px]">
         <ProductCard products={product} />
       </div>
     </div>
