@@ -17,8 +17,7 @@ export default function ProductCard({ products }: ProductsResponse) {
   return (
     <>
       {products.map((product, index) => {
-        const { title, description, thumbnail, price, id, discountPercentage } =
-          product;
+        const { title, thumbnail, price, id, discountPercentage } = product;
         return (
           <div
             onClick={() => handleClick(id)}

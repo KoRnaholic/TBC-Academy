@@ -18,7 +18,7 @@ const publicRoutes = ["/login"];
 export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
   const cookie = request.cookies.get("auth")?.value;
-  const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
+  // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
   const isProtectedRoute =
