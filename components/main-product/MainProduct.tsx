@@ -4,7 +4,7 @@ import ProductCard from "../products/ProductCard";
 import { Search } from "../search/Search";
 import { DataResponse } from "../../types/types";
 
-export default function MainProduct({ data }: DataResponse) {
+export default function MainProduct({ data, name }: DataResponse) {
   const [product, setProduct] = useState(data);
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
@@ -48,10 +48,10 @@ export default function MainProduct({ data }: DataResponse) {
   };
 
   return (
-    <div className="p-8 flex-grow  dark:bg-slate-700">
-      <div className="flex flex-col gap-2 justify-center items-center p-10">
+    <div className="p-4 sm:p-8 flex-grow  dark:bg-slate-700">
+      <div className="flex flex-col gap-2 justify-center items-center p-5 sm:p-10">
         <h1 className="text-4xl md:text-5xl">
-          <span className="text-[#F28123]">Our</span> Products
+          <span className="text-[#F28123]">{name.name}</span> {name.text}
         </h1>
         <hr className="w-16 h-1 bg-[#F28123] border-none" />
         <p className="mt-2 w-2/3 md:w-1/3 text-center text-gray-400">

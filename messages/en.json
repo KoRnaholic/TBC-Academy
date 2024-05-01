@@ -20,6 +20,30 @@
       "blog": "Blog",
       "logout": "Logout"
     },
+    "banner": {
+      "name": "SMART & SUSTAINABLE",
+      "header": "Discover the Joy of Shopping",
+      "collection": "Product Collection",
+      "contact": "Contact Us"
+    },
+    "features": {
+      "shipping": {
+        "name": "Free Shipping",
+        "text": "When order over $75"
+      },
+      "support": {
+        "name": "24/7 Support",
+        "text": "Get support all day"
+      },
+      "refund": {
+        "name": "Refund",
+        "text": "Get refund within 3 days!"
+      }
+    },
+    "product": {
+      "name": "Our",
+      "text": "Products"
+    },
     "subscription": {
       "newsletter": "Subscribe to our newsletter",
       "subscribe": "Subscribe"
@@ -38,7 +62,7 @@
     "showmore": "Show More"
   },
   "Contact": {
-    "contactus": "Contacts Us",
+    "contactus": "Contact Us",
     "address": "Out Adress",
     "number": "Phone Number",
     "email": "Email",

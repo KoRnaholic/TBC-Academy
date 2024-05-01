@@ -59,6 +59,10 @@ export interface SearchProps {
 
 export interface DataResponse {
   data: Product[];
+  name: {
+    name: string;
+    text: string;
+  };
 }
 
 //Button
@@ -66,4 +70,9 @@ export interface ButtonProps {
   children: React.ReactNode;
   styles?: string;
   type?: string;
+}
+
+//SingleProduct component
+export interface SingleProductProps {
+  data: Product;
 }

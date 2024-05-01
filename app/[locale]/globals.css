@@ -34,7 +34,7 @@ code {
   display: block;
   float: left;
   padding: 5px 10px;
-  background: #f28123;
+  background: rgb(200, 97, 13);
   font-size: 13px;
   font-weight: 400;
   position: absolute;
@@ -54,12 +54,12 @@ code {
 .flag-discount::before {
   top: 0;
   border-width: 22px 15px 0 0;
-  border-color: #f28123 transparent transparent transparent;
+  border-color: rgb(200, 97, 13) transparent transparent transparent;
 }
 .flag-discount::after {
   bottom: 0;
   border-width: 0 15px 22px 0;
-  border-color: transparent transparent #f28123 transparent;
+  border-color: transparent transparent rgb(200, 97, 13) transparent;
 }
 
 /* Loading spinner */

@@ -23,7 +23,7 @@ export default function ProductCard({ products }: ProductsResponse) {
           <div
             onClick={() => handleClick(id)}
             key={index}
-            className="max-w-[270px] relative w-[300px] pb-2 mx-auto bg-slate-50 dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-0
+            className="max-w-[270px] relative w-[300px] pb-2 mx-auto bg-white dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-0
           hover:-translate-y-1 hover:scale-105 duration-300"
           >
             <span className="flag-discount">

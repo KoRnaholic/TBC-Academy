@@ -13,7 +13,7 @@ const LoginPage = () => {
       <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
         {/* form */}
         <div className="md:w-1/2 px-8 md:px-16">
-          <h2 className="font-bold text-2xl text-[#fe624c]">Login</h2>
+          <h2 className="font-bold text-2xl text-[#fe624c]">{t("name")}</h2>
           <p className="text-xs mt-4 text-[#fe624c]"></p>
 
           <form action="/api" method="POST" className="flex flex-col gap-4">

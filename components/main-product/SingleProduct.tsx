@@ -2,26 +2,11 @@
 import ProductLoading from "../../app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
-
-interface Product {
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-
-interface SingleProductProps {
-  data: Product;
-}
+import Button from "../UI/Button";
+import { SingleProductProps } from "../../types/types";
 
 export default function SingleProduct({ data }: SingleProductProps) {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const {
     title,
@@ -33,45 +18,42 @@ export default function SingleProduct({ data }: SingleProductProps) {
     brand,
     category,
     thumbnail,
-    images,
   } = data;
 
   return (
     <>
-      {thumbnail ? (
-        <div className="flex justify-center mt-20 h-3/4">
-          <div className="max-w-4xl h-full rounded overflow-hidden shadow-lg flex">
-            <div className="w-1/3">
-              <Image
-                className="w-full"
-                width={300}
-                height={300}
-                src={thumbnail}
-                quality={100}
-                alt={`image ${title}`}
-              />
+      <div className="bg-[#07212e] flex items-center justify-center h-[450px]">
+        <div className="flex-col gap-8  flex ">
+          <h1 className="text-[#F28123] text-center tracking-widest text-xl">
+            SEE MORE DETAILS
+          </h1>
+          <h1 className="text-center text-white text-4xl sm:text-5xl ">
+            Single Product
+          </h1>
+        </div>
+      </div>
 
-              <div className="mt-4 grid grid-cols-4 gap-2">
-                {images?.map((image, index) => (
-                  <Image
-                    key={index}
-                    src={image}
-                    width={100}
-                    height={100}
-                    alt={`Product Image ${index}`}
-                    className="w-full h-16 object-cover cursor-pointer"
-                    onClick={() => setSelectedImage(index)}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="w-2/3 h-full px-6 py-4 ">
-              <div className="font-bold text-xl mb-2">{title}</div>
-              <p className="text-gray-700 text-base">{description}</p>
+      {thumbnail ? (
+        <div className="flex flex-col sm:flex-row justify-center items-center m-5 sm:m-20 h-3/4 sm:gap-12 sm:p-20">
+          <Image
+            className="w-full lg:w-96 sm:h-96 shadow-2xl rounded-md"
+            width={500}
+            height={500}
+            src={thumbnail}
+            quality={100}
+            alt={`image ${title}`}
+            onClick={() => setSelectedImage(thumbnail)}
+          />
+          <div className="h-full gap-5    flex">
+            <div className=" h-full flex flex-col gap-3  py-4 ">
+              <div className="font-bold  mb-2 text-2xl">{title}</div>
+              <span className="font-bold text-gray-900 dark:text-white text-2xl">
+                ${price}
+              </span>
+              <p className="text-gray-500 text-base w-full lg:w-96">
+                {description}
+              </p>
               <div className="flex items-center justify-between mt-4">
-                <span className="font-bold text-gray-900 dark:text-white">
-                  ${price}
-                </span>
                 <span className="text-sm text-gray-600 dark:text-white">
                   Discount: {discountPercentage}%
                 </span>
@@ -88,25 +70,28 @@ export default function SingleProduct({ data }: SingleProductProps) {
                   Available: {stock} in stock
                 </span>
               </div>
-              <div className="px-4 pt-4 pb-2">
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+              <div className="flex gap-2">
+                Categories:
+                <span className="inline-block bg-orange-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
                   {brand}
                 </span>
-                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                <span className="inline-block bg-orange-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
                   {category}
                 </span>
               </div>
+              <div className="mt-3">
+                <Button>Add to Cart</Button>
+              </div>
             </div>
-
             {selectedImage !== null && (
               <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-60 flex items-center justify-center">
                 <div className="max-w-6xl mx-auto">
                   <Image
                     className="w-full h-full object-contain rounded-xl"
-                    height={500}
-                    width={500}
+                    height={800}
+                    width={800}
                     quality={100}
-                    src={images[selectedImage]}
+                    src={selectedImage}
                     alt={`Product Image ${selectedImage}`}
                   />
                   <button
