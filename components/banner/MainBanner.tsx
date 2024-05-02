@@ -25,7 +25,9 @@ export default function MainBanner() {
             {t("banner.collection")}
           </button>
           <button className="px-4 py-2 rounded-full border-2 border-[#F28123] hover:bg-[#F28123] transition duration-300">
-            <Link href="/contact">{t("banner.contact")}</Link>
+            <Link href="/contact" scroll={false}>
+              {t("banner.contact")}
+            </Link>
           </button>
         </div>
       </div>

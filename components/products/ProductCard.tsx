@@ -11,7 +11,7 @@ export default function ProductCard({ products }: ProductsResponse) {
 
   const router = useRouter();
   const handleClick = (id: number) => {
-    router.push(`/products/${id}`);
+    router.push(`/products/${id}`, { scroll: false });
   };
 
   return (
