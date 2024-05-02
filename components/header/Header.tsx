@@ -54,6 +54,7 @@ export default function Header() {
               <Link
                 className={`${pathname === `/${t}` ? "text-[#F28123] " : ""}`}
                 href={`/${t}`}
+                scroll={false}
               >
                 {t === "en" ? "Home" : "მთავარი"}
               </Link>
@@ -64,6 +65,7 @@ export default function Header() {
                   pathname === `/${t}/profile` ? "border-b-4  " : ""
                 }`}
                 href="/profile"
+                scroll={false}
               >
                 {t === "en" ? "Profile" : "პროფილი"}
               </Link>
@@ -74,6 +76,7 @@ export default function Header() {
                   pathname === `/${t}/about` ? "text-[#F28123]" : ""
                 }`}
                 href="/about"
+                scroll={false}
               >
                 {t === "en" ? "About" : "შესახებ"}
               </Link>
@@ -84,6 +87,7 @@ export default function Header() {
                   pathname === `/${t}/contact` ? "text-[#F28123]" : ""
                 }`}
                 href="/contact"
+                scroll={false}
               >
                 {t === "en" ? "Contact" : "კონტაქტი"}
               </Link>
@@ -94,6 +98,7 @@ export default function Header() {
                   pathname === `/${t}/blog` ? "text-[#F28123]" : ""
                 }`}
                 href="/blog"
+                scroll={false}
               >
                 {t === "en" ? "Blog" : "ბლოგი"}
               </Link>

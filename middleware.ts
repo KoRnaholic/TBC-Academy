@@ -51,7 +51,7 @@ export default async function middleware(request: NextRequest) {
 
   const response = handleI18nRouting(request);
 
-  response.headers.set("ka", defaultLocale);
+  // response.headers.set("ka", defaultLocale);
 
   return response;
 }
