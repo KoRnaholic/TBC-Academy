@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -32,4 +33,47 @@ export async function Logout() {
   cookieStore.delete("auth");
 
   return redirect("/login");
+}
+
+//Add user
+export async function addUser(formData: FormData) {
+  "use server";
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const age = formData.get("age");
+  await fetch(
+    `http://localhost:3000/api/add-user?name=${name}&email=${email}&age=${age}`,
+    {
+      method: "GET",
+    }
+  );
+
+  revalidatePath("/users");
+}
+
+//Delete user
+export async function handleUserDelete(id: string) {
+  "use server";
+  await fetch(`http://localhost:3000/api/delete-user/${id}`, {
+    method: "DELETE",
+  });
+
+  revalidatePath("/users");
+}
+
+//Edit user
+export async function editUser(id, formData: FormData) {
+  "use server";
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const age = formData.get("age");
+  console.log(id);
+  await fetch(
+    `http://localhost:3000/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    {
+      method: "POST",
+    }
+  );
+
+  revalidatePath("/users");
 }

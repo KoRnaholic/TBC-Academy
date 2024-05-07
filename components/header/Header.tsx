@@ -39,7 +39,7 @@ export default function Header() {
     <header
       className={`${
         scrolling ? "bg-[#051922]" : "bg-transparent"
-      } py-5 px-5 lg:py-5 lg:px-20  dark:bg-slate-600 fixed transition-all duration-300   w-full text-[#fff] z-10`}
+      } py-5 px-5 lg:py-5 lg:px-20   fixed transition-all duration-300   w-full text-[#fff] z-10`}
     >
       <nav className="flex justify-between items-center">
         <div>
@@ -52,7 +52,7 @@ export default function Header() {
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
             <li className="border-b-4 border-transparent hover:text-[#F28123]  ">
               <Link
-                className={`${pathname === `/${t}` ? "text-[#F28123] " : ""}`}
+                className={`${pathname === `/` ? "text-[#F28123] " : ""}`}
                 href={`/${t}`}
                 scroll={false}
               >
@@ -61,9 +61,7 @@ export default function Header() {
             </li>
             <li className="border-b-4 border-transparent hover:text-[#F28123] ">
               <Link
-                className={`${
-                  pathname === `/${t}/profile` ? "border-b-4  " : ""
-                }`}
+                className={`${pathname === `/profile` ? "text-[#F28123]" : ""}`}
                 href="/profile"
                 scroll={false}
               >
@@ -72,9 +70,7 @@ export default function Header() {
             </li>
             <li className="border-b-4 border-transparent hover:text-[#F28123] ">
               <Link
-                className={`${
-                  pathname === `/${t}/about` ? "text-[#F28123]" : ""
-                }`}
+                className={`${pathname === `/about` ? "text-[#F28123]" : ""}`}
                 href="/about"
                 scroll={false}
               >
@@ -83,9 +79,7 @@ export default function Header() {
             </li>
             <li className="border-b-4 border-transparent hover:text-[#F28123] ">
               <Link
-                className={`${
-                  pathname === `/${t}/contact` ? "text-[#F28123]" : ""
-                }`}
+                className={`${pathname === `/contact` ? "text-[#F28123]" : ""}`}
                 href="/contact"
                 scroll={false}
               >
@@ -94,9 +88,7 @@ export default function Header() {
             </li>
             <li className="border-b-4 border-transparent hover:text-[#F28123] ">
               <Link
-                className={`${
-                  pathname === `/${t}/blog` ? "text-[#F28123]" : ""
-                }`}
+                className={`${pathname === `/blog` ? "text-[#F28123]" : ""}`}
                 href="/blog"
                 scroll={false}
               >
@@ -109,6 +101,14 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
             <li>
+              {/* <Image
+                className="cursor-pointer w-[25px] "
+                src={user}
+                alt="logo2"
+              /> */}
+              <Link href="/admin">Admin</Link>
+            </li>
+            <li>
               <LangSwitcher />
             </li>
             <li>
@@ -117,14 +117,7 @@ export default function Header() {
 
             <li>
               <Image
-                className="cursor-pointer w-[25px] dark:invert"
-                src={user}
-                alt="logo2"
-              />
-            </li>
-            <li>
-              <Image
-                className="cursor-pointer w-[25px]  dark:invert"
+                className="cursor-pointer w-[25px]  "
                 src={cart}
                 alt="logo3"
               />

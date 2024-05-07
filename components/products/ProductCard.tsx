@@ -35,7 +35,7 @@ export default function ProductCard({ products }: ProductsResponse) {
               width={200}
               height={200}
               quality={100}
-              priority
+              loading="lazy"
             />
 
             <div className="p-4 flex flex-col gap-3 items-center">

@@ -6,14 +6,6 @@ import { Login } from "../../actions";
 
 const LoginPage = () => {
   const t = useTranslations("Login");
-  console.log(t);
-
-  // async function handleLogin() {
-  //   "use server";
-  //   const response = await fetch("http://localhost:3000/api/login");
-  //   const data = await response.json();
-  //   console.log(data);
-  // }
 
   return (
     <section className="bg-cyan-700 min-h-screen flex items-center justify-center">
@@ -111,7 +103,8 @@ const LoginPage = () => {
             className="rounded-2xl"
             src={background}
             alt="login"
-            priority
+            placeholder="blur"
+            loading="lazy"
           />
         </div>
       </div>
