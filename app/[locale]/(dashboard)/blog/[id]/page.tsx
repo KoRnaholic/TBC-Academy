@@ -19,7 +19,6 @@ export async function generateStaticParams() {
     locale: "ka",
     id: blog.id.toString(),
   }));
-  console.log(paths);
 
   return paths.concat(paths2);
 }

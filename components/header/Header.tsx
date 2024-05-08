@@ -105,7 +105,9 @@ export default function Header() {
                 src={user}
                 alt="logo2"
               /> */}
-              <Link href="/admin">Admin</Link>
+              <Link href="/admin" scroll={false}>
+                Admin
+              </Link>
             </li>
             <li>
               <LangSwitcher />
