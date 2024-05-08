@@ -2,6 +2,7 @@ import "./globals.css";
 import { ThemeProvider } from "../../components/theme/theme-provider";
 import { ReactNode } from "react";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "OpenMarket",
@@ -25,6 +26,7 @@ export default function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <ThemeProvider>{children}</ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
