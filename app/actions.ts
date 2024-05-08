@@ -82,9 +82,8 @@ export async function editUser(id: number, formData: FormData) {
 //Get all users
 export async function getUsers() {
   const response = await fetch(`${baseUrl}/api/get-users`, {
-    next: {
-      revalidate: 0, // 1 hour
-    },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
   });
   const data = await response.json();
   const users: User[] = data.users.rows;
