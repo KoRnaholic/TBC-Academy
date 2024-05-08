@@ -42,7 +42,9 @@ export async function addUser(formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${process.env.ENV_VAR}/api/add-user?name=${name}&email=${email}&age=${age}`,
+    `${
+      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+    }/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
     }
@@ -54,9 +56,14 @@ export async function addUser(formData: FormData) {
 //Delete user
 export async function handleUserDelete(id?: number) {
   "use server";
-  await fetch(`${process.env.ENV_VAR}/api/delete-user/${id}`, {
-    method: "DELETE",
-  });
+  await fetch(
+    `${
+      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+    }/api/delete-user/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
 
   revalidatePath("/users");
 }
@@ -68,7 +75,9 @@ export async function editUser(id: number, formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${process.env.ENV_VAR}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    `${
+      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+    }/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",
     }

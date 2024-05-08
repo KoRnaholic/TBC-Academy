@@ -2,11 +2,16 @@ import AddUser from "../../../../components/UI/admin-ui/AddUser";
 import { User } from "../../../../types/types";
 
 export default async function AdminPage() {
-  const response = await fetch(`${process.env.ENV_VAR}/api/get-users`, {
-    next: {
-      revalidate: 0, // 1 hour
-    },
-  });
+  const response = await fetch(
+    `${
+      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+    }/api/get-users`,
+    {
+      next: {
+        revalidate: 0, // 1 hour
+      },
+    }
+  );
   const data = await response.json();
   const users: User[] = data.users.rows;
 
