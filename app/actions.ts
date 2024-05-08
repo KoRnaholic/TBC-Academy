@@ -42,7 +42,7 @@ export async function addUser(formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${process.env.BASE_URL}api/add-user?name=${name}&email=${email}&age=${age}`,
+    `${process.env.ENV_VAR}/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
     }
@@ -54,7 +54,7 @@ export async function addUser(formData: FormData) {
 //Delete user
 export async function handleUserDelete(id?: number) {
   "use server";
-  await fetch(`${process.env.BASE_URL}api/delete-user/${id}`, {
+  await fetch(`${process.env.ENV_VAR}/api/delete-user/${id}`, {
     method: "DELETE",
   });
 
@@ -68,7 +68,7 @@ export async function editUser(id: number, formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${process.env.BASE_URL}api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    `${process.env.ENV_VAR}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",
     }
