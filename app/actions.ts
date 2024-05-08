@@ -52,7 +52,7 @@ export async function addUser(formData: FormData) {
 }
 
 //Delete user
-export async function handleUserDelete(id: string) {
+export async function handleUserDelete(id?: number) {
   "use server";
   await fetch(`http://localhost:3000/api/delete-user/${id}`, {
     method: "DELETE",
@@ -62,12 +62,11 @@ export async function handleUserDelete(id: string) {
 }
 
 //Edit user
-export async function editUser(id, formData: FormData) {
+export async function editUser(id: number, formData: FormData) {
   "use server";
   const name = formData.get("name");
   const email = formData.get("email");
   const age = formData.get("age");
-  console.log(id);
   await fetch(
     `http://localhost:3000/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {

@@ -1,5 +1,5 @@
 import AddUser from "../../../../components/UI/admin-ui/AddUser";
-import TestForm from "../../../../components/UI/TestForm";
+import { User } from "../../../../types/types";
 
 export default async function AdminPage() {
   const response = await fetch("http://localhost:3000/api/get-users", {
@@ -8,7 +8,7 @@ export default async function AdminPage() {
     },
   });
   const data = await response.json();
-  const users = data.users.rows;
+  const users: User[] = data.users.rows;
 
   return (
     <>

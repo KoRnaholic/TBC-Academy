@@ -1,14 +1,12 @@
 "use client";
-
-import { useState } from "react";
 import { addUser } from "../../../app/actions";
+import { AddUserProps } from "../../../types/types";
 
 export default function UserModal({
   modalIsOpen,
   setModalIsOpen,
   addUserOptimistic,
-}) {
-  const [isLoading, setIsLoading] = useState(false);
+}: AddUserProps) {
   return (
     <>
       {modalIsOpen && (
@@ -23,15 +21,13 @@ export default function UserModal({
 
             <form
               action={async (formData: FormData) => {
-                setIsLoading(true);
                 const user = {
-                  name: formData.get("name"),
-                  email: formData.get("email"),
-                  age: formData.get("age"),
+                  name: formData.get("name") as string,
+                  email: formData.get("email") as string,
+                  age: Number(formData.get("age")) as number,
                 };
                 addUserOptimistic(user);
                 await addUser(formData);
-                setIsLoading(false);
                 setModalIsOpen(false);
               }}
               className="flex flex-col gap-3 text-orange-500"
@@ -58,8 +54,6 @@ export default function UserModal({
                   type="number"
                   id="age"
                   name="age"
-                  // value={formData.age}
-                  // onChange={handleChange}
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                   required
                 />
@@ -73,8 +67,6 @@ export default function UserModal({
                     type="email"
                     id="email"
                     name="email"
-                    // value={formData.email}
-                    // onChange={handleChange}
                     className="w-full border border-gray-300 rounded-md px-3 py-2"
                     required
                   />
@@ -83,7 +75,7 @@ export default function UserModal({
                   type="submit"
                   className="bg-orange-500 w-1/3 py-3  hover:bg-orange-600 text-white font-semibold  px-4 rounded-md"
                 >
-                  {isLoading ? "Creating..." : "Add User"}
+                  Add User
                 </button>
               </div>
             </form>

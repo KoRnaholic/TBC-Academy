@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(request: NextRequest) {
   const id = request.nextUrl.pathname.replace("/api/delete-user/", "");
-  console.log(id);
 
   try {
     if (!id) throw new Error("ID is required");

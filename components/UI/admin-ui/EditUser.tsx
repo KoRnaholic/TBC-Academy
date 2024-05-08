@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { addUser, editUser } from "../../../app/actions";
+import { editUser } from "../../../app/actions";
+import { EditUserProps } from "../../../types/types";
 
 export default function EditUser({
   user,
   editIsOpen,
   setEditIsOpen,
-  addUserOptimistic,
-}) {
+}: EditUserProps) {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
   const [email, setEmail] = useState(user.email);
   const [id, setId] = useState(user.id);
-  const editUserWithId = editUser.bind(null, id);
+  const editUserWithId = editUser.bind(null, id ?? 0);
 
   useEffect(() => {
     setName(user.name);
@@ -68,7 +68,7 @@ export default function EditUser({
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                   required
                   value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  onChange={(e) => setAge(Number(e.target.value))}
                 />
               </div>
               <div className="mb-4 flex flex-col gap-8  items-center">

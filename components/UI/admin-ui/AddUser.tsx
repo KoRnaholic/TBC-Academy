@@ -1,28 +1,28 @@
 "use client";
 
 import { useOptimistic, useState } from "react";
-import { addUser, handleUserDelete } from "../../../app/actions";
-import TestButton from "../TestButton";
+import { handleUserDelete } from "../../../app/actions";
 import deleteB from "../../../public/icons/admin/delete.svg";
 import add from "../../../public/icons/admin/add.svg";
 import edit from "../../../public/icons/admin/edit.svg";
 import Image from "next/image";
 import UserModal from "./UserModal";
 import EditUser from "./EditUser";
+import { User } from "../../../types/types";
 
-export default function AddUser({ users }: any) {
+export default function AddUser({ users }: { users: User[] }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState<User | null>(null);
+  console.log(users);
   const [optimisticUsers, addOptimisticUsers] = useOptimistic(
     users,
-    (state, newUser) => {
+    (state, newUser: User) => {
       return [...state, newUser];
     }
   );
 
-  function handleUserEdit(user) {
+  function handleUserEdit(user: User) {
     setUser(user);
     setEditIsOpen(true);
   }
@@ -33,11 +33,10 @@ export default function AddUser({ users }: any) {
         <EditUser
           user={user}
           editIsOpen={editIsOpen}
-          addUserOptimistic={addOptimisticUsers}
           setEditIsOpen={setEditIsOpen}
         />
       )}
-      {optimisticUsers.map((user: any) => {
+      {optimisticUsers.map((user: User) => {
         return (
           <div
             key={user.id}
@@ -75,8 +74,6 @@ export default function AddUser({ users }: any) {
                 />
               </button>
             </div>
-
-            {/* <TestButton handleUserDelete={handleUserDelete} id={user.id} /> */}
           </div>
         );
       })}

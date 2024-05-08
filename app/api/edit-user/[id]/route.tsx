@@ -8,19 +8,11 @@ export async function POST(request: NextRequest) {
   const age = searchParams.get("age");
 
   const id = request.nextUrl.pathname.replace("/api/edit-user/", "");
-  console.log(searchParams, id);
 
   try {
     if (!userName || !email) {
       throw new Error("User name and Email are required");
     }
-
-    // Check if the user exists
-    // const userExists = await sql`SELECT * FROM Users WHERE Id = ${id};`;
-    // if (userExists.length === 0) {
-    //   throw new Error("User not found");
-    // }
-
     // Update user information
     await sql`UPDATE Users SET Name = ${userName}, Email = ${email}, Age = ${Number(
       age

@@ -76,3 +76,22 @@ export interface ButtonProps {
 export interface SingleProductProps {
   data: Product;
 }
+
+//Admin page
+export interface User {
+  id?: number;
+  name: string;
+  email: string;
+  age: number;
+}
+
+export interface EditUserProps {
+  user: User;
+  editIsOpen: boolean;
+  setEditIsOpen: (editIsOpen: boolean) => void;
+}
+export interface AddUserProps {
+  modalIsOpen: boolean;
+  setModalIsOpen: (modalIsOpen: boolean) => void;
+  addUserOptimistic: (action: User) => void;
+}
