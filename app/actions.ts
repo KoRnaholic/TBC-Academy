@@ -84,6 +84,7 @@ export async function getUsers() {
   const response = await fetch(`${baseUrl}/api/get-users`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
+    next: { revalidate: 0 },
   });
 
   let data;
