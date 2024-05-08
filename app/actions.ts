@@ -94,6 +94,7 @@ export async function getUsers() {
   }
 
   if (data.users) {
+    revalidatePath("/users");
     return data.users.rows; // Assuming the JSON structure contains 'users' object
   } else {
     // Handle HTML response or other non-JSON data
