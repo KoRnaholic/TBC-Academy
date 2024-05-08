@@ -43,7 +43,7 @@ export async function addUser(formData: FormData) {
   const age = formData.get("age");
   await fetch(
     `${
-      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
     }/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
@@ -58,7 +58,7 @@ export async function handleUserDelete(id?: number) {
   "use server";
   await fetch(
     `${
-      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
     }/api/delete-user/${id}`,
     {
       method: "DELETE",
@@ -76,7 +76,7 @@ export async function editUser(id: number, formData: FormData) {
   const age = formData.get("age");
   await fetch(
     `${
-      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
+      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
     }/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",

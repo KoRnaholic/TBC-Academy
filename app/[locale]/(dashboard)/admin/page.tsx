@@ -3,9 +3,7 @@ import { User } from "../../../../types/types";
 
 export default async function AdminPage() {
   const response = await fetch(
-    `${
-      process.env.ENV_VAR || "https://tbc-academy-opal.vercel.app"
-    }/api/get-users`,
+    `${"http://localhost:3000" || process.env.NEXT_PUBLIC_URL}/api/get-users`,
     {
       next: {
         revalidate: 0, // 1 hour
@@ -15,7 +13,7 @@ export default async function AdminPage() {
   const data = await response.json();
   const users: User[] = data.users.rows;
 
-  console.log(process.env.ENV_VAR);
+  console.log(process.env.NEXT_PUBLIC_URL);
 
   return (
     <>
