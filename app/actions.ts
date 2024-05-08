@@ -98,6 +98,7 @@ export async function getUsers() {
   } else {
     // Handle HTML response or other non-JSON data
     console.error("Received unexpected data:", data);
+    console.log(baseUrl, data);
     return [];
   }
 }
