@@ -43,7 +43,7 @@ export async function addUser(formData: FormData) {
   const age = formData.get("age");
   await fetch(
     `${
-      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
+      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
     }/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
@@ -58,7 +58,7 @@ export async function handleUserDelete(id?: number) {
   "use server";
   await fetch(
     `${
-      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
+      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
     }/api/delete-user/${id}`,
     {
       method: "DELETE",
@@ -76,7 +76,7 @@ export async function editUser(id: number, formData: FormData) {
   const age = formData.get("age");
   await fetch(
     `${
-      "http://localhost:3000" || process.env.NEXT_PUBLIC_URL
+      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
     }/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",

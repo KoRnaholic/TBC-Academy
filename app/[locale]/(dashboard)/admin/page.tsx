@@ -3,7 +3,7 @@ import { User } from "../../../../types/types";
 
 export default async function AdminPage() {
   const response = await fetch(
-    `${"http://localhost:3000" || process.env.NEXT_PUBLIC_URL}/api/get-users`,
+    `${process.env.NEXT_PUBLIC_URL || "http://localhost:3000"}/api/get-users`,
     {
       next: {
         revalidate: 0, // 1 hour
@@ -13,7 +13,7 @@ export default async function AdminPage() {
   const data = await response.json();
   const users: User[] = data.users.rows;
 
-  console.log(process.env.NEXT_PUBLIC_URL);
+  console.log(response.text());
 
   return (
     <>
