@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { baseUrl } from "./[locale]/(dashboard)/admin/page";
+import { User } from "../types/types";
 
 //Login server action
 export async function Login(formData: FormData) {
@@ -76,4 +77,17 @@ export async function editUser(id: number, formData: FormData) {
   );
 
   revalidatePath("/users");
+}
+
+//Get all users
+export async function getUsers() {
+  const response = await fetch(`${baseUrl}/api/get-users`, {
+    next: {
+      revalidate: 0, // 1 hour
+    },
+  });
+  const data = await response.json();
+  const users: User[] = data.users.rows;
+
+  return users;
 }

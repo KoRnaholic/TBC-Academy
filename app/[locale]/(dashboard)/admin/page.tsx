@@ -1,17 +1,11 @@
 import AddUser from "../../../../components/UI/admin-ui/AddUser";
-import { User } from "../../../../types/types";
+// import { User } from "../../../../types/types";
+import { getUsers } from "../../../actions";
 
 export const baseUrl = process.env.BASE_URL;
 export default async function AdminPage() {
-  const response = await fetch(`${baseUrl}/api/get-users`, {
-    next: {
-      revalidate: 0, // 1 hour
-    },
-  });
-  const data = await response.json();
-  const users: User[] = data.users.rows;
-
-  console.log(response.text());
+  const users = await getUsers();
+  // console.log(response.text());
 
   return (
     <>
