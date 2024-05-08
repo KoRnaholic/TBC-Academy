@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { baseUrl } from "./[locale]/(dashboard)/admin/page";
-import { User } from "../types/types";
+// import { User } from "../types/types";
 
 //Login server action
 export async function Login(formData: FormData) {
@@ -85,8 +85,19 @@ export async function getUsers() {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  const data = await response.json();
-  const users: User[] = data.users.rows;
 
-  return users;
+  let data;
+  if (response.headers.get("Content-Type")?.includes("application/json")) {
+    data = await response.json();
+  } else {
+    data = await response.text(); // Treat non-JSON responses as text
+  }
+
+  if (data.users) {
+    return data.users.rows; // Assuming the JSON structure contains 'users' object
+  } else {
+    // Handle HTML response or other non-JSON data
+    console.error("Received unexpected data:", data);
+    return [];
+  }
 }
