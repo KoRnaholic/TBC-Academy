@@ -2,7 +2,12 @@ import AddUser from "../../../../components/UI/admin-ui/AddUser";
 import { User } from "../../../../types/types";
 
 export default async function AdminPage() {
-  const response = await fetch("http://localhost:3000/api/get-users", {
+  const URL =
+    process.env.VERCEL_ENV === "production"
+      ? "https://tbc-academy-git-vercel-db-kornaholics-projects.vercel.app/"
+      : "http://localhost:3000/";
+
+  const response = await fetch(`${URL}/api/get-users`, {
     next: {
       revalidate: 0, // 1 hour
     },
