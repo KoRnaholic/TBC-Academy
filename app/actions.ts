@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { baseUrl } from "./[locale]/(dashboard)/admin/page";
 
 //Login server action
 export async function Login(formData: FormData) {
@@ -42,9 +43,7 @@ export async function addUser(formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${
-      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
-    }/api/add-user?name=${name}&email=${email}&age=${age}`,
+    `${baseUrl}/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
     }
@@ -56,14 +55,9 @@ export async function addUser(formData: FormData) {
 //Delete user
 export async function handleUserDelete(id?: number) {
   "use server";
-  await fetch(
-    `${
-      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
-    }/api/delete-user/${id}`,
-    {
-      method: "DELETE",
-    }
-  );
+  await fetch(`${baseUrl}/api/delete-user/${id}`, {
+    method: "DELETE",
+  });
 
   revalidatePath("/users");
 }
@@ -75,9 +69,7 @@ export async function editUser(id: number, formData: FormData) {
   const email = formData.get("email");
   const age = formData.get("age");
   await fetch(
-    `${
-      process.env.NEXT_PUBLIC_URL || "http://localhost:3000"
-    }/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    `${baseUrl}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",
     }
