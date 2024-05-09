@@ -11,6 +11,7 @@ const protectedRoutes = [
   "/products",
   "/blog",
   "/about",
+  "/admin",
 ];
 
 const publicRoutes = ["/login"];
@@ -27,7 +28,6 @@ export default async function middleware(request: NextRequest) {
     path.includes("/products");
 
   const isPublicRoute = publicRoutes.includes(path);
-  console.log(cookie);
 
   if (isProtectedRoute && !cookie) {
     return NextResponse.redirect(new URL("/login", request.nextUrl));

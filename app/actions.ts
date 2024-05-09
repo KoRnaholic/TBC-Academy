@@ -1,6 +1,9 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { baseUrl } from "./[locale]/(dashboard)/admin/page";
+// import { User } from "../types/types";
 
 //Login server action
 export async function Login(formData: FormData) {
@@ -32,4 +35,72 @@ export async function Logout() {
   cookieStore.delete("auth");
 
   return redirect("/login");
+}
+
+//Add user
+export async function addUser(formData: FormData) {
+  "use server";
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const age = formData.get("age");
+  await fetch(
+    `${baseUrl}/api/add-user?name=${name}&email=${email}&age=${age}`,
+    {
+      method: "GET",
+    }
+  );
+
+  revalidatePath("/users");
+}
+
+//Delete user
+export async function handleUserDelete(id?: number) {
+  "use server";
+  await fetch(`${baseUrl}/api/delete-user/${id}`, {
+    method: "DELETE",
+  });
+
+  revalidatePath("/users");
+}
+
+//Edit user
+export async function editUser(id: number, formData: FormData) {
+  "use server";
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const age = formData.get("age");
+  await fetch(
+    `${baseUrl}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    {
+      method: "POST",
+    }
+  );
+
+  revalidatePath("/users");
+}
+
+//Get all users
+export async function getUsers() {
+  const response = await fetch(`${baseUrl}/api/get-users`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    next: { revalidate: 0 },
+  });
+
+  let data;
+  if (response.headers.get("Content-Type")?.includes("application/json")) {
+    data = await response.json();
+  } else {
+    data = await response.text(); // Treat non-JSON responses as text
+  }
+
+  if (data.users) {
+    revalidatePath("/users");
+    return data.users.rows; // Assuming the JSON structure contains 'users' object
+  } else {
+    // Handle HTML response or other non-JSON data
+    console.error("Received unexpected data:", data);
+    console.log(baseUrl, data);
+    return [];
+  }
 }

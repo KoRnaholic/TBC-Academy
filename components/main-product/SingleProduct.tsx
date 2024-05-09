@@ -93,6 +93,7 @@ export default function SingleProduct({ data }: SingleProductProps) {
                     quality={100}
                     src={selectedImage}
                     alt={`Product Image ${selectedImage}`}
+                    loading="lazy"
                   />
                   <button
                     className="absolute top-2 right-2 bg-white p-2 rounded-md"

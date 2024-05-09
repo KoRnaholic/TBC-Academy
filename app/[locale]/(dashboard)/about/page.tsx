@@ -103,6 +103,8 @@ export default function About() {
             src={techFruit}
             width={800}
             alt="tech"
+            loading="lazy"
+            placeholder="blur"
           />
         </div>
       </div>
