@@ -1,12 +1,11 @@
 import { revalidatePath } from "next/cache";
 import AddUser from "../../../../components/UI/admin-ui/AddUser";
-// import { User } from "../../../../types/types";
+import { User } from "../../../../types/types";
 import { getUsers } from "../../../actions";
 
 export const baseUrl = process.env.BASE_URL;
 export default async function AdminPage() {
-  const users = await getUsers();
-  // console.log(response.text());
+  const users: User[] = await getUsers();
   revalidatePath("/users");
 
   return (
