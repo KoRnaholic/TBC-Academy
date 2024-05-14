@@ -47,6 +47,7 @@ export async function addUser(formData: FormData) {
     `${baseUrl}/api/add-user?name=${name}&email=${email}&age=${age}`,
     {
       method: "GET",
+      cache: "no-cache",
     }
   );
 
@@ -73,10 +74,11 @@ export async function editUser(id: number, formData: FormData) {
     `${baseUrl}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
     {
       method: "POST",
+      next: { revalidate: 0 },
     }
   );
 
-  revalidatePath("/users");
+  revalidatePath("/admin");
 }
 
 //Get all users

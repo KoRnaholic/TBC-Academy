@@ -21,6 +21,7 @@ export default function UserModal({
 
             <form
               action={async (formData: FormData) => {
+                setModalIsOpen(false);
                 const user = {
                   name: formData.get("name") as string,
                   email: formData.get("email") as string,
@@ -28,7 +29,6 @@ export default function UserModal({
                 };
                 addUserOptimistic(user);
                 await addUser(formData);
-                setModalIsOpen(false);
               }}
               className="flex flex-col gap-3 text-orange-500"
             >
@@ -72,6 +72,7 @@ export default function UserModal({
                   />
                 </div>
                 <button
+                  // onClick={() => setModalIsOpen(false)}
                   type="submit"
                   className="bg-orange-500 w-1/3 py-3  hover:bg-orange-600 text-white font-semibold  px-4 rounded-md"
                 >

@@ -1,5 +1,8 @@
 import { sql } from "@vercel/postgres";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+
+export const revalidate = 0;
 
 export async function POST(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -14,13 +17,14 @@ export async function POST(request: NextRequest) {
       throw new Error("User name and Email are required");
     }
     // Update user information
-    await sql`UPDATE Users SET Name = ${userName}, Email = ${email}, Age = ${Number(
+    await sql`UPDATE users SET name = ${userName}, email = ${email}, age = ${Number(
       age
-    )} WHERE Id = ${Number(id)};`;
+    )} WHERE id = ${Number(id)}`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
 
-  const users = await sql`SELECT * FROM Users;`;
+  const users = await sql`SELECT * FROM users;`;
+
   return NextResponse.json({ users }, { status: 200 });
 }

@@ -5,9 +5,12 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { ProductsResponse } from "../../types/types";
 import arrowRight from "../../public/icons/arrow-right.svg";
+import { useCart } from "../contexts/CartContext";
 
 export default function ProductCard({ products }: ProductsResponse) {
   const locale = useLocale();
+
+  const { addToCart } = useCart();
 
   const router = useRouter();
   const handleClick = (id: number) => {
@@ -20,7 +23,7 @@ export default function ProductCard({ products }: ProductsResponse) {
         const { title, thumbnail, price, id, discountPercentage } = product;
         return (
           <div
-            onClick={() => handleClick(id)}
+            // onClick={() => handleClick(id)}
             key={index}
             className="max-w-[270px] relative w-[300px] pb-2 mx-auto bg-white dark:bg-slate-300 shadow-lg rounded-lg  transition ease-in-out delay-0
           hover:-translate-y-1 hover:scale-105 duration-300"
@@ -42,13 +45,10 @@ export default function ProductCard({ products }: ProductsResponse) {
               <h2 className="text-gray-900 font-bold text-xl mb-2">
                 {title.slice(0, 20)}
               </h2>
-              {/* <p className="text-gray-700 text-base">
-                {description.slice(0, 40)}...
-              </p> */}
               <span className="text-gray-400 text-lg">price</span>
               <span className="text-gray-900 font-bold text-lg">{price}$</span>
-              <div className="mt-3 flex items-center justify-between">
-                <Button>
+              <div className="mt-3 flex items-center gap-2 justify-between">
+                <Button onClick={handleClick} product={id}>
                   {locale === "en" ? (
                     <p className="flex items-center gap-1 ">
                       Show more
@@ -58,11 +58,17 @@ export default function ProductCard({ products }: ProductsResponse) {
                     "სრულად ნახვა"
                   )}
                 </Button>
+                <Button onClick={addToCart} product={product}>
+                  add to cart
+                </Button>
               </div>
             </div>
           </div>
         );
       })}
+      <div className="fixed z-10 top-2 right-40 text-orange-500">
+        {/* {quantity} */}
+      </div>
     </>
   );
 }

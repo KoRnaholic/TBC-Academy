@@ -11,12 +11,15 @@ import { useLocale } from "next-intl";
 import LangSwitcher from "../UI/Lang-switcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useCart } from "../contexts/CartContext";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const t = useLocale();
   const pathname = usePathname();
-
   const [scrolling, setScrolling] = useState(false);
+
+  const { quantity } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +52,7 @@ export default function Header() {
 
         <div>
           <ul className="hidden lg:flex gap-8 text-lg dark:text-white">
-            <li className="border-b-4 border-transparent hover:text-[#F28123]  ">
+            <li className="border-b-4 border-transparent hover:text-[#F28123]  hover:-translate-y-1 transition-all">
               <Link
                 className={`${pathname === `/` ? "text-[#F28123] " : ""}`}
                 href={`/${t}`}
@@ -58,7 +61,7 @@ export default function Header() {
                 {t === "en" ? "Home" : "მთავარი"}
               </Link>
             </li>
-            <li className="border-b-4 border-transparent hover:text-[#F28123] ">
+            <li className="border-b-4 border-transparent hover:text-[#F28123]  hover:-translate-y-1 transition-all">
               <Link
                 className={`${pathname === `/profile` ? "text-[#F28123]" : ""}`}
                 href="/profile"
@@ -67,7 +70,7 @@ export default function Header() {
                 {t === "en" ? "Profile" : "პროფილი"}
               </Link>
             </li>
-            <li className="border-b-4 border-transparent hover:text-[#F28123] ">
+            <li className="border-b-4 border-transparent hover:text-[#F28123]  hover:-translate-y-1 transition-all">
               <Link
                 className={`${pathname === `/about` ? "text-[#F28123]" : ""}`}
                 href="/about"
@@ -76,7 +79,7 @@ export default function Header() {
                 {t === "en" ? "About" : "შესახებ"}
               </Link>
             </li>
-            <li className="border-b-4 border-transparent hover:text-[#F28123] ">
+            <li className="border-b-4 border-transparent hover:text-[#F28123]  hover:-translate-y-1 transition-all">
               <Link
                 className={`${pathname === `/contact` ? "text-[#F28123]" : ""}`}
                 href="/contact"
@@ -85,7 +88,7 @@ export default function Header() {
                 {t === "en" ? "Contact" : "კონტაქტი"}
               </Link>
             </li>
-            <li className="border-b-4 border-transparent hover:text-[#F28123] ">
+            <li className="border-b-4 border-transparent hover:text-[#F28123]  hover:-translate-y-1 transition-all">
               <Link
                 className={`${pathname === `/blog` ? "text-[#F28123]" : ""}`}
                 href="/blog"
@@ -100,11 +103,6 @@ export default function Header() {
         <div>
           <ul className="hidden lg:flex gap-5 items-center">
             <li>
-              {/* <Image
-                className="cursor-pointer w-[25px] "
-                src={user}
-                alt="logo2"
-              /> */}
               <Link href="/admin" scroll={false}>
                 Admin
               </Link>
@@ -116,12 +114,15 @@ export default function Header() {
               <Theme />
             </li>
 
-            <li>
-              <Image
-                className="cursor-pointer w-[25px]  "
-                src={cart}
-                alt="logo3"
-              />
+            <li className="flex flex-col justify-center items-center mb-4 text-orange-500">
+              {quantity}
+              <Link href="/checkout">
+                <Image
+                  className="cursor-pointer w-[25px]  "
+                  src={cart}
+                  alt="logo3"
+                />
+              </Link>
             </li>
             <li>
               <LogOut />
