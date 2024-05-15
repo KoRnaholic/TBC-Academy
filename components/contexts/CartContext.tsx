@@ -9,7 +9,33 @@ import {
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Product } from "../../types/types";
 
-function cartReducer(state, action) {
+interface Action {
+  payload: Product;
+  type: "INCREMENT" | "DECREMENT" | "RESET";
+}
+
+interface State {
+  id: number;
+  product: Product;
+  quantity: number;
+}
+
+interface InitialState {
+  quantity: number;
+  products: Product[];
+}
+
+const initialState: InitialState = {
+  quantity: 0,
+  products: [],
+};
+
+interface Value {
+  quantity: number;
+  // other properties
+}
+
+function cartReducer(state: State[], action: Action) {
   console.log(state);
   switch (action.type) {
     case "INCREMENT": {
@@ -63,22 +89,25 @@ function cartReducer(state, action) {
   }
 }
 
-const CartContext = createContext();
+const CartContext = createContext(initialState);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<State[]>([]);
   const [value, setValue] = useLocalStorage("productCart", []);
   const [state, dispatch] = useReducer(cartReducer, value);
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState<State>();
   console.log(products);
 
   useEffect(() => {
     setValue(state);
     setProducts(state);
 
-    const totalQuantity = value.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.quantity;
-    }, 0);
+    const totalQuantity = value.reduce(
+      (accumulator: number, currentValue: Value) => {
+        return accumulator + currentValue.quantity;
+      },
+      0
+    );
 
     setQuantity(totalQuantity);
   }, [state, setValue, value, products]);

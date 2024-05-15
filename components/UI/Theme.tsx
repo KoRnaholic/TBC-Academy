@@ -15,10 +15,10 @@ export default function Theme() {
 
   if (!mounted) {
     return (
-      <button className=" bg-gray-200 dark:bg-gray-500  text-gray-600 font-semibold py-2 px-3 rounded-full inline-flex items-center">
+      <button className="   text-gray-600 font-semibold py-1 px-2  rounded-full inline-flex items-center">
         <span className="mr-1">
           <svg
-            className="animate-spin   w-[25px] dark:text-white   text-black"
+            className="animate-spin  w-[30px]   text-white"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -48,19 +48,19 @@ export default function Theme() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`${
-            resolvedTheme === "light" ? "bg-gray-200" : "bg-gray-500"
-          }  text-gray-600 font-semibold py-2 px-3 rounded-full inline-flex items-center`}
+            resolvedTheme === "light" ? "" : ""
+          }  text-gray-600 font-semibold py-1 px-2 rounded-full inline-flex items-center`}
         >
           <span className="mr-1">
             {resolvedTheme === "light" ? (
               <Image
-                className="cursor-pointer w-[25px] dark:invert"
+                className="cursor-pointer w-[30px] dark:invert"
                 src={light}
                 alt="light"
               />
             ) : (
               <Image
-                className="cursor-pointer w-[25px] dark:invert"
+                className="cursor-pointer w-[30px] "
                 src={dark}
                 alt="dark"
               />

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export function useLocalStorage(key, initialState) {
+export function useLocalStorage(key: string, initialState) {
   const [value, setValue] = useState(function () {
     if (typeof window !== "undefined") {
       console.log("we are running on the client");

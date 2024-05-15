@@ -115,7 +115,7 @@ export default function Header() {
             </li>
 
             <li className="flex flex-col justify-center items-center mb-4 text-orange-500">
-              {quantity}
+              {quantity ? quantity : 0}
               <Link href="/checkout">
                 <Image
                   className="cursor-pointer w-[25px]  "
