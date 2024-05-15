@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export const revalidate = 0;
 export async function GET() {
   try {
-    const users = await sql`SELECT * FROM Users;`;
+    const users = await sql`SELECT * FROM Users ORDER BY id;`;
     revalidateTag("Users");
     return NextResponse.json({ users }, { status: 200 });
   } catch (error) {

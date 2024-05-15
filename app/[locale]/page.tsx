@@ -5,6 +5,7 @@ import MainProduct from "../../components/main-product/MainProduct";
 import { ProductsResponse } from "../../types/types";
 import FeaturesSection from "../../components/main-product/FeaturesSection";
 import MainBanner from "../../components/banner/MainBanner";
+import { CartProvider } from "../../components/contexts/CartContext";
 
 const URL = "https://dummyjson.com/products?limit=10";
 

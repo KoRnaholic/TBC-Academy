@@ -3,6 +3,8 @@ import AddUser from "../../../../components/UI/admin-ui/AddUser";
 import { User } from "../../../../types/types";
 import { getUsers } from "../../../actions";
 
+import TestDropdown from "../../../../components/UI/TestDropdown";
+
 export const baseUrl = process.env.BASE_URL;
 export default async function AdminPage() {
   const users: User[] = await getUsers();
@@ -20,12 +22,10 @@ export default async function AdminPage() {
           </h1>
         </div>
       </div>
-      {/* <TestForm /> */}
-      <div className=" p-10 flex justify-center items-center">
-        <div className=" text-black flex flex-col gap-5  m-10">
-          <AddUser users={users} />
-        </div>
-      </div>
+
+      {/* <div className="py-10 flex justify-center items-center"> */}
+      <AddUser users={users} />
+      {/* </div> */}
     </>
   );
 }
