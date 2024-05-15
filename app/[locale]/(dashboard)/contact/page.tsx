@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../../../components/UI/Button";
 import { useTranslations } from "next-intl";
 
 const Contact = () => {
@@ -92,12 +91,9 @@ const Contact = () => {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm dark:bg-gray-700 dark:text-white"
               ></textarea>
             </div>
-            <Button
-              type="submit"
-              styles="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none"
-            >
+            <button className="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none">
               {t("submit")}
-            </Button>
+            </button>
           </form>
         </div>
       </div>

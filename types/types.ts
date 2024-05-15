@@ -70,7 +70,8 @@ export interface DataResponse {
 export interface ButtonProps {
   children: React.ReactNode;
   styles?: string;
-  type?: string;
+  product: Product;
+  onClick: (product: Product) => void;
 }
 
 //SingleProduct component
@@ -85,6 +86,11 @@ export interface User {
   email: string;
   age: number;
 }
+export interface DropdownProps {
+  handleUserDelete: (id: number | undefined) => void;
+  handleUserEdit: (user: User) => void;
+  user: User;
+}
 
 export interface EditUserProps {
   user: User;
@@ -95,4 +101,22 @@ export interface AddUserProps {
   modalIsOpen: boolean;
   setModalIsOpen: (modalIsOpen: boolean) => void;
   addUserOptimistic: (action: User) => void;
+}
+
+//Cart Context
+export interface Action {
+  payload: Product;
+  type: "INCREMENT" | "DECREMENT" | "RESET";
+}
+
+export interface State {
+  id: number;
+  product: Product;
+  quantity: number;
+}
+export interface InitialState {
+  quantity: number | undefined;
+  products: Product[] | State[];
+  addToCart: (product: Product) => void;
+  removeFromCart: (product: Product) => void;
 }

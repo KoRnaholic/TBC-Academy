@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useReducer, useState } from "react";
 import { useCart } from "../../../../components/contexts/CartContext";
 
 export default function CheckoutPage() {

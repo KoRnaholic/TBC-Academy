@@ -48,7 +48,10 @@ export default function ProductCard({ products }: ProductsResponse) {
               <span className="text-gray-400 text-lg">price</span>
               <span className="text-gray-900 font-bold text-lg">{price}$</span>
               <div className="mt-3 flex items-center gap-2 justify-between">
-                <Button onClick={handleClick} product={id}>
+                <button
+                  className="hover:bg-[#051922] px-3 py-1 bg-[#F28123]  text-white text-medium font-base  rounded-full"
+                  onClick={() => handleClick(id)}
+                >
                   {locale === "en" ? (
                     <p className="flex items-center gap-1 ">
                       Show more
@@ -57,7 +60,7 @@ export default function ProductCard({ products }: ProductsResponse) {
                   ) : (
                     "სრულად ნახვა"
                   )}
-                </Button>
+                </button>
                 <Button onClick={addToCart} product={product}>
                   add to cart
                 </Button>

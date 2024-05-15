@@ -2,7 +2,7 @@
 import ProductLoading from "../../app/[locale]/(dashboard)/products/loading";
 import Image from "next/image";
 import React, { useState } from "react";
-import Button from "../UI/Button";
+// import Button from "../UI/Button";
 import { SingleProductProps } from "../../types/types";
 
 export default function SingleProduct({ data }: SingleProductProps) {
@@ -79,9 +79,7 @@ export default function SingleProduct({ data }: SingleProductProps) {
                   {category}
                 </span>
               </div>
-              <div className="mt-3">
-                <Button>Add to Cart</Button>
-              </div>
+              <div className="mt-3">{/* <Button>Add to Cart</Button> */}</div>
             </div>
             {selectedImage !== null && (
               <div className="fixed top-0 left-0 z-50 w-full h-full bg-black bg-opacity-60 flex items-center justify-center">

@@ -7,27 +7,13 @@ import {
   useState,
 } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Product } from "../../types/types";
-
-interface Action {
-  payload: Product;
-  type: "INCREMENT" | "DECREMENT" | "RESET";
-}
-
-interface State {
-  id: number;
-  product: Product;
-  quantity: number;
-}
-
-interface InitialState {
-  quantity: number;
-  products: Product[];
-}
+import { Action, InitialState, Product, State } from "../../types/types";
 
 const initialState: InitialState = {
   quantity: 0,
   products: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
 };
 
 interface Value {
@@ -92,10 +78,10 @@ function cartReducer(state: State[], action: Action) {
 const CartContext = createContext(initialState);
 
 function CartProvider({ children }: { children: React.ReactNode }) {
-  const [products, setProducts] = useState<State[]>([]);
+  const [products, setProducts] = useState<Product[] | State[]>([]);
   const [value, setValue] = useLocalStorage("productCart", []);
   const [state, dispatch] = useReducer(cartReducer, value);
-  const [quantity, setQuantity] = useState<State>();
+  const [quantity, setQuantity] = useState<number | undefined>();
   console.log(products);
 
   useEffect(() => {

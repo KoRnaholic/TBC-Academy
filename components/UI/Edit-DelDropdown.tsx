@@ -3,8 +3,13 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import deleteB from "../../public/icons/admin/delete.svg";
 import edit from "../../public/icons/admin/edit.svg";
+import { DropdownProps } from "../../types/types";
 
-function TestDropdown({ handleUserDelete, handleUserEdit, user }) {
+function TestDropdown({
+  handleUserDelete,
+  handleUserEdit,
+  user,
+}: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 

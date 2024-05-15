@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export const revalidate = 0;

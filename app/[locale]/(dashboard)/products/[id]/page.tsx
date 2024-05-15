@@ -22,7 +22,6 @@ export async function generateStaticParams() {
     locale: "ka",
     id: product.id.toString(),
   }));
-  console.log(paths);
 
   return paths.concat(paths2);
 }

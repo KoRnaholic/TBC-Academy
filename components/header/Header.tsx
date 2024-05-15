@@ -12,7 +12,6 @@ import LangSwitcher from "../UI/Lang-switcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCart } from "../contexts/CartContext";
-import { useRouter } from "next/router";
 
 export default function Header() {
   const t = useLocale();

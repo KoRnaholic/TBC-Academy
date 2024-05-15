@@ -2,14 +2,13 @@
 
 import { useOptimistic, useState } from "react";
 import { handleUserDelete } from "../../../app/actions";
-import deleteB from "../../../public/icons/admin/delete.svg";
 import add from "../../../public/icons/admin/add.svg";
-import edit from "../../../public/icons/admin/edit.svg";
 import Image from "next/image";
+
 import UserModal from "./UserModal";
 import EditUser from "./EditUser";
 import { User } from "../../../types/types";
-import TestDropdown from "../TestDropdown";
+import TestDropdown from "../Edit-DelDropdown";
 
 export default function AddUser({ users }: { users: User[] }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
