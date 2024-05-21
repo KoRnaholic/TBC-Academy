@@ -1,8 +1,16 @@
 "use server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { baseUrl } from "./[locale]/(dashboard)/admin/page";
+import {
+  sqlCreateUser,
+  sqlCreateUserCart,
+  sqlDecrementQuantity,
+  sqlGetCartList,
+  sqlGetCartQuantity,
+  sqlIncrementQuantity,
+} from "./sql/sqlRequests";
 // import { User } from "../types/types";
 
 //Login server action
@@ -23,6 +31,17 @@ export async function Login(formData: FormData) {
   const user = await response.json();
   const cookieStore = cookies();
   cookieStore.set("auth", JSON.stringify(user));
+
+  //Creating user in database
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const useObj = {
+    id: valueObject.id,
+    name: valueObject.firstName,
+    lastName: valueObject.lastName,
+    email: valueObject.email,
+  };
+  await sqlCreateUser(useObj);
 
   if (user.username === formData.get("username")) {
     return redirect("/");
@@ -102,7 +121,68 @@ export async function getUsers() {
   } else {
     // Handle HTML response or other non-JSON data
     console.error("Received unexpected data:", data);
-    console.log(baseUrl, data);
     return [];
   }
+}
+
+//creating cart
+export async function createUserCart(productId: any) {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const userId = valueObject.id;
+
+  await sqlCreateUserCart(userId, productId);
+  revalidatePath("/checkout");
+}
+
+//get cart list
+export async function getCartList() {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const userId = valueObject.id;
+
+  const cartList = await sqlGetCartList(userId);
+  revalidatePath("/checkout");
+
+  return cartList;
+}
+
+//get cart quantity
+export async function getCartQuantity() {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const userId = valueObject.id;
+
+  const cartQuantity = await sqlGetCartQuantity(userId);
+  revalidatePath("/");
+  return cartQuantity;
+}
+
+//increment quantity
+export async function incrementQuantity(productId) {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const userId = valueObject.id;
+
+  await sqlIncrementQuantity(userId, productId);
+  revalidatePath("/checkout");
+}
+//decrement/delete product quantity
+export async function decrementQuantity(productId) {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth");
+  const valueObject = JSON.parse(authObject.value);
+  const userId = valueObject.id;
+
+  await sqlDecrementQuantity(userId, productId);
+  revalidatePath("/checkout");
 }

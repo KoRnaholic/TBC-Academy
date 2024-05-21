@@ -3,7 +3,7 @@ import { Logout } from "../../app/actions";
 
 export default function LogOut() {
   const locale = useLocale();
-  // console.log(t);
+
   return (
     <>
       <form action={Logout}>

@@ -2,7 +2,6 @@ import "./globals.css";
 import { ThemeProvider } from "../../components/theme/theme-provider";
 import { ReactNode } from "react";
 import { unstable_setRequestLocale } from "next-intl/server";
-import { CartProvider } from "../../components/contexts/CartContext";
 
 export const metadata = {
   title: "OpenMarket",
@@ -25,9 +24,7 @@ export default function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <ThemeProvider>
-          <CartProvider>{children}</CartProvider>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

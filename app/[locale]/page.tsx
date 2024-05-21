@@ -5,6 +5,7 @@ import MainProduct from "../../components/main-product/MainProduct";
 import { ProductsResponse } from "../../types/types";
 import FeaturesSection from "../../components/main-product/FeaturesSection";
 import MainBanner from "../../components/banner/MainBanner";
+import { getCartQuantity } from "../actions";
 
 const URL = "https://dummyjson.com/products?limit=10";
 
@@ -20,10 +21,11 @@ export default async function Home({
   const products = data.products;
 
   unstable_setRequestLocale(locale);
+  const quantity = await getCartQuantity();
 
   return (
     <div className="flex flex-col  min-h-screen">
-      <Header />
+      <Header quantity={quantity} />
       <MainBanner />
       <FeaturesSection />
       <MainProduct

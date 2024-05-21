@@ -5,12 +5,10 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { ProductsResponse } from "../../types/types";
 import arrowRight from "../../public/icons/arrow-right.svg";
-import { useCart } from "../contexts/CartContext";
+import { createUserCart } from "../../app/actions";
 
 export default function ProductCard({ products }: ProductsResponse) {
   const locale = useLocale();
-
-  const { addToCart } = useCart();
 
   const router = useRouter();
   const handleClick = (id: number) => {
@@ -61,7 +59,7 @@ export default function ProductCard({ products }: ProductsResponse) {
                     "სრულად ნახვა"
                   )}
                 </button>
-                <Button onClick={addToCart} product={product}>
+                <Button onClick={createUserCart} product={product}>
                   add to cart
                 </Button>
               </div>

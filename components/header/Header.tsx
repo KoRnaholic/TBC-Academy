@@ -11,14 +11,11 @@ import { useLocale } from "next-intl";
 import LangSwitcher from "../UI/Lang-switcher";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useCart } from "../contexts/CartContext";
 
-export default function Header() {
+export default function Header({ quantity }: { quantity: number }) {
   const t = useLocale();
   const pathname = usePathname();
   const [scrolling, setScrolling] = useState(false);
-
-  const { quantity } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,11 +110,14 @@ export default function Header() {
               <Theme />
             </li>
 
-            <li className="flex flex-col justify-center items-center mb-4 text-orange-500">
-              {quantity ? quantity : 0}
+            <li className="flex flex-col justify-center items-center  text-orange-500 ">
+              <p className="absolute top-5 right-36 text-white text-xs z-20 rounded-full bg-orange-500 px-1  ">
+                {quantity ? quantity : 0}
+              </p>
+
               <Link href="/checkout">
                 <Image
-                  className="cursor-pointer w-[25px]  "
+                  className="cursor-pointer w-[25px] "
                   src={cart}
                   alt="logo3"
                 />

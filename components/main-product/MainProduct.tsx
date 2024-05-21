@@ -9,12 +9,10 @@ export default function MainProduct({ data, name }: DataResponse) {
   const [sortBy, setSortBy] = useState("");
   const [search, setSearch] = useState("");
   const debounceTimeout = useRef<number | null>(null);
-  // console.log(product);
 
   //Searching with debounce
   const handleSearch = (value: string) => {
     setSearch(value);
-    console.log(value);
     if (debounceTimeout.current) {
       clearTimeout(debounceTimeout.current);
     }

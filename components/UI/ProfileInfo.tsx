@@ -9,10 +9,9 @@ export default function ProfileInfo() {
   const jsonString = cookie?.value;
   const userObj = JSON.parse(jsonString || "");
   const { firstName, lastName, email }: userObj = userObj;
-  console.log(userObj.username);
 
   const t = useTranslations("Profile");
-  console.log(t);
+
   return (
     <div className="mb-4 flex flex-col md:flex-row md:justify-between">
       <div className="mb-2 md:mb-0">

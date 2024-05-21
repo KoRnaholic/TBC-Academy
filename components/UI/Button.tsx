@@ -10,7 +10,7 @@ export default function Button({
   return (
     <>
       <button
-        onClick={() => onClick(product)}
+        onClick={() => onClick(product.id)}
         className={`${
           styles
             ? styles

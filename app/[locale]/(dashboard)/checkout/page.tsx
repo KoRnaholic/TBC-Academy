@@ -1,10 +1,9 @@
-"use client";
+import { getCartList } from "../../../actions";
 
-import Image from "next/image";
-import { useCart } from "../../../../components/contexts/CartContext";
+import CheckoutList from "../../../../components/UI/checkout/CheckoutList";
 
-export default function CheckoutPage() {
-  const { addToCart, removeFromCart, products } = useCart();
+export default async function CheckoutPage() {
+  const products = await getCartList();
 
   return (
     <>
@@ -39,44 +38,7 @@ export default function CheckoutPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y text-orange-400 divide-gray-200">
-              {products.map((product: any, idx) => {
-                // console.log(state);
-                return (
-                  <tr key={idx}>
-                    <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
-                      <Image
-                        className="w-full"
-                        src={product.product.thumbnail}
-                        width={500}
-                        height={300}
-                        alt="product"
-                      />
-                    </td>
-                    <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
-                      {product.product.title}
-                    </td>
-                    <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
-                      {product.product.price}$
-                    </td>
-                    <td className="mt-3 px-2 md:px-6 py-4  whitespace-nowrap flex items-center justify-center gap-2">
-                      <p
-                        className="cursor-pointer"
-                        onClick={() => removeFromCart(product)}
-                      >
-                        -
-                      </p>
-
-                      {product.quantity}
-                      <p
-                        className="cursor-pointer"
-                        onClick={() => addToCart(product)}
-                      >
-                        +
-                      </p>
-                    </td>
-                  </tr>
-                );
-              })}
+              <CheckoutList products={products} />
             </tbody>
           </table>
         </div>

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 
 export default function Profile() {
   const t = useTranslations("Profile");
-  console.log(t);
+
   return (
     <>
       <div className="bg-[#07212e] flex items-center justify-center h-[450px]">
