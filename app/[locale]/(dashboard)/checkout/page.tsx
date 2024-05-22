@@ -19,8 +19,11 @@ export default async function CheckoutPage() {
           </div>
         </div>
 
-        <div className="flex justify-center py-20">
-          <table className="w-full md:w-1/2 sm:w-2/3 lg:w-1/3">
+        <div className="flex justify-center pb-20 pt-10 px-5 flex-col items-center gap-6">
+          <button className="bg-orange-500 text-lg text-white px-12 py-3 rounded-2xl hover:-translate-y-2 transition-all">
+            Clear Cart
+          </button>
+          <table className="w-full md:w-2/3 sm:w-2/3 lg:w-2/4">
             <thead className="bg-orange-500">
               <tr>
                 <th className=" px-2 md:px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">

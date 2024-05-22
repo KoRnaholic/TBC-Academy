@@ -12,17 +12,17 @@ export default function CheckoutList({ products }) {
           <tr key={idx}>
             <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
               <Image
-                className="w-full"
+                className="w-[300px]"
                 src={product.product_image}
                 width={500}
                 height={300}
                 alt="product"
               />
             </td>
-            <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
+            <td className=" px-2 text-xl md:px-6 py-4 whitespace-nowrap">
               {product.brand}
             </td>
-            <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
+            <td className=" px-2 text-xl md:px-6 py-4 whitespace-nowrap">
               {product.price}$
             </td>
             <td className="px-2 md:px-6 py-4 whitespace-nowrap text-center">

@@ -8,53 +8,36 @@
 //   useReducer,
 //   useState,
 // } from "react";
-// import { useLocalStorage } from "../../hooks/useLocalStorage";
-// import { Action, InitialState, Product, State } from "../../types/types";
-// import { decrementQuantity, incrementQuantity } from "../../app/actions";
+// import { getCartQuantity } from "../../app/actions";
 
 // const initialState = {
-//   quantity:
+//   cartQuantity: 0,
 // };
 
 // const CartContext = createContext(initialState);
 
 // function CartProvider({ children }: { children: React.ReactNode }) {
-//   const [product, setProduct] = useState();
+//   const [cartQuantity, setCartQuantity] = useState();
 
-//   const [isIncrement, setIsIncrement] = useState("");
-//   const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
-//     product?.quantity,
-//     (state) => {
-//       if (isIncrement === "inc") {
-//         return state + 1;
-//       } else if (isIncrement === "dec") {
-//         return state - 1;
-//       }
-//     }
+//   const [optimisticQuantity, addOptimisticQuantity] = useOptimistic(
+//     cartQuantity,
+//     (state) => (state = state + 1)
 //   );
 
-//   function incrementOptimistic(product) {
-//     setProduct(product);
-//     setIsIncrement("inc");
-//     startTransition(async () => {
-//       setOptimisticQuantity(product.product_id);
-//       await incrementQuantity(product.product_id);
-//     });
-//   }
-//   function decrementOptimistic(product) {
-//     setProduct(product);
-//     setIsIncrement("dec");
-//     startTransition(async () => {
-//       setOptimisticQuantity(product.product_id);
-//       await decrementQuantity(product.product_id);
-//     });
-//   }
+//   useEffect(() => {
+//     const getQuantity = async () => {
+//       const quantity = await getCartQuantity();
+//       setCartQuantity(quantity);
+//     };
+//     getQuantity();
+//   }, [cartQuantity]);
+
+//   console.log(cartQuantity);
 //   return (
 //     <CartContext.Provider
 //       value={{
-//         quantity: optimisticQuantity,
-//         incrementOptimistic,
-//         decrementOptimistic,
+//         cartQuantity: optimisticQuantity,
+//         addOptimisticQuantity,
 //       }}
 //     >
 //       {children}

@@ -31,14 +31,21 @@ export default function Increment({ product }) {
   }
 
   return (
-    <>
-      <p className="cursor-pointer" onClick={decrementOptimistic}>
+    <div className="flex gap-2">
+      <button
+        className="cursor-pointer py-0.5 px-2 text-white bg-orange-500 rounded-full"
+        onClick={decrementOptimistic}
+        disabled={optimisticQuantity === 0}
+      >
         -
-      </p>
-      <p>{optimisticQuantity}</p>
-      <p className="cursor-pointer" onClick={incrementOptimistic}>
+      </button>
+      <p className="text-xl w-[20px]">{optimisticQuantity}</p>
+      <p
+        className="cursor-pointer py-0.5 px-2 text-white bg-orange-500 rounded-full"
+        onClick={incrementOptimistic}
+      >
         +
       </p>
-    </>
+    </div>
   );
 }
