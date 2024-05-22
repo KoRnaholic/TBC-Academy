@@ -71,7 +71,7 @@ export interface ButtonProps {
   children: React.ReactNode;
   styles?: string;
   product: Product;
-  onClick: (product: Product) => void;
+  onClick: (id: number) => void;
 }
 
 //SingleProduct component

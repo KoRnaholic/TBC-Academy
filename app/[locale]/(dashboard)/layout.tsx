@@ -22,7 +22,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex flex-col  min-h-screen">
       <Header quantity={quantity} />
-      <main className="">{children}</main>
+      <main className="flex-1">{children}</main>
 
       <Footer />
     </div>

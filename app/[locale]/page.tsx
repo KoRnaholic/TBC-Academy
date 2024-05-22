@@ -6,7 +6,6 @@ import { ProductsResponse } from "../../types/types";
 import FeaturesSection from "../../components/main-product/FeaturesSection";
 import MainBanner from "../../components/banner/MainBanner";
 import { getCartQuantity } from "../actions";
-import { CartProvider } from "../../components/contexts/CartContext";
 
 const URL = "https://dummyjson.com/products?limit=10";
 
@@ -16,7 +15,6 @@ export default async function Home({
   params: { locale: string };
 }) {
   const t = await getTranslations("Index");
-
   const response = await fetch(URL);
   const data: ProductsResponse = await response.json();
   const products = data.products;

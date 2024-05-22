@@ -1,6 +1,14 @@
 import { sql } from "@vercel/postgres";
 import { revalidateTag } from "next/cache";
-export async function sqlCreateUser({ id, name, lastName, email }) {
+
+// interface UserObj {
+//   id: number;
+//   name: string;
+//   lastName: string;
+//   email: string;
+// }
+
+export async function sqlCreateUser({ id, name, lastName, email }: any) {
   await sql`
     INSERT INTO users (user_id, name, last_name, email)
     SELECT ${id}, ${name}, ${lastName}, ${email}
@@ -10,7 +18,8 @@ export async function sqlCreateUser({ id, name, lastName, email }) {
   `;
 }
 
-export async function sqlCreateUserCart(userId, productId) {
+//adding product to cart and creating user relationship
+export async function sqlCreateUserCart(userId: number, productId: number) {
   const { rows } = await sql`
   SELECT quantity 
   FROM cart
@@ -35,7 +44,8 @@ export async function sqlCreateUserCart(userId, productId) {
   revalidateTag("cart");
 }
 
-export async function sqlGetCartList(userId) {
+//get all cart items list
+export async function sqlGetCartList(userId: number) {
   const { rows } = await sql`
     SELECT products.brand, products.price, cart.product_id, products.product_image, cart.quantity
     FROM cart
@@ -47,7 +57,8 @@ export async function sqlGetCartList(userId) {
   return rows;
 }
 
-export async function sqlGetCartQuantity(userId) {
+//get cart quantity
+export async function sqlGetCartQuantity(userId: number) {
   const { rows } = await sql`
   SELECT SUM(quantity) FROM cart
   WHERE user_id = ${userId}`;
@@ -55,7 +66,7 @@ export async function sqlGetCartQuantity(userId) {
   return rows[0].sum;
 }
 
-export async function sqlIncrementQuantity(userId, productId) {
+export async function sqlIncrementQuantity(userId: number, productId: number) {
   await sql`
   UPDATE cart
   SET quantity = quantity + 1
@@ -63,7 +74,7 @@ export async function sqlIncrementQuantity(userId, productId) {
   AND product_id = ${productId}`;
 }
 
-export async function sqlDecrementQuantity(userId, productId) {
+export async function sqlDecrementQuantity(userId: number, productId: number) {
   const { rows } = await sql`
   SELECT quantity 
   FROM cart
@@ -85,4 +96,11 @@ export async function sqlDecrementQuantity(userId, productId) {
       AND product_id = ${productId};
     `;
   }
+}
+
+export async function sqlResetCart(userId: number) {
+  await sql`
+  DELETE FROM cart
+  WHERE user_id = ${userId};
+`;
 }

@@ -115,7 +115,7 @@ export default function Header({ quantity }: { quantity: number }) {
                 {quantity ? quantity : 0}
               </p>
 
-              <Link href="/checkout">
+              <Link href="/checkout" scroll={false}>
                 <Image
                   className="cursor-pointer w-[25px] "
                   src={cart}

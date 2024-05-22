@@ -1,5 +1,5 @@
 "use server";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { baseUrl } from "./[locale]/(dashboard)/admin/page";
@@ -10,8 +10,51 @@ import {
   sqlGetCartList,
   sqlGetCartQuantity,
   sqlIncrementQuantity,
+  sqlResetCart,
 } from "./sql/sqlRequests";
-// import { User } from "../types/types";
+
+async function getUserId() {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth")?.value;
+  if (authObject) {
+    try {
+      const valueObject = JSON.parse(authObject);
+      const userId = valueObject.id;
+      return userId;
+    } catch (error) {
+      console.error("Failed to parse authObject:", error);
+    }
+  }
+}
+
+async function getUserObj(): Promise<
+  | {
+      id: number;
+      name: string;
+      lastName: string;
+      email: string;
+    }
+  | undefined
+> {
+  const cookieStore = cookies();
+
+  const authObject = cookieStore.get("auth")?.value;
+  if (authObject) {
+    const valueObject = JSON.parse(authObject);
+    const userObj = {
+      id: valueObject?.id,
+      name: valueObject?.firstName,
+      lastName: valueObject?.lastName,
+      email: valueObject?.email,
+    };
+
+    console.log(userObj);
+    return userObj;
+  } else {
+    return;
+  }
+}
 
 //Login server action
 export async function Login(formData: FormData) {
@@ -33,15 +76,8 @@ export async function Login(formData: FormData) {
   cookieStore.set("auth", JSON.stringify(user));
 
   //Creating user in database
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const useObj = {
-    id: valueObject.id,
-    name: valueObject.firstName,
-    lastName: valueObject.lastName,
-    email: valueObject.email,
-  };
-  await sqlCreateUser(useObj);
+  const userObj = await getUserObj();
+  await sqlCreateUser(userObj);
 
   if (user.username === formData.get("username")) {
     return redirect("/");
@@ -126,25 +162,15 @@ export async function getUsers() {
 }
 
 //creating cart
-export async function createUserCart(productId: any) {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const userId = valueObject.id;
-
+export async function createUserCart(productId: number) {
+  const userId = await getUserId();
   await sqlCreateUserCart(userId, productId);
   revalidatePath("/checkout");
 }
 
 //get cart list
 export async function getCartList() {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const userId = valueObject.id;
-
+  const userId = await getUserId();
   const cartList = await sqlGetCartList(userId);
   revalidatePath("/checkout");
 
@@ -153,36 +179,28 @@ export async function getCartList() {
 
 //get cart quantity
 export async function getCartQuantity() {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const userId = valueObject.id;
-
+  const userId = await getUserId();
   const cartQuantity = await sqlGetCartQuantity(userId);
   revalidatePath("/");
   return cartQuantity;
 }
 
 //increment quantity
-export async function incrementQuantity(productId) {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const userId = valueObject.id;
-
+export async function incrementQuantity(productId: number) {
+  const userId = await getUserId();
   await sqlIncrementQuantity(userId, productId);
   revalidatePath("/checkout");
 }
 //decrement/delete product quantity
-export async function decrementQuantity(productId) {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth");
-  const valueObject = JSON.parse(authObject.value);
-  const userId = valueObject.id;
-
+export async function decrementQuantity(productId: number) {
+  const userId = await getUserId();
   await sqlDecrementQuantity(userId, productId);
+  revalidatePath("/checkout");
+}
+
+//reset cart
+export async function resetCart() {
+  const userId = await getUserId();
+  await sqlResetCart(userId);
   revalidatePath("/checkout");
 }
