@@ -1,35 +1,15 @@
-"use client";
-import Image from "next/image";
-import React, { useOptimistic } from "react";
-
+import { QueryResultRow } from "@vercel/postgres";
 import Increment from "./Increment";
 
-export default function CheckoutList({ products }) {
+export interface CartProducts {
+  products: QueryResultRow[];
+}
+
+export default function CheckoutList({ products }: CartProducts) {
   return (
     <>
-      {products.map((product: any, idx: number) => {
-        return (
-          <tr key={idx}>
-            <td className=" px-2 md:px-6 py-4 whitespace-nowrap">
-              <Image
-                className="w-[300px]"
-                src={product.product_image}
-                width={500}
-                height={300}
-                alt="product"
-              />
-            </td>
-            <td className=" px-2 text-xl md:px-6 py-4 whitespace-nowrap">
-              {product.brand}
-            </td>
-            <td className=" px-2 text-xl md:px-6 py-4 whitespace-nowrap">
-              {product.price}$
-            </td>
-            <td className="px-2 md:px-6 py-4 whitespace-nowrap text-center">
-              <Increment product={product} />
-            </td>
-          </tr>
-        );
+      {products.map((product: QueryResultRow, idx: number) => {
+        return <Increment key={idx} product={product} />;
       })}
     </>
   );
