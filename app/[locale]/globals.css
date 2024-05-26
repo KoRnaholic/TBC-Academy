@@ -27,6 +27,16 @@ code {
   background-image: url("https://images.pexels.com/photos/1145434/pexels-photo-1145434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 } */
 
+.background {
+  position: relative;
+  background-image: url(../../public/images/learning-banner.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 200px;
+  padding-bottom: 150px;
+}
+
 .flag-discount {
   border-radius: 6px 0 0 6px;
   color: #fff;

@@ -1,11 +1,57 @@
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import girlImage from "../../public/images/girl-image.png";
+import MainInfo from "../main-info/MainInfo";
 
 export default function MainBanner() {
   const t = useTranslations("Index");
   return (
-    <div
+    <>
+      <div
+        className=" w-full  h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
+        style={{ backgroundImage: "url('/images/learning-banner.png')" }}
+      >
+        <div className="flex flex-col md:flex-row justify-center md:gap-20 items-center">
+          <div className="flex flex-col gap-5">
+            <h1 className="text-2xl text-[#685F78]">
+              The Leader in Online Learning
+            </h1>
+            <h2 className="text-2xl md:text-5xl leading-tight font-sans font-bold max-w-[500px] text-[#002058]">
+              Engaging & Accessible Online Courses For All
+            </h2>
+            <div className="relative w-full max-w-lg">
+              <input
+                type="text"
+                className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 placeholder-gray-400 bg-white shadow-md"
+                placeholder="Search School, Online educational centers, etc"
+              />
+
+              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-pink-500 text-white p-3 rounded-full hover:bg-pink-600 transition duration-300"></button>
+            </div>
+            <p className="text-lg">
+              Trusted by over 15K Users worldwide since 2022
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <Image
+              // className="w-[520px] h-[533px]"
+              className="w-3/4"
+              src={girlImage}
+              alt="girl-image"
+              quality={100}
+            />
+          </div>
+        </div>
+      </div>
+      <MainInfo />
+    </>
+  );
+}
+
+{
+  /* <div
       className="w-full bg-cover bg-no-repeat h-screen items-center justify-center bg-center"
       style={{
         backgroundImage: `url(https://images.pexels.com/photos/3219549/pexels-photo-3219549.jpeg?auto=compress&cs=tinysrgb&w=3260&h=2750&dpr=1)`,
@@ -31,6 +77,5 @@ export default function MainBanner() {
           </button>
         </div>
       </div>
-    </div>
-  );
+    </div> */
 }

@@ -1,4 +1,4 @@
-import { fetchProducts } from "../../../../../utils/helpers";
+import { fetchProducts } from "../../../../../helpers";
 import Image from "next/image";
 import React from "react";
 import { BlogObject, Recipes } from "../../../../../types/types";
