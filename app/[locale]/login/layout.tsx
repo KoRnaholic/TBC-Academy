@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
 
 interface Metadata {
   title: string;
@@ -16,6 +16,6 @@ interface RootLayoutProps {
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return <>{children}</>;
-}
+};
 
 export default RootLayout;

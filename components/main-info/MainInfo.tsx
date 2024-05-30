@@ -8,7 +8,7 @@ export default function MainInfo() {
   return (
     <div className="-mt-14 font-sans">
       <div className="flex flex-wrap justify-center gap-6">
-        <div className="w-full max-w-full md:max-w-[280px] z-10">
+        <div className="w-full max-w-full md:max-w-[305px] z-10">
           <div
             className="flex  flex-col lg:flex-row  justify-start items-center gap-5 py-5 px-5 shadow-md bg-[#fff]
            rounded-2xl hover:-translate-y-3 transition-all duration-500"
@@ -22,7 +22,7 @@ export default function MainInfo() {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-full md:max-w-[280px] z-10">
+        <div className="w-full max-w-full md:max-w-[305px] z-10">
           <div
             className="flex flex-col lg:flex-row  justify-start items-center gap-5 py-5 px-5 shadow-md bg-[#fff]
             rounded-2xl hover:-translate-y-3 transition-all duration-500"
@@ -36,7 +36,7 @@ export default function MainInfo() {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-full md:max-w-[280px] z-10">
+        <div className="w-full max-w-full md:max-w-[305px] z-10">
           <div
             className="flex flex-col lg:flex-row  justify-start items-center gap-5 py-5 px-5 shadow-md bg-[#fff]
             rounded-2xl hover:-translate-y-3 transition-all duration-500"
@@ -50,7 +50,7 @@ export default function MainInfo() {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-full md:max-w-[280px] z-10">
+        <div className="w-full max-w-full md:max-w-[305px] z-10">
           <div
             className="flex flex-col lg:flex-row  justify-start items-center gap-5 py-5 px-5 shadow-md bg-[#fff]
             rounded-2xl hover:-translate-y-3 transition-all duration-500"

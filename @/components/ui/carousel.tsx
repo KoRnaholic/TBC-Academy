@@ -197,7 +197,7 @@ const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+  const { scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
@@ -206,9 +206,7 @@ const CarouselPrevious = React.forwardRef<
       size={size}
       className={cn(
         " p-2 rounded-full hover:bg-[#B4A7F5] hover:text-white",
-        // orientation === "horizontal"
-        //   ? "-left-12 top-1/2 -translate-y-1/2"
-        //   : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+
         className
       )}
       disabled={!canScrollPrev}
@@ -226,7 +224,7 @@ const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
 >(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+  const { scrollNext, canScrollNext } = useCarousel();
 
   return (
     <Button
@@ -235,9 +233,7 @@ const CarouselNext = React.forwardRef<
       size={size}
       className={cn(
         "rounded-full p-2 hover:bg-[#B4A7F5] hover:text-white",
-        // orientation === "horizontal"
-        //   ? "-right-12 top-1/2 -translate-y-1/2"
-        //   : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+
         className
       )}
       disabled={!canScrollNext}

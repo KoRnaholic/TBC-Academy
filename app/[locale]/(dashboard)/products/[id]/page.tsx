@@ -1,7 +1,7 @@
 import { unstable_setRequestLocale } from "next-intl/server";
 import SingleProduct from "../../../../../components/top-courses/SingleProduct";
 import { ProductsResponse } from "../../../../../types/types";
-import { fetchProducts } from "../../../../../helpers";
+import { fetchProducts } from "../../../../../utils/helpers";
 
 const URL = "https://dummyjson.com/products";
 

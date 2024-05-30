@@ -1,13 +1,12 @@
 import Image from "next/image";
 import firstCourse from "../../public/images/course-1.jpg";
-import bookIcon from "../../public/icons/courses-icons/book.svg";
 import SvgBook from "../svg-components/SvgBook";
 import SvgHeart from "../svg-components/SvgHeart";
 import SvgTimer from "../svg-components/SvgTimer";
 
 export default function FeaturedList() {
   return (
-    <div className="max-w-[385px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
+    <div className="max-w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="">
         <div className="relative">
           <div className="group overflow-hidden">
@@ -24,9 +23,12 @@ export default function FeaturedList() {
         <div className="py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <img
+              <Image
                 className="w-9 h-9 rounded-full border-2 border-slate-300"
                 src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2024/02/profile5-1.jpg"
+                alt="avatar"
+                width={50}
+                height={50}
               />
               <div className="flex flex-col ">
                 <p className="text-[#002058] group-hover:text-white ">

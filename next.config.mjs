@@ -11,6 +11,16 @@ const nextConfig = {
         hostname: "cdn.dummyjson.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "dreamslms-wp.dreamstechnologies.com",
+        pathname: "**",
+      },
     ],
   },
 };

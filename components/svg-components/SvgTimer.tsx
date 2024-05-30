@@ -1,4 +1,4 @@
-export default function SvgTimer(props) {
+export default function SvgTimer() {
   return (
     <svg
       width="15px"
@@ -14,9 +14,9 @@ export default function SvgTimer(props) {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="#B4A7F5"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g
           id="Icon-Set"

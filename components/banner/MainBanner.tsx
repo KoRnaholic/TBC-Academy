@@ -1,12 +1,13 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 import girlImage from "../../public/images/girl-image.png";
 import MainInfo from "../main-info/MainInfo";
 
 export default function MainBanner() {
   const t = useTranslations("Index");
+  console.log(t);
   return (
     <>
       <div

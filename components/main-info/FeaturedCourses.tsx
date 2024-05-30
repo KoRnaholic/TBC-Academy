@@ -1,9 +1,4 @@
-// import Image from "next/image";
-// import bgArrow from "../../public/images/bg-arrow.png";
 import FeaturedList from "./FeaturedList";
-
-// className=" w-full h-[800px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
-//         style={{ backgroundImage: "url('/images/learning-banner.png')" }}
 
 export default function FeaturedCourses() {
   return (
@@ -15,7 +10,7 @@ export default function FeaturedCourses() {
         className="absolute  top-2 -mt-2 left-0 w-full h-[700px]"
         style={{ backgroundImage: "url('/images/bg-arrow.png')" }}
       >
-        <div className=" flex flex-col md:flex-row justify-around px-16 gap-4  items-center z-30">
+        <div className=" flex flex-col md:flex-row justify-around px-5 sm:px-28 gap-4  items-center z-30">
           <div className="flex flex-col gap-4 mt-20">
             <span className="text-[#FF6575] tracking-wider font-bold text-lg">
               What’s New
@@ -40,20 +35,12 @@ export default function FeaturedCourses() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap gap-10 px-4 sm:px-20 justify-center">
-          {[...Array(6)].map((idx, indx) => {
+        <div className="mt-14 flex flex-wrap gap-10 px-4 sm:px-28 justify-center">
+          {[...Array(6)].map((_, indx) => {
             return <FeaturedList key={indx} />;
           })}
         </div>
       </div>
     </section>
   );
-}
-
-{
-  /* <Image
-          className="absolute top-0 w-full z-0"
-          alt="arrow"
-          src={bgArrow}
-        /> */
 }
