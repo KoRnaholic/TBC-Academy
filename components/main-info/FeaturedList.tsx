@@ -40,18 +40,18 @@ export default function FeaturedList() {
               </div>
             </div>
             <div>
-              <SvgHeart className="fill-white stroke-red group-hover:fill-[#4B3869] group-hover:stroke-white" />
+              <SvgHeart className="fill-white stroke-red  group-hover:fill-[#4B3869] group-hover:stroke-white" />
             </div>
           </div>
-          <h3 className="cursor-pointer mt-2 w-4/5 text-[#002058] group-hover:text-white hover:text-red-500">
+          <h3 className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
             Complete HTML, CSS and Javascript Course
           </h3>
-          <div className="flex justify-between text-gray-600  mt-2 ">
+          <div className="flex justify-between text-gray-500  mt-4 text-lg ">
             <span className="flex items-center group-hover:text-white">
               <span>
                 <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
               </span>
-              <span className="font-thin">0 lessons</span>
+              <span className="font-thin">0 Lessons</span>
             </span>
             <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
               <span className="">

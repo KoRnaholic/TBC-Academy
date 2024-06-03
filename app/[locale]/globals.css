@@ -101,7 +101,7 @@ code {
 .circle {
   width: 8vmax;
   height: 8vmax;
-  border-right: 4px solid #000;
+  border-right: 4px solid #4b3869;
   border-radius: 50%;
   -webkit-animation: spinRight 800ms linear infinite;
   animation: spinRight 800ms linear infinite;
@@ -115,7 +115,7 @@ code {
   position: absolute;
   top: calc(50% - 3vmax);
   left: calc(50% - 3vmax);
-  border-left: 3px solid #f28123;
+  border-left: 3px solid #ff6575;
   border-radius: 100%;
   -webkit-animation: spinLeft 800ms linear infinite;
   animation: spinLeft 800ms linear infinite;
@@ -129,7 +129,7 @@ code {
   position: absolute;
   top: calc(50% - 3vmax);
   left: calc(50% - 3vmax);
-  border-left: 3px solid #f28123;
+  border-left: 3px solid #ff6575;
   border-radius: 100%;
   -webkit-animation: spinLeft 800ms linear infinite;
   animation: spinLeft 800ms linear infinite;
@@ -138,7 +138,7 @@ code {
   top: calc(50% - 2vmax);
   left: calc(50% - 2vmax);
   border: 0;
-  border-right: 2px solid #000;
+  border-right: 2px solid #ff6575;
   -webkit-animation: none;
   animation: none;
 }

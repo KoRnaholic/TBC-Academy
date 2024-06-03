@@ -1,113 +1,37 @@
 import Image from "next/image";
-import shipping from "../../../../public/icons/shipping.svg";
-import rotate from "../../../../public/icons/rotate.svg";
-import briefcase from "../../../../public/icons/briefcase.svg";
-import money from "../../../../public/icons/money.svg";
-import techFruit from "../../../../public/images/tech-fruit.jpg";
+import Link from "next/link";
+import AboutCompany from "../../../../components/about-us/AboutCompany";
+import MainInfo from "../../../../components/main-info/MainInfo";
+import AboutCourses from "../../../../components/about-us/AboutCourses";
+import AboutMentor from "../../../../components/about-us/AboutMentor";
 
 export default function About() {
   return (
     <>
-      <div className="bg-[#07212e] flex items-center justify-center h-[450px]">
-        <div className="flex-col gap-8  flex ">
-          <h1 className="text-[#F28123] tracking-widest text-xl">
-            WE DELIVER TECH DREAMS
-          </h1>
-          <h1 className="text-center text-white text-4xl sm:text-5xl ">
-            About Us
-          </h1>
-        </div>
-      </div>
-
-      <div className="py-20 px-4 sm:px-10 flex justify-center items-center">
-        <div className="flex flex-col gap-10 ">
-          <h2 className="text-4xl pl-10 mb-5">
-            Why Open<span className="text-orange-400">Market</span>
-          </h2>
-          <div className="flex flex-col  sm:flex-row gap-5">
-            <div className="flex items-start gap-4 ">
-              <Image
-                className="border-2 rounded-full py-4 px-3   border-orange-500 border-dotted"
-                src={shipping}
-                width={65}
-                height={65}
-                alt="shipping"
-              />
-              <div>
-                <h3 className="text-2xl">Home Delivery</h3>
-                <p className="w-full sm:w-2/3 text-gray-400">
-                  sit voluptatem accusantium dolore mque laudantium, totam rem
-                  aperiam, eaque ipsa quae ab illo.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <Image
-                className="border-2 rounded-full py-4 px-3   border-orange-500 border-dotted"
-                width={65}
-                height={65}
-                src={money}
-                alt="shipping"
-              />
-              <div>
-                <h3 className="text-2xl">Best Price</h3>
-
-                <p className="w-full sm:w-2/3 text-gray-400">
-                  sit voluptatem accusantium dolore mque laudantium, totam rem
-                  aperiam, eaque ipsa quae ab illo.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col  sm:flex-row gap-5">
-            <div className="flex items-start gap-4">
-              <Image
-                className="border-2 rounded-full py-4 px-4   border-orange-500 border-dotted"
-                width={65}
-                height={65}
-                src={briefcase}
-                alt="shipping"
-              />
-              <div>
-                <h3 className="text-2xl">Custom Box</h3>
-                <p className="w-full sm:w-2/3 text-gray-400">
-                  sit voluptatem accusantium dolore mque laudantium, totam rem
-                  aperiam, eaque ipsa quae ab illo.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <Image
-                className="border-2 rounded-full py-4 px-4   border-orange-500 border-dotted"
-                width={65}
-                height={65}
-                src={rotate}
-                alt="shipping"
-              />
-              <div>
-                <h3 className="text-2xl">Quick Refund</h3>
-                <p className="w-full sm:w-2/3 text-gray-400">
-                  sit voluptatem accusantium dolore mque laudantium, totam rem
-                  aperiam, eaque ipsa quae ab illo.
-                </p>
-              </div>
+      <div className="">
+        <div
+          className="mt-20 w-full h-[190px] relative bg-center bg-no-repeat bg-cover pt-12 "
+          style={{
+            backgroundImage: "url('/images/bg-about.png')",
+            backgroundColor: "rgba(250, 246, 246, .9)",
+          }}
+        >
+          <div className="flex flex-col  gap-3 items-center justify-center">
+            <h1 className="text-5xl text-[#002058]">About Us</h1>
+            <div className="flex gap-2 text-lg">
+              <Link href="/" className="text-[#002058]">
+                Home
+              </Link>
+              <span className="text-red-500 text-xl">-</span>
+              <span className="text-[#685f78]">About Us</span>
             </div>
           </div>
         </div>
-
-        <div className="hidden lg:flex">
-          <Image
-            className="w-full rounded-sm mt-8"
-            src={techFruit}
-            width={800}
-            alt="tech"
-            loading="lazy"
-            placeholder="blur"
-          />
-        </div>
       </div>
+
+      <AboutCompany />
+      <AboutCourses />
+      <AboutMentor />
     </>
   );
 }

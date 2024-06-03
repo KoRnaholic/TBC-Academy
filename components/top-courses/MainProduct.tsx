@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import ProductCard from "../products/ProductCard";
+import ProductCard from "../courses/ProductCard";
 import { Search } from "../search/Search";
 import { DataResponse } from "../../types/types";
 

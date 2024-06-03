@@ -14,12 +14,12 @@ export default function MainBanner() {
         className=" w-full  h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
         style={{ backgroundImage: "url('/images/learning-banner.png')" }}
       >
-        <div className="flex flex-col md:flex-row justify-center md:gap-20 items-center">
-          <div className="flex flex-col gap-5">
+        <div className="flex flex-col md:flex-row justify-center md:gap-40 items-start">
+          <div className="flex flex-col gap-12">
             <h1 className="text-2xl text-[#685F78]">
               The Leader in Online Learning
             </h1>
-            <h2 className="text-2xl md:text-5xl leading-tight font-sans font-bold max-w-[500px] text-[#002058]">
+            <h2 className="text-2xl md:text-5xl  font-sans font-bold max-w-[500px] text-[#002058]">
               Engaging & Accessible Online Courses For All
             </h2>
             <div className="relative w-full max-w-lg">
@@ -38,7 +38,7 @@ export default function MainBanner() {
           <div className="flex justify-center">
             <Image
               // className="w-[520px] h-[533px]"
-              className="w-3/4"
+              className="w-4/5 "
               src={girlImage}
               alt="girl-image"
               quality={100}

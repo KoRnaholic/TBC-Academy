@@ -12,6 +12,7 @@ const protectedRoutes = [
   "/blog",
   "/about",
   "/admin",
+  "/api/login",
 ];
 
 const publicRoutes = ["/login"];
@@ -19,7 +20,6 @@ const publicRoutes = ["/login"];
 export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
   const cookie = request.cookies.get("auth")?.value;
-  // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   const path = request.nextUrl.pathname;
   const isProtectedRoute =
@@ -29,14 +29,11 @@ export default async function middleware(request: NextRequest) {
 
   const isPublicRoute = publicRoutes.includes(path);
 
-  if (isProtectedRoute && !cookie) {
-    return NextResponse.redirect(new URL("/login", request.nextUrl));
-  }
-  if (isPublicRoute && cookie) {
-    return NextResponse.redirect(new URL("/", request.nextUrl));
-  }
-  // if (path === "/" && cookie) {
-  //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
+  // if (isProtectedRoute && !cookie) {
+  //   return NextResponse.redirect(new URL("/login", request.nextUrl));
+  // }
+  // if (isPublicRoute && cookie) {
+  //   return NextResponse.redirect(new URL("/", request.nextUrl));
   // }
 
   //Middleware for internationalization
