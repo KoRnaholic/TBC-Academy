@@ -18,7 +18,6 @@ export default async function Home({
   const t = await getTranslations("Index");
   console.log(t);
   const courses: Course[] | QueryResultRow[] = await getCourses();
-  console.log(courses);
 
   unstable_setRequestLocale(locale);
 

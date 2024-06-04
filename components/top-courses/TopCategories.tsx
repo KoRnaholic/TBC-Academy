@@ -4,7 +4,7 @@ import TopCourses from "./TopCourses";
 export default function TopCategories() {
   return (
     <>
-      <div className="my-20 flex flex-col md:flex-row justify-around px-16 gap-4  items-center">
+      <div className="mt-20 mb-5 flex flex-col md:flex-row justify-around px-16 gap-4  items-center">
         <div className="flex flex-col gap-4">
           <span className="text-[#FF6575] tracking-wider font-bold text-lg">
             Favourite Course

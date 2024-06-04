@@ -42,8 +42,12 @@ export default function CourseCard({
               alt="course-1"
               className="w-full h-full object-cover cursor-pointer"
             />
-            <span className="absolute inset-0 flex items-center justify-center cursor-pointer">
-              <div className="p-3 bg-black rounded-full opacity-80 flex items-center justify-center">
+            <span className="absolute inset-0 flex items-center  justify-center cursor-pointer">
+              <div
+                className="p-3 bg-black rounded-full hover:scale-110
+               transition-all duration-500 opacity-80 flex
+                items-center justify-center"
+              >
                 <Image className="w-16" src={play} alt="video-play" />
               </div>
             </span>

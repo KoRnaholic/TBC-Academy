@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function sqlCreateUser({ id, name, lastName, email }: any) {
   await sql`
@@ -125,6 +125,16 @@ export async function sqlGetSingleCourse(course_id: string) {
   INNER JOIN 
   instructors ON courses.instructor_id = instructors.id
   WHERE courses.id = ${course_id}`;
+
+  return rows;
+}
+
+export async function sqlGetInstructors() {
+  const { rows } = await sql`SELECT * FROM instructors`;
+
+  revalidatePath("/instructors");
+
+  console.log(rows);
 
   return rows;
 }

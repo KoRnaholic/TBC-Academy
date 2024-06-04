@@ -1,19 +1,15 @@
 import Image from "next/image";
 import SvgBook from "../svg-components/SvgBook";
+
 import SvgTimer from "../svg-components/SvgTimer";
 import Link from "next/link";
-import { Course } from "../../types/types";
-import { QueryResultRow } from "@vercel/postgres";
+
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarsComponent from "../UI/StarsComponent";
 
-export default function FeaturedList({
-  course,
-}: {
-  course: Course | QueryResultRow;
-}) {
+export default function TestCourse({ course }) {
   return (
-    <div className="max-w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
+    <div className="w-[600px] md:max-w-[300px]  border bg-white rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="">
         <div className="relative">
           <div className="group overflow-hidden">
@@ -52,13 +48,9 @@ export default function FeaturedList({
             </div>
             <div>
               <FavoriteBorderIcon className="text-[#FF6575] group-hover:text-white hover:fill-red-500 cursor-pointer" />
-              {/* <SvgHeart className="fill-white stroke-red  group-hover:fill-[#4B3869] group-hover:stroke-white" /> */}
             </div>
           </div>
-          <h3
-            className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg
-           group-hover:text-white"
-          >
+          <h3 className="cursor-pointer mt-4 w-full  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
             {course.name}
           </h3>
           <div className="flex justify-between text-gray-500  mt-4 text-lg ">
@@ -85,7 +77,7 @@ export default function FeaturedList({
             className="py-1.5 px-3.5 border-2 border-[#B4A7F5] rounded-full
            text-[#B4A7F5] hover:bg-[#B4A7F5] hover:text-white
             transition-all duration-300 hover:border-[#B4A7F5]
-             group-hover:text-white"
+             group-hover:text-white "
           >
             Buy Now
           </button>

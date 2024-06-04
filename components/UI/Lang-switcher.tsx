@@ -12,7 +12,7 @@ export default function LangSwitcher() {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e.target.value;
-    console.log(nextLocale, path);
+
     startTransition(() => {
       router.replace(`/${nextLocale}/${path}`, { scroll: false });
       router.refresh();

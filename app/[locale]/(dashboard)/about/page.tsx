@@ -7,7 +7,7 @@ import AboutMentor from "../../../../components/about-us/AboutMentor";
 export default function About() {
   return (
     <>
-      <div className="">
+      <div>
         <div
           className="mt-20 w-full h-[190px] relative bg-center bg-no-repeat bg-cover pt-12 "
           style={{

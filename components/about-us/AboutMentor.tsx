@@ -2,6 +2,7 @@ import Image from "next/image";
 import mentorImg from "../../public/images/mentor-img.png";
 import instructor from "../../public/images/instructor.png";
 import student from "../../public/images/student.png";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function AboutMentor() {
   return (
@@ -19,12 +20,18 @@ export default function AboutMentor() {
             standard-definition. While there is no standardized meaning for
             high-definition, generally any video.
           </p>
-          <div className="space-y-2 mb-6 text-xl">
+          <div className="space-y-3 mb-6 text-xl">
             <div className="flex items-center text-gray-700">
-              <span className="font-medium">Best Courses</span>
+              <span className="font-medium flex items-center gap-2">
+                <CheckCircleIcon className="text-[#FF6575]" />
+                Best Courses
+              </span>
             </div>
             <div className="flex items-center text-gray-700">
-              <span className="font-medium">Top rated Instructors</span>
+              <span className="font-medium flex items-center gap-2">
+                <CheckCircleIcon className="text-[#FF6575]" />
+                Top rated Instructors
+              </span>
             </div>
           </div>
           <button

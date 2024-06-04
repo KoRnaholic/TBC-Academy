@@ -7,6 +7,7 @@ import {
   sqlDecrementQuantity,
   sqlGetCartQuantity,
   sqlGetCourses,
+  sqlGetInstructors,
   sqlGetSingleCourse,
   sqlIncrementQuantity,
   sqlResetCart,
@@ -92,4 +93,9 @@ export async function getSingleCourse(course_id: string) {
   const course = await sqlGetSingleCourse(course_id);
 
   return course;
+}
+
+export async function getInstructors() {
+  const instructors = await sqlGetInstructors();
+  return instructors;
 }

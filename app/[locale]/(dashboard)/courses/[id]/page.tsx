@@ -12,7 +12,7 @@ export default async function SingleCoursePage({
 }) {
   const courseArr = await getSingleCourse(params.id);
   const course = courseArr[0];
-  console.log(params);
+
   return (
     <>
       <div>

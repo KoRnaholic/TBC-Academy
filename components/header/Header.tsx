@@ -67,7 +67,7 @@ export default function Header() {
               <Link href="/about">About Us</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/about">Instructors</Link>
+              <Link href="/instructors">Instructors</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
               <Link href="/about">Students</Link>

@@ -1,10 +1,8 @@
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import ContactInfo from "../../../../components/contact/ContactInfo";
 
-const Contact = () => {
-  const t = useTranslations("Contact");
+import InstructorsGrid from "../../../../components/instructors/InstructorsGrid";
 
+export default function InstructorsPage() {
   return (
     <>
       <div>
@@ -16,21 +14,19 @@ const Contact = () => {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Contact Us</h1>
+            <h1 className="text-5xl text-[#002058]">Instructors</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
                 Home
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Contact Us</span>
+              <span className="text-[#685f78]">Instructors</span>
             </div>
           </div>
         </div>
       </div>
 
-      <ContactInfo />
+      <InstructorsGrid />
     </>
   );
-};
-
-export default Contact;
+}
