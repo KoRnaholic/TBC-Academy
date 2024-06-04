@@ -1,33 +1,33 @@
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
-const protectedRoutes = [
-  "/",
-  "/en",
-  "/ka",
-  "/profile",
-  "/contact",
-  "/products",
-  "/blog",
-  "/about",
-  "/admin",
-  "/api/login",
-];
+// const protectedRoutes = [
+//   "/",
+//   "/en",
+//   "/ka",
+//   "/profile",
+//   "/contact",
+//   "/products",
+//   "/blog",
+//   "/about",
+//   "/admin",
+//   "/api/login",
+// ];
 
-const publicRoutes = ["/login"];
+// const publicRoutes = ["/login"];
 
 export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
-  const cookie = request.cookies.get("auth")?.value;
+  // const cookie = request.cookies.get("auth")?.value;
 
-  const path = request.nextUrl.pathname;
-  const isProtectedRoute =
-    protectedRoutes.includes(path) ||
-    path.includes("/blog") ||
-    path.includes("/products");
+  // const path = request.nextUrl.pathname;
+  // const isProtectedRoute =
+  //   protectedRoutes.includes(path) ||
+  //   path.includes("/blog") ||
+  //   path.includes("/products");
 
-  const isPublicRoute = publicRoutes.includes(path);
+  // const isPublicRoute = publicRoutes.includes(path);
 
   // if (isProtectedRoute && !cookie) {
   //   return NextResponse.redirect(new URL("/login", request.nextUrl));
@@ -47,8 +47,6 @@ export default async function middleware(request: NextRequest) {
   });
 
   const response = handleI18nRouting(request);
-
-  // response.headers.set("ka", defaultLocale);
 
   return response;
 }

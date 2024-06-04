@@ -1,20 +1,30 @@
 import Image from "next/image";
-import firstCourse from "../../public/images/course-1.jpg";
 import SvgBook from "../svg-components/SvgBook";
 import SvgHeart from "../svg-components/SvgHeart";
 import SvgTimer from "../svg-components/SvgTimer";
+import Link from "next/link";
+import { Course } from "../../types/types";
+import { QueryResultRow } from "@vercel/postgres";
 
-export default function FeaturedList() {
+export default function FeaturedList({
+  course,
+}: {
+  course: Course | QueryResultRow;
+}) {
   return (
     <div className="max-w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="">
         <div className="relative">
           <div className="group overflow-hidden">
-            <Image
-              src={firstCourse}
-              alt="course-1"
-              className="w-full h-full rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
-            />
+            <Link href={`/courses/${course.id}`}>
+              <Image
+                src={course?.image}
+                width={300}
+                height={300}
+                alt="course-1"
+                className="w-full h-full rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
+              />
+            </Link>
           </div>
           <span className="absolute bottom-2 text-2xl right-2 bg-white text-[#159f46]  font-bold px-2.5 py-0.5 rounded-lg">
             FREE
@@ -32,7 +42,7 @@ export default function FeaturedList() {
               />
               <div className="flex flex-col ">
                 <p className="text-[#002058] group-hover:text-white ">
-                  David Powell
+                  {course.instructor_name + " " + course.instructor_surname}
                 </p>
                 <p className="text-gray-600 text-sm group-hover:text-white ">
                   Instructor
@@ -44,20 +54,20 @@ export default function FeaturedList() {
             </div>
           </div>
           <h3 className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
-            Complete HTML, CSS and Javascript Course
+            {course.name}
           </h3>
           <div className="flex justify-between text-gray-500  mt-4 text-lg ">
             <span className="flex items-center group-hover:text-white">
               <span>
                 <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
               </span>
-              <span className="font-thin">0 Lessons</span>
+              <span className="font-thin">{course.lessons} Lessons</span>
             </span>
             <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
               <span className="">
                 <SvgTimer />
               </span>
-              <span className="mt-1 font-thin">30 mins</span>
+              <span className="mt-1 font-thin">{course.duration}</span>
             </span>
           </div>
         </div>

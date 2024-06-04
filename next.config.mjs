@@ -21,6 +21,11 @@ const nextConfig = {
         hostname: "dreamslms-wp.dreamstechnologies.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "ce3qqavfo0hlb0b3.public.blob.vercel-storage.com",
+        pathname: "**",
+      },
     ],
   },
 };

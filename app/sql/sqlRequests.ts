@@ -1,13 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { revalidateTag } from "next/cache";
 
-// interface UserObj {
-//   id: number;
-//   name: string;
-//   lastName: string;
-//   email: string;
-// }
-
 export async function sqlCreateUser({ id, name, lastName, email }: any) {
   await sql`
     INSERT INTO users (user_id, name, last_name, email)
@@ -103,4 +96,35 @@ export async function sqlResetCart(userId: number) {
   DELETE FROM cart
   WHERE user_id = ${userId};
 `;
+}
+
+//new
+export async function sqlGetCourses() {
+  const { rows } = await sql`SELECT 
+  courses.*,
+  instructors.name AS instructor_name,
+  instructors.surname AS instructor_surname,
+  instructors.email AS instructor_email
+  FROM courses
+  INNER JOIN 
+  instructors ON courses.instructor_id = instructors.id;
+`;
+
+  return rows;
+}
+
+export async function sqlGetSingleCourse(course_id: string) {
+  const { rows } = await sql`
+  SELECT 
+  courses.*,
+  instructors.name AS instructor_name,
+  instructors.surname AS instructor_surname,
+  instructors.email AS instructor_email,
+  courses.overview
+  FROM courses
+  INNER JOIN 
+  instructors ON courses.instructor_id = instructors.id
+  WHERE courses.id = ${course_id}`;
+
+  return rows;
 }

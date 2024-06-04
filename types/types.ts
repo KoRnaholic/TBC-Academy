@@ -1,3 +1,5 @@
+import { QueryResultRow } from "@vercel/postgres";
+
 //Products page
 export interface Product {
   id: number;
@@ -119,4 +121,28 @@ export interface InitialState {
   products: Product[] | State[];
   addToCart: (product: Product) => void;
   removeFromCart: (product: Product) => void;
+}
+
+//new
+export interface Course {
+  id: number;
+  name: string;
+  instructor_id: number;
+  lessons: number;
+  duration: string;
+  rating: string;
+  image: string;
+  overview: string;
+  instructor_name: string;
+  instructor_surname: string;
+  instructor_email: string;
+}
+export interface Courses {
+  courses: Course[] | QueryResultRow[];
+}
+
+//SingleProductPage
+export interface SingleProductParam {
+  locale: string;
+  id: string;
 }

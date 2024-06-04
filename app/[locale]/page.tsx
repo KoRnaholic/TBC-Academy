@@ -6,6 +6,9 @@ import MainBanner from "../../components/banner/MainBanner";
 
 import FeaturedCourses from "../../components/main-info/FeaturedCourses";
 import TopCategories from "../../components/top-courses/TopCategories";
+import { getCourses } from "../actions";
+import { Course } from "../../types/types";
+import { QueryResultRow } from "@vercel/postgres";
 
 export default async function Home({
   params: { locale },
@@ -14,6 +17,8 @@ export default async function Home({
 }) {
   const t = await getTranslations("Index");
   console.log(t);
+  const courses: Course[] | QueryResultRow[] = await getCourses();
+  console.log(courses);
 
   unstable_setRequestLocale(locale);
 
@@ -22,7 +27,7 @@ export default async function Home({
       <Header />
       <MainBanner />
       <TopCategories />
-      <FeaturedCourses />
+      <FeaturedCourses courses={courses} />
       {/* <MainProduct
         name={{ name: t("product.name"), text: t("product.text") }}
         data={products}

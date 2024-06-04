@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import ProductCard from "../courses/ProductCard";
+// import ProductCard from "../courses/CourseCard";
 import { Search } from "../search/Search";
 import { DataResponse } from "../../types/types";
 
@@ -65,7 +65,7 @@ export default function MainProduct({ data, name }: DataResponse) {
         setSearch={handleSearch}
       />
       <div className="flex overflow-y-auto mt-10  flex-wrap justify-center items-center py-10 px-4 sm:px-16  gap-10 max-h-[580px]">
-        <ProductCard products={product} />
+        {/* <ProductCard products={product} /> */}
       </div>
     </div>
   );

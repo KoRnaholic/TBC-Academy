@@ -1,7 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import AboutCompany from "../../../../components/about-us/AboutCompany";
-import MainInfo from "../../../../components/main-info/MainInfo";
+
 import AboutCourses from "../../../../components/about-us/AboutCourses";
 import AboutMentor from "../../../../components/about-us/AboutMentor";
 

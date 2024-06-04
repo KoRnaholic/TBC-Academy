@@ -1,6 +1,12 @@
+import { QueryResultRow } from "@vercel/postgres";
+import { Course } from "../../types/types";
 import FeaturedList from "./FeaturedList";
 
-export default function FeaturedCourses() {
+export default function FeaturedCourses({
+  courses,
+}: {
+  courses: Course[] | QueryResultRow[];
+}) {
   return (
     <section
       className=" w-full h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
@@ -36,8 +42,8 @@ export default function FeaturedCourses() {
         </div>
 
         <div className="mt-14 flex flex-wrap gap-10 px-4 sm:px-28 justify-center">
-          {[...Array(6)].map((_, indx) => {
-            return <FeaturedList key={indx} />;
+          {courses?.map((course, indx) => {
+            return <FeaturedList course={course} key={indx} />;
           })}
         </div>
       </div>

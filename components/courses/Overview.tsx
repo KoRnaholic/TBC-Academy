@@ -1,30 +1,27 @@
 import Image from "next/image";
-import FeaturedList from "../main-info/FeaturedList";
 
-export default function Overview() {
+import CourseCard from "./CourseCard";
+import { Course } from "../../types/types";
+import { QueryResultRow } from "@vercel/postgres";
+
+export default function Overview({
+  course,
+}: {
+  course: Course | QueryResultRow;
+}) {
   return (
-    <div className="flex justify-center gap-10 ">
+    <div className="flex flex-col xl:flex-row justify-center gap-10 bg-[#fafafa] pb-10">
       <div className="flex flex-col gap-8 mt-20">
-        <div className="p-5 border-2 rounded-lg">
+        <div className="p-5 border rounded-lg bg-white">
           <h2 className="text-2xl text-[#002058]">Overview</h2>
-          <p className="max-w-[800px] text-gray-500 mt-5">
-            Use of CANTECH INDIA® services or equipment for creating or sending
-            Internet viruses, worms or Trojan horses, or for pinging, flooding
-            or mail bombing, or engaging in denial of service attacks is
-            prohibited. It is also prohibited for any customer to engage in
-            other activity that is intended to disrupt or interfere with, or
-            that results in the disruption of or interference with, the ability
-            of others to effectively use CANTECH INDIA® services and equipment
-            (or any connected network, system, service or equipment) or conduct
-            their business over the Internet.
-          </p>
+          <p className="max-w-[800px] text-gray-500 mt-5">{course.overview}</p>
         </div>
 
-        <div className="p-5 border-2 rounded-lg">
+        <div className="p-5 border rounded-lg bg-white">
           <h2 className="text-2xl text-[#002058]">Course Content</h2>
         </div>
 
-        <div className="p-5 border-2 rounded-lg">
+        <div className="p-5 border rounded-lg bg-white">
           <h2 className="text-2xl text-[#002058]">About Instructor</h2>
 
           <div className="flex gap-2 items-center justify-between mt-5">
@@ -63,15 +60,36 @@ export default function Overview() {
             </p>
           </div>
           <div className="mt-5">
-            <button className="text-white bg-[#FF6575] px-5 py-2.5 rounded-lg">
+            <button className="text-white bg-[#FF6575] px-5 py-2.5 rounded-lg hover:bg-[#ec5362] transition-all duration-300">
               View Details
             </button>
           </div>
         </div>
+
+        <div className="p-5 border rounded-lg bg-white">
+          <h2 className="text-2xl text-[#002058]">Reviews</h2>
+          <div className="flex justify-between gap-3 items-center mt-5">
+            <div className="flex gap-3">
+              <Image
+                className="w-15 h-15 rounded-full border-2 border-slate-300"
+                src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2024/02/profile5-1.jpg"
+                alt="avatar"
+                width={50}
+                height={50}
+              />
+              <div className="flex flex-col">
+                <span className="text-[#002058]">Michael Morgan</span>
+                <span>15 hours ago</span>
+              </div>
+            </div>
+            <span>stars</span>
+            <span>Comments</span>
+          </div>
+        </div>
       </div>
 
-      <div className="-mt-52">
-        <FeaturedList />
+      <div className=" xl:-mt-52 sticky">
+        <CourseCard course={course} />
       </div>
     </div>
   );
