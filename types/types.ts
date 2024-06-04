@@ -130,7 +130,7 @@ export interface Course {
   instructor_id: number;
   lessons: number;
   duration: string;
-  rating: string;
+  rating: number;
   image: string;
   overview: string;
   instructor_name: string;

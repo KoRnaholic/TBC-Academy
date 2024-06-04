@@ -1,5 +1,4 @@
 import React from "react";
-import CircleIcon from "@mui/icons-material/Circle";
 const coursesTest = [
   { title: "Angular", color: "red" },
   { title: "Bootstrap", color: "pink" },

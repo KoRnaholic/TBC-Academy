@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import Link from "next/link";
 import ContactInfo from "../../../../components/contact/ContactInfo";
 
 const Contact = () => {
-  const t = useTranslations("Contact");
+  // const t = useTranslations("Contact");
 
   return (
     <>
