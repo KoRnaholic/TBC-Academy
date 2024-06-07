@@ -3,12 +3,11 @@ import { sqlGetUser } from "../../../../sql/sqlGetUser";
 
 export default async function UserProfile() {
   const data = await getSession();
-  const { sub } = data?.user;
+  const { sub } = data?.user || { sub: null };
   const user = await sqlGetUser(sub);
-  const { userInfo } = user;
+  const userInfo = user?.userInfo;
 
   const date = new Date(data?.user.updated_at);
-  console.log(date.toLocaleString());
 
   return (
     <>
@@ -19,11 +18,11 @@ export default async function UserProfile() {
         <div className="grid grid-cols-2 gap-6">
           <div>
             <h3 className="text-[#002058] text-lg">First Name</h3>
-            <p className="text-gray-600">{userInfo.name}</p>
+            <p className="text-gray-600">{userInfo?.name}</p>
           </div>
           <div>
             <h3 className="text-[#002058] text-lg">Last Name</h3>
-            <p className="text-gray-600">{userInfo.surname}</p>
+            <p className="text-gray-600">{userInfo?.surname}</p>
           </div>
           <div>
             <h3 className="text-[#002058] text-lg">Registration Date</h3>
@@ -35,7 +34,7 @@ export default async function UserProfile() {
           </div>
           <div>
             <h3 className="text-[#002058] text-lg">Email</h3>
-            <p className="text-gray-600">{userInfo.email}</p>
+            <p className="text-gray-600">{userInfo?.email}</p>
           </div>
           <div>
             <h3 className="text-[#002058] text-lg">Phone Number</h3>

@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function CartTotal({ totalPrice }: { totalPrice: number }) {
+export default function CartTotal({
+  totalPrice,
+}: {
+  totalPrice: number | undefined;
+}) {
   return (
     <div className="mt-4 w-full h-1/2 max-w-sm  bg-white shadow-lg rounded-lg border border-gray-200 p-6">
       <h2 className="text-xl font-thin pb-3 text-[#111e6c] mb-4 border-b w-full">

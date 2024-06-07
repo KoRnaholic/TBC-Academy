@@ -1,6 +1,7 @@
 "use server";
 import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
+import { Course } from "../../types/types";
 
 export async function sqlGetCartItems() {
   const data = await getSession();
@@ -16,7 +17,7 @@ export async function sqlGetCartItems() {
           INNER JOIN courses ON cart.course_id = courses.id
           WHERE cart.student_id = ${studentId};
         `;
-    return rows;
+    return rows as Course[];
   } catch (error) {
     console.error("Error fetching course information:", error);
     return null;

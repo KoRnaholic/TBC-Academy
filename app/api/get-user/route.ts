@@ -7,7 +7,8 @@ import { NextResponse } from "next/server";
 
 export const revalidate = 0;
 export async function GET() {
-  const data = getSession();
+  const data = await getSession();
+
   if (data) {
     const userId = data.user.sub;
     try {

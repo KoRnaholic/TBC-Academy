@@ -23,9 +23,9 @@ const menuItems = [
 
 export default async function UserDashboard() {
   const data = await getSession();
-  const { sub } = data?.user;
+  const { sub } = data?.user || { sub: null };
   const user = await sqlGetUser(sub);
-  const { userInfo } = user;
+  const userInfo = user?.userInfo;
 
   return (
     <div className="flex flex-col justify-start items-center">
@@ -43,7 +43,7 @@ export default async function UserDashboard() {
         </div>
         <div className="p-4 text-center flex flex-col  items-center justify-end mt-16">
           <h2 className="text-2xl font-medium text-gray-800">
-            {userInfo?.name + " " + userInfo.surname}
+            {userInfo?.name + " " + userInfo?.surname}
           </h2>
           <p className="text-gray-500 mb-4">{user?.role}</p>
           <button className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">

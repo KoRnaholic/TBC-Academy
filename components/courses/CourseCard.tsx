@@ -10,6 +10,7 @@ import { QueryResultRow } from "@vercel/postgres";
 import { sqlAddToCart } from "../../app/sql/sqlAddToCart";
 import { sqlExistsInCart } from "../../app/sql/sqlExistsInCart";
 import Link from "next/link";
+import AddButton from "./AddButton";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -83,13 +84,7 @@ export default async function CourseCard({
                 View Cart
               </Link>
             ) : (
-              <button
-                type="submit"
-                className="py-2.5  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
-             transition-all duration-300"
-              >
-                Add To Cart
-              </button>
+              <AddButton />
             )}
             <button
               className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]

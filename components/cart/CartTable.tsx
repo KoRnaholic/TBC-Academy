@@ -1,10 +1,12 @@
-import Image from "next/image";
 import React from "react";
 import { Course } from "../../types/types";
-import { sqlDeleteFromCart } from "../../app/sql/sqlDeleteFromCart";
 import SingleCartItem from "./SingleCartItem";
 
-export default async function CartTable({ courses }: { courses: Course[] }) {
+export default async function CartTable({
+  courses,
+}: {
+  courses: Course[] | null;
+}) {
   return (
     <div className=" w-full lg:w-1/2  p-4 font-sans">
       <div className="overflow-x-auto ">

@@ -1,8 +1,9 @@
 import React from "react";
 import { sqlDeleteFromCart } from "../../app/sql/sqlDeleteFromCart";
 import Image from "next/image";
+import { Course } from "../../types/types";
 
-export default function SingleCartItem({ course }) {
+export default function SingleCartItem({ course }: { course: Course }) {
   const removeFromCart = sqlDeleteFromCart.bind(null, course.id);
   return (
     <tr key={course.id} className="py-10">
