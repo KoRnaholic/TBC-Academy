@@ -33,7 +33,7 @@ export const GET = async (_: NextRequest) => {
         console.log(user_id, name, email, role, surname, picture);
 
         const handleDatabaseOperation = async () => {
-          await sql`INSERT INTO instructors (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
+          await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
 
           //   if (table === "instructors") {
           //     const res =
