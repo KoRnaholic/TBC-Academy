@@ -1,5 +1,5 @@
 "use server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 // import { redirect } from "next/navigation";
 // import { baseUrl } from "./[locale]/(dashboard)/admin/page";
@@ -86,16 +86,23 @@ export async function resetCart() {
 
 export async function getCourses() {
   const courses = await sqlGetCourses();
+  revalidatePath("/");
 
   return courses;
 }
 export async function getSingleCourse(course_id: string) {
   const course = await sqlGetSingleCourse(course_id);
-
+  revalidatePath("/courses");
   return course;
 }
 
 export async function getInstructors() {
   const instructors = await sqlGetInstructors();
   return instructors;
+}
+
+export async function getCurrentUser() {
+  const user = await fetch("http://localhost:3000/api/get-user");
+
+  return user;
 }

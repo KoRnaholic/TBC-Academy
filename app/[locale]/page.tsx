@@ -1,4 +1,4 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { unstable_setRequestLocale } from "next-intl/server";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 
@@ -10,13 +10,15 @@ import { getCourses } from "../actions";
 import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
 
+export const revalidate = 0;
+
 export default async function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslations("Index");
-  console.log(t);
+  // const t = await getTranslations("Index");
+  // console.log(t);
   const courses: Course[] | QueryResultRow[] = await getCourses();
 
   unstable_setRequestLocale(locale);

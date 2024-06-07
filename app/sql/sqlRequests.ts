@@ -1,3 +1,4 @@
+"use server";
 import { sql } from "@vercel/postgres";
 import { revalidatePath, revalidateTag } from "next/cache";
 
@@ -104,12 +105,14 @@ export async function sqlGetCourses() {
   courses.*,
   instructors.name AS instructor_name,
   instructors.surname AS instructor_surname,
-  instructors.email AS instructor_email
+  instructors.email AS instructor_email,
+  courses.price
   FROM courses
   INNER JOIN 
-  instructors ON courses.instructor_id = instructors.id;
+  instructors ON courses.instructor_id = instructors.id
+  ORDER BY courses.id;
 `;
-
+  revalidatePath("/");
   return rows;
 }
 
@@ -120,7 +123,8 @@ export async function sqlGetSingleCourse(course_id: string) {
   instructors.name AS instructor_name,
   instructors.surname AS instructor_surname,
   instructors.email AS instructor_email,
-  courses.overview
+  courses.overview,
+  courses.price
   FROM courses
   INNER JOIN 
   instructors ON courses.instructor_id = instructors.id
@@ -131,10 +135,6 @@ export async function sqlGetSingleCourse(course_id: string) {
 
 export async function sqlGetInstructors() {
   const { rows } = await sql`SELECT * FROM instructors`;
-
-  revalidatePath("/instructors");
-
-  console.log(rows);
 
   return rows;
 }

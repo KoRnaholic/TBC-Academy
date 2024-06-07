@@ -9,7 +9,6 @@ import { getInstructors } from "../../app/actions";
 export default async function InstructorsGrid() {
   const instructors = await getInstructors();
 
-  console.log(instructors);
   return (
     <div className="md:p-16 flex w-full flex-col items-center">
       <div className=" flex items-center space-x-2">

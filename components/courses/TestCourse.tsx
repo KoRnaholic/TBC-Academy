@@ -9,6 +9,7 @@ import StarsComponent from "../UI/StarsComponent";
 import { Course } from "../../types/types";
 
 export default function TestCourse({ course }: { course: Course }) {
+  console.log("hi", course);
   return (
     <div className="w-[600px] md:max-w-[300px]  border bg-white rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="">
@@ -25,7 +26,11 @@ export default function TestCourse({ course }: { course: Course }) {
             </Link>
           </div>
           <span className="absolute bottom-2 text-2xl right-2 bg-white text-[#159f46]  font-bold px-2.5 py-0.5 rounded-lg">
-            FREE
+            {course.price === "free" ? (
+              "FREE"
+            ) : (
+              <span className="text-[#FF6575]">${course.price}</span>
+            )}
           </span>
         </div>
         <div className="py-4">
@@ -51,15 +56,15 @@ export default function TestCourse({ course }: { course: Course }) {
               <FavoriteBorderIcon className="text-[#FF6575] group-hover:text-white hover:fill-red-500 cursor-pointer" />
             </div>
           </div>
-          <h3 className="cursor-pointer mt-4 w-full  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
+          <h3 className="cursor-pointer mt-4 w-3/4  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
             {course.name}
           </h3>
           <div className="flex justify-between text-gray-500  mt-4 text-lg ">
-            <span className="flex items-center group-hover:text-white">
+            <span className="flex items-center gap-1 group-hover:text-white">
               <span>
                 <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
               </span>
-              <span className="font-thin">{course.lessons} Lessons</span>
+              <span>{course.lessons} Lessons</span>
             </span>
             <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
               <span className="">

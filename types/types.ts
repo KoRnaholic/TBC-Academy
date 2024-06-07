@@ -132,6 +132,7 @@ export interface Course {
   duration: string;
   rating: number;
   image: string;
+  price: string;
   overview: string;
   instructor_name: string;
   instructor_surname: string;

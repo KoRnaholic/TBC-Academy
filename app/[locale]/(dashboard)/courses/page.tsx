@@ -9,6 +9,7 @@ import CourseCategories from "../../../../components/courses/CourseCategories";
 
 export default async function CoursesPage() {
   const courses: Course[] | QueryResultRow[] = await getCourses();
+
   return (
     <>
       <div>

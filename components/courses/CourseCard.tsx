@@ -7,6 +7,9 @@ import GroupIcon from "@mui/icons-material/Group";
 import CircleIcon from "@mui/icons-material/Circle";
 import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
+import { sqlAddToCart } from "../../app/sql/sqlAddToCart";
+import { sqlExistsInCart } from "../../app/sql/sqlExistsInCart";
+import Link from "next/link";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -25,11 +28,14 @@ const courses = [
   { title: "WordPress", color: "orange-yellowish" },
 ];
 
-export default function CourseCard({
+export default async function CourseCard({
   course,
 }: {
   course: Course | QueryResultRow;
 }) {
+  const { exists } = await sqlExistsInCart(course.id);
+  console.log(exists);
+  const addToCart = sqlAddToCart.bind(null, course.id);
   return (
     <>
       <div className="max-w-[395px]  bg-white  rounded-lg shadow-md p-5">
@@ -53,17 +59,45 @@ export default function CourseCard({
             </span>
           </div>
 
-          <div className="pt-4 flex flex-col justify-center gap-5 items-center text-lg">
-            <button className="py-2.5 bg-green-600 text-white px-3.5 border-2 w-full rounded-full">
-              Enroll Course
-            </button>
+          <form
+            action={addToCart}
+            className="pt-4 flex flex-col justify-center gap-3 items-center text-lg"
+          >
+            <span className="flex text-gray-600 text-2xl items-start w-full">
+              {course.price === "free" ? "" : `$${course.price}`}
+            </span>
+
+            {course.price === "free" ? (
+              <button
+                className="py-2.5  text-white bg-green-600 px-3.5 border-2 w-full rounded-full
+             transition-all duration-300"
+              >
+                Enroll Course
+              </button>
+            ) : exists ? (
+              <Link
+                href="/cart"
+                className="py-2.5 text-center  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
+         transition-all duration-300"
+              >
+                View Cart
+              </Link>
+            ) : (
+              <button
+                type="submit"
+                className="py-2.5  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
+             transition-all duration-300"
+              >
+                Add To Cart
+              </button>
+            )}
             <button
               className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]
              w-full rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-300"
             >
               Add To Bookmark
             </button>
-          </div>
+          </form>
         </div>
       </div>
 

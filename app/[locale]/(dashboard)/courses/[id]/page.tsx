@@ -4,6 +4,10 @@ import SvgTimer from "../../../../../components/svg-components/SvgTimer";
 import Overview from "../../../../../components/courses/Overview";
 import { getSingleCourse } from "../../../../actions";
 import { SingleProductParam } from "../../../../../types/types";
+import { revalidatePath } from "next/cache";
+import StarsComponent from "../../../../../components/UI/StarsComponent";
+
+export const revalidate = 0;
 
 export default async function SingleCoursePage({
   params,
@@ -11,6 +15,7 @@ export default async function SingleCoursePage({
   params: SingleProductParam;
 }) {
   const courseArr = await getSingleCourse(params.id);
+  revalidatePath("/courses");
   const course = courseArr[0];
 
   return (
@@ -48,7 +53,8 @@ export default async function SingleCoursePage({
                 {course.duration} hours 30 minutes
               </span>
               <span> 2 Enrolled</span>
-              <span>{course.rating} stars</span>
+              <StarsComponent rating={course.rating} />
+              <span>{course.rating}</span>
             </div>
           </div>
         </div>

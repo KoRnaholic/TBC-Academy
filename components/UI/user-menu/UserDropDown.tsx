@@ -14,7 +14,7 @@ export default function UserDropDown({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -35,8 +35,6 @@ export default function UserDropDown({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div ref={dropdownRef} className="relative">
@@ -73,7 +71,7 @@ export default function UserDropDown({
           </span>
         </button>
         <Link
-          href="/profile"
+          href="/dashboard"
           className="flex w-full items-center justify-start gap-2 px-2 py-2 hover:text-red-500"
         >
           <Image src={profile} alt="profile" />

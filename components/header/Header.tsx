@@ -17,7 +17,10 @@ export default function Header() {
   // const pathname = usePathname();
   const [scrolling, setScrolling] = useState(false);
 
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  // console.log(user);
+
+  // getting metadata
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,6 +37,15 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  if (isLoading)
+    return (
+      <div className="loader">
+        <div className="loader-inner">
+          <div className="circle"></div>
+        </div>
+      </div>
+    );
 
   return (
     <header

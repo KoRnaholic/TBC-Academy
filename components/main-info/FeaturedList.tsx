@@ -28,7 +28,11 @@ export default function FeaturedList({
             </Link>
           </div>
           <span className="absolute bottom-2 text-2xl right-2 bg-white text-[#159f46]  font-bold px-2.5 py-0.5 rounded-lg">
-            FREE
+            {course.price === "free" ? (
+              "FREE"
+            ) : (
+              <span className="text-[#FF6575]">${course.price}</span>
+            )}
           </span>
         </div>
         <div className="py-4">

@@ -1,7 +1,6 @@
 import React, { CSSProperties } from "react";
 
 export default function StarsComponent({ rating }: { rating: number }) {
-  console.log(rating);
   return (
     <>
       <div
