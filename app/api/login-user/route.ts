@@ -32,26 +32,28 @@ export const GET = async (_: NextRequest) => {
 
         console.log(user_id, name, email, role, surname, picture);
 
-        const handleDatabaseOperation = async (table: string) => {
-          if (table === "instructors") {
-            const res =
-              await sql`SELECT * FROM instructors WHERE id = ${user_id}`;
-            if (res.rowCount === 0) {
-              await sql`INSERT INTO instructors (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
-            }
-          } else if (table === "students") {
-            const res = await sql`SELECT * FROM students WHERE id = ${user_id}`;
-            if (res.rowCount === 0) {
-              await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
-            }
-          }
+        const handleDatabaseOperation = async () => {
+          await sql`INSERT INTO instructors (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
+
+          //   if (table === "instructors") {
+          //     const res =
+          //       await sql`SELECT * FROM instructors WHERE id = ${user_id}`;
+          //     if (res.rowCount === 0) {
+          //       await sql`INSERT INTO instructors (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
+          //     }
+          //   } else if (table === "students") {
+          //     const res = await sql`SELECT * FROM students WHERE id = ${user_id}`;
+          //     if (res.rowCount === 0) {
+          //       await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
+          //     }
+          //   }
         };
 
         // Check role and perform corresponding database operation
         if (role === "Instructor") {
-          await handleDatabaseOperation("instructors");
+          //   await handleDatabaseOperation("instructors");
         } else if (role === "Student") {
-          await handleDatabaseOperation("students");
+          await handleDatabaseOperation();
         }
       } catch (error) {
         console.log("error", error);
