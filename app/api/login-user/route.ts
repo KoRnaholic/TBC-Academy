@@ -5,9 +5,10 @@ import { NextRequest } from "next/server";
 
 export const GET = async (_: NextRequest) => {
   const data = await getSession();
+  const surname = "arnoup";
 
   if (data?.user) {
-    await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${data?.user.sub}, ${data?.user.name}, "adsass", ${data?.user.email}, ${data?.user.picture})`;
+    await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${data?.user.sub}, ${data?.user.name}, ${surname}, ${data?.user.email}, ${data?.user.picture})`;
     // var myHeaders = new Headers();
     // myHeaders.append("Accept", "application/json");
     // myHeaders.append(
