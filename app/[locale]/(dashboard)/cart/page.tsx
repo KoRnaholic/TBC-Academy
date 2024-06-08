@@ -7,10 +7,10 @@ import CartTotal from "../../../../components/cart/CartTotal";
 
 export default async function CartPage() {
   const courses = await sqlGetCartItems();
-  const totalPrice = courses?.reduce(
-    (total, course) => total + parseInt(course.price),
-    0
-  );
+
+  const totalPrice = courses?.reduce((sum, course) => {
+    return sum + course.quantity * parseFloat(course.price);
+  }, 0);
 
   return (
     <div className="bg-[#fafafa]">

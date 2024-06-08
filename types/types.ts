@@ -133,6 +133,7 @@ export interface Course {
   rating: number;
   image: string;
   price: string;
+  quantity: number;
   overview: string;
   instructor_name: string;
   instructor_surname: string;

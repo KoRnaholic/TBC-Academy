@@ -60,36 +60,46 @@ export async function sqlGetCartQuantity(userId: number) {
   return rows[0].sum;
 }
 
-export async function sqlIncrementQuantity(userId: number, productId: number) {
+export async function sqlIncrementQuantity(
+  studentId: string,
+  courseId: number
+) {
   await sql`
   UPDATE cart
   SET quantity = quantity + 1
-  WHERE user_id = ${userId}
-  AND product_id = ${productId}`;
+  WHERE student_id = ${studentId}
+  AND course_id = ${courseId}`;
+
+  revalidatePath("/cart");
 }
 
-export async function sqlDecrementQuantity(userId: number, productId: number) {
+export async function sqlDecrementQuantity(
+  studentId: string,
+  courseId: number
+) {
   const { rows } = await sql`
   SELECT quantity 
   FROM cart
-  WHERE user_id = ${userId}
-  AND product_id = ${productId}`;
+  WHERE student_id = ${studentId}
+  AND course_id = ${courseId}`;
   const quantity = rows[0]?.quantity;
 
   if (quantity === 1) {
     await sql`
       DELETE FROM cart
-      WHERE user_id = ${userId}
-      AND product_id = ${productId};
+      WHERE student_id = ${studentId}
+      AND course_id = ${courseId};
     `;
   } else if (quantity > 1) {
     await sql`
       UPDATE cart
       SET quantity = quantity - 1
-      WHERE user_id = ${userId}
-      AND product_id = ${productId};
+      WHERE student_id = ${studentId}
+      AND course_id = ${courseId};
     `;
   }
+
+  revalidatePath("/cart");
 }
 
 export async function sqlResetCart(userId: number) {

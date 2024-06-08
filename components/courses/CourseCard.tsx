@@ -35,7 +35,7 @@ export default async function CourseCard({
   course: Course | QueryResultRow;
 }) {
   const { exists } = await sqlExistsInCart(course.id);
-  console.log(exists);
+
   const addToCart = sqlAddToCart.bind(null, course.id);
   return (
     <>

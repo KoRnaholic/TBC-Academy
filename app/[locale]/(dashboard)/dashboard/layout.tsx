@@ -40,7 +40,7 @@ export default async function DashboardLayout({
         </div>
       </div>
 
-      <div className="flex w-full justify-center gap-20 mt-16">
+      <div className="flex w-full justify-center gap-10 mt-16">
         <UserDashboard />
         <main className="w-1/2">{children}</main>
       </div>

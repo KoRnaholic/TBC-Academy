@@ -2,9 +2,28 @@ import React from "react";
 import { sqlDeleteFromCart } from "../../app/sql/sqlDeleteFromCart";
 import Image from "next/image";
 import { Course } from "../../types/types";
+import RemoveButton from "./RemoveButton";
+
+import {
+  sqlDecrementQuantity,
+  sqlIncrementQuantity,
+} from "../../app/sql/sqlRequests";
+import IncrementButton from "./IncrementButton";
+import DecrementButton from "./DecrementButton";
 
 export default function SingleCartItem({ course }: { course: Course }) {
   const removeFromCart = sqlDeleteFromCart.bind(null, course.id);
+  const incrementQuantity = sqlIncrementQuantity.bind(
+    null,
+    course.student_id,
+    course.id
+  );
+  const decrementQuantity = sqlDecrementQuantity.bind(
+    null,
+    course.student_id,
+    course.id
+  );
+
   return (
     <tr key={course.id} className="py-10">
       <td className="py-5 w-1/2l px-4 border-b flex items-center">
@@ -17,24 +36,18 @@ export default function SingleCartItem({ course }: { course: Course }) {
         />
         <span>{course.name}</span>
       </td>
-      <td className="py-5 px-4 border-b text-right">${course.price}</td>
-      <td className="py-5 px-4 border-b text-right">
-        <input
-          type="number"
-          min="1"
-          //   value="1"
-          className="w-12 border border-gray-300 rounded text-center"
-        />
+      <td className="py-5 px-4 border-b text-center">${course.price}</td>
+      <td className="py-5 px-2 border-b text-center ">
+        <DecrementButton decrementQuantity={decrementQuantity} />
+        <span className="text-lg ">{course.quantity}</span>
+        <IncrementButton incrementQuantity={incrementQuantity} />
       </td>
-      <td className="py-5 px-4 border-b text-right">$</td>
+      <td className="py-5 px-4 border-b text-center">
+        ${course.quantity * course.price}
+      </td>
       <td className="py-5 px-4 border-b text-right">
         <form action={removeFromCart}>
-          <button
-            className="text-[#FF6575] border font-semibold border-[#FF6575]
-         px-3 py-1 rounded hover:bg-[#ec5362] hover:text-white transition-all duration-300"
-          >
-            Remove
-          </button>
+          <RemoveButton />
         </form>
       </td>
     </tr>

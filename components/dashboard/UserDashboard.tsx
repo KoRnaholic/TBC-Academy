@@ -33,7 +33,7 @@ export default async function UserDashboard() {
         <div className="bg-[#FF6575] h-32 flex items-center justify-center">
           <div className="h-20 w-20  rounded-full overflow-hidden">
             <Image
-              className="absolute top-16 right-24 border-4 border-white  rounded-full"
+              className="absolute top-16 right-[85px] border-4 border-white  rounded-full"
               src={userInfo?.image || ""}
               width={130}
               height={200}
@@ -46,9 +46,11 @@ export default async function UserDashboard() {
             {userInfo?.name + " " + userInfo?.surname}
           </h2>
           <p className="text-gray-500 mb-4">{user?.role}</p>
-          <button className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
-            Add New Course
-          </button>
+          {user?.role === "instructor" && (
+            <button className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
+              Add New Course
+            </button>
+          )}
         </div>
       </div>
 
