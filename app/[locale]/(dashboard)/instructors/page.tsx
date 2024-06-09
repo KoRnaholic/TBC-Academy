@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import InstructorsGrid from "../../../../components/instructors/InstructorsGrid";
 
+export const revalidate = 0;
+
 export default function InstructorsPage() {
   return (
     <>
