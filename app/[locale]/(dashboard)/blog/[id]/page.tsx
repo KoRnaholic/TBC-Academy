@@ -1,91 +1,67 @@
-import { fetchProducts } from "../../../../../utils/helpers";
-import Image from "next/image";
-import React from "react";
-import { BlogObject, Recipes } from "../../../../../types/types";
-const URL = "https://dummyjson.com/recipes/";
+import Link from "next/link";
+import { sqlGetSingleBlog } from "../../../../sql/sql-blogs/sqlGetSingleBlog";
+import SingleBlog from "../../../../../components/blog-list/SingleBlog";
+import BlogSearch from "../../../../../components/blog-list/BlogSearch";
+import RecentBlogs from "../../../../../components/blog-list/RecentBlogs";
+import BlogComments from "../../../../../components/blog-list/BlogComments";
 
-interface Params {
-  id: string;
-}
-export async function generateStaticParams() {
-  const response = await fetch(URL);
-  const blogs: BlogObject = await response.json();
+// interface Params {
+//   id: string;
+// }
+// export async function generateStaticParams() {
+//   const response = await fetch(URL);
+//   const blogs: BlogObject = await response.json();
 
-  const paths = blogs.recipes.map((blog) => ({
-    locale: "en",
-    id: blog.id.toString(),
-  }));
-  const paths2 = blogs.recipes.map((blog) => ({
-    locale: "ka",
-    id: blog.id.toString(),
-  }));
+//   const paths = blogs.recipes.map((blog) => ({
+//     locale: "en",
+//     id: blog.id.toString(),
+//   }));
+//   const paths2 = blogs.recipes.map((blog) => ({
+//     locale: "ka",
+//     id: blog.id.toString(),
+//   }));
 
-  return paths.concat(paths2);
-}
+//   return paths.concat(paths2);
+// }
 
-export default async function SingleBlog({ params }: { params: Params }) {
-  const data: Recipes = await fetchProducts(URL, params.id);
+export const revalidate = 0;
+
+export default async function SingleBlogPage({ params }) {
+  const { id } = params;
+  const blog = await sqlGetSingleBlog(id);
 
   return (
-    <div className="flex  items-center justify-center">
-      <div className="p-4 gap-6 bg-slate-100 dark:bg-slate-500 w-full  lg:w-4/6 rounded-lg shadow-lg transform transition-transform  flex flex-col sm:flex-row">
-        <div className="">
-          <Image
-            src={data.image}
-            width={300}
-            height={300}
-            className="rounded-xl w-full"
-            alt={data.name}
-          />
-        </div>
-        <div className="flex-1 flex flex-col gap-2 items-start">
-          <h2 className="text-2xl font-bold">{data.name}</h2>
-          <p>
-            <span className="font-bold">Ingredients:</span>{" "}
-            {data.ingredients.join(", ")}
-          </p>
-          <p>
-            <span className="font-bold">Instructions:</span>{" "}
-            {data.instructions.map((instruction, index) => (
-              <span key={index}>
-                {index + 1}. {instruction} <br />
-              </span>
-            ))}
-          </p>
-          <p>
-            <span className="font-bold">Prep Time:</span> {data.prepTimeMinutes}{" "}
-            minutes
-          </p>
-          <p>
-            <span className="font-bold">Cook Time:</span> {data.cookTimeMinutes}{" "}
-            minutes
-          </p>
-          <p>
-            <span className="font-bold">Servings:</span> {data.servings}
-          </p>
-          <p>
-            <span className="font-bold">Difficulty:</span> {data.difficulty}
-          </p>
-          <p>
-            <span className="font-bold">Cuisine:</span> {data.cuisine}
-          </p>
-          <p>
-            <span className="font-bold">Calories Per Serving:</span>{" "}
-            {data.caloriesPerServing}
-          </p>
-          <p>
-            <span className="font-bold">Tags:</span> {data.tags.join(", ")}
-          </p>
-          <p>
-            <span className="font-bold">Rating:</span> {data.rating} (
-            {data.reviewCount} reviews)
-          </p>
-          <p>
-            <span className="font-bold">Meal Type:</span>{" "}
-            {data.mealType.join(", ")}
-          </p>
+    <>
+      <div>
+        <div
+          className="mt-20 w-full h-[190px] relative bg-center bg-no-repeat bg-cover pt-12 "
+          style={{
+            backgroundImage: "url('/images/bg-about.png')",
+            backgroundColor: "rgba(250, 246, 246, .9)",
+          }}
+        >
+          <div className="flex flex-col  gap-3 items-center justify-center">
+            <h1 className="text-5xl text-[#002058]">Blog</h1>
+            <div className="flex gap-2 text-lg">
+              <Link href="/" className="text-[#002058]">
+                Home
+              </Link>
+              <span className="text-red-500 text-xl">-</span>
+              <span className="text-[#685f78]">Blog</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div className="flex justify-center gap-6 mt-14">
+        <div>
+          <SingleBlog expand={true} blog={blog[0]} />
+          <BlogComments blog={blog[0]} />
+        </div>
+        <div className="flex flex-col w-1/5 gap-8">
+          <RecentBlogs />
+        </div>
+      </div>
+    </>
   );
 }

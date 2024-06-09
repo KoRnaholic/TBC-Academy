@@ -1,9 +1,13 @@
 import Link from "next/link";
-import SingleBlog from "../../../../components/blog-list/SingleBlog";
 import BlogSearch from "../../../../components/blog-list/BlogSearch";
 import RecentBlogs from "../../../../components/blog-list/RecentBlogs";
+import { sqlGetBlogs } from "../../../sql/sql-blogs/sqlGetBlogs";
+import BlogList from "../../../../components/blog-list/BlogList";
+
+export const revalidate = 0;
 
 export default async function Blog() {
+  const blogs = await sqlGetBlogs();
   return (
     <>
       <div>
@@ -28,7 +32,7 @@ export default async function Blog() {
       </div>
 
       <div className="mt-20 flex justify-center gap-6">
-        <SingleBlog />
+        <BlogList blogs={blogs} />
         <div className="flex flex-col w-1/5 gap-8">
           <BlogSearch />
           <RecentBlogs />

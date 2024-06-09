@@ -1,9 +1,16 @@
 import Image from "next/image";
-import img from "../../public/images/course-banner.png";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CommentIcon from "@mui/icons-material/Comment";
+import Link from "next/link";
 
-export default function SingleBlog() {
+export default function SingleBlog({ blog, expand }) {
+  const { title, overview, created_at, image } = blog;
+
+  const date = new Date(created_at);
+
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+
   return (
     <>
       <div className=" border max-w-md  bg-white rounded-xl shadow-md overflow-hidden md:max-w-4xl">
@@ -11,8 +18,11 @@ export default function SingleBlog() {
           <div className="p-6">
             <div className=" hover:bg-white overflow-hidden">
               <Image
-                className="w-full h-[500px] object-cover rounded-md  hover:scale-110 transition-all duration-700"
-                src={img}
+                className="w-full h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
+                src={image}
+                width={800}
+                height={400}
+                quality={100}
                 alt="A woman working on a laptop"
               />
             </div>
@@ -22,8 +32,8 @@ export default function SingleBlog() {
             <div className="flex items-center">
               <div className="ml-2 flex gap-3  text-gray-500">
                 <span className="border-r-2 border-gray-500 pr-2 flex items-center gap-2">
-                  <CalendarMonthIcon className="text-[#fe893e]" /> January 18,
-                  2023
+                  <CalendarMonthIcon className="text-[#fe893e]" />
+                  {formattedDate}
                 </span>
                 <span className="flex items-center gap-2">
                   <CommentIcon className="text-[#ffa4af]" />
@@ -32,21 +42,30 @@ export default function SingleBlog() {
               </div>
             </div>
             <h2 className="block mt-2  text-2xl leading-tight font-medium text-[#002058]">
-              Expand Your Career Opportunities With Python
+              {title}
             </h2>
             <p className="mt-2 text-gray-500">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris ni
-              [...]
+              {expand
+                ? overview
+                : overview.split(" ").slice(0, 30).join(" ") + "..."}
             </p>
             <div className="mt-4">
-              <button
-                className="px-6 py-2.5 bg-[#FF6575] text-white  font-medium rounded-md
+              {expand ? (
+                <div>
+                  <h3 className="text-2xl text-[#002058]">Tag</h3>
+                  <p className="mt-5 bg-[#FF657530] text-gray-600 px-3 py-2 inline-flex rounded-lg">
+                    {blog.tag}
+                  </p>
+                </div>
+              ) : (
+                <Link
+                  href={`/blog/${blog.id}`}
+                  className="px-6 py-2.5 bg-[#FF6575] text-white  font-medium rounded-md
                hover:bg-red-600 transition-all duration-300"
-              >
-                Read More
-              </button>
+                >
+                  Read More
+                </Link>
+              )}
             </div>
           </div>
         </div>

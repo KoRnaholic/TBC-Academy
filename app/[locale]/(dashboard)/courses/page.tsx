@@ -5,7 +5,6 @@ import CoursesGrid from "../../../../components/courses/CoursesGrid";
 import { getCourses } from "../../../actions";
 import { Course } from "../../../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
-import CourseCategories from "../../../../components/courses/CourseCategories";
 
 export default async function CoursesPage() {
   const courses: Course[] | QueryResultRow[] = await getCourses();
@@ -34,9 +33,8 @@ export default async function CoursesPage() {
       </div>
 
       <CoursesFilter />
-      <div className="flex flex-col md:flex-row items-center md:items-start md:justify-center">
+      <div className="mt-14 flex flex-col md:flex-row  items-center md:items-start md:justify-center">
         <CoursesGrid courses={courses} />
-        <CourseCategories />
       </div>
     </>
   );

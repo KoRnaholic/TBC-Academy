@@ -37,7 +37,7 @@ const price = [
 
 export default function CourseCategories() {
   return (
-    <div className="flex flex-col mt-6">
+    <div className="flex flex-col ">
       <div className="mt-8">
         <div className="bg-white rounded-lg shadow-sm border px-6 py-4 font-sans">
           <h2 className="text-xl font-bold mb-4 text-[#002058]">
