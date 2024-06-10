@@ -12,6 +12,9 @@ import {
   sqlIncrementQuantity,
   sqlResetCart,
 } from "./sql/sqlRequests";
+import { sqlAddCourse } from "./sql/sql-courses/sqlAddCourse";
+import { put } from "@vercel/blob";
+import { z } from "zod";
 
 async function getUserId() {
   const cookieStore = cookies();
@@ -101,8 +104,65 @@ export async function getInstructors() {
   return instructors;
 }
 
-export async function getCurrentUser() {
-  const user = await fetch("http://localhost:3000/api/get-user");
+// server action for Adding Course
+const schema = z.object({
+  name: z.string().trim().min(10, "Name must be at least 10 chars long"),
+  lessons: z.string().min(1, "Lessons are required"),
+  price: z.string().min(1, "Price is required"),
+  duration: z.string().min(1, "Duration is required"),
+  overview: z
+    .string()
+    .trim()
+    .min(40, "Overview must be at least 20 chars long")
+    .max(300, "Overview must be less then 300 chars long"),
+});
+export async function uploadImage(prevState: any, formData: FormData) {
+  "use server";
 
-  return user;
+  //validation
+  const result = schema.safeParse({
+    name: formData.get("name"),
+    lessons: formData.get("lessons"),
+    price: formData.get("price"),
+    duration: formData.get("duration"),
+    overview: formData.get("overview"),
+  });
+
+  if (result.success) {
+    const imageFile = formData.get("image") as File;
+    const blob = await put(imageFile.name, imageFile, {
+      access: "public",
+    });
+    revalidatePath("/");
+
+    const courseInfo = {
+      name: formData.get("name"),
+      lessons: formData.get("lessons"),
+      price: formData.get("price"),
+      duration: formData.get("duration"),
+      overview: formData.get("overview"),
+      image: blob.url,
+    };
+
+    await sqlAddCourse(courseInfo);
+  } else {
+    return { errors: result.error.flatten().fieldErrors };
+  }
+
+  const initialState = {
+    name: "",
+    lessons: "",
+    price: "",
+    duration: "",
+    overview: "",
+    errors: {
+      name: [""],
+      price: [""],
+      duration: [""],
+      lessons: [""],
+      overview: [""],
+    },
+  };
+
+  return initialState;
 }

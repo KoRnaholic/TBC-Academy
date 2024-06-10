@@ -1,47 +1,24 @@
-"use client";
+import { put } from "@vercel/blob";
+import { revalidatePath } from "next/cache";
 
-import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+export default async function TestPage() {
+  async function uploadImage(formData: FormData) {
+    "use server";
+    const imageFile = formData.get("image") as File;
+    const blob = await put(imageFile.name, imageFile, {
+      access: "public",
+    });
+    revalidatePath("/");
+    console.log(blob.url);
 
-export default function AvatarUploadPage() {
-  const inputFileRef = useRef<HTMLInputElement>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
+    return blob;
+  }
 
   return (
-    <div className="mt-20">
-      <h1>Upload Your Avatar</h1>
-
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-
-          if (!inputFileRef.current?.files) {
-            throw new Error("No file selected");
-          }
-
-          const file = inputFileRef.current.files[0];
-
-          const response = await fetch(
-            `/api/avatar/upload?filename=${file.name}`,
-            {
-              method: "POST",
-              body: file,
-            }
-          );
-
-          const newBlob = (await response.json()) as PutBlobResult;
-
-          setBlob(newBlob);
-        }}
-      >
-        <input name="file" ref={inputFileRef} type="file" required />
-        <button type="submit">Upload</button>
-      </form>
-      {blob && (
-        <div>
-          Blob url: <a href={blob.url}>{blob.url}</a>
-        </div>
-      )}
-    </div>
+    <form className="mt-20" action={uploadImage}>
+      <label htmlFor="image">Image</label>
+      <input type="file" id="image" name="image" required />
+      <button>Upload</button>
+    </form>
   );
 }

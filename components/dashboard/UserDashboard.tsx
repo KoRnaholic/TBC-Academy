@@ -47,9 +47,12 @@ export default async function UserDashboard() {
           </h2>
           <p className="text-gray-500 mb-4">{user?.role}</p>
           {user?.role === "instructor" && (
-            <button className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
+            <Link
+              href={"/dashboard/add-course"}
+              className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
+            >
               Add New Course
-            </button>
+            </Link>
           )}
         </div>
       </div>

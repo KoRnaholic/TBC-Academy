@@ -3,14 +3,12 @@ import BlogSearch from "../../../../components/blog-list/BlogSearch";
 import RecentBlogs from "../../../../components/blog-list/RecentBlogs";
 import { sqlGetBlogs } from "../../../sql/sql-blogs/sqlGetBlogs";
 import BlogList from "../../../../components/blog-list/BlogList";
-import { getSession } from "@auth0/nextjs-auth0";
 
 export const revalidate = 0;
 
 export default async function Blog() {
   const blogs = await sqlGetBlogs();
-  const data = await getSession();
-  console.log(data.user["test/role"]);
+
   return (
     <>
       <div>

@@ -10,8 +10,8 @@ export const GET = async (_: NextRequest) => {
   if (data?.user) {
     try {
       const { name, email, picture, sub } = data.user;
-      const role = data.user["test/role"];
-      const surname = data.user["test/surname"];
+      const role = data.user["metadata/role"];
+      const surname = data.user["metadata/surname"];
 
       console.log(sub, name, email, role, surname, picture, data.user);
 

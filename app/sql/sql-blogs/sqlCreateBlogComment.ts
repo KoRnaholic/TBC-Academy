@@ -2,7 +2,7 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function sqlCreateBlogComment({ comment, blogId }) {
   const data = await getSession();
