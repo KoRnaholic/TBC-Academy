@@ -89,3 +89,13 @@ export interface BlogPost {
   created_at: string;
   image: string;
 }
+
+//User Profile
+export interface UserInfo {
+  name: string;
+  surname: string;
+  email: string;
+  image: string;
+  role: string;
+  userId: string;
+}

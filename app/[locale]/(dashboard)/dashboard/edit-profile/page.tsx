@@ -6,7 +6,8 @@ import { getSession } from "@auth0/nextjs-auth0";
 export default async function EditProfilePage() {
   const data = await getSession();
   const { sub } = data?.user || { sub: null };
-  const { userInfo } = await sqlGetUser(sub);
+  const user = await sqlGetUser(sub);
+  const userInfo = user?.userInfo;
   const role = data?.user["metadata/role"];
   const updateUser = updateUserInfo.bind(null, role, sub);
 
@@ -60,7 +61,7 @@ export default async function EditProfilePage() {
           type="text"
           className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md"
           placeholder="First Name"
-          defaultValue={userInfo.name}
+          defaultValue={userInfo?.name}
           required
         />
         <input
@@ -68,7 +69,7 @@ export default async function EditProfilePage() {
           type="text"
           className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md"
           placeholder="Last Name"
-          defaultValue={userInfo.surname}
+          defaultValue={userInfo?.surname}
           required
         />
         <input
@@ -76,7 +77,7 @@ export default async function EditProfilePage() {
           type="email"
           className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md col-span-2"
           placeholder="Email"
-          defaultValue={userInfo.email}
+          defaultValue={userInfo?.email}
           required
         />
         <UpdateUserInfoButton />

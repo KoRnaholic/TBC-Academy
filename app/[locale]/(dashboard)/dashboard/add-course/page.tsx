@@ -40,7 +40,7 @@ export default function AddCoursePage() {
         <h1 className="text-2xl font-bold mb-4 text-center">
           Upload Course Image
         </h1>
-        {/* <div className="flex justify-between items-center ">
+        <div className="flex justify-between items-center ">
           <p>Choose Image</p>
           <div className="relative group">
             <input
@@ -58,7 +58,7 @@ export default function AddCoursePage() {
               Upload
             </button>
           </div>
-        </div> */}
+        </div>
         <div className="mb-4 flex  gap-6">
           <div className="w-1/2 flex flex-col gap-2">
             <label

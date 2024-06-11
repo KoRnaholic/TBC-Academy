@@ -15,7 +15,7 @@ import {
 import { sqlAddCourse } from "./sql/sql-courses/sqlAddCourse";
 import { put } from "@vercel/blob";
 import { z } from "zod";
-import { CreatedCourse } from "../types/types";
+import { CreatedCourse, UserInfo } from "../types/types";
 import { sqlUpdateUserProfile } from "./sql/sq-profile/sqlUpdateUserProfile";
 
 async function getUserId() {
@@ -32,34 +32,6 @@ async function getUserId() {
     }
   }
 }
-
-// async function getUserObj(): Promise<
-//   | {
-//       id: number;
-//       name: string;
-//       lastName: string;
-//       email: string;
-//     }
-//   | undefined
-// > {
-//   const cookieStore = cookies();
-
-//   const authObject = cookieStore.get("auth")?.value;
-//   if (authObject) {
-//     const valueObject = JSON.parse(authObject);
-//     const userObj = {
-//       id: valueObject?.id,
-//       name: valueObject?.firstName,
-//       lastName: valueObject?.lastName,
-//       email: valueObject?.email,
-//     };
-
-//     console.log(userObj);
-//     return userObj;
-//   } else {
-//     return;
-//   }
-// }
 
 //get cart quantity
 export async function getCartQuantity() {
@@ -143,7 +115,7 @@ const initialState = {
 };
 export async function uploadImage(prevState: any, formData: FormData) {
   "use server";
-  console.log(typeof Number(formData.get("lessons")));
+  console.log(prevState);
 
   //validation
   const result = schema.safeParse({
@@ -191,10 +163,10 @@ export async function updateUserInfo(
     access: "public",
   });
   console.log(role, sub);
-  const userInfo = {
-    name: formData.get("name"),
-    surname: formData.get("surname"),
-    email: formData.get("email"),
+  const userInfo: UserInfo = {
+    name: formData.get("name") as string,
+    surname: formData.get("surname") as string,
+    email: formData.get("email") as string,
     image: blob.url,
     role: role,
     userId: sub,

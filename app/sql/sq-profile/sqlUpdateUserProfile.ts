@@ -1,6 +1,6 @@
 "use server";
-import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
+import { UserInfo } from "../../../types/types";
 
 export async function sqlUpdateUserProfile({
   name,
@@ -9,7 +9,7 @@ export async function sqlUpdateUserProfile({
   image,
   role,
   userId,
-}) {
+}: UserInfo) {
   if (role === "Student") {
     await sql`
         UPDATE students

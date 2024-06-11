@@ -3,8 +3,6 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
 import { CreatedCourse } from "../../../types/types";
 
-// import { revalidatePath } from "next/cache";
-
 export async function sqlAddCourse({
   name,
   lessons,
