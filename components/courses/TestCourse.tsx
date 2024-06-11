@@ -20,7 +20,7 @@ export default function TestCourse({ course }: { course: Course }) {
                 width={300}
                 height={300}
                 alt="course-1"
-                className="w-full h-full rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
+                className="w-full h-[182px] rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
               />
             </Link>
           </div>

@@ -29,7 +29,7 @@ export default async function SingleBloComment({ blogId }: { blogId: number }) {
                   <div className="flex flex-col gap-2 border-b">
                     <p className="text-lg">{info.name}</p>
                     <p className="text-gray-600">{date.toLocaleString()}</p>
-                    <p>{info.comment}</p>
+                    <p className="max-w-xl">{info.comment}</p>
                   </div>
                 </div>
               );

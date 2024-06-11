@@ -6,6 +6,8 @@ import { getCourses } from "../../../actions";
 import { Course } from "../../../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
 
+export const revalidate = 0;
+
 export default async function CoursesPage() {
   const courses: Course[] | QueryResultRow[] = await getCourses();
 

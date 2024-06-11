@@ -47,7 +47,7 @@ export interface Course {
   id: number;
   name: string;
   instructor_id: number;
-  lessons: string;
+  lessons: number;
   duration: string;
   rating: number;
   image: string;
@@ -73,7 +73,7 @@ export interface SingleProductParam {
 
 export interface CreatedCourse {
   name: string;
-  lessons: string;
+  lessons: number;
   duration: string;
   image: string;
   price: string;

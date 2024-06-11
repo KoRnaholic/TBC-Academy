@@ -13,8 +13,8 @@ export default function FeaturedList({
   course: Course | QueryResultRow;
 }) {
   return (
-    <div className="max-w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
-      <div className="">
+    <div className="w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
+      <div className="w-full">
         <div className="relative">
           <div className="group overflow-hidden">
             <Link href={`/courses/${course.id}`}>
@@ -23,7 +23,7 @@ export default function FeaturedList({
                 width={300}
                 height={300}
                 alt="course-1"
-                className="w-full h-full rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
+                className="w-full max-h-[250px] rounded-lg object-cover cursor-pointer transform transition-all ease-in-out  duration-700 group-hover:scale-110"
               />
             </Link>
           </div>

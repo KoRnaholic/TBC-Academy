@@ -5,6 +5,8 @@ import { sql } from "@vercel/postgres";
 export async function sqlExistsInCart(courseId: number) {
   const data = await getSession();
   const studentId = data?.user.sub;
+  const userRole = data?.user["metadata/role"];
+  // console.log(role);
 
   const { rows } = await sql`SELECT EXISTS (
         SELECT 1
@@ -14,5 +16,5 @@ export async function sqlExistsInCart(courseId: number) {
     );
     `;
 
-  return rows[0];
+  return { exists: rows[0], role: userRole };
 }

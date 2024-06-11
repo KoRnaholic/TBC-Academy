@@ -1,6 +1,7 @@
 // import { useTranslations } from "next-intl";
 import Link from "next/link";
 import ContactInfo from "../../../../components/contact/ContactInfo";
+import ContactForm from "../../../../components/contact/ContactForm";
 
 const Contact = () => {
   // const t = useTranslations("Contact");
@@ -28,7 +29,10 @@ const Contact = () => {
         </div>
       </div>
 
-      <ContactInfo />
+      <div>
+        <ContactInfo />
+        <ContactForm />
+      </div>
     </>
   );
 };

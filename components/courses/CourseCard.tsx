@@ -34,8 +34,11 @@ export default async function CourseCard({
 }: {
   course: Course | QueryResultRow;
 }) {
-  const { exists } = await sqlExistsInCart(course.id);
-
+  const { exists, role } = await sqlExistsInCart(course.id);
+  const ifExists = exists.exists;
+  // const role = exists.role;
+  console.log(role);
+  ifExists;
   const addToCart = sqlAddToCart.bind(null, course.id);
   return (
     <>
@@ -68,30 +71,34 @@ export default async function CourseCard({
               {course.price === "free" ? "" : `$${course.price}`}
             </span>
 
-            {course.price === "free" ? (
-              <button
-                className="py-2.5  text-white bg-green-600 px-3.5 border-2 w-full rounded-full
+            {role === "Student" && (
+              <div className="w-full flex flex-col gap-3">
+                {course.price === "free" ? (
+                  <button
+                    className="py-2.5  text-white bg-green-600 px-3.5 border-2 w-full rounded-full
              transition-all duration-300"
-              >
-                Enroll Course
-              </button>
-            ) : exists ? (
-              <Link
-                href="/cart"
-                className="py-2.5 text-center  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
+                  >
+                    Enroll Course
+                  </button>
+                ) : ifExists ? (
+                  <Link
+                    href="/cart"
+                    className="py-2.5 text-center  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
          transition-all duration-300"
-              >
-                View Cart
-              </Link>
-            ) : (
-              <AddButton />
-            )}
-            <button
-              className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]
+                  >
+                    View Cart
+                  </Link>
+                ) : (
+                  <AddButton />
+                )}
+                <button
+                  className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]
              w-full rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-300"
-            >
-              Add To Bookmark
-            </button>
+                >
+                  Add To Bookmark
+                </button>
+              </div>
+            )}
           </form>
         </div>
       </div>

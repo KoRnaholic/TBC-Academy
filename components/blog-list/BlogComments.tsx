@@ -23,7 +23,7 @@ export default function BlogComments({ blog }: { blog: BlogPost }) {
             <h3 className="text-2xl text-[#002058]">Leave Comment</h3>
             <label>Your Comment</label>
             <input
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
+              className="block focus:outline-none focus:border-gray-500 w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md  "
               type="text"
               placeholder="Leave your comment"
               name="comment"

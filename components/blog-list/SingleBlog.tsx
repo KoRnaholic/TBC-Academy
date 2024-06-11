@@ -28,14 +28,16 @@ export default function SingleBlog({
         <div className="md:flex flex-col">
           <div className="p-6">
             <div className=" hover:bg-white overflow-hidden">
-              <Image
-                className="w-full h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
-                src={image}
-                width={800}
-                height={400}
-                quality={100}
-                alt="A woman working on a laptop"
-              />
+              <Link href={`/blog/${blog.id}`}>
+                <Image
+                  className="w-full h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
+                  src={image}
+                  width={800}
+                  height={400}
+                  quality={100}
+                  alt="A woman working on a laptop"
+                />
+              </Link>
             </div>
           </div>
 
