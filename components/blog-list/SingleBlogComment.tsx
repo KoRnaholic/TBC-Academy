@@ -7,7 +7,7 @@ export default async function SingleBloComment({ blogId }: { blogId: number }) {
 
   return (
     <div className="mt-10">
-      {commentInfo[0] && (
+      {commentInfo && commentInfo[0] && (
         <>
           <h2 className="text-3xl mb-5">Comments</h2>
 

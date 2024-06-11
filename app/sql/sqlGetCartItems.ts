@@ -2,7 +2,7 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
 import { Course } from "../../types/types";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 export async function sqlGetCartItems() {
   const data = await getSession();

@@ -1,7 +1,8 @@
 import SingleBlogComment from "./SingleBlogComment";
 import { sqlCreateBlogComment } from "../../app/sql/sql-blogs/sqlCreateBlogComment";
+import { BlogPost } from "../../types/types";
 
-export default function BlogComments({ blog }) {
+export default function BlogComments({ blog }: { blog: BlogPost }) {
   return (
     <>
       <SingleBlogComment blogId={blog.id} />
@@ -11,7 +12,7 @@ export default function BlogComments({ blog }) {
           action={async (formData) => {
             "use server";
             const commentInfo = {
-              comment: formData.get("comment"),
+              comment: formData.get("comment") as string,
               blogId: blog.id,
             };
 

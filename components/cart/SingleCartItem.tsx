@@ -43,7 +43,7 @@ export default function SingleCartItem({ course }: { course: Course }) {
         <IncrementButton incrementQuantity={incrementQuantity} />
       </td>
       <td className="py-5 px-4 border-b text-center">
-        ${course.quantity * course.price}
+        ${course.quantity * Number(course.price)}
       </td>
       <td className="py-5 px-4 border-b text-right">
         <form action={removeFromCart}>

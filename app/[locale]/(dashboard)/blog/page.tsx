@@ -3,11 +3,12 @@ import BlogSearch from "../../../../components/blog-list/BlogSearch";
 import RecentBlogs from "../../../../components/blog-list/RecentBlogs";
 import { sqlGetBlogs } from "../../../sql/sql-blogs/sqlGetBlogs";
 import BlogList from "../../../../components/blog-list/BlogList";
+import { BlogPost } from "../../../../types/types";
 
 export const revalidate = 0;
 
 export default async function Blog() {
-  const blogs = await sqlGetBlogs();
+  const blogs: BlogPost[] | null = await sqlGetBlogs();
 
   return (
     <>

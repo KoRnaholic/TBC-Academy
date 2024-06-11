@@ -4,7 +4,13 @@ import { sql } from "@vercel/postgres";
 
 import { revalidatePath } from "next/cache";
 
-export async function sqlCreateBlogComment({ comment, blogId }) {
+export async function sqlCreateBlogComment({
+  comment,
+  blogId,
+}: {
+  comment: string;
+  blogId: number;
+}) {
   const data = await getSession();
   const studentId = data?.user.sub;
 

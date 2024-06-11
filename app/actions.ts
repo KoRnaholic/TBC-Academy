@@ -15,6 +15,7 @@ import {
 import { sqlAddCourse } from "./sql/sql-courses/sqlAddCourse";
 import { put } from "@vercel/blob";
 import { z } from "zod";
+import { CreatedCourse } from "../types/types";
 
 async function getUserId() {
   const cookieStore = cookies();
@@ -118,6 +119,7 @@ const schema = z.object({
 });
 export async function uploadImage(prevState: any, formData: FormData) {
   "use server";
+  console.log(prevState);
 
   //validation
   const result = schema.safeParse({
@@ -135,12 +137,12 @@ export async function uploadImage(prevState: any, formData: FormData) {
     });
     revalidatePath("/");
 
-    const courseInfo = {
-      name: formData.get("name"),
-      lessons: formData.get("lessons"),
-      price: formData.get("price"),
-      duration: formData.get("duration"),
-      overview: formData.get("overview"),
+    const courseInfo: CreatedCourse = {
+      name: formData.get("name") as string,
+      lessons: formData.get("lessons") as string,
+      price: formData.get("price") as string,
+      duration: formData.get("duration") as string,
+      overview: formData.get("overview") as string,
       image: blob.url,
     };
 

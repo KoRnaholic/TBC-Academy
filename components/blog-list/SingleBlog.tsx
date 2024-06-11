@@ -2,13 +2,24 @@ import Image from "next/image";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CommentIcon from "@mui/icons-material/Comment";
 import Link from "next/link";
+import { BlogPost } from "../../types/types";
 
-export default function SingleBlog({ blog, expand }) {
+export default function SingleBlog({
+  blog,
+  expand,
+}: {
+  blog: BlogPost;
+  expand: boolean;
+}) {
   const { title, overview, created_at, image } = blog;
 
   const date = new Date(created_at);
 
-  const options = { year: "numeric", month: "long", day: "numeric" };
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 
   return (

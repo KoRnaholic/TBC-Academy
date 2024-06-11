@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { sqlGetSingleBlog } from "../../../../sql/sql-blogs/sqlGetSingleBlog";
 import SingleBlog from "../../../../../components/blog-list/SingleBlog";
-import BlogSearch from "../../../../../components/blog-list/BlogSearch";
 import RecentBlogs from "../../../../../components/blog-list/RecentBlogs";
 import BlogComments from "../../../../../components/blog-list/BlogComments";
 
@@ -26,7 +25,11 @@ import BlogComments from "../../../../../components/blog-list/BlogComments";
 
 export const revalidate = 0;
 
-export default async function SingleBlogPage({ params }) {
+export default async function SingleBlogPage({
+  params,
+}: {
+  params: { locale: string; id: string };
+}) {
   const { id } = params;
   const blog = await sqlGetSingleBlog(id);
 
@@ -54,10 +57,12 @@ export default async function SingleBlogPage({ params }) {
       </div>
 
       <div className="flex justify-center gap-6 mt-14">
-        <div>
-          <SingleBlog expand={true} blog={blog[0]} />
-          <BlogComments blog={blog[0]} />
-        </div>
+        {blog && (
+          <div>
+            <SingleBlog expand={true} blog={blog[0]} />
+            <BlogComments blog={blog[0]} />
+          </div>
+        )}
         <div className="flex flex-col w-1/5 gap-8">
           <RecentBlogs />
         </div>

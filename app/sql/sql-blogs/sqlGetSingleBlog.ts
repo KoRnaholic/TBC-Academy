@@ -1,5 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
+import { BlogPost } from "../../../types/types";
 
 export async function sqlGetSingleBlog(blogId: string) {
   try {
@@ -8,7 +9,7 @@ export async function sqlGetSingleBlog(blogId: string) {
     WHERE id = ${Number(blogId)}
     `;
 
-    return rows;
+    return rows as BlogPost[];
   } catch (error) {
     console.error("Error fetching course information:", error);
     return null;

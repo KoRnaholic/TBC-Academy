@@ -1,6 +1,12 @@
 import SearchIcon from "@mui/icons-material/Search";
 
-export default function CourseSearch({ handleSearch, search }) {
+export default function CourseSearch({
+  handleSearch,
+  search,
+}: {
+  handleSearch: (value: string) => void;
+  search: string;
+}) {
   return (
     <>
       <div className="w-full ">

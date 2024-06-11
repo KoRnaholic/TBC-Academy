@@ -1,7 +1,11 @@
 "use client";
 import RemoveIcon from "@mui/icons-material/Remove";
-
-export default function DecrementButton({ decrementQuantity }) {
+// type DecrementQuantity = () => void;
+export default function DecrementButton({
+  decrementQuantity,
+}: {
+  decrementQuantity: () => Promise<void>;
+}) {
   return (
     <button
       onClick={async () => {
