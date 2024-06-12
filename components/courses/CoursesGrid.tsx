@@ -25,10 +25,10 @@ export default function CoursesGrid({
     }
 
     debounceTimeout.current = window.setTimeout(() => {
-      const currentProduct = courses.filter((course: Course) =>
+      const currentCourse = courses.filter((course: Course) =>
         course.name.toLowerCase().includes(value.trim().toLowerCase())
       );
-      setSearchedCourses(currentProduct);
+      setSearchedCourses(currentCourse);
     }, 500);
   };
 

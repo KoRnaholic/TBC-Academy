@@ -12,7 +12,7 @@ export default function MainBanner() {
     <>
       <div
         className=" w-full  h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
-        style={{ backgroundImage: "url('/images/learning-banner.png')" }}
+        style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
       >
         <div className="flex flex-col md:flex-row justify-center md:gap-40 items-start">
           <div className="flex flex-col gap-12">

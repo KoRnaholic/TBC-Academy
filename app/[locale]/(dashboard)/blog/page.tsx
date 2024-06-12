@@ -1,6 +1,5 @@
 import Link from "next/link";
-import BlogSearch from "../../../../components/blog-list/BlogSearch";
-import RecentBlogs from "../../../../components/blog-list/RecentBlogs";
+
 import { sqlGetBlogs } from "../../../sql/sql-blogs/sqlGetBlogs";
 import BlogList from "../../../../components/blog-list/BlogList";
 import { BlogPost } from "../../../../types/types";
@@ -35,10 +34,6 @@ export default async function Blog() {
 
       <div className="mt-20 flex justify-center gap-6">
         <BlogList blogs={blogs} />
-        <div className="flex flex-col w-1/5 gap-8">
-          <BlogSearch />
-          <RecentBlogs />
-        </div>
       </div>
     </>
   );

@@ -11,7 +11,7 @@ export default function AddCourseButton() {
         type="submit"
         className=" bg-[#FF6575] w-full hover:bg-[#ee5262] text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
       >
-        {pending ? "Adding..." : "Add Course"}
+        {pending ? "Checking..." : "Add Course"}
       </button>
     </>
   );

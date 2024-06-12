@@ -10,7 +10,7 @@ export default function FeaturedCourses({
   return (
     <section
       className=" w-full h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
-      style={{ backgroundImage: "url('/images/learning-banner.png')" }}
+      style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
     >
       <div
         className="absolute  top-2 -mt-2 left-0 w-full h-[700px]"

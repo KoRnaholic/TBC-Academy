@@ -72,6 +72,7 @@ export default function AddCoursePage() {
               type="text"
               id="name"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
             {errors.name && (
               <label className="ml-1 font-sans text-red-500">
@@ -91,6 +92,7 @@ export default function AddCoursePage() {
               type="text"
               id="lessons"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
             {errors.lessons && (
               <label className="ml-1 font-sans text-red-500">
@@ -112,6 +114,7 @@ export default function AddCoursePage() {
               type="price"
               id="price"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
             {errors.price && (
               <label className="ml-1 font-sans text-red-500">
@@ -131,6 +134,7 @@ export default function AddCoursePage() {
               type="duration"
               id="duration"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
             />
             {errors.duration && (
               <label className="ml-1 font-sans text-red-500">
@@ -150,6 +154,7 @@ export default function AddCoursePage() {
             name="overview"
             id="overview"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+            required
           ></textarea>
           {errors.overview && (
             <label className="ml-1 font-sans text-[#FF6575]">

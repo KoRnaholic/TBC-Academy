@@ -29,7 +29,7 @@ code {
 
 .background {
   position: relative;
-  background-image: url(../../public/images/learning-banner.png);
+  background-image: url(../../public/images/error/error-bg.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

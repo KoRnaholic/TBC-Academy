@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { sqlGetSingleBlog } from "../../../../sql/sql-blogs/sqlGetSingleBlog";
 import SingleBlog from "../../../../../components/blog-list/SingleBlog";
 import RecentBlogs from "../../../../../components/blog-list/RecentBlogs";
 import BlogComments from "../../../../../components/blog-list/BlogComments";
+import { sqlGetBlogs } from "../../../../sql/sql-blogs/sqlGetBlogs";
 
 // interface Params {
 //   id: string;
@@ -31,7 +31,10 @@ export default async function SingleBlogPage({
   params: { locale: string; id: string };
 }) {
   const { id } = params;
-  const blog = await sqlGetSingleBlog(id);
+  // const blog = await sqlGetSingleBlog(id);
+  const blogs = await sqlGetBlogs();
+
+  const blog = blogs?.filter((blog) => blog.id === Number(id));
 
   return (
     <>
@@ -64,7 +67,7 @@ export default async function SingleBlogPage({
           </div>
         )}
         <div className="flex flex-col w-1/5 gap-8">
-          <RecentBlogs />
+          <RecentBlogs blogs={blogs} />
         </div>
       </div>
     </>
