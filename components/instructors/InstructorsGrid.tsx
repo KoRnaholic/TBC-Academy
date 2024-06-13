@@ -38,6 +38,8 @@ export default async function InstructorsGrid() {
                   height={200}
                   alt="instructor"
                   loading="lazy"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP89eubDwAJGAM4pZ3ZXgAAAABJRU5ErkJggg=="
+                  placeholder="blur"
                 />
               </div>
               <div className="flex flex-col items-center gap-2 font-sans">

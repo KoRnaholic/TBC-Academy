@@ -30,7 +30,6 @@ export default function CoursesFilter() {
           </SelectTrigger>
           <SelectContent className="w-[250px] px-3 py-2">
             <SelectGroup className="w-full">
-              {/* <SelectLabel>Filter Courses</SelectLabel> */}
               <SelectItem value="new">Newly published (new)</SelectItem>
               <SelectItem value="old">Newly published (old)</SelectItem>
               <SelectItem value="asc">Course Title (a-z)</SelectItem>

@@ -1,9 +1,13 @@
+import Link from "next/link";
 import React from "react";
+import { Course } from "../../types/types";
 
 export default function CartTotal({
   totalPrice,
+  course,
 }: {
   totalPrice: number | undefined;
+  course: Course;
 }) {
   return (
     <div className="mt-4 w-full h-1/2 max-w-sm  bg-white shadow-lg rounded-lg border border-gray-200 p-6">
@@ -18,9 +22,14 @@ export default function CartTotal({
         <span className="text-gray-700">Total</span>
         <span className="text-gray-700">${totalPrice}</span>
       </div>
-      <button className="mt-6 w-full font-thin bg-[#FF6575] text-lg text-white  py-3 px-4 rounded hover:bg-[#ec5362] transition-all duration-300">
-        Proceed To Checkout
-      </button>
+
+      {course && (
+        <button className="mt-6 w-full font-thin bg-[#FF6575] text-lg text-white  py-3 px-4 rounded hover:bg-[#ec5362] transition-all duration-300">
+          <Link href={`/cart/checkout/${course?.name}`}>
+            Proceed To Checkout
+          </Link>
+        </button>
+      )}
     </div>
   );
 }

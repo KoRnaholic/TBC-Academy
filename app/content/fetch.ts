@@ -1,10 +1,10 @@
 export const contentGQLQuery = async <T>({
   query,
   variables = {},
-  tags = [],
+  //   tags = ["/blog"],
   preview = false,
-  revalidate,
-}: {
+}: //   revalidate,
+{
   query: string;
   variables?: any;
   tags?: string[];
@@ -24,7 +24,7 @@ export const contentGQLQuery = async <T>({
         }`,
       },
       body: JSON.stringify({ query, variables }),
-      next: { tags, ...{ revalidate } },
+      next: { revalidate: 0 },
     }
   );
 

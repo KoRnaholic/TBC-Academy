@@ -21,6 +21,8 @@ export const getBlogPostCollection = async () => {
     }
   }`;
 
-  const data: BlogPostCollection | undefined = await contentGQLQuery({ query });
+  const data: BlogPostCollection | undefined = await contentGQLQuery({
+    query,
+  });
   return data;
 };

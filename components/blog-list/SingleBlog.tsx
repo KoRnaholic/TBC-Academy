@@ -40,6 +40,9 @@ export default function SingleBlog({
                   height={400}
                   quality={100}
                   alt="A woman working on a laptop"
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP89eubDwAJGAM4pZ3ZXgAAAABJRU5ErkJggg=="
                 />
               </Link>
             </div>
