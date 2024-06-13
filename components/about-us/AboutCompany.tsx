@@ -44,7 +44,14 @@ export default function AboutCompany() {
       </div>
 
       <div>
-        <Image src={girlImg} alt="girl-image" width={530} height={500} />
+        <Image
+          src={girlImg}
+          alt="girl-image"
+          width={530}
+          loading="lazy"
+          height={500}
+          placeholder="blur"
+        />
       </div>
     </div>
   );

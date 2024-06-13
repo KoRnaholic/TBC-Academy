@@ -1,18 +1,26 @@
 "use client";
-// import cart from "../../public/icons/cart.svg";
 import menu from "../../public/icons/menu.svg";
-
 import Theme from "../UI/Theme";
-// import { useLocale } from "next-intl";
 import LangSwitcher from "../UI/Lang-switcher";
-// import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import UserDropDown from "../UI/user-menu/UserDropDown";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header() {
+interface HeaderProps {
+  navigation: {
+    home: string;
+    courses: string;
+    about: string;
+    instructors: string;
+    students: string;
+    blog: string;
+    contact: string;
+  };
+}
+
+export default function Header({ navigation }: HeaderProps) {
   // const t = useLocale();
   // const pathname = usePathname();
   const [scrolling, setScrolling] = useState(false);
@@ -70,25 +78,25 @@ export default function Header() {
         <div className="justify-center items-center hidden lg:flex">
           <ul className="flex gap-7 text-[#685F78] ">
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/">Home</Link>
+              <Link href="/">{navigation.home}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/courses">Courses</Link>
+              <Link href="/courses">{navigation.courses}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/about">About Us</Link>
+              <Link href="/about">{navigation.about}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/instructors">Instructors</Link>
+              <Link href="/instructors">{navigation.instructors}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/about">Students</Link>
+              <Link href="/about">{navigation.students}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/blog">Blog</Link>
+              <Link href="/blog">{navigation.blog}</Link>
             </li>
             <li className="hover:text-[#FF6575] cursor-pointer">
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/contact">{navigation.contact}</Link>
             </li>
           </ul>
         </div>

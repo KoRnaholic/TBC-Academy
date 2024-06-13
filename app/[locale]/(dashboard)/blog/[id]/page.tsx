@@ -1,8 +1,9 @@
 import Link from "next/link";
 import SingleBlog from "../../../../../components/blog-list/SingleBlog";
+// import BlogComments from "../../../../../components/blog-list/BlogComments";
+import { getBlogPostCollection } from "../../../../content/queries";
 import RecentBlogs from "../../../../../components/blog-list/RecentBlogs";
-import BlogComments from "../../../../../components/blog-list/BlogComments";
-import { sqlGetBlogs } from "../../../../sql/sql-blogs/sqlGetBlogs";
+import { BlogPost } from "../../../../../types/types";
 
 // interface Params {
 //   id: string;
@@ -31,10 +32,14 @@ export default async function SingleBlogPage({
   params: { locale: string; id: string };
 }) {
   const { id } = params;
-  // const blog = await sqlGetSingleBlog(id);
-  const blogs = await sqlGetBlogs();
+  // const blogs = await sqlGetBlogs();
+  const data = await getBlogPostCollection();
+  const blogs = data?.blogPostCollection.items;
 
-  const blog = blogs?.filter((blog) => blog.id === Number(id));
+  const blog: BlogPost[] | undefined = blogs?.filter(
+    (blog: BlogPost) => encodeURIComponent(blog.slug) === id
+  );
+  // console.log(id, blogs[0].slug);
 
   return (
     <>
@@ -63,7 +68,7 @@ export default async function SingleBlogPage({
         {blog && (
           <div>
             <SingleBlog expand={true} blog={blog[0]} />
-            <BlogComments blog={blog[0]} />
+            {/* <BlogComments blog={blog[0]} /> */}
           </div>
         )}
         <div className="flex flex-col w-1/5 gap-8">

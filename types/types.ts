@@ -82,12 +82,37 @@ export interface CreatedCourse {
 
 //Blog
 export interface BlogPost {
-  id: number;
+  // id: number;
   title: string;
   overview: string;
   tag: string;
-  created_at: string;
-  image: string;
+  blogImage: {
+    title: string;
+    width: number;
+    height: number;
+    url: string;
+  };
+  slug: string;
+  date: string;
+}
+
+//Blog query
+export interface BlogPostCollection {
+  blogPostCollection: {
+    items: {
+      title: string;
+      overview: string;
+      tag: string;
+      blogImage: {
+        title: string;
+        width: number;
+        height: number;
+        url: string;
+      };
+      date: string;
+      slug: string;
+    }[];
+  };
 }
 
 //User Profile

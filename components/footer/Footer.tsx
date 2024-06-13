@@ -1,12 +1,12 @@
-import { useTranslations } from "next-intl";
-import Link from "next/link";
+// import { useTranslations } from "next-intl";
+// import Link from "next/link";
 
 export default function Footer() {
-  const t = useTranslations("Index");
+  // const t = useTranslations("Index");
 
   return (
     <footer className=" bg-gray-600 text-white p-8">
-      <div className="flex flex-col lg:flex-row lg:justify-between">
+      {/* <div className="flex flex-col lg:flex-row lg:justify-between">
         <div className="flex flex-col justify-center items-center w-full mb-4 lg:mb-0">
           <h4 className="text-lg font-semibold mb-2">
             {t("subscription.newsletter")}
@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="w-full lg:flex lg:justify-center lg:items-center  text-center lg:text-right">
           &copy; 2024 OpenMarket
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }

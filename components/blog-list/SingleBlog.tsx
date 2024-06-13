@@ -11,16 +11,20 @@ export default function SingleBlog({
   blog: BlogPost;
   expand: boolean;
 }) {
-  const { title, overview, created_at, image } = blog;
+  // const commentInfo = await sqlGetBlogComments(blog.id);
+  const { title, overview, tag, blogImage, slug, date } = blog;
+  const replacedOverview = overview.replace(/\n\s*\n/g, "<br>\n");
 
-  const date = new Date(created_at);
+  const isoDate = new Date(date);
 
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
     day: "numeric",
   };
-  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+    isoDate
+  );
 
   return (
     <>
@@ -28,10 +32,10 @@ export default function SingleBlog({
         <div className="md:flex flex-col">
           <div className="p-6">
             <div className=" hover:bg-white overflow-hidden">
-              <Link href={`/blog/${blog.id}`}>
+              <Link href={`/blog/${slug}`}>
                 <Image
                   className="w-full h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
-                  src={image}
+                  src={blogImage.url}
                   width={800}
                   height={400}
                   quality={100}
@@ -54,12 +58,12 @@ export default function SingleBlog({
                 </span>
               </div>
             </div>
-            <h2 className="block mt-2  text-2xl leading-tight font-medium text-[#002058]">
+            <h2 className="block mt-2  text-4xl leading-tight font-medium text-[#002058]">
               {title}
             </h2>
             <p className="mt-2 text-gray-500">
               {expand
-                ? overview
+                ? replacedOverview
                 : overview.split(" ").slice(0, 30).join(" ") + "..."}
             </p>
             <div className="mt-4">
@@ -67,14 +71,14 @@ export default function SingleBlog({
                 <div>
                   <h3 className="text-2xl text-[#002058]">Tag</h3>
                   <p className="mt-5 bg-[#FF657530] text-gray-600 px-3 py-2 inline-flex rounded-lg">
-                    {blog.tag}
+                    {tag}
                   </p>
                 </div>
               ) : (
                 <Link
-                  href={`/blog/${blog.id}`}
+                  href={`/blog/${slug}`}
                   className="px-6 py-2.5 bg-[#FF6575] text-white  font-medium rounded-md
-               hover:bg-red-600 transition-all duration-300"
+                 hover:bg-red-600 transition-all duration-300"
                 >
                   Read More
                 </Link>

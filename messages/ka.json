@@ -14,11 +14,12 @@
   "Index": {
     "navigation": {
       "home": "მთავარი",
-      "profile": "პროფილი",
-      "about": "შესახებ",
-      "contact": "კონტაქტი",
+      "courses": "კურსები",
+      "about": "ჩვენ შესახებ",
+      "instructors": "ლექტორები",
+      "students": "სტუდენტები",
       "blog": "ბლოგი",
-      "logout": "გამოსვლა"
+      "contact": "კონტაქტი"
     },
     "banner": {
       "name": "მარტივი და მდგრადი",

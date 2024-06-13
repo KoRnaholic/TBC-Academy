@@ -1,8 +1,9 @@
 import "./globals.css";
 import { ThemeProvider } from "../../components/theme/theme-provider";
 import { ReactNode } from "react";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import Header from "../../components/header/Header";
 
 export const metadata = {
   title: "OpenMarket",
@@ -16,17 +17,30 @@ interface LocaleLayoutProps {
   };
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: { locale },
 }: LocaleLayoutProps) {
   unstable_setRequestLocale(locale);
+  const t = await getTranslations("Index");
+  const navigationObj = {
+    home: t("navigation.home"),
+    courses: t("navigation.courses"),
+    about: t("navigation.about"),
+    instructors: t("navigation.instructors"),
+    students: t("navigation.students"),
+    blog: t("navigation.blog"),
+    contact: t("navigation.contact"),
+  };
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <UserProvider>
         <body className="flex flex-col min-h-screen">
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Header navigation={navigationObj} />
+            {children}
+          </ThemeProvider>
         </body>
       </UserProvider>
     </html>

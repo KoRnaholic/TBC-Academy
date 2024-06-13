@@ -5,7 +5,7 @@ import BlogSearch from "./BlogSearch";
 import RecentBlogs from "./RecentBlogs";
 import { useRef, useState } from "react";
 
-export default function BlogList({ blogs }: { blogs: BlogPost[] | null }) {
+export default function BlogList({ blogs }: { blogs: BlogPost[] | undefined }) {
   const [search, setSearch] = useState("");
   const [searchedBlogs, setSearchedBlogs] = useState(blogs);
   // const [filterBy, setFilterBy] = useState("");
@@ -28,9 +28,9 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] | null }) {
   return (
     <>
       <div className="flex flex-col gap-6">
-        {searchedBlogs?.map((blog) => {
+        {searchedBlogs?.map((blog: BlogPost) => {
           return (
-            <div key={blog.id}>
+            <div key={blog.slug}>
               <SingleBlog expand={false} blog={blog} />
             </div>
           );

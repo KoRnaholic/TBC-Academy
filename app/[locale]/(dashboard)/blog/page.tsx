@@ -1,13 +1,16 @@
 import Link from "next/link";
 
-import { sqlGetBlogs } from "../../../sql/sql-blogs/sqlGetBlogs";
 import BlogList from "../../../../components/blog-list/BlogList";
-import { BlogPost } from "../../../../types/types";
+import { BlogPostCollection } from "../../../../types/types";
+import { getBlogPostCollection } from "../../../content/queries";
 
 export const revalidate = 0;
 
 export default async function Blog() {
-  const blogs: BlogPost[] | null = await sqlGetBlogs();
+  // const blogs: BlogPost[] | null = await sqlGetBlogs();
+  const data: BlogPostCollection | undefined = await getBlogPostCollection();
+  const blogs = data?.blogPostCollection.items;
+  console.log(data);
 
   return (
     <>

@@ -31,6 +31,11 @@ const nextConfig = {
         hostname: "s.gravatar.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+        pathname: "**",
+      },
     ],
   },
 };

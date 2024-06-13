@@ -1,5 +1,6 @@
 // import { useTranslations } from "next-intl";
 import Image from "next/image";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import React from "react";
 import girlImage from "../../public/images/girl-image.png";
@@ -29,7 +30,9 @@ export default function MainBanner() {
                 placeholder="Search School, Online educational centers, etc"
               />
 
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-pink-500 text-white p-3 rounded-full hover:bg-pink-600 transition duration-300"></button>
+              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575] text-white p-3 rounded-full hover:bg-[#fa5566] transition duration-300">
+                <ArrowForwardIcon />
+              </button>
             </div>
             <p className="text-lg">
               Trusted by over 15K Users worldwide since 2022

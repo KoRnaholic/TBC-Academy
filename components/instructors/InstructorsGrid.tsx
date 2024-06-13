@@ -37,6 +37,7 @@ export default async function InstructorsGrid() {
                   width={200}
                   height={200}
                   alt="instructor"
+                  loading="lazy"
                 />
               </div>
               <div className="flex flex-col items-center gap-2 font-sans">
