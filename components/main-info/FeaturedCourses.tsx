@@ -42,7 +42,7 @@ export default function FeaturedCourses({
         </div>
 
         <div className="mt-14 flex flex-wrap gap-10 px-4 sm:px-28 justify-center">
-          {courses?.map((course, indx) => {
+          {courses?.slice(0, 6).map((course, indx) => {
             return <FeaturedList course={course} key={indx} />;
           })}
         </div>

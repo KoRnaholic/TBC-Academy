@@ -1,20 +1,15 @@
 "use client";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import profile from "../../../public/icons/profile/profile.svg";
 import settings from "../../../public/icons/profile/settings.svg";
 import logout from "../../../public/icons/profile/logout.svg";
+import { UserObject } from "../../../app/sql/sqlGetUser";
 
-export default function UserDropDown({
-  userName,
-}: {
-  userName: string | null | undefined;
-}) {
+export default function UserDropDown({ user }: { user: UserObject }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { user } = useUser();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -44,11 +39,11 @@ export default function UserDropDown({
       >
         {user && (
           <Image
-            className="w-10 border-2 border-white cursor-pointer rounded-full"
-            src={user?.picture || ""}
+            className="w-11 border-2 border-white cursor-pointer rounded-full"
+            src={user?.userInfo.image || ""}
             width={100}
             height={100}
-            alt={user?.name || "avatar"}
+            alt={user?.userInfo.name || "avatar"}
           />
         )}
       </button>
@@ -65,9 +60,9 @@ export default function UserDropDown({
           // onClick={handleEdit}
           className="flex flex-col w-full items-start border-b-2 justify-start text-lg  px-2 pb-2 font-bold text-[#002058]"
         >
-          {userName?.split(" ")[0]}
+          {user?.userInfo.name.split(" ")[0]}
           <span className="text-sm text-black font-normal">
-            Tutor Instructor
+            {user?.role === "Instructor" ? "Tutor Instructor" : "Student"}
           </span>
         </button>
         <Link

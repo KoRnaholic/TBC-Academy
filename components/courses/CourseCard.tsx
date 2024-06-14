@@ -11,6 +11,8 @@ import { sqlAddToCart } from "../../app/sql/sqlAddToCart";
 import { sqlExistsInCart } from "../../app/sql/sqlExistsInCart";
 import Link from "next/link";
 import AddButton from "./AddButton";
+import { sqlExistsInPurchase } from "../../app/sql/sql-purchases/sqlExistsInPurchase";
+import successSVG from "../../public/icons/success.svg";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -36,28 +38,25 @@ export default async function CourseCard({
 }) {
   const { exists, role } = await sqlExistsInCart(course.id);
   const ifExists = exists.exists;
-  // const role = exists.role;
-  console.log(role);
+
   ifExists;
   const addToCart = sqlAddToCart.bind(null, course.id);
+  const existsInPurchase = await sqlExistsInPurchase(course.id);
+
   return (
     <>
-      <div className="max-w-[395px]  bg-white  rounded-lg shadow-md p-5">
-        <div>
-          <div className="relative">
+      <div className="w-[395px] bg-white rounded-lg shadow-md p-5">
+        <div className="relative flex flex-col justify-center">
+          <div className="relative w-[340px] mx-auto h-[250px] overflow-hidden rounded-lg">
             <Image
               src={course.image}
-              width={300}
-              height={300}
+              layout="fill"
+              objectFit="cover"
               alt="course-1"
-              className="w-full h-full object-cover cursor-pointer"
+              className="cursor-pointer"
             />
-            <span className="absolute inset-0 flex items-center  justify-center cursor-pointer">
-              <div
-                className="p-3 bg-black rounded-full hover:scale-110
-               transition-all duration-500 opacity-80 flex
-                items-center justify-center"
-              >
+            <span className="absolute inset-0 flex items-center justify-center cursor-pointer">
+              <div className="p-3 bg-black rounded-full hover:scale-110 transition-all duration-500 opacity-80 flex items-center justify-center">
                 <Image className="w-16" src={play} alt="video-play" />
               </div>
             </span>
@@ -67,19 +66,39 @@ export default async function CourseCard({
             action={addToCart}
             className="pt-4 flex flex-col justify-center gap-3 items-center text-lg"
           >
-            <span className="flex text-gray-600 text-2xl items-start w-full">
-              {course.price === "free" ? "" : `$${course.price}`}
+            <span className="flex justify-start text-gray-600 text-2xl items-start w-full">
+              {course.price === "free" ? (
+                "FREE"
+              ) : (
+                <span
+                  className={`${
+                    existsInPurchase.exists &&
+                    "line-through decoration-2 decoration-slate-800"
+                  }`}
+                >
+                  ${course.price}
+                </span>
+              )}
+            </span>
+            <span className="text-sm text-green-500 ">
+              {existsInPurchase.exists && (
+                <span className="flex gap-2">
+                  You have already purchased this course{" "}
+                  <Image src={successSVG} alt="success" />
+                </span>
+              )}
             </span>
 
             {role === "Student" && (
               <div className="w-full flex flex-col gap-3">
-                {course.price === "free" ? (
-                  <button
-                    className="py-2.5  text-white bg-green-600 px-3.5 border-2 w-full rounded-full
+                {existsInPurchase.exists || course.price === "free" ? (
+                  <Link
+                    href="/"
+                    className="py-2.5 text-center text-white bg-green-600 px-3.5 border-2 w-full rounded-full
              transition-all duration-300"
                   >
-                    Enroll Course
-                  </button>
+                    Start the course
+                  </Link>
                 ) : ifExists ? (
                   <Link
                     href="/cart"
@@ -91,6 +110,19 @@ export default async function CourseCard({
                 ) : (
                   <AddButton />
                 )}
+                {/* {ifExists ? (
+                  <Link
+                    href="/cart"
+                    className="py-2.5 text-center  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
+         transition-all duration-300"
+                  >
+                    View Cart
+                  </Link>
+                ) : course.price !== "free" ? (
+                  !existsInPurchase && <AddButton />
+                ) : (
+                  ""
+                )} */}
                 <button
                   className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]
              w-full rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-300"

@@ -12,7 +12,7 @@ export default function MainBanner() {
   return (
     <>
       <div
-        className=" w-full  h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
+        className="w-full h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
         style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
       >
         <div className="flex flex-col md:flex-row justify-center md:gap-40 items-start">
@@ -20,7 +20,7 @@ export default function MainBanner() {
             <h1 className="text-2xl text-[#685F78]">
               The Leader in Online Learning
             </h1>
-            <h2 className="text-2xl md:text-5xl  font-sans font-bold max-w-[500px] text-[#002058]">
+            <h2 className="text-2xl md:text-5xl font-sans font-bold max-w-[500px] text-[#002058]">
               Engaging & Accessible Online Courses For All
             </h2>
             <div className="relative w-full max-w-lg">
@@ -29,7 +29,6 @@ export default function MainBanner() {
                 className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 placeholder-gray-400 bg-white shadow-md"
                 placeholder="Search School, Online educational centers, etc"
               />
-
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575] text-white p-3 rounded-full hover:bg-[#fa5566] transition duration-300">
                 <ArrowForwardIcon />
               </button>
@@ -40,15 +39,20 @@ export default function MainBanner() {
           </div>
           <div className="flex justify-center">
             <Image
-              // className="w-[520px] h-[533px]"
-              className="w-4/5 "
+              className="w-4/5 girl-image"
               src={girlImage}
               alt="girl-image"
-              quality={100}
+              quality={70}
+              width={520} // specify the width
+              height={533} // specify the height
+              // placeholder="blur"
+              // loading="lazy"
+              priority
             />
           </div>
         </div>
       </div>
+
       <MainInfo />
     </>
   );

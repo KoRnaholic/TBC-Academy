@@ -10,13 +10,14 @@ import {
   sqlGetInstructors,
   sqlGetSingleCourse,
   sqlIncrementQuantity,
-  sqlResetCart,
+  sqlClearCart,
 } from "./sql/sqlRequests";
 import { sqlAddCourse } from "./sql/sql-courses/sqlAddCourse";
 import { put } from "@vercel/blob";
 import { z } from "zod";
 import { CreatedCourse, UserInfo } from "../types/types";
 import { sqlUpdateUserProfile } from "./sql/sq-profile/sqlUpdateUserProfile";
+import { getSession } from "@auth0/nextjs-auth0";
 
 async function getUserId() {
   const cookieStore = cookies();
@@ -51,13 +52,6 @@ export async function incrementQuantity(productId: number) {
 export async function decrementQuantity(productId: number) {
   const userId = await getUserId();
   await sqlDecrementQuantity(userId, productId);
-  revalidatePath("/checkout");
-}
-
-//reset cart
-export async function resetCart() {
-  const userId = await getUserId();
-  await sqlResetCart(userId);
   revalidatePath("/checkout");
 }
 
@@ -174,4 +168,10 @@ export async function updateUserInfo(
 
   await sqlUpdateUserProfile(userInfo);
   revalidatePath("/");
+}
+
+//clear cart
+export async function clearCart() {
+  const data = await getSession();
+  await sqlClearCart(data?.user.sub);
 }

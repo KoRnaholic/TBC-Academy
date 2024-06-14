@@ -7,7 +7,6 @@ import CartTotal from "../../../../components/cart/CartTotal";
 
 export default async function CartPage() {
   const courses = await sqlGetCartItems();
-  console.log(courses);
 
   const totalPrice = courses?.reduce((sum, course) => {
     return sum + course.quantity * parseFloat(course.price);
@@ -36,10 +35,14 @@ export default async function CartPage() {
         </div>
       </div>
 
-      <div className="mt-16 flex justify-center  gap-3">
-        <CartTable courses={courses} />
-        {courses && <CartTotal course={courses[0]} totalPrice={totalPrice} />}
-      </div>
+      {courses && !courses[0] ? (
+        <div>{/* <Image /> */}</div>
+      ) : (
+        <div className="mt-16 flex justify-center  gap-3">
+          <CartTable courses={courses} />
+          {courses && <CartTotal course={courses[0]} totalPrice={totalPrice} />}
+        </div>
+      )}
     </div>
   );
 }

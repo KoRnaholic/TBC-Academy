@@ -1,12 +1,10 @@
-"use client";
 import menu from "../../public/icons/menu.svg";
-import Theme from "../UI/Theme";
-import LangSwitcher from "../UI/Lang-switcher";
-import { useEffect, useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import UserDropDown from "../UI/user-menu/UserDropDown";
 import Image from "next/image";
 import Link from "next/link";
+import Navigation from "./Navigation";
+import { sqlGetUser } from "../../app/sql/sqlGetUser";
+import { getSession } from "@auth0/nextjs-auth0";
+import { sqlGetCartQuantity } from "../../app/sql/sqlRequests";
 
 interface HeaderProps {
   navigation: {
@@ -20,48 +18,14 @@ interface HeaderProps {
   };
 }
 
-export default function Header({ navigation }: HeaderProps) {
-  // const t = useLocale();
-  // const pathname = usePathname();
-  const [scrolling, setScrolling] = useState(false);
-
-  const { user, isLoading } = useUser();
-  // console.log(user);
-
-  // getting metadata
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setScrolling(true);
-      } else {
-        setScrolling(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  if (isLoading)
-    return (
-      <div className="loader">
-        <div className="loader-inner">
-          <div className="circle"></div>
-        </div>
-      </div>
-    );
+export default async function Header({ navigation }: HeaderProps) {
+  const data = await getSession();
+  const user = await sqlGetUser(data?.user.sub);
+  const cartQuantity = await sqlGetCartQuantity(data?.user.sub);
 
   return (
-    <header
-      className={`${
-        scrolling ? "bg-white" : "bg-transparent"
-      }  px-5 py-3  lg:flex  lg:px-20 xl:px-20   transition-all duration-300 content-center justify-center  fixed   w-full  z-20`}
-    >
-      <nav className="flex justify-between sm:gap-10 xl:gap-40">
+    <Navigation user={user} cartQuantity={cartQuantity}>
+      <nav className="flex justify-between sm:gap-10 xl:gap-32">
         <div className="flex lg:hidden">
           <Image src={menu} width={40} height={40} alt="Logo" />
         </div>
@@ -100,50 +64,7 @@ export default function Header({ navigation }: HeaderProps) {
             </li>
           </ul>
         </div>
-
-        <div className="flex gap-2 items-center">
-          <div>
-            <LangSwitcher />
-          </div>
-          <div>
-            <Theme />
-          </div>
-
-          {user ? (
-            <div className="flex items-center gap-3">
-              {/* <Image
-                className="w-10 border-2 border-white cursor-pointer rounded-full"
-                src={user.picture}
-                width={100}
-                height={100}
-                alt={user.name}
-              /> */}
-
-              <UserDropDown userName={user.name} />
-            </div>
-          ) : (
-            <>
-              <a href="/api/auth/login">
-                <button
-                  className={`${
-                    scrolling ? "bg-[#B4A7F5] text-white" : "bg-white"
-                  } py-2.5 px-9  rounded-full hover:bg-[#FF6575]
-         hover:text-white transition-all duration-500`}
-                >
-                  Login
-                </button>
-              </a>
-              <button
-                className="py-2.5 px-9 border-2 border-[#B4A7F5] rounded-full
-         text-[#B4A7F5] hover:bg-[#FF6575] hover:text-white
-          transition-all duration-300 hover:border-[#FF6575] "
-              >
-                Register
-              </button>
-            </>
-          )}
-        </div>
       </nav>
-    </header>
+    </Navigation>
   );
 }

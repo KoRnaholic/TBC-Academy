@@ -10,7 +10,7 @@ interface UserInfo {
   image: string;
 }
 
-interface UserObject {
+export interface UserObject {
   userInfo: UserInfo | QueryResultRow;
   role: string;
 }

@@ -17,7 +17,6 @@ export default async function Home({
 }: {
   params: { locale: string };
 }) {
-  // console.log(home);
   const courses: Course[] | QueryResultRow[] = await getCourses();
 
   unstable_setRequestLocale(locale);

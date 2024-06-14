@@ -10,6 +10,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { Course } from "../../../../../../types/types";
+import { sqlCreatePurchase } from "../../../../../sql/sql-purchases/sqlCreatePurchase";
 
 const stripe = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -54,25 +55,42 @@ export default function CheckoutForm({
         })}
 
         <Elements options={{ clientSecret }} stripe={stripe}>
-          <Form price={totalPrice} />
+          <Form price={totalPrice} courses={courses} />
         </Elements>
       </div>
     </>
   );
 }
 
-function Form({ price }: { price: number | undefined }) {
+function Form({
+  price,
+  courses,
+}: {
+  price: number | undefined;
+  courses: Course[] | null;
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
+  // const [email, setEmail] = useState<string>();
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+
+    await sqlCreatePurchase(courses);
 
     if (stripe == null || elements == null) return;
 
     setIsLoading(true);
+
+    // const orderExists = await userOrderExists();
+
+    // if (orderExists) {
+    //   setErrorMessage("You have already purchased this course!");
+    //   setIsLoading(false);
+    //   return;
+    // }
 
     stripe
       .confirmPayment({
@@ -98,7 +116,9 @@ function Form({ price }: { price: number | undefined }) {
         <PaymentElement />
       </div>
       <div className="mt-4">
-        <LinkAuthenticationElement />{" "}
+        <LinkAuthenticationElement
+        //  onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
       <button
         disabled={stripe == null || elements == null || isLoading}

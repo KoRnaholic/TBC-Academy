@@ -58,6 +58,7 @@ export interface Course {
   instructor_surname: string;
   instructor_email: string;
   student_id: string;
+  course_id: number;
 }
 export interface Courses {
   courses: Course[] | QueryResultRow[];

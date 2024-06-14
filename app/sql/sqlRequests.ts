@@ -52,13 +52,13 @@ export async function sqlGetCartList(userId: number) {
 }
 
 //get cart quantity
-export async function sqlGetCartQuantity(userId: number) {
-  const { rows } = await sql`
-  SELECT SUM(quantity) FROM cart
-  WHERE user_id = ${userId}`;
-  revalidateTag("cart");
-  return rows[0].sum;
-}
+// export async function sqlGetCartQuantity(userId: number) {
+//   const { rows } = await sql`
+//   SELECT SUM(quantity) FROM cart
+//   WHERE user_id = ${userId}`;
+//   revalidateTag("cart");
+//   return rows[0].sum;
+// }
 
 export async function sqlIncrementQuantity(
   studentId: string,
@@ -102,10 +102,10 @@ export async function sqlDecrementQuantity(
   revalidatePath("/cart");
 }
 
-export async function sqlResetCart(userId: number) {
+export async function sqlClearCart(userId: string) {
   await sql`
   DELETE FROM cart
-  WHERE user_id = ${userId};
+  WHERE student_id = ${userId};
 `;
 }
 
@@ -147,4 +147,12 @@ export async function sqlGetInstructors() {
   const { rows } = await sql`SELECT * FROM instructors`;
 
   return rows;
+}
+
+export async function sqlGetCartQuantity(studentId: string) {
+  const { rows } = await sql`
+    SELECT SUM(quantity) FROM cart
+    WHERE student_id = ${studentId}`;
+
+  return rows[0].sum;
 }
