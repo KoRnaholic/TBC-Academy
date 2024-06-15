@@ -3,6 +3,7 @@ import Image from "next/image";
 import CourseCard from "./CourseCard";
 import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
+import CourseComment from "./AddCourseComment";
 
 export default function Overview({
   course,
@@ -86,6 +87,7 @@ export default function Overview({
             <span>Comments</span>
           </div>
         </div>
+        <CourseComment id={course.id} />
       </div>
 
       <div className=" xl:-mt-52 sticky">

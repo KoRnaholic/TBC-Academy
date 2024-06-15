@@ -14,6 +14,7 @@ export default function SingleBlog({
   // const commentInfo = await sqlGetBlogComments(blog.id);
   const { title, overview, tag, blogImage, slug, date } = blog;
   const replacedOverview = overview.replace(/\n\s*\n/g, "<br>\n");
+  console.log(blog.overview);
 
   const isoDate = new Date(date);
 

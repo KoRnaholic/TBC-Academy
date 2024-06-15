@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { clearCart } from "../../../../actions";
 import { sqlGetUserPurchases } from "../../../../sql/sql-purchases/sqlGetUserPurchases";
+import success from "../../../../../public/icons/success.svg";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -29,7 +30,13 @@ export default async function PurchaseSuccessPage({
     <>
       <div className="border p-6 rounded-xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300">
         <h1 className="text-5xl text-green-500 text-center">
-          {isSuccess ? "Success!" : "Error!"}
+          {isSuccess ? (
+            <span className="flex">
+              Success! <Image src={success} alt="success" />
+            </span>
+          ) : (
+            "Error!"
+          )}
         </h1>
         {courses?.map((course) => {
           return (

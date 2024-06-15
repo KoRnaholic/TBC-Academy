@@ -122,7 +122,9 @@ function Form({
       </div>
       <button
         disabled={stripe == null || elements == null || isLoading}
-        className="w-full text-lg mt-5 rounded-md py-3 px-3 bg-[#FF6575] text-white"
+        className={`${
+          isLoading && "bg-[#b12d3a]"
+        }w-full text-lg mt-5 rounded-md py-3 px-3 bg-[#FF6575] text-white`}
       >
         {isLoading ? "Puchasing..." : `Purchase - $${price}`}
       </button>

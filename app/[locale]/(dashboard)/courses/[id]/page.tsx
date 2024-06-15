@@ -6,6 +6,7 @@ import { getSingleCourse } from "../../../../actions";
 import { SingleProductParam } from "../../../../../types/types";
 import { revalidatePath } from "next/cache";
 import StarsComponent from "../../../../../components/UI/StarsComponent";
+import CourseComment from "../../../../../components/courses/AddCourseComment";
 
 export const revalidate = 0;
 

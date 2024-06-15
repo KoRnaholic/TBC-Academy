@@ -1,24 +1,25 @@
 import Image from "next/image";
+import React from "react";
+import { sqlGetCourseComments } from "../../app/sql/sql-courses/sqlGetCourseComments";
 
-import { sqlGetBlogComments } from "../../app/sql/sql-blogs/sqlGetBlogComments";
-
-export default async function SingleBloComment({ blogId }: { blogId: number }) {
-  const commentInfo = await sqlGetBlogComments(blogId);
+export default async function SingleCourseComments({
+  courseId,
+}: {
+  courseId: number;
+}) {
+  const commentInfo = await sqlGetCourseComments(courseId);
 
   return (
-    <div className="mt-10 ">
+    <div className="mt-10">
       {commentInfo && commentInfo[0] && (
         <>
           <h2 className="text-3xl mb-5">Comments</h2>
 
-          <div className="border rounded-lg bg-white">
+          <div className="border rounded-lg">
             {commentInfo?.map((info) => {
               const date = new Date(info.created_at);
               return (
-                <div
-                  key={info.id}
-                  className=" p-6 py-6  flex gap-5 rounded-lg bg-white"
-                >
+                <div key={info.id} className=" p-6 py-6  flex gap-5 rounded-lg">
                   <div>
                     <Image
                       className="w-14 border-2 border-white cursor-pointer rounded-full"

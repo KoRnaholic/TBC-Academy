@@ -8,7 +8,6 @@ import TopCategories from "../../components/top-courses/TopCategories";
 import { getCourses } from "../actions";
 import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
-// import { getContentForFooter } from "../content/queries";
 
 export const revalidate = 0;
 

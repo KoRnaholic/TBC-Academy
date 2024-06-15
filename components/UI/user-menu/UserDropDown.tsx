@@ -62,7 +62,7 @@ export default function UserDropDown({ user }: { user: UserObject }) {
         >
           {user?.userInfo.name.split(" ")[0]}
           <span className="text-sm text-black font-normal">
-            {user?.role === "Instructor" ? "Tutor Instructor" : "Student"}
+            {user?.role === "instructor" ? "Tutor Instructor" : "Student"}
           </span>
         </button>
         <Link

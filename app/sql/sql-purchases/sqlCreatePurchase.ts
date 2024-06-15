@@ -1,6 +1,7 @@
 "use server";
 import { sql } from "@vercel/postgres";
 import { Course } from "../../../types/types";
+import { revalidatePath } from "next/cache";
 
 // studentId: string, courseId: number
 export async function sqlCreatePurchase(courses: Course[] | null) {
@@ -12,6 +13,8 @@ export async function sqlCreatePurchase(courses: Course[] | null) {
           VALUES (${courses[i].student_id},${courses[i].course_id}, ${courses[i].quantity} )
        `;
       }
+
+    revalidatePath("/");
   } catch (error) {
     console.error("Error adding to purchases:", error);
   }
