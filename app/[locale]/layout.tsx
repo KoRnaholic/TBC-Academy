@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Header from "../../components/header/Header";
+import { sqlGetCartItems } from "../sql/sqlGetCartItems";
 
 export const metadata = {
   title: "OpenMarket",
@@ -33,12 +34,14 @@ export default async function LocaleLayout({
     contact: t("navigation.contact"),
   };
 
+  const courses = await sqlGetCartItems();
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <UserProvider>
         <body className="flex flex-col min-h-screen">
           <ThemeProvider>
-            <Header navigation={navigationObj} />
+            <Header courses={courses} navigation={navigationObj} />
             {children}
           </ThemeProvider>
         </body>

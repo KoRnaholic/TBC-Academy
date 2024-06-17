@@ -6,7 +6,7 @@ import { getSingleCourse } from "../../../../actions";
 import { SingleProductParam } from "../../../../../types/types";
 import { revalidatePath } from "next/cache";
 import StarsComponent from "../../../../../components/UI/StarsComponent";
-import CourseComment from "../../../../../components/courses/AddCourseComment";
+// import CourseComment from "../../../../../components/courses/AddCourseComment";
 
 export const revalidate = 0;
 
@@ -30,7 +30,7 @@ export default async function SingleCoursePage({
             <div className="flex gap-2 items-center ">
               <Image
                 className="w-12 h-12 rounded-full border-2 border-slate-300  "
-                src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2024/02/profile5-1.jpg"
+                src={`${course.instructor_image}`}
                 alt="avatar"
                 width={50}
                 height={50}
@@ -54,7 +54,7 @@ export default async function SingleCoursePage({
                 {course.duration} hours 30 minutes
               </span>
               <span> 2 Enrolled</span>
-              <StarsComponent rating={course.rating} />
+              {course.rating && <StarsComponent rating={course.rating} />}
               <span>{course.rating}</span>
             </div>
           </div>

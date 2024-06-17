@@ -24,6 +24,14 @@ export async function submitContactForm(_: any, formData: FormData) {
   const phone = Number(formData.get("phone"));
   const text = formData.get("text");
 
+  // resend.contacts.create({
+  //   email: `${email}`,
+  //   firstName: `${name}`,
+  //   lastName: `${lastName}`,
+  //   unsubscribed: false,
+  //   audienceId: "a0242a62-7b7d-4223-9b3e-90834243f6b8",
+  // });
+
   //validation
   const result = schema.safeParse({
     name: name,
@@ -33,12 +41,14 @@ export async function submitContactForm(_: any, formData: FormData) {
     text: text,
   });
 
+  console.log(email);
+
   if (result.error) {
     return { success: false, errors: result.error.flatten().fieldErrors };
   } else {
     //Sending To Email
-    const { data, error } = await resend.emails.send({
-      from: `${name} <daduka@gmail.com>`,
+    await resend.emails.send({
+      from: `${name} ${lastName} <onboarding@resend.dev>`,
       to: ["a_arnoup@cu.edu.ge"],
       subject: "Hello world",
       text: `${text}`,

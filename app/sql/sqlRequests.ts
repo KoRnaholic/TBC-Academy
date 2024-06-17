@@ -1,6 +1,7 @@
 "use server";
 import { sql } from "@vercel/postgres";
 import { revalidatePath, revalidateTag } from "next/cache";
+import { CreatedCourse } from "../../types/types";
 
 export async function sqlCreateUser({ id, name, lastName, email }: any) {
   await sql`
@@ -133,6 +134,7 @@ export async function sqlGetSingleCourse(course_id: string) {
   instructors.name AS instructor_name,
   instructors.surname AS instructor_surname,
   instructors.email AS instructor_email,
+  instructors.image AS instructor_image,
   courses.overview,
   courses.price
   FROM courses
@@ -140,7 +142,7 @@ export async function sqlGetSingleCourse(course_id: string) {
   instructors ON courses.instructor_id = instructors.id
   WHERE courses.id = ${course_id}`;
 
-  return rows;
+  return rows as CreatedCourse[];
 }
 
 export async function sqlGetInstructors() {

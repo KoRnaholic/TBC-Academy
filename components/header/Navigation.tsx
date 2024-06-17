@@ -5,8 +5,9 @@ import LangSwitcher from "../UI/Lang-switcher";
 import Theme from "../UI/Theme";
 import cart from "../../public/icons/cart-2.svg";
 import Image from "next/image";
-import Link from "next/link";
 import { UserObject } from "../../app/sql/sqlGetUser";
+import CartDropDown from "../UI/CartDropDown";
+import { Course } from "../../types/types";
 
 interface UserInfo {
   id: string;
@@ -26,10 +27,17 @@ interface NavProps {
   children: ReactNode;
   user: UserObject | undefined;
   cartQuantity: number;
+  courses: Course[] | null;
 }
 
-export default function Navigation({ children, user, cartQuantity }: NavProps) {
+export default function Navigation({
+  children,
+  user,
+  cartQuantity,
+  courses,
+}: NavProps) {
   const [scrolling, setScrolling] = useState(false);
+  const [isCartOpen, setCartIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,14 +72,26 @@ export default function Navigation({ children, user, cartQuantity }: NavProps) {
       {children}
 
       <div className="flex gap-2 items-center relative">
-        <Link href="/cart" className="cursor-pointer">
+        <button
+          onClick={() => setCartIsOpen(!isCartOpen)}
+          className="cursor-pointer"
+        >
           <Image src={cart} alt="cart" />
           {cartQuantity && (
             <span className="absolute animate-bounce transition-all duration-1500 top-0 left-4 py-0.5 text-white text-[12px] px-2 rounded-full  bg-[#FF6575]">
               {cartQuantity}
             </span>
           )}
-        </Link>
+        </button>
+
+        {/* cart dropdown menu */}
+        <div>
+          <CartDropDown
+            courses={courses}
+            isCartOpen={isCartOpen}
+            setCartIsOpen={setCartIsOpen}
+          />
+        </div>
         <div>
           <LangSwitcher />
         </div>

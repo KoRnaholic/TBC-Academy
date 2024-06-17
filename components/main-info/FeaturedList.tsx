@@ -12,6 +12,7 @@ export default function FeaturedList({
 }: {
   course: Course | QueryResultRow;
 }) {
+  console.log(course);
   return (
     <div className="w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="w-full">
@@ -19,7 +20,7 @@ export default function FeaturedList({
           <div className="group overflow-hidden">
             <Link href={`/courses/${course.id}`}>
               <Image
-                src={course?.image}
+                src={`${course.image}`}
                 width={300}
                 height={300}
                 alt="course-1"
@@ -38,13 +39,13 @@ export default function FeaturedList({
         <div className="py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Image
+              {/* <Image
                 className="w-9 h-9 rounded-full border-2 border-slate-300"
-                src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2024/02/profile5-1.jpg"
+                src={`${course?.instructor_image}`}
                 alt="avatar"
                 width={50}
                 height={50}
-              />
+              /> */}
               <div className="flex flex-col ">
                 <p className="text-[#002058] group-hover:text-white ">
                   {course.instructor_name + " " + course.instructor_surname}

@@ -31,7 +31,7 @@ export default async function PurchaseSuccessPage({
       <div className="border p-6 rounded-xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300">
         <h1 className="text-5xl text-green-500 text-center">
           {isSuccess ? (
-            <span className="flex">
+            <span className="flex justify-center gap-3">
               Success! <Image src={success} alt="success" />
             </span>
           ) : (

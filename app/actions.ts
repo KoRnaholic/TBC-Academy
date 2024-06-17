@@ -90,6 +90,10 @@ const schema = z.object({
     .trim()
     .min(40, "Overview must be at least 20 chars long")
     .max(300, "Overview must be less then 300 chars long"),
+  courseLink: z.string(),
+  requirements: z.string().min(10),
+  audience: z.string().min(1, "Audience is required"),
+  whatToLearn: z.string().min(1, "What to learn is required"),
 });
 
 const initialState = {
@@ -98,16 +102,24 @@ const initialState = {
   price: "",
   duration: "",
   overview: "",
+  courseLink: "",
+  requirements: "",
+  audience: "",
+  whatToLearn: "",
   errors: {
     name: [""],
     price: [""],
     duration: [""],
     lessons: [""],
     overview: [""],
+    courseLink: [""],
+    requirements: [""],
+    audience: [""],
+    whatToLearn: [""],
   },
   success: false,
 };
-export async function uploadImage(prevState: any, formData: FormData) {
+export async function uploadCourse(prevState: any, formData: FormData) {
   "use server";
   console.log(prevState);
 
@@ -118,6 +130,10 @@ export async function uploadImage(prevState: any, formData: FormData) {
     price: Number(formData.get("price")),
     duration: formData.get("duration"),
     overview: formData.get("overview"),
+    course_link: formData.get("link"),
+    requirements: formData.get("requirements"),
+    audience: formData.get("audience"),
+    what_to_learn: formData.get("learn"),
   });
 
   if (result.success) {
@@ -134,6 +150,10 @@ export async function uploadImage(prevState: any, formData: FormData) {
       duration: formData.get("duration") as string,
       overview: formData.get("overview") as string,
       image: blob.url,
+      course_link: formData.get("link") as string,
+      requirements: formData.get("requirements") as string,
+      audience: formData.get("audience") as string,
+      what_to_learn: formData.get("learn") as string,
     };
 
     await sqlAddCourse(courseInfo);

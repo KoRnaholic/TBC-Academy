@@ -5,6 +5,8 @@ import Navigation from "./Navigation";
 import { sqlGetUser } from "../../app/sql/sqlGetUser";
 import { getSession } from "@auth0/nextjs-auth0";
 import { sqlGetCartQuantity } from "../../app/sql/sqlRequests";
+import { headers } from "next/headers";
+import { Course } from "../../types/types";
 
 interface HeaderProps {
   navigation: {
@@ -16,15 +18,20 @@ interface HeaderProps {
     blog: string;
     contact: string;
   };
+  courses: Course[] | null;
 }
 
-export default async function Header({ navigation }: HeaderProps) {
+export default async function Header({ navigation, courses }: HeaderProps) {
   const data = await getSession();
   const user = await sqlGetUser(data?.user.sub);
   const cartQuantity = await sqlGetCartQuantity(data?.user.sub);
+  const heads = headers();
+
+  const pathname = heads.get("next-url");
+  console.log(pathname);
 
   return (
-    <Navigation user={user} cartQuantity={cartQuantity}>
+    <Navigation user={user} cartQuantity={cartQuantity} courses={courses}>
       <nav className="flex justify-between sm:gap-10 xl:gap-32">
         <div className="flex lg:hidden">
           <Image src={menu} width={40} height={40} alt="Logo" />

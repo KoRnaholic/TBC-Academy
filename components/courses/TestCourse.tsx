@@ -9,6 +9,7 @@ import StarsComponent from "../UI/StarsComponent";
 import { Course } from "../../types/types";
 
 export default function TestCourse({ course }: { course: Course }) {
+  console.log(course);
   return (
     <div className="w-[600px] md:max-w-[300px]  border bg-white rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="">

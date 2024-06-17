@@ -10,14 +10,20 @@ export async function sqlAddCourse({
   duration,
   overview,
   image,
+  course_link,
+  requirements,
+  audience,
+  what_to_learn,
 }: CreatedCourse) {
   const data = await getSession();
   const instructorId: string = data?.user.sub;
 
   try {
     const { rows } = await sql`
-    INSERT INTO courses (name, instructor_id, lessons, duration, image, overview, price)
-    VALUES (${name}, ${instructorId}, ${lessons}, ${duration}, ${image}, ${overview}, ${price});
+    INSERT INTO courses
+    (name, instructor_id, lessons, duration, image, overview, price, course_link, requirements, audience, what_to_learn)
+    VALUES 
+    (${name}, ${instructorId}, ${lessons}, ${duration}, ${image}, ${overview}, ${price}, ${course_link},${requirements},${audience},${what_to_learn});
     `;
 
     // revalidatePath("/blog");

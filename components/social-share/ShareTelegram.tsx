@@ -1,7 +1,7 @@
 import React from "react";
 import { TelegramIcon, TelegramShareButton } from "react-share";
 
-export default function ShateTelegram({ shareUrl }: { shareUrl: string }) {
+export default function ShareTelegram({ shareUrl }: { shareUrl: string }) {
   return (
     <TelegramShareButton
       url={shareUrl}

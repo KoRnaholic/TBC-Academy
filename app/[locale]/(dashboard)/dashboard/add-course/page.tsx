@@ -1,6 +1,6 @@
 "use client";
 import { useFormState } from "react-dom";
-import { uploadImage } from "../../../../actions";
+import { uploadCourse } from "../../../../actions";
 import { useRef } from "react";
 import AddCourseButton from "../../../../../components/UI/buttons/AddCourseButton";
 import Link from "next/link";
@@ -12,19 +12,27 @@ const initialState = {
   price: "",
   duration: "",
   overview: "",
+  courseLink: "",
+  requirements: "",
+  audience: "",
+  whatToLearn: "",
   errors: {
     name: [""],
     price: [""],
     duration: [""],
     lessons: [""],
     overview: [""],
+    courseLink: [""],
+    requirements: [""],
+    audience: [""],
+    whatToLearn: [""],
   },
   success: false,
 };
 
 export default function AddCoursePage() {
   const formRef = useRef<HTMLFormElement>(null);
-  const [state, formAction] = useFormState(uploadImage, initialState);
+  const [state, formAction] = useFormState(uploadCourse, initialState);
   const errors = state.errors;
   if (state.success === true) {
     formRef.current?.reset();
@@ -40,23 +48,43 @@ export default function AddCoursePage() {
         <h1 className="text-2xl font-bold mb-4 text-center">
           Upload Course Image
         </h1>
-        <div className="flex justify-between items-center ">
-          <p>Choose Image</p>
-          <div className="relative group">
-            <input
-              type="file"
-              id="image"
-              name="image"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              required
-            />
-            <button
-              type="button"
-              className="w-32  text-green-500  border font-thin border-green-500 cursor-pointer
+        <div className="flex flex-col ">
+          <div className="flex justify-between">
+            <p>Choose Image</p>
+            <div className="relative group">
+              <input
+                type="file"
+                id="image"
+                name="image"
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+              <button
+                type="button"
+                className="w-32  text-green-500  border font-thin border-green-500 cursor-pointer
                group-hover:text-white group-hover:bg-green-500  py-2 px-4 rounded transition-all duration-300"
+              >
+                Upload
+              </button>
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-2">
+            <label
+              className="block text-gray-700  font-bold mb-2"
+              htmlFor="link"
             >
-              Upload
-            </button>
+              Course Link
+            </label>
+            <input
+              name="link"
+              type="text"
+              id="link"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            {errors.name && (
+              <label className="ml-1 font-sans text-red-500">
+                {errors.name[0] ? errors.name[0] + " *" : ""}
+              </label>
+            )}
           </div>
         </div>
         <div className="mb-4 flex  gap-6">
@@ -72,7 +100,6 @@ export default function AddCoursePage() {
               type="text"
               id="name"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
             />
             {errors.name && (
               <label className="ml-1 font-sans text-red-500">
@@ -92,7 +119,6 @@ export default function AddCoursePage() {
               type="text"
               id="lessons"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
             />
             {errors.lessons && (
               <label className="ml-1 font-sans text-red-500">
@@ -114,7 +140,6 @@ export default function AddCoursePage() {
               type="price"
               id="price"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
             />
             {errors.price && (
               <label className="ml-1 font-sans text-red-500">
@@ -134,7 +159,6 @@ export default function AddCoursePage() {
               type="duration"
               id="duration"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              required
             />
             {errors.duration && (
               <label className="ml-1 font-sans text-red-500">
@@ -142,6 +166,63 @@ export default function AddCoursePage() {
               </label>
             )}
           </div>
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label
+            className="block text-gray-700  font-bold mb-2"
+            htmlFor="audience"
+          >
+            Audience ( seperate with semicolon )
+          </label>
+          <input
+            name="audience"
+            type="audience"
+            id="audience"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+          {errors.audience && (
+            <label className="ml-1 font-sans text-red-500">
+              {errors.audience[0] ? errors.audience[0] + " *" : ""}
+            </label>
+          )}
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label
+            className="block text-gray-700  font-bold mb-2"
+            htmlFor="requirements"
+          >
+            Requirements ( seperate with semicolon )
+          </label>
+          <input
+            name="requirements"
+            type="requirements"
+            id="requirements"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+          {errors.requirements && (
+            <label className="ml-1 font-sans text-red-500">
+              {errors.requirements[0] ? errors.requirements[0] + " *" : ""}
+            </label>
+          )}
+        </div>
+        <div className="w-full flex flex-col gap-2">
+          <label
+            className="block text-gray-700  font-bold mb-2"
+            htmlFor="learn"
+          >
+            What To Learn? ( seperate with semicolon )
+          </label>
+          <input
+            name="learn"
+            type="learn"
+            id="learn"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+          {errors.whatToLearn && (
+            <label className="ml-1 font-sans text-red-500">
+              {errors.whatToLearn[0] ? errors.whatToLearn[0] + " *" : ""}
+            </label>
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -154,7 +235,6 @@ export default function AddCoursePage() {
             name="overview"
             id="overview"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            required
           ></textarea>
           {errors.overview && (
             <label className="ml-1 font-sans text-[#FF6575]">

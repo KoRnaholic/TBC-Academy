@@ -7,6 +7,7 @@ export default function FeaturedCourses({
 }: {
   courses: Course[] | QueryResultRow[];
 }) {
+  console.log(courses);
   return (
     <section
       className=" w-full h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"

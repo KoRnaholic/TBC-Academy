@@ -3,6 +3,9 @@ import Image from "next/image";
 import contactImg from "../../public/images/contact-img.jpg";
 import { submitContactForm } from "../../app/actions/contact-action";
 import { useFormState } from "react-dom";
+import { useRef } from "react";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Link from "next/link";
 
 const initialState = {
   name: "",
@@ -21,7 +24,11 @@ const initialState = {
 };
 export default function ContactForm() {
   const [state, formAction] = useFormState(submitContactForm, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
   const errors = state?.errors;
+  if (state.success === true) {
+    formRef.current?.reset();
+  }
   console.log(state);
   return (
     <>
@@ -40,7 +47,7 @@ export default function ContactForm() {
             Get In Touch
           </h4>
 
-          <form action={formAction}>
+          <form action={formAction} ref={formRef}>
             <div className="mb-4 flex  gap-6">
               <div className="w-1/2 flex flex-col gap-2">
                 <label
@@ -146,6 +153,33 @@ export default function ContactForm() {
           </form>
         </div>
       </div>
+
+      {state.success && (
+        <div className="min-w-screen h-screen animated fadeIn faster fixed left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover">
+          <div className="absolute bg-black opacity-80 inset-0 z-0"></div>
+          <div className="w-full max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg bg-white">
+            <div className="text-center p-5 flex-auto justify-center">
+              <CheckCircleIcon
+                className=" font-size-lg text-green-500"
+                fontSize="large"
+              />
+              <h2 className="text-2xl text-green-500   py-4">
+                Email Successfully Sent!
+              </h2>
+            </div>
+            <div className=" text-center space-x-4 md:block">
+              <Link href="/">
+                <button
+                  className="mb-2 md:mb-0 bg-[#FF6575]  border border-[#FF6575] px-5 py-2
+               font-medium tracking-wider text-white rounded-full hover:bg-[#f55565]"
+                >
+                  Go back
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -13,6 +13,7 @@ import Link from "next/link";
 import AddButton from "./AddButton";
 import { sqlExistsInPurchase } from "../../app/sql/sql-purchases/sqlExistsInPurchase";
 import successSVG from "../../public/icons/success.svg";
+import ShareButton from "../UI/buttons/ShareButton";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -93,7 +94,7 @@ export default async function CourseCard({
               <div className="w-full flex flex-col gap-3">
                 {existsInPurchase.exists || course.price === "free" ? (
                   <Link
-                    href="/"
+                    href={`/courses/${course.id}/lessons`}
                     className="py-2.5 text-center text-white bg-green-600 px-3.5 border-2 w-full rounded-full
              transition-all duration-300"
                   >
@@ -110,25 +111,7 @@ export default async function CourseCard({
                 ) : (
                   <AddButton />
                 )}
-                {/* {ifExists ? (
-                  <Link
-                    href="/cart"
-                    className="py-2.5 text-center  text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5 border-2 w-full rounded-full
-         transition-all duration-300"
-                  >
-                    View Cart
-                  </Link>
-                ) : course.price !== "free" ? (
-                  !existsInPurchase && <AddButton />
-                ) : (
-                  ""
-                )} */}
-                <button
-                  className="py-2.5 px-3.5 border  border-[#FF6575] text-[#FF6575]
-             w-full rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-300"
-                >
-                  Add To Bookmark
-                </button>
+                <ShareButton />
               </div>
             )}
           </form>

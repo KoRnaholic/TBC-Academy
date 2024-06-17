@@ -79,6 +79,14 @@ export interface CreatedCourse {
   image: string;
   price: string;
   overview: string;
+  course_link: string;
+  requirements: string;
+  audience: string;
+  what_to_learn: string;
+  instructor_image?: string;
+  instructor_name?: string;
+  instructor_surname?: string;
+  rating?: number;
 }
 
 //Blog
