@@ -3,8 +3,10 @@ import AboutCompany from "../../../../components/about-us/AboutCompany";
 
 import AboutCourses from "../../../../components/about-us/AboutCourses";
 import AboutMentor from "../../../../components/about-us/AboutMentor";
+import { useTranslations } from "next-intl";
 
 export default function About() {
+  const t = useTranslations("Aboutus.banner");
   return (
     <>
       <div>
@@ -16,13 +18,13 @@ export default function About() {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">About Us</h1>
+            <h1 className="text-5xl text-[#002058]">{t("main")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">About Us</span>
+              <span className="text-[#685f78]">{t("main")}</span>
             </div>
           </div>
         </div>

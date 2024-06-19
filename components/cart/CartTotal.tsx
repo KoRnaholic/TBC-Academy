@@ -24,11 +24,14 @@ export default function CartTotal({
       </div>
 
       {course && (
-        <button className="mt-6 w-full font-thin bg-[#FF6575] text-lg text-white  py-3 px-4 rounded hover:bg-[#ec5362] transition-all duration-300">
-          <Link href={`/cart/checkout/${course?.name}`}>
+        <div className="flex justify-center">
+          <Link
+            className="mt-10 text-center mx-auto w-full font-thin bg-[#FF6575] text-lg text-white  py-3 px-4 rounded hover:bg-[#ec5362] transition-all duration-300"
+            href={`/cart/checkout/${course?.name}`}
+          >
             Proceed To Checkout
           </Link>
-        </button>
+        </div>
       )}
     </div>
   );

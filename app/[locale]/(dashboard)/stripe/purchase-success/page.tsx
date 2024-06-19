@@ -3,7 +3,6 @@ import Stripe from "stripe";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { clearCart } from "../../../../actions";
-import { sqlGetUserPurchases } from "../../../../sql/sql-purchases/sqlGetUserPurchases";
 import success from "../../../../../public/icons/success.svg";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
@@ -23,55 +22,43 @@ export default async function PurchaseSuccessPage({
   }
   if (paymentIntent.metadata.productId == null) return notFound();
 
-  const courses = await sqlGetUserPurchases();
-  if (courses == null) return notFound();
-
   return (
     <>
-      <div className="border p-6 rounded-xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300">
-        <h1 className="text-5xl text-green-500 text-center">
+      <div className="border p-8 rounded-2xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-8 mt-40 transition-all duration-300 shadow-lg bg-white">
+        <h1 className="text-5xl text-green-500 text-center font-semibold">
           {isSuccess ? (
-            <span className="flex justify-center gap-3">
-              Success! <Image src={success} alt="success" />
+            <span className="flex justify-center items-center gap-3">
+              Purchase Successful!
+              <Image src={success} alt="success" width={40} height={40} />
             </span>
           ) : (
-            "Error!"
+            <span className="text-red-500">Purchase Failed!</span>
           )}
         </h1>
-        {courses?.map((course) => {
-          return (
-            <div key={course.id} className="flex  gap-4 items-center">
-              <div className="flex items-center gap-3">
-                <div>
-                  <Image
-                    className="rounded-xl"
-                    src={course.image}
-                    width={200}
-                    height={200}
-                    alt="course"
-                  />
-                </div>
-                <div className="flex flex-col gap-5">
-                  <div className="text-xl flex gap-4">
-                    Price - ${Number(course.price) * course.quantity}{" "}
-                    <span>Quantity : {course.quantity}</span>
-                  </div>
-                  <h1 className="text-xl">{course.name}</h1>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-        <div className="flex justify-center mt-5">
+
+        {isSuccess && (
+          <div className="text-center text-gray-700">
+            Thank you for your purchase!
+          </div>
+        )}
+
+        <div className="flex justify-center mt-6">
           {isSuccess ? (
             <Link
-              className="bg-[#FF6575] py-3 px-4 text-white rounded-lg "
               href="/"
+              passHref
+              className="bg-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] transition-colors duration-300"
             >
               Go To Home Page
             </Link>
           ) : (
-            <Link href={`/cart/checkout/${courses[0].name}`}>Try Again</Link>
+            <Link
+              href={``}
+              passHref
+              className="bg-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] transition-colors duration-300"
+            >
+              Try Again
+            </Link>
           )}
         </div>
       </div>

@@ -32,7 +32,7 @@ export default async function Header({ navigation, courses }: HeaderProps) {
 
   return (
     <Navigation user={user} cartQuantity={cartQuantity} courses={courses}>
-      <nav className="flex justify-between sm:gap-10 xl:gap-32">
+      <nav className="flex justify-between sm:gap-10 xl:gap-32 ">
         <div className="flex lg:hidden">
           <Image src={menu} width={40} height={40} alt="Logo" />
         </div>

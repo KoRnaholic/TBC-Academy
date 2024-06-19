@@ -26,5 +26,4 @@ export async function sqlGetAllPurchases() {
     console.error("Error fetching course information:", error);
     return null;
   }
-  return;
 }

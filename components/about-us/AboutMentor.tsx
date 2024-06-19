@@ -3,8 +3,10 @@ import mentorImg from "../../public/images/mentor-img.png";
 import instructor from "../../public/images/instructor.png";
 import student from "../../public/images/student.png";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useTranslations } from "next-intl";
 
 export default function AboutMentor() {
+  const t = useTranslations("Aboutus.mentor");
   return (
     <>
       <div className="p-8 flex justify-center items-center">
@@ -13,24 +15,22 @@ export default function AboutMentor() {
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="text-4xl font-bold text-blue-900 mb-4 max-w-[600px]">
-            Want to share your knowledge? Join us a Mentor
+            {t("header")}
           </h2>
           <p className="text-gray-500 font-thin mb-6 max-w-[600px] text-xl">
-            High-definition video is video of higher resolution and quality than
-            standard-definition. While there is no standardized meaning for
-            high-definition, generally any video.
+            {t("text")}
           </p>
           <div className="space-y-3 mb-6 text-xl">
             <div className="flex items-center text-gray-700">
               <span className="font-medium flex items-center gap-2">
                 <CheckCircleIcon className="text-[#FF6575]" />
-                Best Courses
+                {t("courses")}
               </span>
             </div>
             <div className="flex items-center text-gray-700">
               <span className="font-medium flex items-center gap-2">
                 <CheckCircleIcon className="text-[#FF6575]" />
-                Top rated Instructors
+                {t("instructors")}
               </span>
             </div>
           </div>
@@ -48,25 +48,21 @@ export default function AboutMentor() {
         <div className="flex pl-5 bg-[#FF657599] rounded-2xl max-w-[640px] h-[214px] ">
           <div className="flex flex-col justify-center  gap-6">
             <h2 className="text-2xl  text-[#002058] font-bold">
-              Become An Instructor
+              {t("become")}
             </h2>
-            <p className="max-w-[350px] text-xl  text-slate-600 ">
-              Top instructors from around the world teach millions of students
-              on Mentoring
-            </p>
+            <p className="max-w-[350px] text-xl  text-slate-600 ">{t("top")}</p>
           </div>
           <div>
             <Image src={instructor} alt="instructor" />
           </div>
         </div>
-        <div className="flex pl-5 bg-[#ffe88f] rounded-2xl max-w-[640px]">
+        <div className="flex pl-5 bg-[#ffe88f] rounded-2xl max-w-[640px] h-[214px]">
           <div className="flex flex-col justify-center  gap-6">
             <h2 className="text-2xl text-[#002058] font-bold">
-              Transform Access To Education
+              {t("education")}
             </h2>
             <p className="max-w-[350px] text-xl  text-slate-600 ">
-              Create an account to receive our newsletter, course
-              recommendations and promotions.
+              {t("account")}
             </p>
           </div>
           <div>

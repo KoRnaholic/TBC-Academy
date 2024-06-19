@@ -4,12 +4,17 @@ import CourseCard from "./CourseCard";
 import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
 import CourseComment from "./AddCourseComment";
+import { sqlGetReviews } from "../../app/sql/sql-review/sqlGetReviews";
+import StarsComponent from "../UI/StarsComponent";
+import LikeButton from "../UI/buttons/LikeButton";
+import DisslikeButton from "../UI/buttons/DislikeButton";
 
-export default function Overview({
+export default async function Overview({
   course,
 }: {
   course: Course | QueryResultRow;
 }) {
+  const reviews = await sqlGetReviews(course.id);
   return (
     <div className="flex flex-col xl:flex-row justify-center gap-10 bg-[#fafafa] pb-10">
       <div className="flex flex-col gap-8 mt-20">
@@ -67,25 +72,58 @@ export default function Overview({
           </div>
         </div>
 
-        <div className="p-5 border rounded-lg bg-white">
-          <h2 className="text-2xl text-[#002058]">Reviews</h2>
-          <div className="flex justify-between gap-3 items-center mt-5">
-            <div className="flex gap-3">
-              <Image
-                className="w-15 h-15 rounded-full border-2 border-slate-300"
-                src="https://dreamslms-wp.dreamstechnologies.com/wp-content/uploads/2024/02/profile5-1.jpg"
-                alt="avatar"
-                width={50}
-                height={50}
-              />
-              <div className="flex flex-col">
-                <span className="text-[#002058]">Michael Morgan</span>
-                <span>15 hours ago</span>
+        <h2 className="text-3xl text-[#002058]">Reviews</h2>
+        <div className="px-5 py-2 flex flex-col gap-5 border rounded-lg bg-white">
+          {reviews?.map((review) => {
+            const date = new Date(review.created_at);
+
+            const options: Intl.DateTimeFormatOptions = {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+            };
+            const formattedDate = date.toLocaleString("en-US", options);
+            return (
+              <div
+                key={review.id}
+                className="flex flex-col justify-start gap-3  mt-5 border-b py-2"
+              >
+                <div className="flex justify-between">
+                  <div className="flex gap-3">
+                    <Image
+                      className="w-15 h-15 rounded-full border-2 border-slate-300"
+                      src={`${review.image}`}
+                      alt="avatar"
+                      width={50}
+                      height={50}
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-[#002058]">
+                        {review.student_name}
+                      </span>
+                      <span>{formattedDate}</span>
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <StarsComponent rating={review.rating} />
+                    {review.rating} out of 5
+                  </div>
+                </div>
+                <span className="max-w-sm">{review.comment}</span>
+                <div className="flex gap-4">
+                  <LikeButton
+                    studentId={review.student_id}
+                    reviewId={review.id}
+                  />
+                  <DisslikeButton
+                    studentId={review.student_id}
+                    reviewId={review.id}
+                  />
+                </div>
               </div>
-            </div>
-            <span>stars</span>
-            <span>Comments</span>
-          </div>
+            );
+          })}
         </div>
         <CourseComment id={course.id} />
       </div>

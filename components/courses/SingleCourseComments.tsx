@@ -13,13 +13,16 @@ export default async function SingleCourseComments({
     <div className="mt-10">
       {commentInfo && commentInfo[0] && (
         <>
-          <h2 className="text-3xl mb-5">Comments</h2>
+          <h2 className="text-3xl mb-5 text-[#002058]">Comments</h2>
 
           <div className="border rounded-lg">
             {commentInfo?.map((info) => {
               const date = new Date(info.created_at);
               return (
-                <div key={info.id} className=" p-6 py-6  flex gap-5 rounded-lg">
+                <div
+                  key={info.id}
+                  className=" p-6 py-6  flex gap-5 rounded-lg bg-white"
+                >
                   <div>
                     <Image
                       className="w-14 border-2 border-white cursor-pointer rounded-full"

@@ -1,13 +1,14 @@
 import { QueryResultRow } from "@vercel/postgres";
 import { Course } from "../../types/types";
 import FeaturedList from "./FeaturedList";
+import { useTranslations } from "next-intl";
 
 export default function FeaturedCourses({
   courses,
 }: {
   courses: Course[] | QueryResultRow[];
 }) {
-  console.log(courses);
+  const t = useTranslations("Index.featured");
   return (
     <section
       className=" w-full h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
@@ -20,16 +21,12 @@ export default function FeaturedCourses({
         <div className=" flex flex-col md:flex-row justify-around px-5 sm:px-28 gap-4  items-center z-30">
           <div className="flex flex-col gap-4 mt-20">
             <span className="text-[#FF6575] tracking-wider font-bold text-lg">
-              What’s New
+              {t("new")}
             </span>
             <h2 className="text-4xl font-bold text-[#002058] tracking-wider">
-              Featured Courses
+              {t("name")}
             </h2>
-            <p className="max-w-[700px] text-[#685f78] ">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget
-              aenean accumsan bibendum gravida maecenas augue elementum et
-              neque. Suspendisse imperdiet.
-            </p>
+            <p className="max-w-[700px] text-[#685f78] ">{t("text")}</p>
           </div>
           <div>
             <button

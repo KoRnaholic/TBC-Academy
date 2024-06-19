@@ -22,14 +22,14 @@ const initialState = {
   },
   success: false,
 };
-export default function ContactForm() {
+export default function ContactForm({ formObj }) {
   const [state, formAction] = useFormState(submitContactForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const errors = state?.errors;
   if (state.success === true) {
     formRef.current?.reset();
   }
-  console.log(state);
+
   return (
     <>
       <div className="container flex flex-col md:flex-row  my-20 justify-center gap-16  bg-white">
@@ -44,7 +44,7 @@ export default function ContactForm() {
         </div>
         <div>
           <h4 className="text-start mb-2  text-4xl text-[#002058]">
-            Get In Touch
+            {formObj.header}
           </h4>
 
           <form action={formAction} ref={formRef}>
@@ -54,7 +54,7 @@ export default function ContactForm() {
                   className="block text-gray-700  font-bold "
                   htmlFor="firstName"
                 >
-                  Name
+                  {formObj.name}
                 </label>
                 <input
                   name="firstName"
@@ -73,7 +73,7 @@ export default function ContactForm() {
                   className="block text-gray-700  font-bold "
                   htmlFor="lastName"
                 >
-                  Last Name
+                  {formObj.lastname}
                 </label>
                 <input
                   name="lastName"
@@ -94,7 +94,7 @@ export default function ContactForm() {
                   className="block text-gray-700  font-bold "
                   htmlFor="email"
                 >
-                  Email
+                  {formObj.email}
                 </label>
                 <input
                   name="email"
@@ -113,7 +113,7 @@ export default function ContactForm() {
                   className="block text-gray-700  font-bold "
                   htmlFor="phone"
                 >
-                  Phone
+                  {formObj.phone}
                 </label>
                 <input
                   name="phone"
@@ -130,7 +130,7 @@ export default function ContactForm() {
             </div>
             <div className="mb-4">
               <label className="block text-gray-700  font-bold " htmlFor="text">
-                Text
+                {formObj.text}
               </label>
               <textarea
                 name="text"
@@ -148,7 +148,7 @@ export default function ContactForm() {
               type="submit"
               className=" bg-[#FF6575] w-full hover:bg-[#ee5262] text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-              Send a Message
+              {formObj.send}
             </button>
           </form>
         </div>

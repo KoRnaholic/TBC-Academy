@@ -27,7 +27,6 @@ export default function CheckoutForm({
     0
   );
 
-  console.log(totalPrice);
   return (
     <>
       <div className="border p-6 rounded-xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300">

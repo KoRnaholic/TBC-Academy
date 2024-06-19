@@ -41,8 +41,6 @@ export async function submitContactForm(_: any, formData: FormData) {
     text: text,
   });
 
-  console.log(email);
-
   if (result.error) {
     return { success: false, errors: result.error.flatten().fieldErrors };
   } else {

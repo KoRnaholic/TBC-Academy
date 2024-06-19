@@ -96,7 +96,7 @@ export default async function LessonsPage({
           </div>
 
           <div className="w-1/3 flex flex-col gap-5">
-            <ReviewModal />
+            <ReviewModal courseId={params.id} />
 
             <div className=" bg-white border  rounded-lg shadow-md p-5 font-sans">
               <ul className="flex flex-col gap-4 ">

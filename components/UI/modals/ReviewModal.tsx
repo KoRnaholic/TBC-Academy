@@ -2,13 +2,13 @@
 import React, { useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
+import { createReview } from "../../../app/actions/review-action";
 
-export default function ReviewModal() {
+export default function ReviewModal({ courseId }: { courseId: number }) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
-  console.log(rating);
+  const removePurchase = createReview.bind(null, courseId, rating);
 
   return (
     <>
@@ -72,12 +72,19 @@ export default function ReviewModal() {
                 );
               })}
             </div>
+            <form action={removePurchase}>
+              <textarea
+                name="comment"
+                placeholder="Write your review here..."
+                className="w-full p-4 mb-6 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:border-red-400 resize-none"
+              ></textarea>
 
-            <div className="flex justify-center mt-10">
-              <button className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300">
-                Update Review
-              </button>
-            </div>
+              <div className="flex justify-center mt-10">
+                <button className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300">
+                  Update Review
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

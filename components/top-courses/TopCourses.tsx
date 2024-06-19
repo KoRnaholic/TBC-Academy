@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from "../../@/components/ui/carousel";
 import { Card, CardContent } from "../../@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 const coursesArr = [
   {
@@ -43,6 +44,7 @@ const coursesArr = [
 ];
 
 export default function TopCourses() {
+  const t = useTranslations("Index.topcourses");
   return (
     <div className="flex justify-center w-full mb-20">
       <Carousel
@@ -73,7 +75,7 @@ export default function TopCourses() {
                         {course.name}
                       </div>
                       <p className="text-gray-500 group-hover:text-white transition-all duration-500">
-                        {course.quantity} courses
+                        {course.quantity} {t("courses")}
                       </p>
                     </div>
                   </CardContent>

@@ -12,7 +12,6 @@ export default function FeaturedList({
 }: {
   course: Course | QueryResultRow;
 }) {
-  console.log(course);
   return (
     <div className="w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="w-full">

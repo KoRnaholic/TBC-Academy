@@ -20,27 +20,73 @@
       "students": "Students",
       "blog": "Blog",
       "contact": "Contact Us"
+    },
+    "mainbanner": {
+      "leader": "The Leader in Online Learning",
+      "engaging": "Engaging & Accessible Online Courses For All",
+      "trusted": "Trusted by over 15K Users worldwide since 2022",
+      "search": "Search Course..."
+    },
+    "maininfo": {
+      "courses": "Online Courses",
+      "tutors": "Expert Tutors",
+      "certified": "Certified Courses",
+      "students": "Online Students"
+    },
+    "favourite": {
+      "courses": "Favourite Course",
+      "top": "Top Category",
+      "text": "Explore our top categories to elevate your skills and career. Our expert-led courses are designed to provide comprehensive knowledge and hands-on experience."
+    },
+
+    "topcourses": {
+      "courses": "Courses"
+    },
+    "featured": {
+      "new": "What’s New",
+      "name": "Featured Courses",
+      "text": "Discover our hand-picked featured courses to advance your skills and career. Whether you're looking to dive into new technologies or refine your existing knowledge, our curated selection has something for everyone."
     }
   },
-  "Profile": {
-    "profileinfo": "Profile Info",
-    "name": "Name",
-    "lastname": "Last Name",
-    "email": "Email",
-    "password": "Password",
-    "confirmpassword": "Confirm Password",
-    "save": "Save"
+  "Aboutus": {
+    "banner": {
+      "main": "About Us",
+      "home": "Home"
+    },
+    "company": {
+      "about": "About Our Company",
+      "header": "Master the skills to drive your career",
+      "text": "At DreamLMS, we are dedicated to empowering individuals with the knowledge and skills needed to excel in today's competitive job market. Our comprehensive courses are designed by industry experts to provide you with practical, hands-on experience in a variety of fields.We believe in the power of education to transform lives and drive career growth. That's why our curriculum is constantly updated to reflect the latest trends and technologies. Whether you're looking to start a new career, advance in your current role, or simply expand your knowledge, we have the right course for you.Join our community of learners and gain access to resources, support, and guidance from our experienced instructors. With flexible learning options, you can study at your own pace and on your own schedule.At DreamLMS, your success is our priority. We are committed to providing you with the tools and knowledge you need to achieve your goals and reach new heights in your career."
+    },
+    "mentor": {
+      "header": "Want to share your knowledge? Join us a Mentor",
+      "text": "Explore a wide range of courses designed by industry experts to help you achieve your career goals. Whether you're starting a new career or advancing in your current role, DreamLMS has the right course for you.",
+      "courses": "Best Courses",
+      "instructors": "Top rated Instructors",
+      "become": "Become An Instructor",
+      "top": "Top instructors from around the world teach millions of students on Mentoring",
+      "education": "Transform Access To Education",
+      "account": "Create an account to receive our newsletter, course recommendations and promotions."
+    }
   },
-  "Blog": {
-    "showmore": "Show More"
-  },
-  "Contact": {
-    "contactus": "Contact Us",
-    "address": "Out Adress",
-    "number": "Phone Number",
-    "email": "Email",
-    "name": "Name",
-    "message": "Message",
-    "submit": "Submit"
+  "Contactus": {
+    "banner": {
+      "main": "Contact Us",
+      "home": "Home"
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email Address",
+      "address": "Address"
+    },
+    "form": {
+      "header": "Get In Touch",
+      "name": "Name",
+      "lastname": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "text": "Text",
+      "send": "Send a Message"
+    }
   }
 }

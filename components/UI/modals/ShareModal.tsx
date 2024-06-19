@@ -13,7 +13,7 @@ export default function ShareModal({
     <>
       <div
         onClick={() => setIsOpen(false)}
-        className="min-w-screen  h-screen fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-80"
+        className="min-w-screen h-screen fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-80"
       >
         <div
           onClick={(e) => e.stopPropagation()}

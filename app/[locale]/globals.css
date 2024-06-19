@@ -189,7 +189,7 @@ code {
 
 /* stars */
 :root {
-  --star-size: 20px;
+  --star-size: 22px;
   --star-color: #ffffff53;
   --star-background: #fc0;
 }

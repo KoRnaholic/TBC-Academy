@@ -85,6 +85,7 @@ export default function Navigation({
         </button>
 
         {/* cart dropdown menu */}
+
         <div>
           <CartDropDown
             courses={courses}
@@ -92,6 +93,7 @@ export default function Navigation({
             setCartIsOpen={setCartIsOpen}
           />
         </div>
+
         <div>
           <LangSwitcher />
         </div>

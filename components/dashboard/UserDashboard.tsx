@@ -5,20 +5,9 @@ import { sqlGetUser } from "../../app/sql/sqlGetUser";
 const menuItems = [
   { title: "Dashboard", link: "dashboard" },
   { title: "My Profile", link: "my-profile" },
-  { title: "Enrolled Courses", link: "enrolled-courses" },
-  { title: "Wishlist", link: "wishlist" },
-  { title: "Reviews", link: "reviews" },
-  { title: "My Quiz Attempts", link: "my-quiz-attempts" },
-  { title: "Order History", link: "order-history" },
-  { title: "Instructor", link: "instructor" },
   { title: "My Courses", link: "my-courses" },
-  { title: "Withdrawals", link: "withdrawals" },
-  { title: "Quiz Attempts", link: "quiz-attempts" },
-  { title: "Account Settings", link: "account-settings" },
   { title: "Edit Profile", link: "edit-profile" },
-  { title: "Change Password", link: "change-password" },
-  { title: "Withdraw", link: "withdraw" },
-  { title: "Logout", link: "logout" },
+  ,
 ];
 
 export default async function UserDashboard() {
@@ -63,11 +52,11 @@ export default async function UserDashboard() {
           <ul className="  flex flex-col gap-5">
             {menuItems.map((item) => (
               <li
-                key={item.title}
+                key={item?.title}
                 className="flex gap-2 text-[#002058] items-center hover:text-[#FF6575]
                  transition-all duration-300 cursor-pointer"
               >
-                <Link href={`/dashboard/${item.link}`}>{item.title}</Link>
+                <Link href={`/dashboard/${item?.link}`}>{item?.title}</Link>
               </li>
             ))}
           </ul>

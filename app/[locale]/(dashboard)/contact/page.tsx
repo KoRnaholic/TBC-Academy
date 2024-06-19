@@ -2,9 +2,21 @@
 import Link from "next/link";
 import ContactInfo from "../../../../components/contact/ContactInfo";
 import ContactForm from "../../../../components/contact/ContactForm";
+import { useTranslations } from "next-intl";
 
 const Contact = () => {
-  // const t = useTranslations("Contact");
+  const t = useTranslations("Contactus");
+
+  const formnObj = {
+    header: t("form.header"),
+    name: t("form.name"),
+    about: t("form.about"),
+    lastname: t("form.lastname"),
+    email: t("form.email"),
+    phone: t("form.phone"),
+    text: t("form.text"),
+    send: t("form.send"),
+  };
 
   return (
     <>
@@ -17,13 +29,13 @@ const Contact = () => {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Contact Us</h1>
+            <h1 className="text-5xl text-[#002058]"> {t("banner.main")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("banner.home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Contact Us</span>
+              <span className="text-[#685f78]"> {t("banner.main")}</span>
             </div>
           </div>
         </div>
@@ -31,7 +43,7 @@ const Contact = () => {
 
       <div>
         <ContactInfo />
-        <ContactForm />
+        <ContactForm formObj={formnObj} />
       </div>
     </>
   );

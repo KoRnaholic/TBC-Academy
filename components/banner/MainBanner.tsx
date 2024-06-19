@@ -5,10 +5,11 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import React from "react";
 import girlImage from "../../public/images/girl-image.png";
 import MainInfo from "../main-info/MainInfo";
+import { useTranslations } from "next-intl";
 
 export default function MainBanner() {
-  // const t = useTranslations("Index");
-  // console.log(t);
+  const t = useTranslations("Index.mainbanner");
+
   return (
     <>
       <div
@@ -17,25 +18,21 @@ export default function MainBanner() {
       >
         <div className="flex flex-col md:flex-row justify-center md:gap-40 items-start">
           <div className="flex flex-col gap-12">
-            <h1 className="text-2xl text-[#685F78]">
-              The Leader in Online Learning
-            </h1>
-            <h2 className="text-2xl md:text-5xl font-sans font-bold max-w-[500px] text-[#002058]">
-              Engaging & Accessible Online Courses For All
+            <h1 className="text-2xl text-[#685F78]">{t("leader")}</h1>
+            <h2 className="text-2xl md:text-5xl  font-sans font-bold max-w-[500px] text-[#002058]">
+              {t("engaging")}
             </h2>
             <div className="relative w-full max-w-lg">
               <input
                 type="text"
                 className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 placeholder-gray-400 bg-white shadow-md"
-                placeholder="Search School, Online educational centers, etc"
+                placeholder={`${t("search")}`}
               />
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575] text-white p-3 rounded-full hover:bg-[#fa5566] transition duration-300">
                 <ArrowForwardIcon />
               </button>
             </div>
-            <p className="text-lg">
-              Trusted by over 15K Users worldwide since 2022
-            </p>
+            <p className="text-lg">{t("trusted")}</p>
           </div>
           <div className="flex justify-center">
             <Image

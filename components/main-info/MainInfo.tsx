@@ -3,8 +3,10 @@ import pencil from "../../public/icons/courses-icons/pencil.svg";
 import expert from "../../public/icons/courses-icons/expert.svg";
 import medal from "../../public/icons/courses-icons/medal.svg";
 import student from "../../public/icons/courses-icons/student.svg";
+import { useTranslations } from "next-intl";
 
 export default function MainInfo() {
+  const t = useTranslations("Index.maininfo");
   return (
     <div className="-mt-14 font-sans">
       <div className="flex flex-wrap justify-center gap-6">
@@ -18,7 +20,7 @@ export default function MainInfo() {
               <p className="text-[#002058] text-2xl font-bold text-center xl:text-start">
                 4K
               </p>
-              <p className="text-[#685F78] font-semibold">Online Courses</p>
+              <p className="text-[#685F78] font-semibold">{t("courses")}</p>
             </div>
           </div>
         </div>
@@ -32,7 +34,7 @@ export default function MainInfo() {
               <p className="text-[#002058] text-2xl font-bold text-center xl:text-start">
                 92+
               </p>
-              <p className="text-[#685F78] font-semibold">Expert Tutors</p>
+              <p className="text-[#685F78] font-semibold">{t("tutors")}</p>
             </div>
           </div>
         </div>
@@ -46,7 +48,7 @@ export default function MainInfo() {
               <p className="text-[#002058] text-2xl font-bold text-center xl:text-start">
                 1K+
               </p>
-              <p className="text-[#685F78] font-semibold">Certified Courses</p>
+              <p className="text-[#685F78] font-semibold">{t("certified")}</p>
             </div>
           </div>
         </div>
@@ -60,7 +62,7 @@ export default function MainInfo() {
               <p className="text-[#002058] text-2xl font-bold text-center xl:text-start">
                 26K+
               </p>
-              <p className="text-[#685F78] font-semibold">Online Students</p>
+              <p className="text-[#685F78] font-semibold">{t("students")}</p>
             </div>
           </div>
         </div>
