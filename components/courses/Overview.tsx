@@ -9,6 +9,8 @@ import StarsComponent from "../UI/StarsComponent";
 import LikeButton from "../UI/buttons/LikeButton";
 import DisslikeButton from "../UI/buttons/DislikeButton";
 
+export const revalidate = 0;
+
 export default async function Overview({
   course,
 }: {
@@ -111,15 +113,9 @@ export default async function Overview({
                   </div>
                 </div>
                 <span className="max-w-sm">{review.comment}</span>
-                <div className="flex gap-4">
-                  <LikeButton
-                    studentId={review.student_id}
-                    reviewId={review.id}
-                  />
-                  <DisslikeButton
-                    studentId={review.student_id}
-                    reviewId={review.id}
-                  />
+                <div className="flex gap-4 justify-end">
+                  <LikeButton reviewId={review.id} />
+                  <DisslikeButton reviewId={review.id} />
                 </div>
               </div>
             );

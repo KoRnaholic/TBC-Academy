@@ -3,16 +3,6 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { CreatedCourse } from "../../types/types";
 
-export async function sqlCreateUser({ id, name, lastName, email }: any) {
-  await sql`
-    INSERT INTO users (user_id, name, last_name, email)
-    SELECT ${id}, ${name}, ${lastName}, ${email}
-    WHERE NOT EXISTS (
-      SELECT 1 FROM users WHERE user_id = ${id}
-    )
-  `;
-}
-
 //adding product to cart and creating user relationship
 export async function sqlCreateUserCart(userId: number, productId: number) {
   const { rows } = await sql`
@@ -51,15 +41,6 @@ export async function sqlGetCartList(userId: number) {
 
   return rows;
 }
-
-//get cart quantity
-// export async function sqlGetCartQuantity(userId: number) {
-//   const { rows } = await sql`
-//   SELECT SUM(quantity) FROM cart
-//   WHERE user_id = ${userId}`;
-//   revalidateTag("cart");
-//   return rows[0].sum;
-// }
 
 export async function sqlIncrementQuantity(
   studentId: string,
@@ -127,7 +108,7 @@ export async function sqlGetCourses() {
   return rows;
 }
 
-export async function sqlGetSingleCourse(course_id: string) {
+export async function sqlGetSingleCourse(course_id: number) {
   const { rows } = await sql`
   SELECT 
   courses.*,

@@ -5,7 +5,6 @@ import Image from "next/image";
 import SvgTimer from "../../../../../components/svg-components/SvgTimer";
 import SvgBook from "../../../../../components/svg-components/SvgBook";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { deletePurchase } from "../../../../actions/deletePurchase-action";
 import RemovePurchaseModal from "../../../../../components/UI/modals/RemovePurchaseModal";
 
 export const revalidate = 0;
@@ -13,7 +12,6 @@ export const revalidate = 0;
 export default async function MyCoursesPage() {
   const purchases = await sqlGetUserPurchases();
 
-  console.log(purchases);
   return (
     <>
       <h1 className="text-3xl mt-5">Recently Purchased Courses</h1>

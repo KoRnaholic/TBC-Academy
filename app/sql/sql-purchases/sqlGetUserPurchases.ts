@@ -9,7 +9,7 @@ export async function sqlGetUserPurchases() {
     if (studentId) {
       const { rows } = await sql`
       SELECT 
-      p.id,
+      c.id,
       p.quantity,
       p.purchase_date,
       c.image,

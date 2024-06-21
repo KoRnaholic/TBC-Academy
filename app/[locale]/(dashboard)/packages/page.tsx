@@ -25,39 +25,46 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="mt-40 flex justify-center gap-5">
-        <div className="bg-gray-900 flex flex-col border border-red-400 p-6 rounded-xl w-1/3 text-center space-y-4">
-          <h2 className="text-white text-lg font-bold">RANGIFER</h2>
-          <div className="text-red-400 text-4xl font-extrabold">$9.49</div>
-          <div className="text-white text-xl font-medium">/ 1 month</div>
+      <div className="mt-40 flex justify-center gap-5 px-10 h-80">
+        <div className="group hover:bg-[#FF6575] transition-all duration-500 bg-white flex flex-col justify-between border border-[#FF6575] p-6 rounded-xl w-1/4 text-center space-y-4">
+          <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
+            Monthly
+          </h2>
+          <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white">
+            $9.49
+          </div>
+          <div className="text-[#FF6575]  text-xl font-medium group-hover:text-white">
+            / 1 month
+          </div>
           <Link
             target="_blank"
             href="https://buy.stripe.com/test_dR617Gflmepy5JS6op?prefilled_email=kminchele@gmail.com"
-            className="w-1/2 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
+            className="w-1/2 mx-auto py-2 bg-[#FF6575] group-hover:bg-white group-hover:text-[#FF6575] text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
           >
             Buy
           </Link>
         </div>
-        <div className="bg-gray-900 flex flex-col border border-red-400 p-6 rounded-xl w-1/3 text-center space-y-4">
-          <h2 className="text-white text-lg font-bold">RANGIFER</h2>
-          <div className="text-red-400 text-4xl font-extrabold">$17.99</div>
-          <div className="text-white text-xl font-medium">/ 1 month</div>
+        <div className="bg-white flex flex-col justify-between border border-[#FF6575] p-6 rounded-xl w-1/4 text-center space-y-4">
+          <h2 className="text-[#FF6575] text-lg font-bold">Quarterly</h2>
+          <div className="text-[#FF6575] text-4xl font-extrabold">$17.99</div>
+          <div className="text-[#FF6575] text-xl font-medium">/ 3 month</div>
+
           <Link
             target="_blank"
             href="https://buy.stripe.com/test_fZe8A8a124OYgow8wy?prefilled_email=kminchele@gmail.com"
-            className="w-1/2 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
+            className="w-1/2 mx-auto py-2 bg-[#FF6575] text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
           >
             Buy
           </Link>
         </div>
-        <div className="bg-gray-900 border flex flex-col border-red-400 p-6 rounded-xl w-1/3 text-center space-y-4">
-          <h2 className="text-white text-lg font-bold">RANGIFER</h2>
-          <div className="text-red-400 text-4xl font-extrabold">$33.99</div>
-          <div className="text-white text-xl font-medium">/ 1 month</div>
+        <div className="bg-white border flex flex-col justify-between border-[#FF6575] p-6 rounded-xl w-1/4 text-center space-y-4">
+          <h2 className="text-[#FF6575] text-lg font-bold">Semi-Annual</h2>
+          <div className="text-[#FF6575] text-4xl font-extrabold">$33.99</div>
+          <div className="text-[#FF6575] text-xl font-medium">/ 6 month</div>
           <Link
             target="_blank"
             href="https://buy.stripe.com/test_28o6s0ehi81a1tC3cf?prefilled_email=kminchele@gmail.com"
-            className="w-1/2 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
+            className="w-1/2 mx-auto py-2 bg-[#FF6575] text-white rounded-lg hover:bg-red-500 transition-colors duration-300"
           >
             Buy
           </Link>

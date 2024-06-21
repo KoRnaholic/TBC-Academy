@@ -61,7 +61,7 @@ export async function getCourses() {
 
   return courses;
 }
-export async function getSingleCourse(course_id: string) {
+export async function getSingleCourse(course_id: number) {
   const course = await sqlGetSingleCourse(course_id);
   revalidatePath("/courses");
   return course;

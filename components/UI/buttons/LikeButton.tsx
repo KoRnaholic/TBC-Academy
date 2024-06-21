@@ -4,31 +4,28 @@ import { sqlexistsLikeOrDislike } from "../../../app/sql/sql-review/sqlExistsLik
 import { sqlGetLikes } from "../../../app/sql/sql-review/sqlGetLikes";
 import like from "../../../public/icons/like.svg";
 
-export default async function LikeButton({
-  reviewId,
-  studentId,
-}: {
-  reviewId: number;
-  studentId: string;
-}) {
+export default async function LikeButton({ reviewId }: { reviewId: number }) {
   const likes = await sqlGetLikes(reviewId);
-  const exists = await sqlexistsLikeOrDislike(reviewId, studentId);
+  const exists = await sqlexistsLikeOrDislike(reviewId);
 
   async function addLike() {
     "use server";
 
-    await sqlAddLike(reviewId, studentId);
+    await sqlAddLike(reviewId);
   }
   return (
     <>
-      <form action={addLike}>
-        <button
-          className="hover:-translate-y-2 transition-all duration-300 cursor-pointer"
-          disabled={exists[0].exists}
-        >
-          <Image src={like} />
+      <form action={addLike} className="flex items-center gap-1">
+        <button disabled={exists[0].exists}>
+          <Image
+            src={like}
+            alt="like"
+            className={` hover:-translate-y-1 transition-all duration-300 cursor-pointer`}
+          />
         </button>
-        <span className="text-green-500"> +{likes[0].like_count}</span>
+        {likes && (
+          <span className="text-green-500"> + {likes[0].like_count}</span>
+        )}
       </form>
     </>
   );

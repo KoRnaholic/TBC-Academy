@@ -37,7 +37,6 @@ export default function AddCoursePage() {
   if (state.success === true) {
     formRef.current?.reset();
   }
-  console.log(state);
   return (
     <>
       <form

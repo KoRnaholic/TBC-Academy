@@ -6,12 +6,15 @@ import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarsComponent from "../UI/StarsComponent";
+import { sqlgetReviewRatings } from "../../app/sql/sql-review/sqlGetReviewRatings";
 
-export default function FeaturedList({
+export default async function FeaturedList({
   course,
 }: {
   course: Course | QueryResultRow;
 }) {
+  const rating = await sqlgetReviewRatings(course.id);
+
   return (
     <div className="w-[395px]  bg-white rounded-lg shadow-md overflow-hidden p-5 group hover:bg-[#4B3869] transition-all duration-700">
       <div className="w-full">
@@ -60,7 +63,7 @@ export default function FeaturedList({
             </div>
           </div>
           <h3
-            className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg
+            className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg h-10
            group-hover:text-white"
           >
             {course.name}
@@ -82,8 +85,14 @@ export default function FeaturedList({
         </div>
         <div className="pt-4 flex justify-between items-center border-t">
           <div className="text-gray-900  font-sans flex items-center gap-1 group-hover:text-white">
-            <StarsComponent rating={course.rating} />
-            {course.rating}
+            {rating?.average_rating ? (
+              <div className="font-bold">
+                <StarsComponent rating={rating?.average_rating} />
+                {rating?.average_rating}
+              </div>
+            ) : (
+              <span>No reviews Yet</span>
+            )}
           </div>
           <button
             className="py-1.5 px-3.5 border-2 border-[#B4A7F5] rounded-full

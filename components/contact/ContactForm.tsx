@@ -7,6 +7,17 @@ import { useRef } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Link from "next/link";
 
+interface FormnObj {
+  header: string;
+  name: string;
+  about: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  text: string;
+  send: string;
+}
+
 const initialState = {
   name: "",
   lastName: "",
@@ -22,7 +33,7 @@ const initialState = {
   },
   success: false,
 };
-export default function ContactForm({ formObj }) {
+export default function ContactForm({ formObj }: { formObj: FormnObj }) {
   const [state, formAction] = useFormState(submitContactForm, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const errors = state?.errors;

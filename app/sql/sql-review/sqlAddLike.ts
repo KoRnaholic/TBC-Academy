@@ -1,9 +1,12 @@
 "use server";
+import { getSession } from "@auth0/nextjs-auth0";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
 // studentId: string, courseId: number
-export async function sqlAddLike(reviewId: number, studentId: string) {
+export async function sqlAddLike(reviewId: number) {
+  const data = await getSession();
+  const studentId = data?.user.sub;
   try {
     await sql`
     INSERT INTO

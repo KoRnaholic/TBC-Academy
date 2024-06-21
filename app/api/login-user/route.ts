@@ -9,34 +9,33 @@ export const GET = async (_: NextRequest) => {
 
   if (data?.user) {
     try {
-      const { name, email, picture, sub } = data.user;
+      const { name, email, picture, sub, family_name, given_name } = data.user;
+
+      //adding user to students table if login is with gmail
+      if (sub.startsWith("google")) {
+        const res = await sql`SELECT * FROM students WHERE id = ${sub}`;
+        if (res.rowCount === 0) {
+          await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${sub}, ${given_name}, ${family_name}, ${email}, ${picture})`;
+        }
+      }
       const role = data.user["metadata/role"];
       const surname = data.user["metadata/surname"];
 
       console.log(sub, name, email, role, surname, picture, data.user);
 
-      // const handleDatabaseOperation = async () => {
-      // await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${user_id}, ${name}, ${surname}, ${email}, ${picture})`;
-
+      //adding to instructos table if role is instructor
       if (role === "Instructor") {
         const res = await sql`SELECT * FROM instructors WHERE id = ${sub}`;
         if (res.rowCount === 0) {
           await sql`INSERT INTO instructors (id, name, surname, email, image) VALUES (${sub}, ${name}, ${surname}, ${email}, ${picture})`;
         }
+        //adding to students table if role is student
       } else if (role === "Student") {
         const res = await sql`SELECT * FROM students WHERE id = ${sub}`;
         if (res.rowCount === 0) {
           await sql`INSERT INTO students (id, name, surname, email, image) VALUES (${sub}, ${name}, ${surname}, ${email}, ${picture})`;
         }
       }
-      // };
-
-      // Check role and perform corresponding database operation
-      // if (role === "Instructor") {
-      //     await handleDatabaseOperation("instructors");
-      // } else if (role === "Student") {
-      //   await handleDatabaseOperation("students");
-      // }
     } catch (error) {
       console.log("error", error);
       throw error; // Optional: re-throw the error if you want it to propagate

@@ -7,25 +7,29 @@ import Image from "next/image";
 
 export default async function DisslikeButton({
   reviewId,
-  studentId,
 }: {
   reviewId: number;
-  studentId: string;
 }) {
   const dislikes = await sqlGetDislikes(reviewId);
-  const exists = await sqlexistsLikeOrDislike(reviewId, studentId);
+  const exists = await sqlexistsLikeOrDislike(reviewId);
   async function addLike() {
     "use server";
 
-    await sqlAdddislike(reviewId, studentId);
+    await sqlAdddislike(reviewId);
   }
   return (
     <>
-      <form action={addLike}>
+      <form action={addLike} className="flex items-center gap-1">
         <button disabled={exists[0].exists}>
-          <Image src={dislike} />
+          <Image
+            src={dislike}
+            alt="dislike"
+            className={`hover:translate-y-1 transition-all duration-300 cursor-pointer`}
+          />
         </button>
-        <span className="text-red-500"> -{dislikes[0].dislike_count}</span>
+        {dislikes && (
+          <span className="text-red-500"> - {dislikes[0].dislike_count}</span>
+        )}
       </form>
     </>
   );

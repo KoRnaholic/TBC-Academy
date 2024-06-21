@@ -3,8 +3,15 @@ import React, { useState } from "react";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { createReview } from "../../../app/actions/review-action";
+import UpdateReviewButton from "../buttons/UpdateReviewButton";
 
-export default function ReviewModal({ courseId }: { courseId: number }) {
+export default function ReviewModal({
+  courseId,
+  isReviewed,
+}: {
+  courseId: number;
+  isReviewed: boolean;
+}) {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -13,13 +20,20 @@ export default function ReviewModal({ courseId }: { courseId: number }) {
   return (
     <>
       <div className="w-full flex flex-col gap-3 border p-5 rounded-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="py-3 px-4 border border-[#FF6575] text-[#FF6575]
+        {isReviewed ? (
+          <span className="text-green-500">
+            {" "}
+            You already Completed and Reviewed this Course!
+          </span>
+        ) : (
+          <button
+            onClick={() => setIsOpen(true)}
+            className="py-3 px-4 border border-[#FF6575] text-[#FF6575]
              w-full rounded-md hover:bg-[#FF6575] hover:text-white transition-all duration-300"
-        >
-          Complete the Course
-        </button>
+          >
+            Complete the Course
+          </button>
+        )}
       </div>
 
       {isOpen && (
@@ -80,9 +94,7 @@ export default function ReviewModal({ courseId }: { courseId: number }) {
               ></textarea>
 
               <div className="flex justify-center mt-10">
-                <button className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition-colors duration-300">
-                  Update Review
-                </button>
+                <UpdateReviewButton />
               </div>
             </form>
           </div>

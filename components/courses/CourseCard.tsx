@@ -37,8 +37,8 @@ export default async function CourseCard({
 }: {
   course: Course | QueryResultRow;
 }) {
-  const { exists, role } = await sqlExistsInCart(course.id);
-  const ifExists = exists.exists;
+  const data = await sqlExistsInCart(course.id);
+  const ifExists = data?.exists.exists;
 
   ifExists;
   const addToCart = sqlAddToCart.bind(null, course.id);
@@ -90,7 +90,7 @@ export default async function CourseCard({
               )}
             </span>
 
-            {role === "Student" && (
+            {data?.role === "Student" && (
               <div className="w-full flex flex-col gap-3">
                 {existsInPurchase.exists || course.price === "free" ? (
                   <Link

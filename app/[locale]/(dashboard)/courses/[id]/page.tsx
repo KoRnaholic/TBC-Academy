@@ -6,6 +6,7 @@ import { getSingleCourse } from "../../../../actions";
 import { SingleProductParam } from "../../../../../types/types";
 import { revalidatePath } from "next/cache";
 import StarsComponent from "../../../../../components/UI/StarsComponent";
+import { sqlgetReviewRatings } from "../../../../sql/sql-review/sqlGetReviewRatings";
 // import CourseComment from "../../../../../components/courses/AddCourseComment";
 
 export const revalidate = 0;
@@ -15,9 +16,10 @@ export default async function SingleCoursePage({
 }: {
   params: SingleProductParam;
 }) {
-  const courseArr = await getSingleCourse(params.id);
+  const courseArr = await getSingleCourse(Number(params.id));
   revalidatePath("/courses");
   const course = courseArr[0];
+  const rating = await sqlgetReviewRatings(Number(params.id));
 
   return (
     <>
@@ -54,8 +56,14 @@ export default async function SingleCoursePage({
                 {course.duration} hours 30 minutes
               </span>
               <span> 2 Enrolled</span>
-              {course.rating && <StarsComponent rating={course.rating} />}
-              <span>{course.rating}</span>
+              {rating?.average_rating ? (
+                <div className="font-bold">
+                  <StarsComponent rating={rating?.average_rating} />
+                  {rating?.average_rating}
+                </div>
+              ) : (
+                <span>No reviews Yet</span>
+              )}
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import { sqlGetSingleCourse } from "../../../../../sql/sqlRequests";
 import CircleIcon from "@mui/icons-material/Circle";
 import { CreatedCourse } from "../../../../../../types/types";
 import ReviewModal from "../../../../../../components/UI/modals/ReviewModal";
+import { sqlReviewExists } from "../../../../../sql/sql-review/sqlReviewExists";
 
 export const revalidate = 0;
 
@@ -18,13 +19,15 @@ export default async function LessonsPage({
 }: {
   params: { localle: string; id: string };
 }) {
-  const data: CreatedCourse[] = await sqlGetSingleCourse(params.id);
+  const data: CreatedCourse[] = await sqlGetSingleCourse(Number(params.id));
   const course = data[0];
   const whatToLearnArray = course.what_to_learn?.split("; ");
   const requirements = course.requirements?.split("; ");
   const audience = course.audience?.split("; ");
 
-  console.log(course, whatToLearnArray);
+  const courseId = Number(params.id);
+  const exists = await sqlReviewExists(courseId);
+  const isReviewed = exists[0].exists;
 
   return (
     <>
@@ -96,7 +99,7 @@ export default async function LessonsPage({
           </div>
 
           <div className="w-1/3 flex flex-col gap-5">
-            <ReviewModal courseId={params.id} />
+            <ReviewModal isReviewed={isReviewed} courseId={courseId} />
 
             <div className=" bg-white border  rounded-lg shadow-md p-5 font-sans">
               <ul className="flex flex-col gap-4 ">

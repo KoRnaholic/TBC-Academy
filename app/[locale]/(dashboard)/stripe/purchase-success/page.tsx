@@ -45,11 +45,11 @@ export default async function PurchaseSuccessPage({
         <div className="flex justify-center mt-6">
           {isSuccess ? (
             <Link
-              href="/"
+              href="/dashboard/my-courses"
               passHref
               className="bg-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] transition-colors duration-300"
             >
-              Go To Home Page
+              Go To My Courses
             </Link>
           ) : (
             <Link

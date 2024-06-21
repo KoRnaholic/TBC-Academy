@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { sqlCreateReview } from "../sql/sql-review/sqlCreateReview";
 
 export async function createReview(
@@ -15,6 +16,5 @@ export async function createReview(
 
   await sqlCreateReview(reviewData);
 
-  // mutate data
-  // revalidate cache
+  redirect("/");
 }
