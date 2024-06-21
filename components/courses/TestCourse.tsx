@@ -56,7 +56,7 @@ export default function TestCourse({ course }: { course: Course }) {
             </div>
           </div>
           <h3 className="cursor-pointer mt-4 w-3/4  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
-            {course.name}
+            <Link href={`/courses/${course.id}`}>{course.name}</Link>
           </h3>
           <div className="flex justify-between text-gray-500  mt-4 text-lg ">
             <span className="flex items-center gap-1 group-hover:text-white">
@@ -84,7 +84,7 @@ export default function TestCourse({ course }: { course: Course }) {
             transition-all duration-300 hover:border-[#B4A7F5]
              group-hover:text-white "
           >
-            Buy Now
+            <Link href={`/courses/${course.id}`}>View Course</Link>
           </button>
         </div>
       </div>

@@ -18,7 +18,7 @@ export default async function Overview({
 }) {
   const reviews = await sqlGetReviews(course.id);
   return (
-    <div className="flex flex-col xl:flex-row justify-center gap-10 bg-[#fafafa] pb-10">
+    <div className="flex flex-col xl:flex-row justify-center gap-10 mx-5 bg-[#fafafa] pb-10">
       <div className="flex flex-col gap-8 mt-20">
         <div className="p-5 border rounded-lg bg-white">
           <h2 className="text-2xl text-[#002058]">Overview</h2>
@@ -91,14 +91,14 @@ export default async function Overview({
                 key={review.id}
                 className="flex flex-col justify-start gap-3  mt-5 border-b py-2"
               >
-                <div className="flex justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row justify-between">
                   <div className="flex gap-3">
                     <Image
-                      className="w-15 h-15 rounded-full border-2 border-slate-300"
+                      className="w-14 border-2 border-white cursor-pointer rounded-full flex-none"
                       src={`${review.image}`}
                       alt="avatar"
-                      width={50}
-                      height={50}
+                      width={100}
+                      height={100}
                     />
                     <div className="flex flex-col">
                       <span className="text-[#002058]">
@@ -124,7 +124,7 @@ export default async function Overview({
         <CourseComment id={course.id} />
       </div>
 
-      <div className=" xl:-mt-52 sticky">
+      <div className=" xl:-mt-52 sticky ">
         <CourseCard course={course} />
       </div>
     </div>

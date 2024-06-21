@@ -16,10 +16,10 @@ export default function MainBanner() {
         className="w-full h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
         style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
       >
-        <div className="flex flex-col md:flex-row justify-center md:gap-40 items-start">
-          <div className="flex flex-col gap-12">
+        <div className="flex mt-10 lg:mt-0 flex-col gap-5 md:flex-row justify-center  xl:gap-40 items-start">
+          <div className="flex flex-col mx-auto md:mx-0 gap-8 lg:gap-12 px-5">
             <h1 className="text-2xl text-[#685F78]">{t("leader")}</h1>
-            <h2 className="text-2xl md:text-5xl  font-sans font-bold max-w-[500px] text-[#002058]">
+            <h2 className="text-3xl lg:text-5xl lg:leading-snug  font-sans font-bold max-w-[500px] text-[#002058]">
               {t("engaging")}
             </h2>
             <div className="relative w-full max-w-lg">
@@ -34,9 +34,9 @@ export default function MainBanner() {
             </div>
             <p className="text-lg">{t("trusted")}</p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mx-auto lg:mx-0">
             <Image
-              className="w-4/5 girl-image"
+              className="w-2/3 lg:w-4/5 girl-image"
               src={girlImage}
               alt="girl-image"
               quality={70}

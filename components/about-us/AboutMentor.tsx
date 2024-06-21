@@ -9,12 +9,12 @@ export default function AboutMentor() {
   const t = useTranslations("Aboutus.mentor");
   return (
     <>
-      <div className="p-8 flex justify-center items-center">
+      <div className="mt-[500px] md:mt-10 p-8 flex flex-col lg:flex-row justify-center items-center">
         <div>
           <Image src={mentorImg} alt="mentor-image" width={640} height={480} />
         </div>
         <div className="flex flex-col gap-4">
-          <h2 className="text-4xl font-bold text-blue-900 mb-4 max-w-[600px]">
+          <h2 className="text-2xl md:text-4xl font-bold text-blue-900 mb-4 max-w-[600px]">
             {t("header")}
           </h2>
           <p className="text-gray-500 font-thin mb-6 max-w-[600px] text-xl">
@@ -44,13 +44,15 @@ export default function AboutMentor() {
         </div>
       </div>
 
-      <div className="mt-20 p-10 flex justify-center items-center gap-5 font-sans">
+      <div className="mt-20 px-5 mb-10 flex flex-col lg:flex-row justify-center items-center gap-5 font-sans">
         <div className="flex pl-5 bg-[#FF657599] rounded-2xl max-w-[640px] h-[214px] ">
           <div className="flex flex-col justify-center  gap-6">
-            <h2 className="text-2xl  text-[#002058] font-bold">
+            <h2 className="text-lg lg:text-2xl  text-[#002058] font-bold">
               {t("become")}
             </h2>
-            <p className="max-w-[350px] text-xl  text-slate-600 ">{t("top")}</p>
+            <p className="max-w-[350px] text-base lg:text-xl  text-slate-600 ">
+              {t("top")}
+            </p>
           </div>
           <div>
             <Image src={instructor} alt="instructor" />
@@ -58,10 +60,10 @@ export default function AboutMentor() {
         </div>
         <div className="flex pl-5 bg-[#ffe88f] rounded-2xl max-w-[640px] h-[214px]">
           <div className="flex flex-col justify-center  gap-6">
-            <h2 className="text-2xl text-[#002058] font-bold">
+            <h2 className="text-lg lg:text-2xl  text-[#002058] font-bold">
               {t("education")}
             </h2>
-            <p className="max-w-[350px] text-xl  text-slate-600 ">
+            <p className="max-w-[350px]  text-base lg:text-xl  text-slate-600 ">
               {t("account")}
             </p>
           </div>

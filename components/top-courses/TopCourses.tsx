@@ -52,7 +52,7 @@ export default function TopCourses() {
           align: "center",
           loop: true,
         }}
-        className="w-3/4 flex items-center gap-5"
+        className="w-full px-4 lg:w-4/5 lg:px-16 flex items-center gap-5"
       >
         <CarouselPrevious />
         <CarouselContent>

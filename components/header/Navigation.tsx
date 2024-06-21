@@ -8,6 +8,8 @@ import Image from "next/image";
 import { UserObject } from "../../app/sql/sqlGetUser";
 import CartDropDown from "../UI/CartDropDown";
 import { Course } from "../../types/types";
+import Link from "next/link";
+import menu from "../../public/icons/menu.svg";
 
 interface UserInfo {
   id: string;
@@ -28,6 +30,15 @@ interface NavProps {
   user: UserObject | undefined;
   cartQuantity: number;
   courses: Course[] | null;
+  navigation: {
+    home: string;
+    courses: string;
+    about: string;
+    instructors: string;
+    students: string;
+    blog: string;
+    contact: string;
+  };
 }
 
 export default function Navigation({
@@ -35,9 +46,11 @@ export default function Navigation({
   user,
   cartQuantity,
   courses,
+  navigation,
 }: NavProps) {
   const [scrolling, setScrolling] = useState(false);
   const [isCartOpen, setCartIsOpen] = useState(false);
+  const [navIsOpen, setNavIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,27 +68,87 @@ export default function Navigation({
     };
   }, []);
 
-  //   if (user == undefined)
-  //     return (
-  //       <div className="loader">
-  //         <div className="loader-inner">
-  //           <div className="circle"></div>
-  //         </div>
-  //       </div>
-  //     );
+  function handleClick() {
+    setNavIsOpen(true);
+  }
+
+  function toggleCartModal() {
+    setCartIsOpen((prev) => !prev);
+  }
+
   return (
     <header
       className={`${
         scrolling ? "bg-white" : "bg-transparent"
-      }  px-5 py-3  lg:flex  lg:px-20 xl:px-20 gap-20   transition-all duration-300 content-center justify-center  fixed   w-full  z-20`}
+      }  px-5 py-3  lg:flex  lg:px-20 xl:px-20 gap-20 flex    transition-all duration-300 content-center justify-between lg:justify-center  fixed   w-full  z-20`}
     >
       {children}
+      <div onClick={handleClick} className="flex lg:hidden cursor-pointer">
+        <Image src={menu} width={40} height={40} alt="Logo" />
+      </div>
+      <div className="">
+        <Image
+          src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
+          className="w-40"
+          width={40}
+          height={40}
+          alt="Logo"
+        ></Image>
+      </div>
 
-      <div className="flex gap-2 items-center relative">
-        <button
-          onClick={() => setCartIsOpen(!isCartOpen)}
-          className="cursor-pointer"
+      <div className=" justify-center  lg:flex items-center">
+        <ul
+          className={`${
+            navIsOpen
+              ? "-translate-x-0 "
+              : "lg:-translate-x-0 -translate-x-full "
+          }flex gap-7 
+           text-white lg:text-[#685F78] absolute
+           lg:static inset-0 lg:p-0
+            bg-[#FF6575] w-[250px] lg:w-full h-screen lg:h-0
+             lg:bg-inherit  flex-col lg:flex-row lg:items-center transition-transform duration-300`}
         >
+          <li className="text-end lg:hidden bg-white w-full px-5 py-3 flex text-black justify-between text-xl">
+            <Image
+              src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
+              className="w-32"
+              width={40}
+              height={40}
+              alt="Logo"
+            />
+            <span
+              onClick={() => setNavIsOpen(false)}
+              className="cursor-pointer"
+            >
+              X
+            </span>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/">{navigation.home}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/courses">{navigation.courses}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/about">{navigation.about}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/instructors">{navigation.instructors}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/about">{navigation.students}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/blog">{navigation.blog}</Link>
+          </li>
+          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link href="/contact">{navigation.contact}</Link>
+          </li>
+        </ul>
+      </div>
+
+      <div className="hidden lg:flex gap-2 items-center relative">
+        <button onClick={toggleCartModal} className="cursor-pointer">
           <Image src={cart} alt="cart" />
           {cartQuantity && (
             <span className="absolute animate-bounce transition-all duration-1500 top-0 left-4 py-0.5 text-white text-[12px] px-2 rounded-full  bg-[#FF6575]">
@@ -102,7 +175,7 @@ export default function Navigation({
         </div>
       </div>
       {user ? (
-        <div className="flex items-center gap-3">
+        <div className=" items-center gap-3 hidden lg:flex">
           <UserDropDown user={user} />
         </div>
       ) : (

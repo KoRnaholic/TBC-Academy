@@ -38,7 +38,7 @@ export default async function CartPage() {
       {courses && !courses[0] ? (
         <div>{/* <Image /> */}</div>
       ) : (
-        <div className="mt-16 flex justify-center  gap-3">
+        <div className="mt-16 flex flex-col lg:flex-row justify-center  gap-3">
           <CartTable courses={courses} />
           {courses && <CartTotal course={courses[0]} totalPrice={totalPrice} />}
         </div>

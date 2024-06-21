@@ -29,13 +29,13 @@ export default function SingleBlog({
 
   return (
     <>
-      <div className=" border max-w-md  bg-white rounded-xl shadow-md overflow-hidden md:max-w-4xl">
+      <div className=" border max-w-full  bg-white rounded-xl shadow-md overflow-hidden md:max-w-4xl">
         <div className="md:flex flex-col">
           <div className="p-6">
             <div className=" hover:bg-white overflow-hidden">
               <Link href={`/blog/${slug}`}>
                 <Image
-                  className="w-full h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
+                  className="w-full h-full md:h-[500px] cursor-pointer object-cover rounded-md  hover:scale-110 transition-all duration-700"
                   src={blogImage.url}
                   width={800}
                   height={400}
@@ -49,7 +49,7 @@ export default function SingleBlog({
             </div>
           </div>
 
-          <div className="pt-0 p-8 flex flex-col gap-3">
+          <div className="pt-0 p-6 md:p-8 flex flex-col gap-3">
             <div className="flex items-center">
               <div className="ml-2 flex gap-3  text-gray-500">
                 <span className="border-r-2 border-gray-500 pr-2 flex items-center gap-2">
@@ -62,7 +62,7 @@ export default function SingleBlog({
                 </span>
               </div>
             </div>
-            <h2 className="block mt-2  text-4xl leading-tight font-medium text-[#002058]">
+            <h2 className="block mt-2 text-2xl lg:text-4xl leading-tight font-medium text-[#002058]">
               {title}
             </h2>
             <p className="mt-2 text-gray-500">

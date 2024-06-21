@@ -62,12 +62,13 @@ export default async function FeaturedList({
               {/* <SvgHeart className="fill-white stroke-red  group-hover:fill-[#4B3869] group-hover:stroke-white" /> */}
             </div>
           </div>
-          <h3
+          <p
+            // href={`/courses/${course.id}`}
             className="cursor-pointer mt-4 w-4/5  text-[#002058] text-lg h-10
            group-hover:text-white"
           >
-            {course.name}
-          </h3>
+            <Link href={`/courses/${course.id}`}>{course.name}</Link>
+          </p>
           <div className="flex justify-between text-gray-500  mt-4 text-lg ">
             <span className="flex items-center group-hover:text-white">
               <span>
@@ -100,7 +101,7 @@ export default async function FeaturedList({
             transition-all duration-300 hover:border-[#B4A7F5]
              group-hover:text-white"
           >
-            Buy Now
+            <Link href={`/courses/${course.id}`}>View Course</Link>
           </button>
         </div>
       </div>

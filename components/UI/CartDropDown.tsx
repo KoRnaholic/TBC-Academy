@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Course } from "../../types/types";
+import Link from "next/link";
 
 interface CartDropDownProps {
   courses: Course[] | null;
@@ -46,9 +47,9 @@ export default function CartDropDown({
           return (
             <div key={course.id} className="flex justify-between">
               <div className="flex gap-3">
-                <div className="w-28">
+                <div className="">
                   <Image
-                    className="rounded-md"
+                    className="rounded-md w-24 h-18"
                     src={course.image}
                     width={200}
                     height={200}
@@ -56,18 +57,26 @@ export default function CartDropDown({
                   />
                 </div>
                 <div className="flex flex-col justify-between">
-                  <p>{course.name.slice(0, 15)}...</p>
+                  <p className="font-semibold">{course.name}</p>
+                  <span>Quantity: {course.quantity}</span>
                   <span className="text-red-400">${course.price}</span>
                 </div>
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <button className="bg-red-400 py-1 px-3 rounded-md text-white">
                   remove
                 </button>
-              </div>
+              </div> */}
             </div>
           );
         })}
+
+        <Link
+          className=" bg-red-400 hover:bg-red-500 px-2 py-2 flex justify-center rounded-md  text-white"
+          href="/cart"
+        >
+          View Cart
+        </Link>
       </div>
     </div>
   );

@@ -46,9 +46,9 @@ export default async function CourseCard({
 
   return (
     <>
-      <div className="w-[395px] bg-white rounded-lg shadow-md p-5">
+      <div className="w-full sm:w-4/5 md:w-[395px] mx-auto bg-white rounded-lg shadow-md p-5">
         <div className="relative flex flex-col justify-center">
-          <div className="relative w-[340px] mx-auto h-[250px] overflow-hidden rounded-lg">
+          <div className="relative w-full md:w-[340px] mx-auto h-[250px] overflow-hidden rounded-lg">
             <Image
               src={course.image}
               layout="fill"

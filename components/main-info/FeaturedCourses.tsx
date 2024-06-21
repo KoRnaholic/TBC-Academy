@@ -11,7 +11,7 @@ export default function FeaturedCourses({
   const t = useTranslations("Index.featured");
   return (
     <section
-      className=" w-full h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
+      className="w-full h-[3200px] lg:h-[2000px] xl:h-[2000px] 2xl:h-[1400px] relative bg-center bg-no-repeat bg-cover pt-52 pb-36"
       style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
     >
       <div

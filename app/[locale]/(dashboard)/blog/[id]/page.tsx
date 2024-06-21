@@ -64,14 +64,14 @@ export default async function SingleBlogPage({
         </div>
       </div>
 
-      <div className="flex justify-center gap-6 mt-14">
+      <div className="flex justify-center flex-col xl:flex-row gap-6 mt-14">
         {blog && (
           <div>
             <SingleBlog expand={true} blog={blog[0]} />
             {/* <BlogComments blog={blog[0]} /> */}
           </div>
         )}
-        <div className="flex flex-col w-1/5 gap-8">
+        <div className="flex flex-col w-full xl:w-1/5 gap-8">
           <RecentBlogs blogs={blogs} />
         </div>
       </div>

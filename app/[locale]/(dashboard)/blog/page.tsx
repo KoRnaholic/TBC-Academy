@@ -10,7 +10,6 @@ export default async function Blog() {
   // const blogs: BlogPost[] | null = await sqlGetBlogs();
   const data: BlogPostCollection | undefined = await getBlogPostCollection();
   const blogs = data?.blogPostCollection.items;
-  console.log(data);
 
   return (
     <>
@@ -35,7 +34,7 @@ export default async function Blog() {
         </div>
       </div>
 
-      <div className="mt-20 flex justify-center gap-6">
+      <div className="mt-20 flex justify-center flex-col xl:flex-row gap-6">
         <BlogList blogs={blogs} />
       </div>
     </>

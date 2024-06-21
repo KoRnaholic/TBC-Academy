@@ -27,7 +27,7 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] | undefined }) {
   };
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 px-5">
         {searchedBlogs?.map((blog: BlogPost) => {
           return (
             <div key={blog.slug}>
@@ -36,7 +36,7 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] | undefined }) {
           );
         })}
       </div>
-      <div className="flex flex-col w-1/5 gap-8">
+      <div className="flex flex-col w-full px-5 lg:w-1/5 gap-8">
         <BlogSearch handleSearch={handleSearch} search={search} />
         <RecentBlogs blogs={blogs} />
       </div>
