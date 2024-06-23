@@ -26,7 +26,7 @@ export default function SingleCartItem({ course }: { course: Course }) {
 
   return (
     <tr key={course.id} className="py-10">
-      <td className="py-1 px-1 sm:py-5 sm:px-4 border-b flex items-center">
+      <td className="py-1 px-1 sm:py-5 sm:px-4  flex items-center">
         <Image
           src={course.image}
           width={200}
@@ -36,16 +36,16 @@ export default function SingleCartItem({ course }: { course: Course }) {
         />
         <span className="hidden md:flex">{course.name}</span>
       </td>
-      <td className="py-5 px-4 border-b text-center">${course.price}</td>
-      <td className="py-5 px-2 border-b text-center ">
+      <td className="py-5 px-4  text-center">${course.price}</td>
+      <td className="py-5 px-2  text-center ">
         <DecrementButton decrementQuantity={decrementQuantity} />
         <span className="text-lg ">{course.quantity}</span>
         <IncrementButton incrementQuantity={incrementQuantity} />
       </td>
-      <td className="py-5 px-4 border-b text-center">
+      <td className="py-5 px-4  text-center">
         ${course.quantity * Number(course.price)}
       </td>
-      <td className="py-5 px-4 border-b text-right ">
+      <td className="py-5 px-4  text-right ">
         <form action={removeFromCart}>
           <RemoveButton />
         </form>

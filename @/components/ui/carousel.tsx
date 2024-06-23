@@ -205,7 +205,7 @@ const CarouselPrevious = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        " p-2 rounded-full hover:bg-[#B4A7F5] hover:text-white",
+        " p-2 rounded-full hover:bg-[#B4A7F5] dark:bg-black hover:text-white",
 
         className
       )}
@@ -232,7 +232,7 @@ const CarouselNext = React.forwardRef<
       variant={variant}
       size={size}
       className={cn(
-        "rounded-full p-2 hover:bg-[#B4A7F5] hover:text-white",
+        "rounded-full p-2 hover:bg-[#B4A7F5]  hover:text-white",
 
         className
       )}

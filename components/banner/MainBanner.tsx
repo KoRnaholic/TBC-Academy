@@ -16,23 +16,27 @@ export default function MainBanner() {
         className="w-full h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
         style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
       >
-        <div className="flex mt-10 lg:mt-0 flex-col gap-5 md:flex-row justify-center  xl:gap-40 items-start">
+        <div className="flex mt-10 lg:mt-0 flex-col gap-5 md:flex-row justify-center xl:gap-40 items-start">
           <div className="flex flex-col mx-auto md:mx-0 gap-8 lg:gap-12 px-5">
-            <h1 className="text-2xl text-[#685F78]">{t("leader")}</h1>
-            <h2 className="text-3xl lg:text-5xl lg:leading-snug  font-sans font-bold max-w-[500px] text-[#002058]">
+            <h1 className="text-2xl text-[#685F78] dark:text-[#F8F8F2]">
+              {t("leader")}
+            </h1>
+            <h2 className="text-3xl lg:text-5xl lg:leading-snug font-sans font-bold max-w-[500px] text-[#002058] dark:text-[#F8F8F2]">
               {t("engaging")}
             </h2>
             <div className="relative w-full max-w-lg">
               <input
                 type="text"
-                className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 placeholder-gray-400 bg-white shadow-md"
+                className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-[#373748] shadow-md"
                 placeholder={`${t("search")}`}
               />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575] text-white p-3 rounded-full hover:bg-[#fa5566] transition duration-300">
+              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575]  text-white p-3 rounded-full hover:bg-[#fa5566] dark:hover:bg-[#FF85A1] transition duration-300">
                 <ArrowForwardIcon />
               </button>
             </div>
-            <p className="text-lg">{t("trusted")}</p>
+            <p className="text-lg text-[#685F78] dark:text-[#F8F8F2]">
+              {t("trusted")}
+            </p>
           </div>
           <div className="flex justify-center mx-auto lg:mx-0">
             <Image
@@ -40,10 +44,8 @@ export default function MainBanner() {
               src={girlImage}
               alt="girl-image"
               quality={70}
-              width={520} // specify the width
-              height={533} // specify the height
-              // placeholder="blur"
-              // loading="lazy"
+              width={520}
+              height={533}
               priority
             />
           </div>

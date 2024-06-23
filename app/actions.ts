@@ -89,7 +89,7 @@ const schema = z.object({
     .string()
     .trim()
     .min(40, "Overview must be at least 20 chars long")
-    .max(300, "Overview must be less then 300 chars long"),
+    .max(1000, "Overview must be less then 1000 chars long"),
   courseLink: z.string(),
   requirements: z.string().min(10),
   audience: z.string().min(1, "Audience is required"),

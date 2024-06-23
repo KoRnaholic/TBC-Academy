@@ -79,8 +79,10 @@ export default function Navigation({
   return (
     <header
       className={`${
-        scrolling ? "bg-white" : "bg-transparent"
-      }  px-5 py-3  lg:flex  lg:px-20 xl:px-20 gap-20 flex    transition-all duration-300 content-center justify-between lg:justify-center  fixed   w-full  z-20`}
+        scrolling
+          ? "bg-white dark:bg-[#1E1E2E] dark:text-[#F8F8F2]"
+          : "bg-transparent dark:bg-transparent"
+      }  px-5 py-3 lg:flex lg:px-20 xl:px-20 gap-20 flex transition-all duration-300 content-center justify-between lg:justify-center fixed w-full z-20`}
     >
       {children}
       <div onClick={handleClick} className="flex lg:hidden cursor-pointer">
@@ -89,29 +91,25 @@ export default function Navigation({
       <div className="">
         <Image
           src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
-          className="w-40"
+          className="w-40 dark:invert"
           width={40}
           height={40}
           alt="Logo"
-        ></Image>
+        />
       </div>
 
-      <div className=" justify-center  lg:flex items-center">
+      <div className="justify-center lg:flex items-center">
         <ul
           className={`${
             navIsOpen
               ? "-translate-x-0 "
               : "lg:-translate-x-0 -translate-x-full "
-          }flex gap-7 
-           text-white lg:text-[#685F78] absolute
-           lg:static inset-0 lg:p-0
-            bg-[#FF6575] w-[250px] lg:w-full h-screen lg:h-0
-             lg:bg-inherit  flex-col lg:flex-row lg:items-center transition-transform duration-300`}
+          } flex gap-7 text-white lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-full h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center transition-transform duration-300`}
         >
-          <li className="text-end lg:hidden bg-white w-full px-5 py-3 flex text-black justify-between text-xl">
+          <li className="text-end lg:hidden bg-white dark:bg-[#282A36] w-full px-5 py-3 flex text-black dark:text-[#F8F8F2] justify-between text-xl">
             <Image
               src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
-              className="w-32"
+              className="w-32 dark:invert"
               width={40}
               height={40}
               alt="Logo"
@@ -123,6 +121,7 @@ export default function Navigation({
               X
             </span>
           </li>
+
           <li className="hover:text-[#FF6575]  px-5 lg:px-0">
             <Link href="/">{navigation.home}</Link>
           </li>
@@ -151,7 +150,7 @@ export default function Navigation({
         <button onClick={toggleCartModal} className="cursor-pointer">
           <Image src={cart} alt="cart" />
           {cartQuantity && (
-            <span className="absolute animate-bounce transition-all duration-1500 top-0 left-4 py-0.5 text-white text-[12px] px-2 rounded-full  bg-[#FF6575]">
+            <span className="absolute animate-bounce transition-all duration-1500 top-0 left-4 py-0.5 text-white text-[12px] px-2 rounded-full bg-[#FF6575]">
               {cartQuantity}
             </span>
           )}
@@ -175,7 +174,7 @@ export default function Navigation({
         </div>
       </div>
       {user ? (
-        <div className=" items-center gap-3 hidden lg:flex">
+        <div className="items-center gap-3 hidden lg:flex">
           <UserDropDown user={user} />
         </div>
       ) : (
@@ -183,18 +182,15 @@ export default function Navigation({
           <a href="/api/auth/login">
             <button
               className={`${
-                scrolling ? "bg-[#B4A7F5] text-white" : "bg-white"
-              } py-2.5 px-9  rounded-full hover:bg-[#FF6575]
-         hover:text-white transition-all duration-500`}
+                scrolling
+                  ? "bg-[#B4A7F5] text-white dark:bg-[#282A36]"
+                  : "bg-white dark:bg-[#282A36]"
+              } py-2.5 px-9 rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-500`}
             >
               Login
             </button>
           </a>
-          <button
-            className="py-2.5 px-9 border-2 border-[#B4A7F5] rounded-full
-         text-[#B4A7F5] hover:bg-[#FF6575] hover:text-white
-          transition-all duration-300 hover:border-[#FF6575] "
-          >
+          <button className="py-2.5 px-9 border-2 border-[#B4A7F5] dark:border-[#F8F8F2] rounded-full text-[#B4A7F5] dark:text-[#F8F8F2] hover:bg-[#FF6575] hover:text-white transition-all duration-300 hover:border-[#FF6575]">
             Register
           </button>
         </div>

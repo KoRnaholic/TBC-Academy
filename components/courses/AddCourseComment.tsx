@@ -6,7 +6,7 @@ export default function CourseComment({ id }: { id: number }) {
   return (
     <>
       <SingleCourseComments courseId={id} />
-      <div className="border p-6 mt-10 rounded-lg bg-white">
+      <div className="border p-6 mt-10 rounded-lg bg-white dark:border-gray-500 dark:bg-[#2A2A2A]">
         <form
           action={async (formData) => {
             "use server";

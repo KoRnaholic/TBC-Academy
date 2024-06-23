@@ -1,50 +1,68 @@
-// import { useTranslations } from "next-intl";
-// import Link from "next/link";
+import Link from "next/link";
 
-export default function Footer() {
-  // const t = useTranslations("Index");
-
+export default function Footer({ navigation }) {
   return (
-    <footer className=" bg-gray-600 text-white p-8">
-      {/* <div className="flex flex-col lg:flex-row lg:justify-between">
-        <div className="flex flex-col justify-center items-center w-full mb-4 lg:mb-0">
-          <h4 className="text-lg font-semibold mb-2">
-            {t("subscription.newsletter")}
-          </h4>
-          <div className="flex">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="bg-gray-900 text-white rounded-l py-2 px-4 focus:outline-none"
-            />
-            <button className="bg-slate-800 hover:bg-slate-500 rounded-r px-4 py-2">
-              {t("subscription.subscribe")}
-            </button>
+    <footer className="mt-6 bg-white text-inherit py-8">
+      <div className="flex justify-around gap-10">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">Get In Touch</h2>
+          <p className="max-w-[250px]">
+            3556 Beech Street, San Francisco, California, CA 94108
+          </p>
+          <p> +19 123-456-7890</p>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">Navigation</h2>
+          <div className="flex gap-6">
+            <ul className="space-y-2">
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/">{navigation.home}</Link>
+              </li>
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/courses">{navigation.courses}</Link>
+              </li>
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/about">{navigation.about}</Link>
+              </li>
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/instructors">{navigation.instructors}</Link>
+              </li>
+            </ul>
+            <ul className="space-y-3">
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/about">{navigation.students}</Link>
+              </li>
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/blog">{navigation.blog}</Link>
+              </li>
+              <li className="hover:text-[#FF6575]  px-5 lg:px-0">
+                - <Link href="/contact">{navigation.contact}</Link>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="hidden lg:flex lg:items-center ">
-          <ul className="flex gap-8 text-lg">
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/">{t("navigation.home")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/profile">{t("navigation.profile")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/about">{t("navigation.about")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/contact">{t("navigation.contact")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/blog">{t("navigation.blog")}</Link>
-            </li>
-          </ul>
+
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">Get More Updates</h2>
+          <div className="relative w-full max-w-sm">
+            <input
+              placeholder="Enter your email address"
+              type="text"
+              className="w-full border pl-6 pr-12 py-2 rounded-lg  focus:ring-0 text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-[#373748] shadow-md"
+            />
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575]  text-white px-3 py-1.5 rounded-lg hover:bg-[#fa5566] dark:hover:bg-[#FF85A1] transition duration-300">
+              Submit
+            </button>
+          </div>
+          <p className="max-w-md">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+            consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Ut consequat mauris
+          </p>
         </div>
-        <div className="w-full lg:flex lg:justify-center lg:items-center  text-center lg:text-right">
-          &copy; 2024 OpenMarket
-        </div>
-      </div> */}
+      </div>
+      <div></div>
     </footer>
   );
 }

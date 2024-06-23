@@ -5,6 +5,7 @@ import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import Header from "../../components/header/Header";
 import { sqlGetCartItems } from "../sql/sqlGetCartItems";
+import Footer from "../../components/footer/Footer";
 
 export const metadata = {
   title: "OpenMarket",
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
           <ThemeProvider>
             <Header courses={courses} navigation={navigationObj} />
             {children}
+            <Footer navigation={navigationObj} />
           </ThemeProvider>
         </body>
       </UserProvider>

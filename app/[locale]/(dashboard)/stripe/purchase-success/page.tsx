@@ -24,7 +24,7 @@ export default async function PurchaseSuccessPage({
 
   return (
     <>
-      <div className="border p-8 rounded-2xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-8 mt-40 transition-all duration-300 shadow-lg bg-white">
+      <div className="border p-8 rounded-2xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-8 mt-40 transition-all duration-300 shadow-lg bg-white dark:bg-gray-800">
         <h1 className="text-5xl text-green-500 text-center font-semibold">
           {isSuccess ? (
             <span className="flex justify-center items-center gap-3">
@@ -37,7 +37,7 @@ export default async function PurchaseSuccessPage({
         </h1>
 
         {isSuccess && (
-          <div className="text-center text-gray-700">
+          <div className="text-center text-gray-700 dark:text-white">
             Thank you for your purchase!
           </div>
         )}

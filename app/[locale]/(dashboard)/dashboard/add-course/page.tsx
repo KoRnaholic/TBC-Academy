@@ -33,6 +33,7 @@ const initialState = {
 export default function AddCoursePage() {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction] = useFormState(uploadCourse, initialState);
+  console.log(state.errors);
   const errors = state.errors;
   if (state.success === true) {
     formRef.current?.reset();
@@ -79,9 +80,9 @@ export default function AddCoursePage() {
               id="link"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            {errors.name && (
+            {errors.courseLink && (
               <label className="ml-1 font-sans text-red-500">
-                {errors.name[0] ? errors.name[0] + " *" : ""}
+                {errors.courseLink[0] ? errors.courseLink[0] + " *" : ""}
               </label>
             )}
           </div>

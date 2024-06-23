@@ -28,11 +28,14 @@ export default function CheckoutForm({
   );
 
   return (
-    <>
-      <div className="border p-6 rounded-xl max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300">
+    <div className="px-8">
+      <div className="border p-6 rounded-xl dark:border-gray-500 max-w-5xl w-full xl:w-1/2 mx-auto space-y-7 mt-40 transition-all duration-300 bg-white dark:bg-gray-300">
         {courses?.map((course: Course) => {
           return (
-            <div key={course.id} className="flex  gap-4 items-center">
+            <div
+              key={course.id}
+              className="flex gap-4 items-center text-green-600"
+            >
               <div>
                 <Image
                   className="rounded-xl"
@@ -57,7 +60,7 @@ export default function CheckoutForm({
           <Form price={totalPrice} courses={courses} />
         </Elements>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -111,13 +114,11 @@ function Form({
   return (
     <form onSubmit={handleSubmit}>
       {errorMessage && <span className="text-red-500">{errorMessage}</span>}
-      <div className="mt-3">
+      <div className="mt-3 text-white">
         <PaymentElement />
       </div>
       <div className="mt-4">
-        <LinkAuthenticationElement
-        //  onChange={(e) => setEmail(e.target.value)}
-        />
+        <LinkAuthenticationElement />
       </div>
       <button
         disabled={stripe == null || elements == null || isLoading}

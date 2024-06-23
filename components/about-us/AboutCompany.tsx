@@ -17,19 +17,19 @@ export default function AboutCompany() {
         <h2 className="text-[#FF6575] text-xl font-semibold mb-6">
           {t("about")}
         </h2>
-        <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-blue-900 dark:text-blue-300 mb-6">
           {t("header")}
         </h1>
-        <div className="space-y-4 text-gray-500 font-regular">
+        <div className="space-y-4 text-gray-500 dark:text-gray-300 font-regular">
           {textChunks.map((chunk, index) => (
-            <p key={index} className="max-w-[800px]  mt-4">
+            <p key={index} className="max-w-[800px] mt-4">
               {chunk}
             </p>
           ))}
         </div>
       </div>
 
-      <div className="">
+      <div>
         <Image
           src={girlImg}
           alt="girl-image"

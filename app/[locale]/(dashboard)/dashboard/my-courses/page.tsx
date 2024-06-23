@@ -29,7 +29,7 @@ export default async function MyCoursesPage() {
           return (
             <div
               key={course.id}
-              className="w-[600px] md:max-w-[300px]  border bg-white rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] transition-all duration-700"
+              className="w-[600px] md:max-w-[300px]  border dark:border-gray-500 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] transition-all duration-700"
             >
               <div className="">
                 <div className="relative">
@@ -56,22 +56,22 @@ export default async function MyCoursesPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="flex flex-col ">
-                        <p className="text-[#002058] group-hover:text-white ">
+                        <p className="text-[#002058] dark:text-white group-hover:text-white">
                           Date: {formattedDate}
                         </p>
                       </div>
                     </div>
                     <div>
-                      <FavoriteBorderIcon className="text-[#FF6575] group-hover:text-white hover:fill-red-500 cursor-pointer" />
+                      <FavoriteBorderIcon className="text-[#FF6575] dark:text-white hover:fill-red-500 cursor-pointer" />
                     </div>
                   </div>
-                  <h3 className="cursor-pointer h-10 mt-4 w-3/4  text-[#002058] text-lg group-hover:text-white hover:text-red-500">
-                    {course.name}
+                  <h3 className="cursor-pointer h-10 mt-4 w-3/4  text-[#002058] dark:text-white text-lg group-hover:text-white hover:text-red-500">
+                    {course.name.slice(0, 25)}...
                   </h3>
-                  <div className="flex justify-between text-gray-500  mt-4 text-lg ">
+                  <div className="flex justify-between text-gray-500 dark:text-gray-300 mt-4 text-lg ">
                     <span className="flex items-center gap-1 group-hover:text-white">
                       <span>
-                        <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
+                        <SvgBook className="fill-[#FF6575] dark:fill-white stroke-red group-hover:fill-white group-hover:stroke-white" />
                       </span>
                       <span>{course.lessons} Lessons</span>
                     </span>

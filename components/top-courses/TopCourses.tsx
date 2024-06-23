@@ -63,7 +63,7 @@ export default function TopCourses() {
                   <CardContent className="flex aspect-square items-center justify-center">
                     <div
                       className="flex flex-col w-[280px] justify-center items-center gap-3 rounded-xl border
-             group shadow-sm hover:bg-[#4B3869] transition-all duration-500 px-20 py-5"
+                   group shadow-sm bg-white dark:bg-[#1E1E2E] hover:bg-[#4B3869] dark:hover:bg-[#FF6575] transition-all duration-500 px-20 py-5"
                     >
                       <Image
                         src={course.image}
@@ -71,10 +71,10 @@ export default function TopCourses() {
                         quality={100}
                         className="cursor-pointer"
                       />
-                      <div className="text-xl  text-[#002058] group-hover:text-white transition-all duration-500">
+                      <div className="text-xl text-[#002058] dark:text-[#F8F8F2] group-hover:text-white transition-all duration-500">
                         {course.name}
                       </div>
-                      <p className="text-gray-500 group-hover:text-white transition-all duration-500">
+                      <p className="text-gray-500 dark:text-[#B4A7F5] group-hover:text-white transition-all duration-500">
                         {course.quantity} {t("courses")}
                       </p>
                     </div>

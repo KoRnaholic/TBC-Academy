@@ -11,7 +11,6 @@ export default async function PurchasePage() {
   if (!courses || courses.length === 0) {
     return notFound();
   }
-  console.log(courses);
   //   const price = courses[0]?.quantity * courses[0]?.price * 100;
   const totalPrice = courses?.reduce(
     (acc, course) => acc + Number(course.price) * course.quantity,

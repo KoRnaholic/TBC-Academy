@@ -13,17 +13,24 @@ export default async function EditProfilePage() {
 
   //   console.log(role);
   return (
-    <form action={updateUser} className="bg-white rounded-lg mt-5">
-      <div className="p-5 border-b flex flex-col gap-3 ">
-        <h2 className="text-2xl text-[#002058]">Profile Details</h2>
-        <p className="text-gray-500 ">
+    <form
+      action={updateUser}
+      className="bg-white dark:bg-gray-800 rounded-lg mt-5 border dark:border-gray-600"
+    >
+      <div className="p-5 border-b flex flex-col gap-3">
+        <h2 className="text-2xl text-[#002058] dark:text-white">
+          Profile Details
+        </h2>
+        <p className="text-gray-500 dark:text-gray-400">
           You have full control to manage your own account setting.
         </p>
       </div>
-      <div className="p-5  border-b flex justify-between items-center">
+      <div className="p-5 border-b flex justify-between items-center">
         <div className="flex flex-col gap-3">
-          <h2 className="text-2xl text-[#002058]">Your avatar</h2>
-          <p className="text-gray-500 ">
+          <h2 className="text-2xl text-[#002058] dark:text-white">
+            Your avatar
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400">
             PNG or JPG no bigger than 800px width and height.
           </p>
         </div>
@@ -36,12 +43,11 @@ export default async function EditProfilePage() {
               id="image"
               name="image"
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              required
             />
             <button
               type="button"
-              className="w-32  text-green-500  border font-thin border-green-500 cursor-pointer
-               group-hover:text-white group-hover:bg-green-500  py-2 px-4 rounded transition-all duration-300"
+              className="w-32 text-green-500 border font-thin border-green-500 cursor-pointer
+            group-hover:text-white group-hover:bg-green-500 py-2 px-4 rounded transition-all duration-300"
             >
               Upload
             </button>
@@ -50,16 +56,18 @@ export default async function EditProfilePage() {
       </div>
 
       <div>
-        <h2 className="px-5 pt-5 text-2xl text-[#002058]">Personal Details</h2>
-        <p className="px-5 pt-3 text-gray-500 ">
+        <h2 className="px-5 pt-5 text-2xl text-[#002058] dark:text-white">
+          Personal Details
+        </h2>
+        <p className="px-5 pt-3 text-gray-500 dark:text-gray-400">
           Edit your personal information.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-12 bg-white p-5">
+      <div className="grid grid-cols-2 gap-12 bg-white dark:bg-gray-800 p-5">
         <input
           name="name"
           type="text"
-          className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md"
+          className="border text-gray-600 dark:text-gray-400 px-4 py-2 focus:outline-none focus:border-gray-700 dark:focus:border-gray-600 rounded-md"
           placeholder="First Name"
           defaultValue={userInfo?.name}
           required
@@ -67,7 +75,7 @@ export default async function EditProfilePage() {
         <input
           name="surname"
           type="text"
-          className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md"
+          className="border text-gray-600 dark:text-gray-400 px-4 py-2 focus:outline-none focus:border-gray-700 dark:focus:border-gray-600 rounded-md"
           placeholder="Last Name"
           defaultValue={userInfo?.surname}
           required
@@ -75,7 +83,7 @@ export default async function EditProfilePage() {
         <input
           name="email"
           type="email"
-          className="border text-gray-600 px-4 py-2 focus:outline-none focus:border-gray-700 rounded-md col-span-2"
+          className="border text-gray-600 dark:text-gray-400 px-4 py-2 focus:outline-none focus:border-gray-700 dark:focus:border-gray-600 rounded-md col-span-2"
           placeholder="Email"
           defaultValue={userInfo?.email}
           required

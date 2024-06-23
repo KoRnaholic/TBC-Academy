@@ -9,8 +9,8 @@ export default function RecentBlogs({
 }) {
   return (
     <>
-      <div className="p-6 border rounded-lg">
-        <h2>Recent Posts</h2>
+      <div className="p-6 border dark:border-gray-600 rounded-lg dark:bg-gray-800">
+        <h2 className="text-white">Recent Posts</h2>
         {blogs?.map((blog: BlogPost) => {
           const { title, blogImage, slug, date } = blog;
           const isoDate = new Date(date);
@@ -27,10 +27,10 @@ export default function RecentBlogs({
           return (
             <div key={blog.slug} className="mt-6">
               <div className="flex gap-4 ">
-                <div className="w-24 h-20">
+                <div className="">
                   <Link href={`/blog/${slug}`}>
                     <Image
-                      className="rounded-md object-cover hover:scale-105 transition-all duration-500 w-full h-full"
+                      className="rounded-md object-cover w-24 h-20 hover:scale-105 transition-all duration-500 "
                       src={blogImage.url}
                       width={200}
                       height={200}
@@ -40,12 +40,14 @@ export default function RecentBlogs({
                 </div>
 
                 <div className="flex flex-col justify-around">
-                  <h3 className="text-[#002058] hover:text-[#FF6575] transition-all duration-300 cursor-pointer">
+                  <h3 className="text-[#002058] dark:text-white hover:text-[#FF6575] transition-all duration-300 cursor-pointer">
                     <Link href={`/blog/${slug}`}>
-                      {title.split(" ").slice(0, 3).join(" ") + "..."}
+                      {title.split(" ").slice(0, 2).join(" ") + "..."}
                     </Link>
                   </h3>
-                  <p className="text-gray-500 text-sm">{formattedDate}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    {formattedDate}
+                  </p>
                 </div>
               </div>
             </div>

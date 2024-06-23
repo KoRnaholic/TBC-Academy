@@ -1,5 +1,4 @@
 import { unstable_setRequestLocale } from "next-intl/server";
-import Footer from "../../components/footer/Footer";
 
 import MainBanner from "../../components/banner/MainBanner";
 
@@ -25,7 +24,6 @@ export default async function Home({
       <MainBanner />
       <TopCategories />
       <FeaturedCourses courses={courses} />
-      <Footer />
     </div>
   );
 }
