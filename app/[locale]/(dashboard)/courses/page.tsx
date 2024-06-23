@@ -8,6 +8,13 @@ import { QueryResultRow } from "@vercel/postgres";
 
 export const revalidate = 0;
 
+export const metadata = {
+  title: "DreamLMS - All Courses",
+  description:
+    "Browse through a wide range of courses to enhance your learning experience on DreamLMS.",
+  keywords: "courses, find courses, online learning, education, DreamLMS",
+};
+
 export default async function CoursesPage() {
   const courses: Course[] | QueryResultRow[] = await getCourses();
 

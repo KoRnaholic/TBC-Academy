@@ -4,6 +4,14 @@ import InstructorsGrid from "../../../../components/instructors/InstructorsGrid"
 
 export const revalidate = 0;
 
+export const metadata = {
+  title: "DreamLMS - Instructors",
+  description:
+    "Meet our experienced instructors at DreamLMS and learn about their expertise and backgrounds.",
+  keywords:
+    "instructors, teachers, DreamLMS, online learning, education, expertise",
+};
+
 export default function InstructorsPage() {
   return (
     <>

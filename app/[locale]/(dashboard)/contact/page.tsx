@@ -4,6 +4,14 @@ import ContactInfo from "../../../../components/contact/ContactInfo";
 import ContactForm from "../../../../components/contact/ContactForm";
 import { useTranslations } from "next-intl";
 
+export const metadata = {
+  title: "DreamLMS - Contact Us",
+  description:
+    "Get in touch with the DreamLMS team for any inquiries, support, or feedback.",
+  keywords:
+    "contact us, DreamLMS, support, inquiries, feedback, customer service",
+};
+
 const Contact = () => {
   const t = useTranslations("Contactus");
 

@@ -6,6 +6,13 @@ import { getBlogPostCollection } from "../../../content/queries";
 
 export const revalidate = 0;
 
+export const metadata = {
+  title: "DreamLMS - Blog",
+  description:
+    "Stay updated with the latest news, tips, and insights on online learning and education from the DreamLMS blog.",
+  keywords: "blog, DreamLMS, online learning, education, news, tips, insights",
+};
+
 export default async function Blog() {
   // const blogs: BlogPost[] | null = await sqlGetBlogs();
   const data: BlogPostCollection | undefined = await getBlogPostCollection();

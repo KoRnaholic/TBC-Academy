@@ -1,6 +1,14 @@
 import Link from "next/link";
 import React, { ReactNode } from "react";
 
+export const metadata = {
+  title: "DreamLMS - Admin Panel",
+  description:
+    "Access the admin panel on DreamLMS to manage users, courses, and other settings.",
+  keywords:
+    "admin panel, administration, manage users, manage courses, DreamLMS",
+};
+
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <>

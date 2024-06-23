@@ -18,17 +18,17 @@ export default async function UserDashboard() {
 
   return (
     <div className="flex flex-col justify-start items-center">
-      <div className="w-[300px] mx-auto relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg my-5">
-        <div className="bg-[#FF6575]  h-32 flex items-center justify-center">
-          <div className="h-20 w-20  rounded-full overflow-hidden">
-            <Image
-              className="absolute top-16 right-[85px] border-4 border-white  rounded-full"
-              src={userInfo?.image || ""}
-              width={130}
-              height={200}
-              alt="Profile"
-            />
-          </div>
+      <div className="xl:w-[300px]  w-full mx-auto relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg my-5">
+        <div className="bg-[#FF6575]   h-32 flex items-center justify-center">
+          {/* <div className="h-20 w-20 mx-auto rounded-full overflow-hidden"> */}
+          <Image
+            className="absolute border-4 mx-auto h-32 mt-24 w-32 border-white  rounded-full"
+            src={userInfo?.image || ""}
+            width={130}
+            height={200}
+            alt="Profile"
+          />
+          {/* </div> */}
         </div>
         <div className="p-4 text-center flex flex-col  items-center justify-end mt-16">
           <h2 className="text-2xl font-medium text-gray-800 dark:text-white">
@@ -46,7 +46,7 @@ export default async function UserDashboard() {
         </div>
       </div>
 
-      <div className="mt-4 w-[300px]">
+      <div className="mt-4 w-full xl:w-[300px]">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-600 px-6 py-4 font-sans">
           <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-white">
             Dashboard

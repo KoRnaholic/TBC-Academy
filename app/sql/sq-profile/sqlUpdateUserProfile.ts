@@ -10,6 +10,7 @@ export async function sqlUpdateUserProfile({
   role,
   userId,
 }: UserInfo) {
+  // console.log(image);
   if (role === "Student") {
     await sql`
         UPDATE students

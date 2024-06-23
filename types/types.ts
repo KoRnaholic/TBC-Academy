@@ -129,7 +129,7 @@ export interface UserInfo {
   name: string;
   surname: string;
   email: string;
-  image: string;
+  image?: string;
   role: string;
   userId: string;
 }

@@ -3,15 +3,22 @@ import { updateUserInfo } from "../../../../actions";
 import { sqlGetUser } from "../../../../sql/sqlGetUser";
 import { getSession } from "@auth0/nextjs-auth0";
 
+export const metadata = {
+  title: "DreamLMS - Edit Profile",
+  description:
+    "Update your profile information on DreamLMS to keep your account details current.",
+  keywords:
+    "edit profile, update profile, DreamLMS, account information, user settings",
+};
+
 export default async function EditProfilePage() {
   const data = await getSession();
   const { sub } = data?.user || { sub: null };
   const user = await sqlGetUser(sub);
   const userInfo = user?.userInfo;
   const role = data?.user["metadata/role"];
-  const updateUser = updateUserInfo.bind(null, role, sub);
+  const updateUser = updateUserInfo.bind(null, role, sub, userInfo?.image);
 
-  //   console.log(role);
   return (
     <form
       action={updateUser}

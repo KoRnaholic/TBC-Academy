@@ -6,6 +6,14 @@ import AddCourseButton from "../../../../../components/UI/buttons/AddCourseButto
 import Link from "next/link";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
+export const metadata = {
+  title: "DreamLMS - Add Course",
+  description:
+    "Instructors can add new courses to DreamLMS and share their expertise with students.",
+  keywords:
+    "add course, instructors, DreamLMS, online learning, course creation, education",
+};
+
 const initialState = {
   name: "",
   lessons: "",

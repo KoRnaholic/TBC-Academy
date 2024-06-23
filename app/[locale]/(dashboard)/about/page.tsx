@@ -5,6 +5,14 @@ import AboutCourses from "../../../../components/about-us/AboutCourses";
 import AboutMentor from "../../../../components/about-us/AboutMentor";
 import { useTranslations } from "next-intl";
 
+export const metadata = {
+  title: "DreamLMS - About Us",
+  description:
+    "Learn more about DreamLMS, our mission, vision, and the team dedicated to providing a comprehensive learning management system.",
+  keywords:
+    "about us, DreamLMS, mission, vision, team, learning management system",
+};
+
 export default function About() {
   const t = useTranslations("Aboutus.banner");
   return (

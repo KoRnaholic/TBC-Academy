@@ -7,6 +7,14 @@ import SvgBook from "../../../../../components/svg-components/SvgBook";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RemovePurchaseModal from "../../../../../components/UI/modals/RemovePurchaseModal";
 
+export const metadata = {
+  title: "DreamLMS - My Courses",
+  description:
+    "Access and manage your enrolled courses on DreamLMS to continue your learning journey.",
+  keywords:
+    "my courses, enrolled courses, learning journey, DreamLMS, online learning, education",
+};
+
 export const revalidate = 0;
 
 export default async function MyCoursesPage() {

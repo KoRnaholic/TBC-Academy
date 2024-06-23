@@ -121,7 +121,6 @@ const initialState = {
 };
 export async function uploadCourse(prevState: any, formData: FormData) {
   "use server";
-  console.log(prevState);
 
   //validation
   const result = schema.safeParse({
@@ -170,23 +169,38 @@ export async function uploadCourse(prevState: any, formData: FormData) {
 export async function updateUserInfo(
   role: string,
   sub: string,
+  blobImage: string,
   formData: FormData
 ) {
   const imageFile = formData.get("image") as File;
   const blob = await put(imageFile.name, imageFile, {
     access: "public",
   });
-  console.log(role, sub);
-  const userInfo: UserInfo = {
-    name: formData.get("name") as string,
-    surname: formData.get("surname") as string,
-    email: formData.get("email") as string,
-    image: blob.url,
-    role: role,
-    userId: sub,
-  };
 
-  await sqlUpdateUserProfile(userInfo);
+  if (blob.pathname === "undefined") {
+    const userInfo: UserInfo = {
+      name: formData.get("name") as string,
+      surname: formData.get("surname") as string,
+      email: formData.get("email") as string,
+      image: blobImage,
+      role: role,
+      userId: sub,
+    };
+
+    await sqlUpdateUserProfile(userInfo);
+  } else {
+    const userInfo: UserInfo = {
+      name: formData.get("name") as string,
+      surname: formData.get("surname") as string,
+      email: formData.get("email") as string,
+      image: blob.url,
+      role: role,
+      userId: sub,
+    };
+
+    await sqlUpdateUserProfile(userInfo);
+  }
+
   revalidatePath("/");
 }
 
