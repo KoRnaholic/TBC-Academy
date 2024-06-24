@@ -7,7 +7,13 @@ import packages from "../../../public/icons/profile/package.svg";
 import logout from "../../../public/icons/profile/logout.svg";
 import { UserObject } from "../../../app/sql/sqlGetUser";
 
-export default function UserDropDown({ user }: { user: UserObject }) {
+export default function UserDropDown({
+  user,
+  navigation,
+}: {
+  user: UserObject;
+  navigation: any;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -67,18 +73,18 @@ export default function UserDropDown({ user }: { user: UserObject }) {
           className="flex w-full items-center justify-start gap-2 px-2 py-2 hover:text-red-500"
         >
           <Image src={profile} alt="profile" />
-          Profile
+          {navigation.profile}
         </Link>
         <Link
           href="/packages"
           className="flex w-full items-center justify-start gap-1.5 px-2 py-2 hover:text-red-500"
         >
           <Image src={packages} alt="settings" />
-          Packages
+          {navigation.package}
         </Link>
         <button className="flex w-full items-center justify-start gap-2 px-[9px] py-2 hover:text-red-500">
           <Image src={logout} alt="logout" />
-          <a href="/api/auth/logout">Logout</a>
+          <a href="/api/auth/logout">{navigation.logout}</a>
         </button>
       </div>
     </div>

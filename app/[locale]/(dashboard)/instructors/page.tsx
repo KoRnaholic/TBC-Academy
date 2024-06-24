@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import InstructorsGrid from "../../../../components/instructors/InstructorsGrid";
+import { useTranslations } from "next-intl";
 
 export const revalidate = 0;
 
@@ -13,6 +14,7 @@ export const metadata = {
 };
 
 export default function InstructorsPage() {
+  const t = useTranslations("Instructors");
   return (
     <>
       <div>
@@ -24,13 +26,13 @@ export default function InstructorsPage() {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Instructors</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Instructors</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>

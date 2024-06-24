@@ -42,7 +42,7 @@ export default async function CoursesPage() {
       </div>
 
       <CoursesFilter />
-      <div className="mt-14 flex flex-col md:flex-row  items-center md:items-start md:justify-center">
+      <div className="mt-14 flex flex-col md:flex-row  items-center md:items-start md:justify-center mb-20">
         <CoursesGrid courses={courses} />
       </div>
     </>

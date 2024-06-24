@@ -10,7 +10,7 @@ export default function RecentBlogs({
   return (
     <>
       <div className="p-6 border dark:border-gray-600 rounded-lg dark:bg-gray-800">
-        <h2 className="text-white">Recent Posts</h2>
+        <h2 className="">Recent Posts</h2>
         {blogs?.map((blog: BlogPost) => {
           const { title, blogImage, slug, date } = blog;
           const isoDate = new Date(date);

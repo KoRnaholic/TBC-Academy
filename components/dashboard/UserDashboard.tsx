@@ -2,15 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSession } from "@auth0/nextjs-auth0";
 import { sqlGetUser } from "../../app/sql/sqlGetUser";
-const menuItems = [
-  { title: "Dashboard", link: "dashboard" },
-  { title: "My Profile", link: "my-profile" },
-  { title: "My Courses", link: "my-courses" },
-  { title: "Edit Profile", link: "edit-profile" },
-  ,
-];
+import { DashboardObj } from "../../app/[locale]/(dashboard)/dashboard/layout";
 
-export default async function UserDashboard() {
+export default async function UserDashboard({
+  dashboardObj,
+}: {
+  dashboardObj: DashboardObj;
+}) {
   const data = await getSession();
   const { sub } = data?.user || { sub: null };
   const user = await sqlGetUser(sub);
@@ -49,10 +47,16 @@ export default async function UserDashboard() {
       <div className="mt-4 w-full xl:w-[300px]">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-600 px-6 py-4 font-sans">
           <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-white">
-            Dashboard
+            {dashboardObj.dashboard}
           </h2>
           <ul className="flex flex-col gap-5">
-            {menuItems.map((item) => (
+            {[
+              { title: dashboardObj.dashboard, link: "dashboard" },
+              { title: dashboardObj.myprofile, link: "my-profile" },
+              { title: dashboardObj.courses, link: "my-courses" },
+              { title: dashboardObj.edit, link: "edit-profile" },
+              ,
+            ].map((item) => (
               <li
                 key={item?.title}
                 className="flex gap-2 text-[#002058] dark:text-white items-center hover:text-[#FF6575] transition-all duration-300 cursor-pointer"

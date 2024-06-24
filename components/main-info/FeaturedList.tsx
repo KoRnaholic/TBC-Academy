@@ -50,6 +50,13 @@ export default async function FeaturedList({
         <div className="py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
+              <Image
+                className="w-9 h-9 rounded-full border-2 border-slate-300"
+                src={course.instructor_image}
+                alt="avatar"
+                width={50}
+                height={50}
+              />
               <div className="flex flex-col">
                 <p className="text-[#002058] dark:text-[#FF6575] group-hover:text-white">
                   {course.instructor_name + " " + course.instructor_surname}

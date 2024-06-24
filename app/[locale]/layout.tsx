@@ -35,6 +35,9 @@ export default async function LocaleLayout({
     students: t("navigation.students"),
     blog: t("navigation.blog"),
     contact: t("navigation.contact"),
+    profile: t("navigation.profile"),
+    package: t("navigation.package"),
+    logout: t("navigation.logout"),
   };
 
   const courses = await sqlGetCartItems();

@@ -95,6 +95,7 @@ export async function sqlClearCart(userId: string) {
 export async function sqlGetCourses() {
   const { rows } = await sql`SELECT 
   courses.*,
+  instructors.image AS instructor_image,
   instructors.name AS instructor_name,
   instructors.surname AS instructor_surname,
   instructors.email AS instructor_email,

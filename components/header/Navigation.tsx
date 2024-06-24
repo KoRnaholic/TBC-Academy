@@ -225,7 +225,7 @@ export default function Navigation({
       </div>
       {user ? (
         <div className="items-center gap-3 hidden xl:flex">
-          <UserDropDown user={user} />
+          <UserDropDown navigation={navigation} user={user} />
         </div>
       ) : (
         <div className="flex gap-3">

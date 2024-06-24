@@ -57,6 +57,7 @@ export interface Course {
   instructor_name: string;
   instructor_surname: string;
   instructor_email: string;
+  instructor_image: string;
   student_id: string;
   course_id: number;
 }

@@ -3,13 +3,16 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import CommentIcon from "@mui/icons-material/Comment";
 import Link from "next/link";
 import { BlogPost } from "../../types/types";
+import { TranslateObj } from "../../app/[locale]/(dashboard)/blog/page";
 
 export default function SingleBlog({
   blog,
   expand,
+  translateObj,
 }: {
   blog: BlogPost;
   expand: boolean;
+  translateObj?: TranslateObj;
 }) {
   // const commentInfo = await sqlGetBlogComments(blog.id);
   const { title, overview, tag, blogImage, slug, date } = blog;
@@ -84,7 +87,7 @@ export default function SingleBlog({
                   href={`/blog/${slug}`}
                   className="px-6 py-2.5 bg-[#FF6575] text-white font-medium rounded-md hover:bg-red-600 transition-all duration-300"
                 >
-                  Read More
+                  {translateObj?.read}
                 </Link>
               )}
             </div>

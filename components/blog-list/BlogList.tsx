@@ -4,8 +4,15 @@ import { BlogPost } from "../../types/types";
 import BlogSearch from "./BlogSearch";
 import RecentBlogs from "./RecentBlogs";
 import { useRef, useState } from "react";
+import { TranslateObj } from "../../app/[locale]/(dashboard)/blog/page";
 
-export default function BlogList({ blogs }: { blogs: BlogPost[] | undefined }) {
+export default function BlogList({
+  blogs,
+  translateObj,
+}: {
+  blogs: BlogPost[] | undefined;
+  translateObj: TranslateObj;
+}) {
   const [search, setSearch] = useState("");
   const [searchedBlogs, setSearchedBlogs] = useState(blogs);
   // const [filterBy, setFilterBy] = useState("");
@@ -31,13 +38,21 @@ export default function BlogList({ blogs }: { blogs: BlogPost[] | undefined }) {
         {searchedBlogs?.map((blog: BlogPost) => {
           return (
             <div key={blog.slug}>
-              <SingleBlog expand={false} blog={blog} />
+              <SingleBlog
+                translateObj={translateObj}
+                expand={false}
+                blog={blog}
+              />
             </div>
           );
         })}
       </div>
       <div className="flex flex-col w-full px-5 lg:w-1/5 gap-8">
-        <BlogSearch handleSearch={handleSearch} search={search} />
+        <BlogSearch
+          translateObj={translateObj}
+          handleSearch={handleSearch}
+          search={search}
+        />
         <RecentBlogs blogs={blogs} />
       </div>
     </>

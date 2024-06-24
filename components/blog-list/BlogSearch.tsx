@@ -1,12 +1,15 @@
 "use client";
 import SearchIcon from "@mui/icons-material/Search";
+import { TranslateObj } from "../../app/[locale]/(dashboard)/blog/page";
 
 export default function BlogSearch({
   handleSearch,
   search,
+  translateObj,
 }: {
   handleSearch: (value: string) => void;
   search: string;
+  translateObj: TranslateObj;
 }) {
   return (
     <div className="w-full">
@@ -15,7 +18,7 @@ export default function BlogSearch({
           <input
             value={search}
             type="text"
-            placeholder="Search..."
+            placeholder={`${translateObj.search}`}
             className="w-full px-4 py-3 text-gray-700 dark:text-gray-300 focus:outline-none bg-gray-100 dark:bg-gray-600"
             onChange={(e) => handleSearch(e.target.value)}
           />

@@ -30,6 +30,7 @@ export default async function Header({ navigation, courses }: HeaderProps) {
       courses={courses}
     >
       {/* <nav className="flex justify-between sm:gap-10 xl:gap-32 "></nav> */}
+      <div className="hidden"></div>
     </Navigation>
   );
 }

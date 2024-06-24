@@ -1,28 +1,9 @@
 import Link from "next/link";
 import SingleBlog from "../../../../../components/blog-list/SingleBlog";
-// import BlogComments from "../../../../../components/blog-list/BlogComments";
 import { getBlogPostCollection } from "../../../../content/queries";
 import RecentBlogs from "../../../../../components/blog-list/RecentBlogs";
 import { BlogPost } from "../../../../../types/types";
-
-// interface Params {
-//   id: string;
-// }
-// export async function generateStaticParams() {
-//   const response = await fetch(URL);
-//   const blogs: BlogObject = await response.json();
-
-//   const paths = blogs.recipes.map((blog) => ({
-//     locale: "en",
-//     id: blog.id.toString(),
-//   }));
-//   const paths2 = blogs.recipes.map((blog) => ({
-//     locale: "ka",
-//     id: blog.id.toString(),
-//   }));
-
-//   return paths.concat(paths2);
-// }
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0;
 
@@ -35,11 +16,11 @@ export default async function SingleBlogPage({
   // const blogs = await sqlGetBlogs();
   const data = await getBlogPostCollection();
   const blogs = data?.blogPostCollection.items;
+  const t = await getTranslations("Blog");
 
   const blog: BlogPost[] | undefined = blogs?.filter(
     (blog: BlogPost) => encodeURIComponent(blog.slug) === id
   );
-  // console.log(id, blogs[0].slug);
 
   return (
     <>
@@ -52,19 +33,19 @@ export default async function SingleBlogPage({
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Blog</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Blog</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex justify-center flex-col xl:flex-row gap-6 mt-14">
+      <div className="flex justify-center flex-col xl:flex-row gap-6 mt-14 mb-20">
         {blog && (
           <div>
             <SingleBlog expand={true} blog={blog[0]} />

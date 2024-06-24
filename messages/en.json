@@ -19,7 +19,10 @@
       "instructors": "Instructors",
       "students": "Students",
       "blog": "Blog",
-      "contact": "Contact Us"
+      "contact": "Contact Us",
+      "profile": "Profile",
+      "package": "Packages",
+      "logout": "Logout"
     },
     "mainbanner": {
       "leader": "The Leader in Online Learning",
@@ -88,5 +91,33 @@
       "text": "Text",
       "send": "Send a Message"
     }
+  },
+  "Footer": {
+    "touch": "Get In Touch",
+    "navigation": "Navigation",
+    "updates": "Get More Updates",
+    "email": "Enter your email address",
+    "submit": "Submit"
+  },
+  "Instructors": {
+    "link": "Instructors",
+    "home": "Home",
+    "showing": "Showing",
+    "result": "results",
+    "instructor": "Instructor",
+    "course": "Course"
+  },
+  "Blog": {
+    "link": "Blog List",
+    "home": "Home",
+    "search": "Search...",
+    "read": "Read More"
+  },
+  "Dashboard": {
+    "link": "Dashboard",
+    "home": "Home",
+    "myprofile": "My Profile",
+    "courses": "My Courses",
+    "edit": "Edit Profile"
   }
 }

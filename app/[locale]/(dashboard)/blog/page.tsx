@@ -3,8 +3,14 @@ import Link from "next/link";
 import BlogList from "../../../../components/blog-list/BlogList";
 import { BlogPostCollection } from "../../../../types/types";
 import { getBlogPostCollection } from "../../../content/queries";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0;
+
+export interface TranslateObj {
+  read: string;
+  search: string;
+}
 
 export const metadata = {
   title: "DreamLMS - Blog",
@@ -18,6 +24,13 @@ export default async function Blog() {
   const data: BlogPostCollection | undefined = await getBlogPostCollection();
   const blogs = data?.blogPostCollection.items;
 
+  const t = await getTranslations("Blog");
+
+  const translateObj = {
+    read: t("read"),
+    search: t("search"),
+  };
+
   return (
     <>
       <div>
@@ -29,20 +42,20 @@ export default async function Blog() {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Blog List</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Blog List</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-20 flex justify-center flex-col xl:flex-row gap-6">
-        <BlogList blogs={blogs} />
+      <div className="mt-20 flex justify-center flex-col xl:flex-row gap-6 mb-20">
+        <BlogList translateObj={translateObj} blogs={blogs} />
       </div>
     </>
   );

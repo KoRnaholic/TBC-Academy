@@ -39,8 +39,6 @@ export default withMiddlewareAuthRequired(async function middleware(
     return NextResponse.redirect(new URL("/", request.nextUrl));
   }
 
-  console.log(role);
-
   // const isProtectedRoute =
   //   protectedRoutes.includes(path) ||
   //   path.includes("/blog") ||

@@ -5,9 +5,11 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import TextsmsIcon from "@mui/icons-material/Textsms";
 
 import { getInstructors } from "../../app/actions";
+import { getTranslations } from "next-intl/server";
 
 export default async function InstructorsGrid() {
   const instructors = await getInstructors();
+  const t = await getTranslations("Instructors");
 
   return (
     <div className="md:p-16 flex w-full flex-col items-center">
@@ -19,7 +21,7 @@ export default async function InstructorsGrid() {
           <FormatListBulletedIcon />
         </button>
         <p className="text-lg font-sans font-semibold text-gray-900 dark:text-gray-300">
-          Showing {instructors.length} results
+          {t("showing")} {instructors.length} {t("result")}
         </p>
       </div>
 
@@ -48,9 +50,11 @@ export default async function InstructorsGrid() {
               >
                 {instructor.name + " " + instructor.surname}
               </h3>
-              <p className="text-gray-700 dark:text-gray-400">Instructor</p>
+              <p className="text-gray-700 dark:text-gray-400">
+                {t("instructor")}
+              </p>
               <p className="flex items-center gap-2 text-gray-700 dark:text-gray-400">
-                <AutoStoriesIcon className="text-[#FF6575]" /> 0 Course
+                <AutoStoriesIcon className="text-[#FF6575]" /> 0 {t("course")}
               </p>
               <p className="flex items-center gap-2 text-gray-700 dark:text-gray-400 hover:text-[#FF6575] transition-all duration-300 cursor-pointer">
                 <TextsmsIcon className="text-[#FF6575]" />{" "}

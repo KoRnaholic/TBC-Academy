@@ -6,10 +6,12 @@ export async function sqlGetAllPurchases() {
     const { rows } = await sql`
     SELECT 
     p.quantity,
+    p.id,
     p.purchase_date,
     c.image,
     c.price,
     c.name,
+    s.id as student_id,
     s.name as student_name,
     s.email as email
     FROM 
