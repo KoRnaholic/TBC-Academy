@@ -1,12 +1,7 @@
 // import { NextResponse } from "next/server";
-import { NextResponse, type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
-import {
-  withMiddlewareAuthRequired,
-  getSession,
-} from "@auth0/nextjs-auth0/edge";
-
 // const protectedRoutes = [
 //   "/",
 //   "/en",
@@ -17,28 +12,16 @@ import {
 //   "/blog",
 //   "/about",
 //   "/admin",
-//   "/api/login",
 // ];
 
 // const publicRoutes = ["/login"];
 
-export default withMiddlewareAuthRequired(async function middleware(
-  request: NextRequest
-) {
+export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
-  const path = request.nextUrl.pathname;
-  const res = NextResponse.next();
-  const data = await getSession(request, res);
+  // const cookie = request.cookies.get("auth")?.value;
+  // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
-  const role = data?.user["metadata/role"];
-
-  if (
-    path.includes("/admin") &&
-    (role === "Student" || role === "Instructor" || role === undefined)
-  ) {
-    return NextResponse.redirect(new URL("/", request.nextUrl));
-  }
-
+  // const path = request.nextUrl.pathname;
   // const isProtectedRoute =
   //   protectedRoutes.includes(path) ||
   //   path.includes("/blog") ||
@@ -51,6 +34,9 @@ export default withMiddlewareAuthRequired(async function middleware(
   // }
   // if (isPublicRoute && cookie) {
   //   return NextResponse.redirect(new URL("/", request.nextUrl));
+  // }
+  // if (path === "/" && cookie) {
+  //   return NextResponse.redirect(new URL(`/${localeValue}`, request.nextUrl));
   // }
 
   //Middleware for internationalization
@@ -65,8 +51,10 @@ export default withMiddlewareAuthRequired(async function middleware(
 
   const response = handleI18nRouting(request);
 
+  // response.headers.set("ka", defaultLocale);
+
   return response;
-});
+}
 
 export const config = {
   matcher: [
