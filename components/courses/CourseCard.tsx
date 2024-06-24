@@ -14,6 +14,7 @@ import AddButton from "./AddButton";
 import { sqlExistsInPurchase } from "../../app/sql/sql-purchases/sqlExistsInPurchase";
 import successSVG from "../../public/icons/success.svg";
 import ShareButton from "../UI/buttons/ShareButton";
+import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -39,6 +40,7 @@ export default async function CourseCard({
 }) {
   const data = await sqlExistsInCart(course.id);
   const ifExists = data?.exists.exists;
+  const subscription = await sqlSubExists();
 
   ifExists;
   const addToCart = sqlAddToCart.bind(null, course.id);
@@ -92,7 +94,9 @@ export default async function CourseCard({
 
             {data?.role === "Student" && (
               <div className="w-full flex flex-col gap-3">
-                {existsInPurchase.exists || course.price === "free" ? (
+                {existsInPurchase.exists ||
+                course.price === "free" ||
+                subscription?.exists ? (
                   <Link
                     href={`/courses/${course.id}/lessons`}
                     className="py-2.5 text-center text-white bg-green-600 hover:bg-green-700 px-3.5   w-full rounded-full

@@ -89,13 +89,15 @@ export default function Navigation({
         <Image src={menu} width={40} height={40} alt="Logo" />
       </div>
       <div className="">
-        <Image
-          src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
-          className="w-40 dark:invert"
-          width={40}
-          height={40}
-          alt="Logo"
-        />
+        <Link href="/">
+          <Image
+            src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
+            className="w-40 dark:invert"
+            width={40}
+            height={40}
+            alt="Logo"
+          />
+        </Link>
       </div>
 
       <div className="justify-center lg:flex items-center">

@@ -7,6 +7,7 @@ import { QueryResultRow } from "@vercel/postgres";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarsComponent from "../UI/StarsComponent";
 import { sqlgetReviewRatings } from "../../app/sql/sql-review/sqlGetReviewRatings";
+import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
 
 export default async function FeaturedList({
   course,
@@ -14,6 +15,7 @@ export default async function FeaturedList({
   course: Course | QueryResultRow;
 }) {
   const rating = await sqlgetReviewRatings(course.id);
+  const data = await sqlSubExists();
 
   return (
     <div className="w-[395px] bg-white dark:bg-[#2D2D2D] rounded-lg shadow-md overflow-hidden p-5 group dark:hover:bg-[#4B3869] hover:bg-[#4B3869] transition-all duration-700">
@@ -30,13 +32,20 @@ export default async function FeaturedList({
               />
             </Link>
           </div>
-          <span className="absolute bottom-2 text-2xl right-2 bg-white dark:bg-[#4B3869] text-[#159f46] font-bold px-2.5 py-0.5 rounded-lg">
-            {course.price === "free" ? (
-              "FREE"
-            ) : (
-              <span className="text-[#FF6575]">${course.price}</span>
-            )}
-          </span>
+
+          {data?.exists ? (
+            <span className="absolute bottom-2 text-2xl right-2 bg-white dark:bg-[#4B3869] text-[#159f46] font-bold px-2.5 py-0.5 rounded-lg">
+              FREE
+            </span>
+          ) : (
+            <span className="absolute bottom-2 text-2xl right-2 bg-white dark:bg-[#4B3869] text-[#159f46] font-bold px-2.5 py-0.5 rounded-lg">
+              {course.price === "free" ? (
+                "FREE"
+              ) : (
+                <span className="text-[#FF6575]">${course.price}</span>
+              )}
+            </span>
+          )}
         </div>
         <div className="py-4">
           <div className="flex items-center justify-between">

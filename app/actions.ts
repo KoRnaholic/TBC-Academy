@@ -119,7 +119,7 @@ const initialState = {
   },
   success: false,
 };
-export async function uploadCourse(prevState: any, formData: FormData) {
+export async function uploadCourse(_: any, formData: FormData) {
   "use server";
 
   //validation

@@ -6,13 +6,13 @@ import AddCourseButton from "../../../../../components/UI/buttons/AddCourseButto
 import Link from "next/link";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-export const metadata = {
-  title: "DreamLMS - Add Course",
-  description:
-    "Instructors can add new courses to DreamLMS and share their expertise with students.",
-  keywords:
-    "add course, instructors, DreamLMS, online learning, course creation, education",
-};
+// export const metadata = {
+//   title: "DreamLMS - Add Course",
+//   description:
+//     "Instructors can add new courses to DreamLMS and share their expertise with students.",
+//   keywords:
+//     "add course, instructors, DreamLMS, online learning, course creation, education",
+// };
 
 const initialState = {
   name: "",
@@ -41,7 +41,6 @@ const initialState = {
 export default function AddCoursePage() {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction] = useFormState(uploadCourse, initialState);
-  console.log(state.errors);
   const errors = state.errors;
   if (state.success === true) {
     formRef.current?.reset();

@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -7,19 +5,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2024-04-10",
 });
 
-const YOUR_DOMAIN = "http://localhost:3000";
+const YOUR_DOMAIN = process.env.BASE_URL;
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST() {
   try {
-    const prices = await stripe.prices.list({
-      lookup_keys: [req.body.lookup_key],
-      expand: ["data.product"],
-    });
     const session = await stripe.checkout.sessions.create({
       billing_address_collection: "auto",
       line_items: [
         {
-          price: prices.data[0].id,
+          price: "price_1PUxY909Mjca8p4zWdSIOH15",
           quantity: 1,
         },
       ],
@@ -28,13 +22,18 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       cancel_url: `${YOUR_DOMAIN}?canceled=true`,
     });
 
-    console.log(session);
+    if (!session.url) {
+      throw new Error("Failed to create Stripe session.");
+    }
 
     return new NextResponse(null, {
       status: 303,
       headers: { Location: session.url },
     });
   } catch (error) {
-    return NextResponse.json({ error: error?.message }, { status: 500 });
+    return NextResponse.json(
+      { error: (error as Error).message },
+      { status: 500 }
+    );
   }
 }

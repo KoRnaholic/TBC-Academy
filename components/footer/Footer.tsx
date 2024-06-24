@@ -1,6 +1,18 @@
 import Link from "next/link";
 
-export default function Footer({ navigation }) {
+interface Navigation {
+  navigation: {
+    home: string;
+    courses: string;
+    about: string;
+    instructors: string;
+    students: string;
+    blog: string;
+    contact: string;
+  };
+}
+
+export default function Footer({ navigation }: Navigation) {
   return (
     <footer className="mt-6 bg-white text-inherit py-8">
       <div className="flex justify-around gap-10">
