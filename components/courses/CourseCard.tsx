@@ -115,7 +115,7 @@ export default async function CourseCard({
                 ) : (
                   <AddButton />
                 )}
-                <ShareButton />
+                <ShareButton courseId={course.id} />
               </div>
             )}
           </form>

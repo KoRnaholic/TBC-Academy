@@ -3,7 +3,7 @@ import { useState } from "react";
 import SvgShare from "../../svg-components/SvgShare";
 import ShareModal from "../modals/ShareModal";
 
-export default function ShareButton() {
+export default function ShareButton({ courseId }: { courseId: number }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
@@ -16,7 +16,7 @@ export default function ShareButton() {
         <SvgShare className="group-hover:fill-white" /> Share
       </button>
 
-      {isOpen && <ShareModal setIsOpen={setIsOpen} />}
+      {isOpen && <ShareModal setIsOpen={setIsOpen} courseId={courseId} />}
     </>
   );
 }
