@@ -6,8 +6,10 @@ import ShareWhatsapp from "../../social-share/ShareWhatsapp";
 
 export default function ShareModal({
   setIsOpen,
+  courseId,
 }: {
   setIsOpen: (arg: boolean) => void;
+  courseId: number;
 }) {
   return (
     <>
@@ -23,11 +25,21 @@ export default function ShareModal({
             Share to Socials
           </h1>
           <div className="text-center p-4 flex gap-6 justify-center">
-            <ShareFacebook shareUrl="" />
-            <ShareTwitter shareUrl="" />
-            <ShareLinkedin shareUrl="" />
-            <ShareTelegram shareUrl="" />
-            <ShareWhatsapp shareUrl="" />
+            <ShareFacebook
+              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
+            />
+            <ShareTwitter
+              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
+            />
+            <ShareLinkedin
+              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
+            />
+            <ShareTelegram
+              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
+            />
+            <ShareWhatsapp
+              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
+            />
           </div>
           <button
             onClick={() => setIsOpen(false)}
