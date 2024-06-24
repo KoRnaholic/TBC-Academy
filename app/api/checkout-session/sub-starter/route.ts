@@ -18,8 +18,8 @@ export async function POST() {
         },
       ],
       mode: "subscription",
-      success_url: `${YOUR_DOMAIN}/test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+      success_url: `https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app//test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/?canceled=true`,
     });
 
     if (!session.url) {
