@@ -10,7 +10,6 @@ import Link from "next/link";
 interface FormnObj {
   header: string;
   name: string;
-  about: string;
   lastname: string;
   email: string;
   phone: string;

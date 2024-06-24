@@ -33,6 +33,25 @@ export default function CartDropDown({
     };
   }, []);
 
+  if (courses?.length === 0) {
+    return (
+      <div ref={dropdownRef}>
+        <div
+          className={` absolute top-12 right-24 font-sans flex flex-col gap-3  shadow-xl p-5 border 
+         bg-white rounded-lg w-[230px] z-10 transition-all duration-500 ease-in-out transform ${
+           isCartOpen
+             ? "opacity-100 translate-y-0"
+             : "opacity-0 pointer-events-none  translate-y-4"
+         }`}
+        >
+          <div className="mx-auto text-lg font-semibold text-red-400">
+            Cart is empty!
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div ref={dropdownRef}>
       <div
@@ -62,11 +81,6 @@ export default function CartDropDown({
                   <span className="text-red-400">${course.price}</span>
                 </div>
               </div>
-              {/* <div className="flex items-center">
-                <button className="bg-red-400 py-1 px-3 rounded-md text-white">
-                  remove
-                </button>
-              </div> */}
             </div>
           );
         })}

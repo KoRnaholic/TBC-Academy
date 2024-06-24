@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import profile from "../../../public/icons/profile/profile.svg";
-import settings from "../../../public/icons/profile/settings.svg";
+import packages from "../../../public/icons/profile/package.svg";
 import logout from "../../../public/icons/profile/logout.svg";
 import { UserObject } from "../../../app/sql/sqlGetUser";
 
@@ -56,10 +56,7 @@ export default function UserDropDown({ user }: { user: UserObject }) {
              : "opacity-0 pointer-events-none  translate-y-4"
          }`}
       >
-        <button
-          // onClick={handleEdit}
-          className="flex flex-col w-full items-start border-b-2 justify-start text-lg  px-2 pb-2 font-bold text-[#002058]"
-        >
+        <button className="flex flex-col w-full items-start border-b-2 justify-start text-lg  px-2 pb-2 font-bold text-[#002058]">
           {user?.userInfo.name.split(" ")[0]}
           <span className="text-sm text-black font-normal">
             {user?.role === "instructor" ? "Tutor Instructor" : "Student"}
@@ -73,13 +70,13 @@ export default function UserDropDown({ user }: { user: UserObject }) {
           Profile
         </Link>
         <Link
-          href="/profile"
+          href="/packages"
           className="flex w-full items-center justify-start gap-1.5 px-2 py-2 hover:text-red-500"
         >
-          <Image src={settings} alt="settings" />
-          Settings
+          <Image src={packages} alt="settings" />
+          Packages
         </Link>
-        <button className="flex w-full items-center justify-start gap-2 px-2 py-2 hover:text-red-500">
+        <button className="flex w-full items-center justify-start gap-2 px-[9px] py-2 hover:text-red-500">
           <Image src={logout} alt="logout" />
           <a href="/api/auth/logout">Logout</a>
         </button>

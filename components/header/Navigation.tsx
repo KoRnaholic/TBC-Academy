@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import UserDropDown from "../UI/user-menu/UserDropDown";
 import LangSwitcher from "../UI/Lang-switcher";
 import Theme from "../UI/Theme";
@@ -52,6 +52,21 @@ export default function Navigation({
   const [isCartOpen, setCartIsOpen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
 
+  const navRef = useRef<HTMLUListElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setNavIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navRef, setNavIsOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -82,13 +97,13 @@ export default function Navigation({
         scrolling
           ? "bg-white dark:bg-[#1E1E2E] dark:text-[#F8F8F2]"
           : "bg-transparent dark:bg-transparent"
-      }  px-5 py-3 lg:flex lg:px-20 xl:px-20 gap-20 flex transition-all duration-300 content-center justify-between lg:justify-center fixed w-full z-20`}
+      } px-5 py-3 lg:flex gap-20 flex transition-all duration-300 content-center justify-between lg:justify-center fixed w-full z-20`}
     >
       {children}
       <div onClick={handleClick} className="flex lg:hidden cursor-pointer">
         <Image src={menu} width={40} height={40} alt="Logo" />
       </div>
-      <div className="">
+      <div>
         <Link href="/">
           <Image
             src="https://dreamslms-wp.dreamstechnologies.com/wp-content/themes/dreamslms/assets/images/logo.svg"
@@ -102,11 +117,12 @@ export default function Navigation({
 
       <div className="justify-center lg:flex items-center">
         <ul
+          ref={navRef}
           className={`${
             navIsOpen
               ? "-translate-x-0 "
               : "lg:-translate-x-0 -translate-x-full "
-          } flex gap-7 text-white lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-full h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center transition-transform duration-300`}
+          } flex gap-7 text-white lg:justify-center lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-[720px] h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center transition-transform duration-300`}
         >
           <li className="text-end lg:hidden bg-white dark:bg-[#282A36] w-full px-5 py-3 flex text-black dark:text-[#F8F8F2] justify-between text-xl">
             <Image
@@ -124,31 +140,63 @@ export default function Navigation({
             </span>
           </li>
 
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/">{navigation.home}</Link>
+          <li className="lg:hover:text-[#FF6575]  px-5 lg:px-0">
+            <Link className="hover:border-b-4 pb-1  lg:hover:border-0" href="/">
+              {navigation.home}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/courses">{navigation.courses}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/courses"
+            >
+              {navigation.courses}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/about">{navigation.about}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/about"
+            >
+              {navigation.about}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/instructors">{navigation.instructors}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/instructors"
+            >
+              {navigation.instructors}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/about">{navigation.students}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/students"
+            >
+              {navigation.students}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/blog">{navigation.blog}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/blog"
+            >
+              {navigation.blog}
+            </Link>
           </li>
-          <li className="hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link href="/contact">{navigation.contact}</Link>
+          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
+            <Link
+              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              href="/contact"
+            >
+              {navigation.contact}
+            </Link>
           </li>
         </ul>
       </div>
 
-      <div className="hidden lg:flex gap-2 items-center relative">
+      <div className="hidden xl:flex gap-2 items-center relative">
         <button onClick={toggleCartModal} className="cursor-pointer">
           <Image src={cart} alt="cart" />
           {cartQuantity && (
@@ -176,7 +224,7 @@ export default function Navigation({
         </div>
       </div>
       {user ? (
-        <div className="items-center gap-3 hidden lg:flex">
+        <div className="items-center gap-3 hidden xl:flex">
           <UserDropDown user={user} />
         </div>
       ) : (

@@ -18,7 +18,6 @@ const Contact = () => {
   const formnObj = {
     header: t("form.header"),
     name: t("form.name"),
-    about: t("form.about"),
     lastname: t("form.lastname"),
     email: t("form.email"),
     phone: t("form.phone"),

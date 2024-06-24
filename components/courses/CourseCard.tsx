@@ -57,6 +57,7 @@ export default async function CourseCard({
               objectFit="cover"
               alt="course-1"
               className="cursor-pointer"
+              priority
             />
             <span className="absolute inset-0 flex items-center justify-center cursor-pointer">
               <div className="p-3 bg-black rounded-full hover:scale-110 transition-all duration-500 opacity-80 flex items-center justify-center">

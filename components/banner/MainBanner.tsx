@@ -13,7 +13,7 @@ export default function MainBanner() {
   return (
     <>
       <div
-        className="w-full h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
+        className="w-full h-[800px] sm:h-[900px] md:h-[800px] relative bg-center bg-no-repeat bg-cover pt-20 md:pt-52 md:pb-36"
         style={{ backgroundImage: "url('/images/error/error-bg.png')" }}
       >
         <div className="flex mt-10 lg:mt-0 flex-col gap-5 md:flex-row justify-center xl:gap-40 items-start">

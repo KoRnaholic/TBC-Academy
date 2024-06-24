@@ -13,8 +13,6 @@ export default function SingleBlog({
 }) {
   // const commentInfo = await sqlGetBlogComments(blog.id);
   const { title, overview, tag, blogImage, slug, date } = blog;
-  const replacedOverview = overview.replace(/\n\s*\n/g, "<br>\n");
-  console.log(blog.overview);
 
   const isoDate = new Date(date);
 
@@ -41,9 +39,10 @@ export default function SingleBlog({
                   height={400}
                   quality={100}
                   alt="A woman working on a laptop"
-                  loading="lazy"
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP89eubDwAJGAM4pZ3ZXgAAAABJRU5ErkJggg=="
+                  priority
+                  // loading="lazy"
+                  // placeholder="blur"
+                  // blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP89eubDwAJGAM4pZ3ZXgAAAABJRU5ErkJggg=="
                 />
               </Link>
             </div>
@@ -67,7 +66,7 @@ export default function SingleBlog({
             </h2>
             <p className="mt-2 text-gray-500 dark:text-gray-400">
               {expand
-                ? replacedOverview
+                ? overview
                 : overview.split(" ").slice(0, 30).join(" ") + "..."}
             </p>
             <div className="mt-4">

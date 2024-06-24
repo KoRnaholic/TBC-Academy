@@ -1,7 +1,12 @@
 // import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
+import {
+  withMiddlewareAuthRequired,
+  getSession,
+} from "@auth0/nextjs-auth0/edge";
+
 // const protectedRoutes = [
 //   "/",
 //   "/en",
@@ -17,11 +22,25 @@ import createIntlMiddleware from "next-intl/middleware";
 
 // const publicRoutes = ["/login"];
 
-export default async function middleware(request: NextRequest) {
+export default withMiddlewareAuthRequired(async function middleware(
+  request: NextRequest
+) {
   //Middleware for rout protections
-  // const cookie = request.cookies.get("auth")?.value;
+  const path = request.nextUrl.pathname;
+  const res = NextResponse.next();
+  const data = await getSession(request, res);
 
-  // const path = request.nextUrl.pathname;
+  const role = data?.user["metadata/role"];
+
+  if (
+    path.includes("/admin") &&
+    (role === "Student" || role === "Instructor" || role === undefined)
+  ) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+
+  console.log(role);
+
   // const isProtectedRoute =
   //   protectedRoutes.includes(path) ||
   //   path.includes("/blog") ||
@@ -49,7 +68,7 @@ export default async function middleware(request: NextRequest) {
   const response = handleI18nRouting(request);
 
   return response;
-}
+});
 
 export const config = {
   matcher: [

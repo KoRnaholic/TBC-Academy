@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 export default function MainInfo() {
   const t = useTranslations("Index.maininfo");
   return (
-    <div className="-mt-14 font-sans">
+    <div className="md:-mt-14 mt-5 font-sans">
       <div className="flex flex-wrap justify-center gap-6">
         {[
           { src: pencil, value: "4K", label: t("courses") },

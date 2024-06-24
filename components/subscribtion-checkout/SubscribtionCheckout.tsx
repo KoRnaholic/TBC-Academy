@@ -2,8 +2,9 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import success from "../../public/icons/success.svg";
+import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
 
-const ProductDisplay = () => (
+const ProductDisplay = ({ exists }: { exists: boolean | undefined }) => (
   <>
     <div className="mt-40 flex flex-col md:flex-row justify-center gap-5 px-10 ">
       <div className="group gap-8 hover:bg-[#FF6575] transition-all  duration-500 bg-white flex flex-col justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
@@ -16,17 +17,24 @@ const ProductDisplay = () => (
         <div className="text-[#FF6575]  text-xl font-medium group-hover:text-white">
           / 1 month free
         </div>
-        <form action="/api/checkout-session/sub-starter" method="POST">
-          {/* Add a hidden field with the lookup_key of your Price */}
-          <input type="hidden" name="lookup_key" value="Starter-e5d15c0" />
-          <button
-            className="bg-[#FF6575] group-hover:bg-white group-hover:text-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] transition-colors duration-300"
-            id="checkout-and-portal-button"
-            type="submit"
-          >
-            Checkout
-          </button>
-        </form>
+
+        {exists ? (
+          <span className="text-green-400 group-hover:text-white">
+            You alrady Purchased Package
+          </span>
+        ) : (
+          <form action="/api/checkout-session/sub-starter" method="POST">
+            {/* Add a hidden field with the lookup_key of your Price */}
+            <input type="hidden" name="lookup_key" value="Starter-e5d15c0" />
+            <button
+              className="bg-[#FF6575] hover:-translate-y-2 transition-all  group-hover:bg-white group-hover:text-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468]  duration-300"
+              id="checkout-and-portal-button"
+              type="submit"
+            >
+              Buy Package
+            </button>
+          </form>
+        )}
       </div>
       <div className="bg-white flex group flex-col transition-all  duration-500 hover:bg-[#FF6575] justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
         <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
@@ -39,16 +47,22 @@ const ProductDisplay = () => (
           / 3 month free
         </div>
 
-        <form action="/api/checkout-session/sub-quarterly" method="POST">
-          <input type="hidden" name="lookup_key" value="Quarterly-79c3a43" />
-          <button
-            className="bg-[#FF6575] py-3 px-6 text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468] transition-colors duration-300"
-            id="checkout-and-portal-button"
-            type="submit"
-          >
-            Checkout
-          </button>
-        </form>
+        {exists ? (
+          <span className="text-green-400 group-hover:text-white">
+            You alrady Purchased Package
+          </span>
+        ) : (
+          <form action="/api/checkout-session/sub-quarterly" method="POST">
+            <input type="hidden" name="lookup_key" value="Quarterly-79c3a43" />
+            <button
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468] duration-300"
+              id="checkout-and-portal-button"
+              type="submit"
+            >
+              Buy Package
+            </button>
+          </form>
+        )}
       </div>
       <div className="bg-white border group flex transition-all  duration-500 hover:bg-[#FF6575] flex-col justify-between border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
         <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
@@ -61,16 +75,26 @@ const ProductDisplay = () => (
           / 6 month free
         </div>
 
-        <form action="/api/checkout-session/sub-semi-annual" method="POST">
-          <input type="hidden" name="lookup_key" value="Semi-Annual-7d5ce48" />
-          <button
-            className="bg-[#FF6575] py-3 px-6 text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468] transition-colors duration-300"
-            id="checkout-and-portal-button"
-            type="submit"
-          >
-            Checkout
-          </button>
-        </form>
+        {exists ? (
+          <span className="text-green-400 group-hover:text-white">
+            You alrady Purchased Package
+          </span>
+        ) : (
+          <form action="/api/checkout-session/sub-semi-annual" method="POST">
+            <input
+              type="hidden"
+              name="lookup_key"
+              value="Semi-Annual-7d5ce48"
+            />
+            <button
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468]  duration-300"
+              id="checkout-and-portal-button"
+              type="submit"
+            >
+              Buy Package
+            </button>
+          </form>
+        )}
       </div>
     </div>
   </>
@@ -103,10 +127,17 @@ export default function SubscriptionCheckout() {
   let [message, setMessage] = useState("");
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState("");
+  const [exists, setExists] = useState<boolean | undefined>();
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
+
+    async function subExists() {
+      const data = await sqlSubExists();
+
+      setExists(data?.exists);
+    }
 
     if (query.get("success")) {
       setSuccess(true);
@@ -122,10 +153,11 @@ export default function SubscriptionCheckout() {
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
     }
+    subExists();
   }, [sessionId]);
 
   if (!success && message === "") {
-    return <ProductDisplay />;
+    return <ProductDisplay exists={exists} />;
   } else if (success && sessionId !== "") {
     return <SuccessDisplay />;
   } else {
