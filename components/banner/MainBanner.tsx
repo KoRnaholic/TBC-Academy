@@ -1,6 +1,6 @@
 // import { useTranslations } from "next-intl";
 import Image from "next/image";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import React from "react";
 import girlImage from "../../public/images/girl-image.png";
@@ -18,13 +18,13 @@ export default function MainBanner() {
       >
         <div className="flex mt-10 lg:mt-0 flex-col gap-5 md:flex-row justify-center xl:gap-40 items-start">
           <div className="flex flex-col mx-auto md:mx-0 gap-8 lg:gap-12 px-5">
-            <h1 className="text-2xl text-[#685F78] dark:text-[#F8F8F2]">
+            <h1 className="text-3xl text-[#685F78] dark:text-[#F8F8F2]">
               {t("leader")}
             </h1>
             <h2 className="text-3xl lg:text-5xl lg:leading-snug font-sans font-bold max-w-[500px] text-[#002058] dark:text-[#F8F8F2]">
               {t("engaging")}
             </h2>
-            <div className="relative w-full max-w-lg">
+            {/* <div className="relative w-full max-w-lg">
               <input
                 type="text"
                 className="w-full pl-12 pr-12 py-4 rounded-full border-none focus:ring-0 text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-[#373748] shadow-md"
@@ -33,12 +33,12 @@ export default function MainBanner() {
               <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575]  text-white p-3 rounded-full hover:bg-[#fa5566] dark:hover:bg-[#FF85A1] transition duration-300">
                 <ArrowForwardIcon />
               </button>
-            </div>
-            <p className="text-lg text-[#685F78] dark:text-[#F8F8F2]">
+            </div> */}
+            <p className="text-xl text-[#685F78] dark:text-[#F8F8F2]">
               {t("trusted")}
             </p>
           </div>
-          <div className="flex justify-center mx-auto lg:mx-0">
+          <div className="flex justify-center mt-6 lg:mt-0 mx-auto lg:mx-0">
             <Image
               className="w-2/3 lg:w-4/5 girl-image"
               src={girlImage}

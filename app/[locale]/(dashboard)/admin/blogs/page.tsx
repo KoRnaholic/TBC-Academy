@@ -1,16 +1,29 @@
 import Image from "next/image";
 import { BlogPostCollection } from "../../../../../types/types";
 import { getBlogPostCollection } from "../../../../content/queries";
+import { getTranslations } from "next-intl/server";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 export default async function AdminBlogsPage() {
   const data: BlogPostCollection | undefined = await getBlogPostCollection();
   const blogs = data?.blogPostCollection.items;
 
+  const t = await getTranslations("Admin.blogs");
+  const session = await getSession();
+  const user = session?.user.role[0];
+
+  // const role = session?.user.role[0];
+
+  if (user !== "Admin") {
+    redirect("/");
+  }
+
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
         <div>
-          <h2 className="text-2xl font-semibold leading-tight">All Courses</h2>
+          <h2 className="text-2xl font-semibold leading-tight">{t("all")}</h2>
         </div>
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow-md rounded-lg  overflow-auto max-h-[550px]">
@@ -18,13 +31,13 @@ export default async function AdminBlogsPage() {
               <thead>
                 <tr>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Blog
+                    {t("blog")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Tag
+                    {t("tag")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Date Added
+                  <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                    {t("date")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
                 </tr>
@@ -53,7 +66,7 @@ export default async function AdminBlogsPage() {
                               alt="blog-avatar"
                             />
                           </div>
-                          <div className="ml-3">
+                          <div className="ml-3 hidden lg:flex">
                             <p className="text-[#002058] whitespace-no-wrap">
                               {blog.title}
                             </p>
@@ -71,8 +84,8 @@ export default async function AdminBlogsPage() {
                           <span className="relative">{blog.tag}</span>
                         </span>
                       </td>
-                      <td className="px-5 py-5 border-b border-gray-200  ">
-                        <p className="text-gray-900 whitespace-no-wrap">
+                      <td className="px-5 my-5 hidden  md:flex  py-5  ">
+                        <p className="text-gray-900  whitespace-no-wrap">
                           {formattedDate}
                         </p>
                       </td>

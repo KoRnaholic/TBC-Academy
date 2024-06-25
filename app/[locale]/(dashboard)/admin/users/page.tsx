@@ -2,11 +2,23 @@ import React from "react";
 import { sqlGetAllUsers } from "../../../../sql/sql-users/sqlGetAllUsers";
 import Image from "next/image";
 import { sqlDeleteUser } from "../../../../sql/sql-users/sqlDeleteUser";
+import { getTranslations } from "next-intl/server";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 export const revalidate = 0;
 
 export default async function Page() {
+  const session = await getSession();
+  const user = session?.user.role[0];
+
+  // const role = session?.user.role[0];
+
+  if (user !== "Admin") {
+    redirect("/");
+  }
   const users = await sqlGetAllUsers();
+  const t = await getTranslations("Admin.users");
 
   // console.log(users);
 
@@ -14,7 +26,7 @@ export default async function Page() {
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
         <div>
-          <h2 className="text-2xl font-semibold leading-tight">All Users</h2>
+          <h2 className="text-2xl font-semibold leading-tight">{t("all")}</h2>
         </div>
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow-md rounded-lg  overflow-auto max-h-[550px]">
@@ -22,21 +34,21 @@ export default async function Page() {
               <thead>
                 <tr>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    User
+                    {t("user")}
                   </th>
                   <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Email
+                    {t("email")}
                   </th>
                   <th className="px-5 py-3  border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Role
+                    {t("role")}
                   </th>
                   <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Created At
+                    {t("date")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white">
                 {users?.map((user, idx) => {
                   const date = new Date(user.created_at);
                   const deleteUser = sqlDeleteUser.bind(
@@ -72,7 +84,7 @@ export default async function Page() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 hidden md:flex py-5 border-b border-gray-200 bg-white ">
+                      <td className="px-5 hidden md:flex mt-7 py-5 border-b border-gray-200 bg-white ">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {user.email}
                         </p>

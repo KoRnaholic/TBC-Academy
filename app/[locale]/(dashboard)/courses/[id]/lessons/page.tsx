@@ -12,6 +12,8 @@ import { CreatedCourse } from "../../../../../../types/types";
 import ReviewModal from "../../../../../../components/UI/modals/ReviewModal";
 import { sqlReviewExists } from "../../../../../sql/sql-review/sqlReviewExists";
 import { getTranslations } from "next-intl/server";
+import { sqlExistsInPurchase } from "../../../../../sql/sql-purchases/sqlExistsInPurchase";
+import { redirect } from "next/navigation";
 
 export const revalidate = 0;
 
@@ -31,6 +33,12 @@ export default async function LessonsPage({
   const isReviewed = exists[0].exists;
 
   const t = await getTranslations("Lessons");
+
+  const purchExists = await sqlExistsInPurchase(Number(params.id));
+
+  if (purchExists.exists === false && course.price !== "free") {
+    redirect("/");
+  }
 
   const lessonsTranslation = {
     complete: t("complete"),

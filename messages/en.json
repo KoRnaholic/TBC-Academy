@@ -197,5 +197,35 @@
     "completed": "You already Completed and Reviewed this Course!",
     "rate": "How would you rate this course?",
     "rating": "Select Rating"
+  },
+  "Admin": {
+    "courses": {
+      "all": "All Course",
+      "course": "Course",
+      "instructor": "Instructor",
+      "duration": "Duration",
+      "price": "Price"
+    },
+    "users": {
+      "all": "All User",
+      "user": "User",
+      "email": "Email",
+      "role": "Role",
+      "date": "Created At"
+    },
+    "blogs": {
+      "all": "All Blog",
+      "blog": "Blog",
+      "tag": "Tag",
+      "date": "Date Added"
+    },
+    "purchases": {
+      "all": "All Purchase",
+      "purchased": "Purchased Course",
+      "name": "Student Name",
+      "quantity": "Quantity",
+      "price": "Price",
+      "date": "Purchase Date"
+    }
   }
 }

@@ -1,25 +1,30 @@
 import Image from "next/image";
 import { sqlGetCourses } from "../../../../sql/sqlRequests";
 import EditDeltDropdown from "../../../../../components/UI/Edit-DelDropdown";
-// import { getSession } from "@auth0/nextjs-auth0";
-// import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
 export const revalidate = 0;
 
 export default async function AdminCoursesPage() {
+  const session = await getSession();
   const courses = await sqlGetCourses();
-  // const session = await getSession();
-  // const user = session?.user["metadata/role"];
+  const user = session?.user.role[0];
 
-  // if (user === "Student") {
-  //   redirect("/");
-  // }
+  // const role = session?.user.role[0];
+
+  if (user !== "Admin") {
+    redirect("/");
+  }
+
+  const t = await getTranslations("Admin.courses");
 
   return (
     <div className="container mx-auto lg:px-4 ">
       <div className="py-8">
         <div>
-          <h2 className="text-2xl font-semibold leading-tight">All Courses</h2>
+          <h2 className="text-2xl font-semibold leading-tight">{t("all")}</h2>
         </div>
         <div className="-mx-4 sm:-mx-8   py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow-md rounded-lg  overflow-auto max-h-[550px]">
@@ -27,16 +32,16 @@ export default async function AdminCoursesPage() {
               <thead>
                 <tr>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Course
+                    {t("course")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Instructor
+                    {t("instructor")}
                   </th>
                   <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Duration
+                    {t("duration")}
                   </th>
                   <th className="px-5 py-3  border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
-                    Price
+                    {t("price")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
                 </tr>

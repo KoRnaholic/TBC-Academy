@@ -10,6 +10,7 @@ import CartDropDown from "../UI/CartDropDown";
 import { Course } from "../../types/types";
 import Link from "next/link";
 import menu from "../../public/icons/menu.svg";
+import { usePathname } from "next/navigation";
 
 interface UserInfo {
   id: string;
@@ -51,6 +52,9 @@ export default function Navigation({
   const [scrolling, setScrolling] = useState(false);
   const [isCartOpen, setCartIsOpen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  console.log(pathname);
 
   const navRef = useRef<HTMLUListElement | null>(null);
 
@@ -122,7 +126,7 @@ export default function Navigation({
             navIsOpen
               ? "-translate-x-0 transition-transform duration-300"
               : "lg:-translate-x-0 -translate-x-full "
-          } flex gap-7 text-white lg:justify-center lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-[720px] h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center `}
+          } flex gap-7 text-white lg:justify-center lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-red-300 dark:bg-[#1E1E2E] w-[250px] lg:w-[720px] h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center `}
         >
           <li className="text-end lg:hidden bg-white dark:bg-[#282A36] w-full px-5 py-3 flex text-black dark:text-[#F8F8F2] justify-between text-xl">
             <Image
@@ -166,13 +170,20 @@ export default function Navigation({
           </li>
 
           <li className="lg:hover:text-[#FF6575]  px-5 lg:px-0">
-            <Link className="hover:border-b-4 pb-1  lg:hover:border-0" href="/">
+            <Link
+              className={` ${
+                pathname === "/" && "text-[#FF6575] "
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
+              href="/"
+            >
               {navigation.home}
             </Link>
           </li>
           <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
             <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              className={` ${
+                pathname === "/courses" && "text-[#FF6575] bg-black"
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
               href="/courses"
             >
               {navigation.courses}
@@ -180,7 +191,9 @@ export default function Navigation({
           </li>
           <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
             <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              className={` ${
+                pathname === "/about" && "text-[#FF6575] bg-black"
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
               href="/about"
             >
               {navigation.about}
@@ -188,23 +201,20 @@ export default function Navigation({
           </li>
           <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
             <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              className={` ${
+                pathname === "/instructors" && "text-[#FF6575] bg-black"
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
               href="/instructors"
             >
               {navigation.instructors}
             </Link>
           </li>
+
           <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
             <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
-              href="/students"
-            >
-              {navigation.students}
-            </Link>
-          </li>
-          <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
-            <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              className={` ${
+                pathname === "/blog" && "text-[#FF6575] bg-black"
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
               href="/blog"
             >
               {navigation.blog}
@@ -212,7 +222,9 @@ export default function Navigation({
           </li>
           <li className="lg:hover:text-[#FF6575] px-5 lg:px-0">
             <Link
-              className="hover:border-b-4 pb-1  lg:hover:border-0"
+              className={` ${
+                pathname === "/contact" && "text-[#FF6575] bg-black"
+              }hover:border-b-4 pb-1  lg:hover:border-0`}
               href="/contact"
             >
               {navigation.contact}

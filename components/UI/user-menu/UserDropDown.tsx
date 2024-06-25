@@ -52,7 +52,7 @@ export default function UserDropDown({
       </button>
 
       <div
-        className={`absolute top-10 right-0 font-sans shadow-xl p-2 
+        className={`absolute top-10 left-0 font-sans shadow-xl p-2 
       bg-white dark:bg-[#2E2E2E] rounded-lg w-44 z-10 transition-all duration-500 ease-in-out transform ${
         isOpen
           ? "opacity-100 translate-y-0"
