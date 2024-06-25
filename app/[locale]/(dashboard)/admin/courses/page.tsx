@@ -18,6 +18,8 @@ export default async function AdminCoursesPage() {
     redirect("/");
   }
 
+  console.log("role-", user);
+
   const t = await getTranslations("Admin.courses");
 
   return (
@@ -46,7 +48,7 @@ export default async function AdminCoursesPage() {
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white">
                 {courses?.map((course) => {
                   return (
                     <tr key={course.id}>
@@ -73,7 +75,7 @@ export default async function AdminCoursesPage() {
                           {course.instructor_name}
                         </p>
                       </td>
-                      <td className="px-5 py-5 hidden md:flex border-b border-gray-200 bg-white ">
+                      <td className="px-5 py-5 hidden  md:table-cell border-b border-gray-200 bg-white ">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {course.duration}
                         </p>

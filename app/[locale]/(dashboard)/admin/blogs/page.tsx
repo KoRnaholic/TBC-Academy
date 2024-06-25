@@ -36,10 +36,9 @@ export default async function AdminBlogsPage() {
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("tag")}
                   </th>
-                  <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden md:table-cell border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("date")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
                 </tr>
               </thead>
               <tbody>
@@ -84,25 +83,10 @@ export default async function AdminBlogsPage() {
                           <span className="relative">{blog.tag}</span>
                         </span>
                       </td>
-                      <td className="px-5 my-5 hidden  md:flex  py-5  ">
+                      <td className="px-5 my-5 hidden md:table-cell  border-b  ">
                         <p className="text-gray-900  whitespace-no-wrap">
                           {formattedDate}
                         </p>
-                      </td>
-
-                      <td className="px-5 py-5 border-b border-gray-200  text-sm text-right">
-                        <button
-                          type="button"
-                          className="inline-block text-gray-500 hover:text-gray-700"
-                        >
-                          <svg
-                            className="inline-block h-6 w-6 fill-current"
-                            viewBox="0 0 24 24"
-                            stroke="red"
-                          >
-                            <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
-                          </svg>
-                        </button>
                       </td>
                     </tr>
                   );

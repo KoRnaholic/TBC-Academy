@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 export interface EditCourse {
   courseName: string;
   lessons: number;
-  price: number;
+  price: number | string;
   duration: string;
   overview: string;
   courseId: number;

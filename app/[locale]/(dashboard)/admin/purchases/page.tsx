@@ -35,16 +35,16 @@ export default async function PurchasesPage() {
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("purchased")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden sm:table-cell border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("name")}
                   </th>
-                  <th className="px-5 py-3  hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3  hidden md:table-cell  border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("quantity")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("price")}
                   </th>
-                  <th className="px-5 py-3 hidden lg:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden lg:table-cell border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
                     {t("date")}
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
@@ -87,12 +87,12 @@ export default async function PurchasesPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-5 border-b  border-gray-200 bg-white ">
+                      <td className="px-5 py-5 border-b hidden sm:table-cell border-gray-200 bg-white ">
                         <p className="text-gray-900  whitespace-no-wrap">
                           {purchase.student_name}
                         </p>
                       </td>
-                      <td className="px-5 py-5 mt-5   hidden md:flex border-b border-gray-200 bg-white ">
+                      <td className="px-5 py-5 mt-5   hidden  md:table-cell  border-b border-gray-200 bg-white ">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {purchase.quantity}
                         </p>
@@ -102,7 +102,7 @@ export default async function PurchasesPage() {
                           ${purchase.price}
                         </p>
                       </td>
-                      <td className="px-5 py-5 border-b  mt-5   hidden lg:flex border-gray-200 bg-white text-sm">
+                      <td className="px-5 py-5 border-b  hidden  lg:table-cell  border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {formattedDate}
                         </p>

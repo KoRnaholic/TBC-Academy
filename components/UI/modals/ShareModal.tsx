@@ -4,6 +4,8 @@ import ShareTelegram from "../../social-share/ShareTelegram";
 import ShareTwitter from "../../social-share/ShareTwitter";
 import ShareWhatsapp from "../../social-share/ShareWhatsapp";
 
+const URL = process.env.BASE_URL;
+
 export default function ShareModal({
   setIsOpen,
   courseId,
@@ -25,21 +27,11 @@ export default function ShareModal({
             Share to Socials
           </h1>
           <div className="text-center p-4 flex gap-6 justify-center">
-            <ShareFacebook
-              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
-            />
-            <ShareTwitter
-              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
-            />
-            <ShareLinkedin
-              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
-            />
-            <ShareTelegram
-              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
-            />
-            <ShareWhatsapp
-              shareUrl={`https://tbc-academy-git-refactoring-2-kornaholics-projects.vercel.app/courses/${courseId}`}
-            />
+            <ShareFacebook shareUrl={`${URL}/courses/${courseId}`} />
+            <ShareTwitter shareUrl={`${URL}/courses/${courseId}`} />
+            <ShareLinkedin shareUrl={`${URL}/courses/${courseId}`} />
+            <ShareTelegram shareUrl={`${URL}/courses/${courseId}`} />
+            <ShareWhatsapp shareUrl={`${URL}/courses/${courseId}`} />
           </div>
           <button
             onClick={() => setIsOpen(false)}

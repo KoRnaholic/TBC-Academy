@@ -5,6 +5,7 @@ import { sqlGetSingleCourse } from "../../../../app/sql/sqlRequests";
 import { editCourse } from "../../../../app/actions/editCourse-action";
 import EditCourseButton from "../../buttons/EditCourseButton";
 import { CreatedCourse } from "../../../../types/types";
+import SuccessModal from "./SuccessModal";
 
 interface CourseEditModal {
   courseId: number;
@@ -16,6 +17,9 @@ export default function CourseEditModal({
   setModalIsOpen,
 }: CourseEditModal) {
   const [course, setCourse] = useState<CreatedCourse>();
+  const [successModal, setSuccessModal] = useState(false);
+
+  console.log(successModal);
 
   const editCourseBind = editCourse.bind(null, courseId);
 
@@ -32,23 +36,25 @@ export default function CourseEditModal({
   return (
     <div
       onClick={() => setModalIsOpen(false)}
-      className="min-w-screen h-screen fixed inset-0 flex justify-center items-center z-50 bg-black bg-opacity-80"
+      className="min-w-screen h-screen fixed inset-0 px-5 flex justify-center items-center z-50 bg-black bg-opacity-80"
     >
       <form
         onClick={(e) => e.stopPropagation()}
         action={async (formData: FormData) => {
+          setSuccessModal(true);
           await editCourseBind(formData);
 
           setModalIsOpen(false);
         }}
-        className="mt-5 p-6 w-1/2 bg-white flex flex-col gap-6 rounded shadow-md text-lg"
+        className="mt-5 p-6 w-full  lg:w-1/2 bg-white flex flex-col gap-6 rounded shadow-md text-lg"
       >
+        {successModal && <SuccessModal />}
         <h1 className="text-3xl text-red-400 font-bold mb-4 text-center">
           Edit Course
         </h1>
 
-        <div className="mb-4 flex  gap-6">
-          <div className="w-1/2 flex flex-col gap-2">
+        <div className="mb-4 flex flex-col md:flex-row  gap-6">
+          <div className="md:w-1/2 flex flex-col gap-2">
             <label
               className="block text-gray-700 text-start  font-bold mb-2"
               htmlFor="name"
@@ -63,7 +69,7 @@ export default function CourseEditModal({
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="w-1/2 flex flex-col gap-2">
+          <div className="md:w-1/2 flex flex-col gap-2">
             <label
               className="block text-gray-700 text-start  font-bold mb-2"
               htmlFor="lessons"
@@ -79,8 +85,8 @@ export default function CourseEditModal({
             />
           </div>
         </div>
-        <div className="mb-4 flex  gap-6">
-          <div className=" w-1/2 flex flex-col gap-2">
+        <div className="mb-4 flex flex-col md:flex-row gap-6">
+          <div className=" md:w-1/2 flex flex-col gap-2">
             <label
               className="block text-gray-700 text-start  font-bold mb-2"
               htmlFor="price"
@@ -95,7 +101,7 @@ export default function CourseEditModal({
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
-          <div className="w-1/2 flex flex-col gap-2">
+          <div className="md:w-1/2 flex flex-col gap-2">
             <label
               className="block text-gray-700 text-start  font-bold mb-2"
               htmlFor="duration"

@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2024-04-10",
 });
 
-const YOUR_DOMAIN = process.env.BASE_URL;
+const URL = process.env.BASE_URL;
 
 export async function POST() {
   try {
@@ -18,8 +18,8 @@ export async function POST() {
         },
       ],
       mode: "subscription",
-      success_url: `${YOUR_DOMAIN}/test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+      success_url: `${URL}/test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${URL}?canceled=true`,
     });
 
     if (!session.url) {
