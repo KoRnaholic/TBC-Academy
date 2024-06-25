@@ -8,6 +8,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarsComponent from "../UI/StarsComponent";
 import { sqlgetReviewRatings } from "../../app/sql/sql-review/sqlGetReviewRatings";
 import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
+import { getTranslations } from "next-intl/server";
 
 export default async function FeaturedList({
   course,
@@ -16,6 +17,7 @@ export default async function FeaturedList({
 }) {
   const rating = await sqlgetReviewRatings(course.id);
   const data = await sqlSubExists();
+  const t = await getTranslations("Courses");
 
   return (
     <div className="w-[395px] bg-white dark:bg-[#2D2D2D] rounded-lg shadow-md overflow-hidden p-5 group dark:hover:bg-[#4B3869] hover:bg-[#4B3869] transition-all duration-700">
@@ -62,7 +64,7 @@ export default async function FeaturedList({
                   {course.instructor_name + " " + course.instructor_surname}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-white">
-                  Instructor
+                  {t("instructor")}
                 </p>
               </div>
             </div>
@@ -78,7 +80,9 @@ export default async function FeaturedList({
               <span>
                 <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
               </span>
-              <span className="font-thin">{course.lessons} Lessons</span>
+              <span className="font-thin">
+                {course.lessons} {t("lessons")}
+              </span>
             </span>
             <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
               <span className="">
@@ -100,7 +104,7 @@ export default async function FeaturedList({
             )}
           </div>
           <button className="py-1.5 px-3.5 border-2 border-[#B4A7F5] dark:border-[#FF6575] rounded-full text-[#B4A7F5] dark:text-[#FF6575] hover:bg-[#B4A7F5] dark:hover:bg-[#FF6575] hover:text-white transition-all duration-300 hover:border-[#B4A7F5] dark:hover:border-[#FF6575] group-hover:text-white">
-            <Link href={`/courses/${course.id}`}>View Course</Link>
+            <Link href={`/courses/${course.id}`}>{t("view")}</Link>
           </button>
         </div>
       </div>

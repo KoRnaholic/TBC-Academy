@@ -8,8 +8,25 @@ import { sqlGetReviews } from "../../app/sql/sql-review/sqlGetReviews";
 import StarsComponent from "../UI/StarsComponent";
 import LikeButton from "../UI/buttons/LikeButton";
 import DisslikeButton from "../UI/buttons/DislikeButton";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0;
+
+export interface OverviewTranslate {
+  comments: string;
+  lessons: string;
+  leavecomment: string;
+  yourcomment: string;
+  postcomment: string;
+  cart: string;
+  share: string;
+  duration: string;
+  maximum: string;
+  category: string;
+  processing: string;
+  viewcart: string;
+  startcourse: string;
+}
 
 export default async function Overview({
   course,
@@ -17,11 +34,30 @@ export default async function Overview({
   course: Course | QueryResultRow;
 }) {
   const reviews = await sqlGetReviews(course.id);
+  const t = await getTranslations("Courses.course");
+
+  const overviewTranslate = {
+    comments: t("comments"),
+    lessons: t("lessons"),
+    leavecomment: t("leavecomment"),
+    yourcomment: t("yourcomment"),
+    postcomment: t("postcomment"),
+    cart: t("cart"),
+    share: t("share"),
+    duration: t("duration"),
+    maximum: t("maximum"),
+    category: t("category"),
+    processing: t("processing"),
+    viewcart: t("viewcart"),
+    startcourse: t("startcourse"),
+  };
   return (
     <div className="flex flex-col xl:flex-row justify-center gap-10 mx-5 bg-[#fafafa] dark:bg-[#1A1A1A] pb-10">
       <div className="flex flex-col gap-8 mt-20">
         <div className="p-5 border rounded-lg bg-white dark:border-gray-500 dark:bg-[#2A2A2A]">
-          <h2 className="text-2xl text-[#002058] dark:text-white">Overview</h2>
+          <h2 className="text-2xl text-[#002058] dark:text-white">
+            {t("overview")}
+          </h2>
           <p className="max-w-[800px] text-gray-500 dark:text-gray-300 mt-5">
             {course.overview}
           </p>
@@ -29,7 +65,7 @@ export default async function Overview({
 
         <div className="p-5 border rounded-lg bg-white dark:border-gray-500 dark:bg-[#2A2A2A]">
           <h2 className="text-2xl text-[#002058] dark:text-white">
-            Course Content
+            {t("content")}
           </h2>
         </div>
 
@@ -86,7 +122,10 @@ export default async function Overview({
           </div>
         </div>
 
-        <h2 className="text-3xl text-[#002058] dark:text-white ">Reviews</h2>
+        <h2 className="text-3xl text-[#002058] dark:text-white ">
+          {" "}
+          {t("review")}
+        </h2>
         <div className="px-5 py-2 flex flex-col gap-5 border dark:border-gray-500 rounded-lg bg-white dark:bg-[#2A2A2A]">
           {reviews?.map((review) => {
             const date = new Date(review.created_at);
@@ -136,11 +175,11 @@ export default async function Overview({
             );
           })}
         </div>
-        <CourseComment id={course.id} />
+        <CourseComment overviewTranslate={overviewTranslate} id={course.id} />
       </div>
 
       <div className="xl:-mt-52 sticky">
-        <CourseCard course={course} />
+        <CourseCard overviewTranslate={overviewTranslate} course={course} />
       </div>
     </div>
   );

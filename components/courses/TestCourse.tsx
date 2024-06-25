@@ -7,10 +7,17 @@ import Link from "next/link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import StarsComponent from "../UI/StarsComponent";
 import { Course } from "../../types/types";
+import { CourseTranslate } from "../../app/[locale]/(dashboard)/courses/page";
 
-export default function TestCourse({ course }: { course: Course }) {
+export default function TestCourse({
+  course,
+  courseTranslate,
+}: {
+  course: Course;
+  courseTranslate: CourseTranslate;
+}) {
   return (
-    <div className="w-[600px] md:max-w-[300px] border dark:border-gray-600 bg-white dark:bg-[#2D2D2D] rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] dark:hover:bg-[#4B3869] transition-all duration-700">
+    <div className="w-full md:max-w-[300px] border dark:border-gray-600 bg-white dark:bg-[#2D2D2D] rounded-lg shadow-md overflow-hidden p-3 group hover:bg-[#4B3869] dark:hover:bg-[#4B3869] transition-all duration-700">
       <div className="">
         <div className="relative">
           <div className="group overflow-hidden">
@@ -47,7 +54,7 @@ export default function TestCourse({ course }: { course: Course }) {
                   {course.instructor_name + " " + course.instructor_surname}
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 text-sm group-hover:text-white">
-                  Instructor
+                  {courseTranslate.instructor}
                 </p>
               </div>
             </div>
@@ -63,7 +70,9 @@ export default function TestCourse({ course }: { course: Course }) {
               <span>
                 <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
               </span>
-              <span>{course.lessons} Lessons</span>
+              <span>
+                {course.lessons} {courseTranslate.lessons}
+              </span>
             </span>
             <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
               <span className="">
@@ -79,7 +88,7 @@ export default function TestCourse({ course }: { course: Course }) {
             {course.rating}
           </div>
           <button className="py-1.5 px-3.5 border-2 border-[#B4A7F5] dark:border-[#FF6575] rounded-full text-[#B4A7F5] dark:text-[#FF6575] hover:bg-[#B4A7F5] dark:hover:bg-[#FF6575] hover:text-white transition-all duration-300 hover:border-[#B4A7F5] dark:hover:border-[#FF6575] group-hover:text-white">
-            <Link href={`/courses/${course.id}`}>View Course</Link>
+            <Link href={`/courses/${course.id}`}>{courseTranslate.view}</Link>
           </button>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { SingleProductParam } from "../../../../../types/types";
 import { revalidatePath } from "next/cache";
 import StarsComponent from "../../../../../components/UI/StarsComponent";
 import { sqlgetReviewRatings } from "../../../../sql/sql-review/sqlGetReviewRatings";
+import { getTranslations } from "next-intl/server";
 // import CourseComment from "../../../../../components/courses/AddCourseComment";
 
 export const revalidate = 0;
@@ -20,6 +21,8 @@ export default async function SingleCoursePage({
   revalidatePath("/courses");
   const course = courseArr[0];
   const rating = await sqlgetReviewRatings(Number(params.id));
+
+  const t = await getTranslations("Courses.course");
 
   return (
     <>
@@ -41,7 +44,7 @@ export default async function SingleCoursePage({
                 <span>
                   {course.instructor_name + " " + course.instructor_surname}
                 </span>
-                <span>Instructor</span>
+                <span>{t("instructor")}</span>
               </div>
             </div>
             <h1 className="text-3xl sm:text-3xl lg:text-5xl max-w-[850px] ">
@@ -52,7 +55,7 @@ export default async function SingleCoursePage({
               <div className="flex gap-8">
                 <span className="flex items-center">
                   <SvgBook className="fill-[#FF6575] stroke-red group-hover:fill-white group-hover:stroke-white" />
-                  {course.lessons} Lessons
+                  {course.lessons} {t("lessons")}
                 </span>
                 <span className="flex items-center">
                   <SvgTimer />

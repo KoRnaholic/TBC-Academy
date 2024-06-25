@@ -15,6 +15,7 @@ import { sqlExistsInPurchase } from "../../app/sql/sql-purchases/sqlExistsInPurc
 import successSVG from "../../public/icons/success.svg";
 import ShareButton from "../UI/buttons/ShareButton";
 import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
+import { OverviewTranslate } from "./Overview";
 
 const courses = [
   { title: "Angular", color: "red" },
@@ -35,8 +36,10 @@ const courses = [
 
 export default async function CourseCard({
   course,
+  overviewTranslate,
 }: {
   course: Course | QueryResultRow;
+  overviewTranslate: OverviewTranslate;
 }) {
   const data = await sqlExistsInCart(course.id);
   const ifExists = data?.exists.exists;
@@ -103,7 +106,7 @@ export default async function CourseCard({
                     className="py-2.5 text-center text-white bg-green-600 hover:bg-green-700 px-3.5   w-full rounded-full
              transition-all duration-300"
                   >
-                    Start the course
+                    {overviewTranslate.startcourse}
                   </Link>
                 ) : ifExists ? (
                   <Link
@@ -111,12 +114,18 @@ export default async function CourseCard({
                     className="py-2.5 text-center text-white bg-[#FF6575] hover:bg-[#e72f41] px-3.5  w-full rounded-full
          transition-all duration-300"
                   >
-                    View Cart
+                    {overviewTranslate.viewcart}
                   </Link>
                 ) : (
-                  <AddButton />
+                  <AddButton
+                    processing={overviewTranslate.processing}
+                    add={overviewTranslate.cart}
+                  />
                 )}
-                <ShareButton courseId={course.id} />
+                <ShareButton
+                  share={overviewTranslate.share}
+                  courseId={course.id}
+                />
               </div>
             )}
           </form>
@@ -127,14 +136,14 @@ export default async function CourseCard({
         <ul className="flex flex-col gap-4">
           <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
             <CastForEducationIcon className="text-[#b4a7f5]" />
-            Lessons:{" "}
+            {overviewTranslate.lessons}
             <span className="font-bold text-black dark:text-white">
               {course.lessons}
             </span>
           </li>
           <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
             <TimerIcon className="text-[#b4a7f5]" />
-            Duration:{" "}
+            {overviewTranslate.duration}
             <span className="font-bold text-black dark:text-white">
               {course.duration}
             </span>
@@ -148,7 +157,7 @@ export default async function CourseCard({
           </li>
           <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
             <GroupIcon className="text-[#b4a7f5]" />
-            Maximum Students:{" "}
+            {overviewTranslate.maximum}
             <span className="font-bold text-black dark:text-white">150</span>
           </li>
         </ul>
@@ -157,7 +166,7 @@ export default async function CourseCard({
       <div className="mt-8">
         <div className="bg-white dark:bg-[#2A2A2A] rounded-lg shadow-sm border dark:border-gray-600 px-6 py-4 font-sans">
           <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-white">
-            Course Categories
+            {overviewTranslate.category}
           </h2>
           <ul className="flex flex-col gap-5">
             {courses.map((course) => (

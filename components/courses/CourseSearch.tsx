@@ -1,11 +1,14 @@
 import SearchIcon from "@mui/icons-material/Search";
+import { CourseTranslate } from "../../app/[locale]/(dashboard)/courses/page";
 
 export default function CourseSearch({
   handleSearch,
   search,
+  courseTranslate,
 }: {
   handleSearch: (value: string) => void;
   search: string;
+  courseTranslate: CourseTranslate;
 }) {
   return (
     <>
@@ -15,7 +18,7 @@ export default function CourseSearch({
             <input
               value={search}
               type="text"
-              placeholder="Search Course"
+              placeholder={courseTranslate.search}
               className="w-full px-4 py-3 text-gray-700 focus:outline-none bg-gray-100"
               onChange={(e) => handleSearch(e.target.value)}
             />

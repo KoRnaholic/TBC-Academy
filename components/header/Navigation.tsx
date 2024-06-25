@@ -120,9 +120,9 @@ export default function Navigation({
           ref={navRef}
           className={`${
             navIsOpen
-              ? "-translate-x-0 "
+              ? "-translate-x-0 transition-transform duration-300"
               : "lg:-translate-x-0 -translate-x-full "
-          } flex gap-7 text-white lg:justify-center lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-[720px] h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center transition-transform duration-300`}
+          } flex gap-7 text-white lg:justify-center lg:text-[#685F78] dark:lg:text-[#F8F8F2] absolute lg:static inset-0 lg:p-0 bg-[#FF6575] dark:bg-[#1E1E2E] w-[250px] lg:w-[720px] h-screen lg:h-0 lg:bg-inherit flex-col lg:flex-row lg:items-center `}
         >
           <li className="text-end lg:hidden bg-white dark:bg-[#282A36] w-full px-5 py-3 flex text-black dark:text-[#F8F8F2] justify-between text-xl">
             <Image
@@ -138,6 +138,31 @@ export default function Navigation({
             >
               X
             </span>
+          </li>
+
+          <li className=" lg:hidden">
+            {user ? (
+              <div className="items-center gap-3 flex lg:hidden justify-center">
+                <UserDropDown navigation={navigation} user={user} />
+              </div>
+            ) : (
+              <div className=" gap-3 flex justify-center">
+                <a href="/api/auth/login">
+                  <button
+                    className={`${
+                      scrolling
+                        ? "bg-[#A3B1D7] text-black dark:bg-[#3A3A3A]"
+                        : "bg-[#EDEDED] dark:bg-[#3A3A3A]"
+                    } py-2.5 px-5 rounded-full text-black hover:bg-[#FF8B94] hover:text-white transition-all duration-500`}
+                  >
+                    Login
+                  </button>
+                </a>
+                <button className="py-2.5 px-4 border-2 border-white dark:border-[#EDEDED] rounded-full text-white dark:text-[#EDEDED] hover:bg-[#FF8B94] hover:text-white transition-all duration-300 hover:border-[#FF8B94]">
+                  Register
+                </button>
+              </div>
+            )}
           </li>
 
           <li className="lg:hover:text-[#FF6575]  px-5 lg:px-0">
@@ -228,14 +253,14 @@ export default function Navigation({
           <UserDropDown navigation={navigation} user={user} />
         </div>
       ) : (
-        <div className="flex gap-3">
+        <div className=" gap-3 hidden xl:flex">
           <a href="/api/auth/login">
             <button
               className={`${
                 scrolling
                   ? "bg-[#B4A7F5] text-white dark:bg-[#282A36]"
-                  : "bg-white dark:bg-[#282A36]"
-              } py-2.5 px-9 rounded-full hover:bg-[#FF6575] hover:text-white transition-all duration-500`}
+                  : "bg-[#f4f4f4] dark:bg-[#282A36]"
+              } py-2.5 px-9 rounded-full  hover:bg-[#FF6575] hover:text-white transition-all duration-500`}
             >
               Login
             </button>

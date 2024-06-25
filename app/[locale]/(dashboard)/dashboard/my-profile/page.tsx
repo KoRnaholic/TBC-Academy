@@ -1,5 +1,6 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { sqlGetUser } from "../../../../sql/sqlGetUser";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
   title: "DreamLMS - My Profile",
@@ -17,22 +18,24 @@ export default async function UserProfile() {
 
   const date = new Date(data?.user.updated_at);
 
+  const t = await getTranslations("Profile.myprofile");
+
   return (
     <>
       <div className="w-full border bg-white dark:bg-gray-800 dark:border-gray-600 rounded-lg shadow-md p-6 my-5">
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
-          My Profile
+          {t("profile")}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <h3 className="text-[#002058] dark:text-[#FF6575] text-lg">
-              First Name
+              {t("name")}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">{userInfo?.name}</p>
           </div>
           <div>
             <h3 className="text-[#002058] dark:text-[#FF6575] text-lg">
-              Last Name
+              {t("lastname")}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               {userInfo?.surname}
@@ -40,7 +43,7 @@ export default async function UserProfile() {
           </div>
           <div>
             <h3 className="text-[#002058] dark:text-[#FF6575] text-lg">
-              Registration Date
+              {t("date")}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               {date.toLocaleString()}
@@ -49,7 +52,7 @@ export default async function UserProfile() {
 
           <div>
             <h3 className="text-[#002058] dark:text-[#FF6575] text-lg">
-              Email
+              {t("email")}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
               {userInfo?.email}

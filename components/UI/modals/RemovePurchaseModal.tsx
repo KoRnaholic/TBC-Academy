@@ -4,10 +4,20 @@ import { useState } from "react";
 import { deletePurchase } from "../../../app/actions/deletePurchase-action";
 import DeletePurchase from "../buttons/DeletePurchase";
 
+interface CourseTranslation {
+  remove: string;
+  sure: string;
+  close: string;
+  delete: string;
+  deleting: string;
+}
+
 export default function RemovePurchaseModal({
   courseId,
+  courseTranslation,
 }: {
   courseId: number;
+  courseTranslation: CourseTranslation;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const removePurchase = deletePurchase.bind(null, courseId);
@@ -21,7 +31,7 @@ export default function RemovePurchaseModal({
                   transition-all duration-300 hover:border-red-400
                    group-hover:text-white "
       >
-        Remove Course
+        {courseTranslation.remove}
       </button>
       {/* </form> */}
 
@@ -35,17 +45,20 @@ export default function RemovePurchaseModal({
             className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg relative mx-auto"
           >
             <h1 className="text-center text-2xl text-red-500 mb-6">
-              Are you sure you want to delete this Course?
+              {courseTranslation.sure}
             </h1>
             <div className="text-center p-4 flex justify-between items-center gap-4">
               <button
                 onClick={() => setIsOpen(false)}
                 className="py-2 w-1/2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
               >
-                No, Close
+                {courseTranslation.close}
               </button>
               <form action={removePurchase} className="w-full flex justify-end">
-                <DeletePurchase />
+                <DeletePurchase
+                  isDeleting={courseTranslation.deleting}
+                  deleting={courseTranslation.delete}
+                />
               </form>
             </div>
           </div>

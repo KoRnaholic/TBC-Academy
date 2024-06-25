@@ -1,4 +1,5 @@
 import React from "react";
+import { CourseTranslate } from "../../app/[locale]/(dashboard)/courses/page";
 const coursesTest = [
   { title: "Angular", color: "red" },
   { title: "Bootstrap", color: "pink" },
@@ -35,20 +36,23 @@ const price = [
   { label: "Paid", value: "paid" },
 ];
 
-export default function CourseCategories() {
+export default function CourseCategories({
+  courseTranslate,
+}: {
+  courseTranslate: CourseTranslate;
+}) {
   return (
     <div className="flex flex-col ">
       <div className="mt-8">
-        <div className="bg-white rounded-lg shadow-sm border px-6 py-4 font-sans">
-          <h2 className="text-xl font-bold mb-4 text-[#002058]">
-            Course Categories
+        <div className="bg-white dark:bg-[#2E2E2E] rounded-lg shadow-sm border dark:border-gray-700 px-6 py-4 font-sans">
+          <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-[#E0E0E0]">
+            {courseTranslate.category}
           </h2>
-          <ul className="  flex flex-col gap-5">
+          <ul className="flex flex-col gap-5">
             {coursesTest.map((course) => (
               <li
                 key={course.title}
-                className="flex items-center gap-2 text-[#002058] hover:text-[#FF6575]
-                 transition-all duration-300 cursor-pointer"
+                className="flex items-center gap-2 text-[#002058] dark:text-[#E0E0E0] hover:text-[#FF6575] transition-all duration-300 cursor-pointer"
               >
                 <input type="checkbox" className="w-4 h-4" />
                 {course.title}
@@ -59,14 +63,15 @@ export default function CourseCategories() {
       </div>
 
       <div className="mt-8">
-        <div className="bg-white rounded-lg shadow-sm border px-6 py-4 font-sans">
-          <h2 className="text-xl font-bold mb-4 text-[#002058]">Tags</h2>
-          <ul className="  flex flex-col gap-5">
+        <div className="bg-white dark:bg-[#2E2E2E] rounded-lg shadow-sm border dark:border-gray-700 px-6 py-4 font-sans">
+          <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-[#E0E0E0]">
+            {courseTranslate.tags}
+          </h2>
+          <ul className="flex flex-col gap-5">
             {tags.map((course) => (
               <li
                 key={course.label}
-                className="flex gap-2 text-[#002058] items-center hover:text-[#FF6575]
-                 transition-all duration-300 cursor-pointer"
+                className="flex gap-2 text-[#002058] dark:text-[#E0E0E0] items-center hover:text-[#FF6575] transition-all duration-300 cursor-pointer"
               >
                 <input type="checkbox" />
                 {course.label}
@@ -77,14 +82,15 @@ export default function CourseCategories() {
       </div>
 
       <div className="mt-8">
-        <div className="bg-white rounded-lg shadow-sm border px-6 py-4 font-sans">
-          <h2 className="text-xl font-bold mb-4 text-[#002058]">Level</h2>
-          <ul className="  flex flex-col gap-5">
+        <div className="bg-white dark:bg-[#2E2E2E] rounded-lg shadow-sm border dark:border-gray-700 px-6 py-4 font-sans">
+          <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-[#E0E0E0]">
+            {courseTranslate.level}
+          </h2>
+          <ul className="flex flex-col gap-5">
             {level.map((course) => (
               <li
                 key={course.label}
-                className="flex gap-2 items-center text-[#002058] hover:text-[#FF6575]
-                 transition-all duration-300 cursor-pointer"
+                className="flex gap-2 items-center text-[#002058] dark:text-[#E0E0E0] hover:text-[#FF6575] transition-all duration-300 cursor-pointer"
               >
                 <input type="checkbox" />
                 {course.label}
@@ -95,14 +101,15 @@ export default function CourseCategories() {
       </div>
 
       <div className="mt-8">
-        <div className="bg-white rounded-lg shadow-sm border px-6 py-4 font-sans">
-          <h2 className="text-xl font-bold mb-4 text-[#002058]">Price</h2>
-          <ul className="  flex flex-col gap-5">
+        <div className="bg-white dark:bg-[#2E2E2E] rounded-lg shadow-sm border dark:border-gray-700 px-6 py-4 font-sans">
+          <h2 className="text-xl font-bold mb-4 text-[#002058] dark:text-[#E0E0E0]">
+            {courseTranslate.price}
+          </h2>
+          <ul className="flex flex-col gap-5">
             {price.map((course) => (
               <li
                 key={course.label}
-                className="flex items-center gap-2 text-[#002058] hover:text-[#FF6575]
-                 transition-all duration-300 cursor-pointer"
+                className="flex items-center gap-2 text-[#002058] dark:text-[#E0E0E0] hover:text-[#FF6575] transition-all duration-300 cursor-pointer"
               >
                 <input type="checkbox" />
                 {course.label}

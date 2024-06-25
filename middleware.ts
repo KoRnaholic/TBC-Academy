@@ -1,7 +1,8 @@
 // import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 
 import createIntlMiddleware from "next-intl/middleware";
+
 // const protectedRoutes = [
 //   "/",
 //   "/en",
@@ -18,8 +19,6 @@ import createIntlMiddleware from "next-intl/middleware";
 
 export default async function middleware(request: NextRequest) {
   //Middleware for rout protections
-  // const cookie = request.cookies.get("auth")?.value;
-  // const localeValue = request.cookies.get("NEXT_LOCALE")?.value;
 
   // const path = request.nextUrl.pathname;
   // const isProtectedRoute =

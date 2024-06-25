@@ -4,8 +4,10 @@ import { sqlGetCourseComments } from "../../app/sql/sql-courses/sqlGetCourseComm
 
 export default async function SingleCourseComments({
   courseId,
+  comments,
 }: {
   courseId: number;
+  comments: string;
 }) {
   const commentInfo = await sqlGetCourseComments(courseId);
 
@@ -14,7 +16,7 @@ export default async function SingleCourseComments({
       {commentInfo && commentInfo[0] && (
         <>
           <h2 className="text-3xl mb-5 text-[#002058] dark:text-white">
-            Comments
+            {comments}
           </h2>
 
           <div className="border rounded-lg dark:border-gray-500">

@@ -2,7 +2,13 @@
 
 import { useFormStatus } from "react-dom";
 
-export default function AddButton() {
+export default function AddButton({
+  add,
+  processing,
+}: {
+  add: string;
+  processing: string;
+}) {
   const { pending } = useFormStatus();
 
   return (
@@ -13,7 +19,7 @@ export default function AddButton() {
     >
       {pending ? (
         <span className="flex justify-center gap-2">
-          Processing
+          {processing}
           <div className="flex">
             <div className="relative">
               <div className="w-6 h-6 rounded-full absolute border-4 border-dashed border-gray-200"></div>
@@ -23,7 +29,7 @@ export default function AddButton() {
           </div>
         </span>
       ) : (
-        "Add To Cart"
+        add
       )}
     </button>
   );

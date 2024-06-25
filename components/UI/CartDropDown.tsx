@@ -55,18 +55,17 @@ export default function CartDropDown({
   return (
     <div ref={dropdownRef}>
       <div
-        className={` absolute top-12 right-24 font-sans flex flex-col gap-3  shadow-xl p-5 border 
-           bg-white rounded-lg w-[430px] z-10 transition-all duration-500 ease-in-out transform ${
-             isCartOpen
-               ? "opacity-100 translate-y-0"
-               : "opacity-0 pointer-events-none  translate-y-4"
-           }`}
+        className={`absolute top-12 right-24 font-sans flex flex-col gap-3 shadow-xl p-5 border dark:border-gray-700 bg-white dark:bg-[#2E2E2E] rounded-lg w-[430px] z-10 transition-all duration-500 ease-in-out transform ${
+          isCartOpen
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 pointer-events-none translate-y-4"
+        }`}
       >
         {courses?.map((course: Course) => {
           return (
             <div key={course.id} className="flex justify-between">
               <div className="flex gap-3">
-                <div className="">
+                <div>
                   <Image
                     className="rounded-md w-24 h-18"
                     src={course.image}
@@ -76,8 +75,12 @@ export default function CartDropDown({
                   />
                 </div>
                 <div className="flex flex-col justify-between">
-                  <p className="font-semibold">{course.name}</p>
-                  <span>Quantity: {course.quantity}</span>
+                  <p className="font-semibold text-[#002058] dark:text-[#E0E0E0]">
+                    {course.name}
+                  </p>
+                  <span className="text-black dark:text-gray-300">
+                    Quantity: {course.quantity}
+                  </span>
                   <span className="text-red-400">${course.price}</span>
                 </div>
               </div>
@@ -86,7 +89,7 @@ export default function CartDropDown({
         })}
 
         <Link
-          className=" bg-red-400 hover:bg-red-500 px-2 py-2 flex justify-center rounded-md  text-white"
+          className="bg-red-400 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-600 px-2 py-2 flex justify-center rounded-md text-white"
           href="/cart"
         >
           View Cart

@@ -6,11 +6,14 @@ import { Course } from "../../types/types";
 import { QueryResultRow } from "@vercel/postgres";
 import CourseSearch from "./CourseSearch";
 import CourseCategories from "./CourseCategories";
+import { CourseTranslate } from "../../app/[locale]/(dashboard)/courses/page";
 
 export default function CoursesGrid({
   courses,
+  courseTranslate,
 }: {
   courses: Course[] | QueryResultRow;
+  courseTranslate: CourseTranslate;
 }) {
   const [search, setSearch] = useState("");
   const [searchedCourses, setSearchedCourses] = useState(courses);
@@ -53,14 +56,24 @@ export default function CoursesGrid({
   // };
   return (
     <>
-      <div className="flex flex-wrap  gap-7  justify-center md:justify-start  w-full md:w-3/5">
+      <div className="flex flex-wrap px-5  gap-7  justify-center md:justify-start  w-full sm:w-2/3 md:w-3/5 mb-20">
         {searchedCourses.map((course: Course) => {
-          return <TestCourse key={course.id} course={course} />;
+          return (
+            <TestCourse
+              courseTranslate={courseTranslate}
+              key={course.id}
+              course={course}
+            />
+          );
         })}
       </div>
-      <div>
-        <CourseSearch handleSearch={handleSearch} search={search} />
-        <CourseCategories />
+      <div className="px-5 ">
+        <CourseSearch
+          courseTranslate={courseTranslate}
+          handleSearch={handleSearch}
+          search={search}
+        />
+        <CourseCategories courseTranslate={courseTranslate} />
       </div>
     </>
   );

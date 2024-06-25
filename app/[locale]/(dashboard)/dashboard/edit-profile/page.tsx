@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import UpdateUserInfoButton from "../../../../../components/UI/buttons/UpdateUserInfoButton";
 import { updateUserInfo } from "../../../../actions";
 import { sqlGetUser } from "../../../../sql/sqlGetUser";
@@ -18,7 +19,10 @@ export default async function EditProfilePage() {
   const userInfo = user?.userInfo;
   const role = data?.user["metadata/role"];
   const updateUser = updateUserInfo.bind(null, role, sub, userInfo?.image);
+  const t = await getTranslations("Profile.editprofile");
 
+  const update = t("update");
+  const updating = t("updating");
   return (
     <form
       action={updateUser}
@@ -26,20 +30,16 @@ export default async function EditProfilePage() {
     >
       <div className="p-5 border-b flex flex-col gap-3">
         <h2 className="text-2xl text-[#002058] dark:text-white">
-          Profile Details
+          {t("details")}
         </h2>
-        <p className="text-gray-500 dark:text-gray-400">
-          You have full control to manage your own account setting.
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">{t("control")}</p>
       </div>
       <div className="p-5 border-b flex justify-between items-center">
         <div className="flex flex-col gap-3">
           <h2 className="text-2xl text-[#002058] dark:text-white">
-            Your avatar
+            {t("avatar")}
           </h2>
-          <p className="text-gray-500 dark:text-gray-400">
-            PNG or JPG no bigger than 800px width and height.
-          </p>
+          <p className="text-gray-500 dark:text-gray-400">{t("image")}</p>
         </div>
 
         {/* image upload */}
@@ -56,7 +56,7 @@ export default async function EditProfilePage() {
               className="w-32 text-green-500 border font-thin border-green-500 cursor-pointer
             group-hover:text-white group-hover:bg-green-500 py-2 px-4 rounded transition-all duration-300"
             >
-              Upload
+              {t("upload")}
             </button>
           </div>
         </div>
@@ -64,10 +64,10 @@ export default async function EditProfilePage() {
 
       <div>
         <h2 className="px-5 pt-5 text-2xl text-[#002058] dark:text-white">
-          Personal Details
+          {t("personal")}
         </h2>
         <p className="px-5 pt-3 text-gray-500 dark:text-gray-400">
-          Edit your personal information.
+          {t("editpersonal")}
         </p>
       </div>
       <div className="grid grid-cols-2 gap-12 bg-white dark:bg-gray-800 p-5">
@@ -95,7 +95,7 @@ export default async function EditProfilePage() {
           defaultValue={userInfo?.email}
           required
         />
-        <UpdateUserInfoButton />
+        <UpdateUserInfoButton updating={updating} update={update} />
       </div>
     </form>
   );

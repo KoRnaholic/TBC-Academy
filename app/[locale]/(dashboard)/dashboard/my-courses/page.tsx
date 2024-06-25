@@ -6,6 +6,7 @@ import SvgTimer from "../../../../../components/svg-components/SvgTimer";
 import SvgBook from "../../../../../components/svg-components/SvgBook";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import RemovePurchaseModal from "../../../../../components/UI/modals/RemovePurchaseModal";
+import { getTranslations } from "next-intl/server";
 
 export const metadata = {
   title: "DreamLMS - My Courses",
@@ -19,10 +20,18 @@ export const revalidate = 0;
 
 export default async function MyCoursesPage() {
   const purchases = await sqlGetUserPurchases();
+  const t = await getTranslations("Profile.courses");
 
+  const courseTranslation = {
+    remove: t("remove"),
+    sure: t("sure"),
+    close: t("close"),
+    delete: t("delete"),
+    deleting: t("deleting"),
+  };
   return (
     <>
-      <h1 className="text-3xl mt-5">Recently Purchased Courses</h1>
+      <h1 className="text-3xl mt-5">{t("purchased")}</h1>
       <div className="mt-5 flex gap-5">
         {purchases?.map((course) => {
           const date = new Date(course.purchase_date);
@@ -81,7 +90,9 @@ export default async function MyCoursesPage() {
                       <span>
                         <SvgBook className="fill-[#FF6575] dark:fill-white stroke-red group-hover:fill-white group-hover:stroke-white" />
                       </span>
-                      <span>{course.lessons} Lessons</span>
+                      <span>
+                        {course.lessons} {t("lessons")}
+                      </span>
                     </span>
                     <span className="flex text-sm gap-1 items-center justify-center ml-4 group-hover:text-white">
                       <span className="">
@@ -92,7 +103,10 @@ export default async function MyCoursesPage() {
                   </div>
                 </div>
                 <div className="pt-4 flex justify-center items-center border-t">
-                  <RemovePurchaseModal courseId={course.id} />
+                  <RemovePurchaseModal
+                    courseTranslation={courseTranslation}
+                    courseId={course.id}
+                  />
                 </div>
               </div>
             </div>

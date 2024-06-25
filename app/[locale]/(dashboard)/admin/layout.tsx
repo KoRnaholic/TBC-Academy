@@ -51,7 +51,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </ul>
         </nav>
       </div>
-      <main className="flex-1 p-6 ">{children}</main>
+      <main className="flex-1 lg:p-6 ">{children}</main>
     </>
   );
 }

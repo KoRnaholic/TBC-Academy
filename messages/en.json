@@ -119,5 +119,83 @@
     "myprofile": "My Profile",
     "courses": "My Courses",
     "edit": "Edit Profile"
+  },
+  "Courses": {
+    "course": {
+      "instructor": "Instructor",
+      "lessons": "Lessons",
+      "overview": "Overview",
+      "content": "Course Content",
+      "review": "Reviews",
+      "comments": "Comments",
+      "leavecomment": "Leave Comment",
+      "yourcomment": "Leave your comment",
+      "postcomment": "Post Comment",
+      "cart": "Add To Cart",
+      "share": "Share",
+      "duration": "Duration",
+      "maximum": "Maximum Students",
+      "category": "Course Category",
+      "processing": "Processing",
+      "viewcart": "View Cart",
+      "startcourse": "Start The Course"
+    },
+    "link": "Courses",
+    "home": "Home",
+    "filter": "Filter",
+    "showing": "Showing",
+    "courses": "Courses",
+    "search": "Search Course",
+    "category": "Course Categories",
+    "tags": "Tags",
+    "level": "Level",
+    "price": "Price",
+    "view": "View Course",
+    "instructor": "Instructor",
+    "lessons": "Lessons"
+  },
+  "Profile": {
+    "myprofile": {
+      "profile": "My profile",
+      "name": "First Name",
+      "lastname": "Last Name",
+      "date": "Registration Date",
+      "email": "Email"
+    },
+    "editprofile": {
+      "details": "Profile Details",
+      "control": "You have full control to manage your own account setting.",
+      "avatar": "Your avatar",
+      "image": "PNG or JPG no bigger than 800px width and height.",
+      "personal": "Personal Details",
+      "editpersonal": "Edit your personal information.",
+      "update": "Update Profile",
+      "upload": "Upload",
+      "updating": "Updating..."
+    },
+    "courses": {
+      "purchased": "Recently Purchased Courses",
+      "lessons": "Lessons",
+      "remove": "Remove Course",
+      "sure": "Are you sure you want to delete this Course?",
+      "close": "No, Close",
+      "delete": "Yes, I'm sure",
+      "deleting": "Deleting..."
+    }
+  },
+  "Lessons": {
+    "link": "Lessons",
+    "home": "Home",
+    "overview": "Overview",
+    "requirements": "Requirements",
+    "audience": "Audience",
+    "learn": "What Will I Learn?",
+    "complete": "Complete The Course",
+    "duration": "Duration",
+    "level": "Level",
+    "maximum": "Maximum Students",
+    "completed": "You already Completed and Reviewed this Course!",
+    "rate": "How would you rate this course?",
+    "rating": "Select Rating"
   }
 }

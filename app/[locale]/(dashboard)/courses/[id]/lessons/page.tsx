@@ -11,6 +11,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import { CreatedCourse } from "../../../../../../types/types";
 import ReviewModal from "../../../../../../components/UI/modals/ReviewModal";
 import { sqlReviewExists } from "../../../../../sql/sql-review/sqlReviewExists";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0;
 
@@ -29,6 +30,14 @@ export default async function LessonsPage({
   const exists = await sqlReviewExists(courseId);
   const isReviewed = exists[0].exists;
 
+  const t = await getTranslations("Lessons");
+
+  const lessonsTranslation = {
+    complete: t("complete"),
+    completed: t("completed"),
+    rate: t("rate"),
+    rating: t("rating"),
+  };
   return (
     <>
       <div className="bg-[#fafafa]">
@@ -40,88 +49,113 @@ export default async function LessonsPage({
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Lesssons</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Lessons</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-20 flex flex-col justify-center items-center bg-[#fafafa]">
+      <div className="mt-20 flex flex-col justify-center items-center bg-[#fafafa] dark:bg-[#1A1A1A] mb-20">
         <Lesson link={course.course_link} />
 
         <div className="mt-20 flex justify-center gap-8 items-start">
           <div className="flex flex-col gap-8">
-            <div className="p-5 border rounded-lg bg-white">
-              <h2 className="text-2xl text-[#002058]">Overview</h2>
-              <p className="max-w-[800px] text-gray-500 mt-5">
+            <div className="p-5 border rounded-lg bg-white dark:bg-[#2E2E2E] dark:border-gray-700">
+              <h2 className="text-2xl text-[#002058] dark:text-[#E0E0E0]">
+                {t("overview")}
+              </h2>
+              <p className="max-w-[800px] text-gray-500 dark:text-gray-300 mt-5">
                 {course.overview}
               </p>
             </div>
 
-            <div className="p-5 border rounded-lg bg-white">
-              <h2 className="text-2xl text-[#002058]">Requirements</h2>
-              {requirements?.map((item) => {
-                return (
-                  <p key={item} className="max-w-[800px] text-gray-500 mt-5">
-                    <CircleIcon className="w-2 text-[#FF6575]" /> {item}
-                  </p>
-                );
-              })}
+            <div className="p-5 border rounded-lg bg-white dark:bg-[#2E2E2E] dark:border-gray-700">
+              <h2 className="text-2xl text-[#002058] dark:text-[#E0E0E0]">
+                {t("requirements")}
+              </h2>
+              {requirements?.map((item) => (
+                <p
+                  key={item}
+                  className="max-w-[800px] text-gray-500 dark:text-gray-300 mt-5"
+                >
+                  <CircleIcon className="w-2 text-[#FF6575]" /> {item}
+                </p>
+              ))}
             </div>
-            <div className="p-5 border rounded-lg bg-white">
-              <h2 className="text-2xl text-[#002058]">Audience</h2>
-              {audience?.map((item) => {
-                return (
-                  <p key={item} className="max-w-[800px] text-gray-500 mt-5">
-                    <CircleIcon className="w-2 text-[#FF6575]" /> {item}
-                  </p>
-                );
-              })}
+
+            <div className="p-5 border rounded-lg bg-white dark:bg-[#2E2E2E] dark:border-gray-700">
+              <h2 className="text-2xl text-[#002058] dark:text-[#E0E0E0]">
+                {t("audience")}
+              </h2>
+              {audience?.map((item) => (
+                <p
+                  key={item}
+                  className="max-w-[800px] text-gray-500 dark:text-gray-300 mt-5"
+                >
+                  <CircleIcon className="w-2 text-[#FF6575]" /> {item}
+                </p>
+              ))}
             </div>
-            <div className="p-5 border rounded-lg bg-white">
-              <h2 className="text-2xl text-[#002058]">What Will I Learn?</h2>
-              {whatToLearnArray?.map((item) => {
-                return (
-                  <p key={item} className="max-w-[800px] text-gray-500 mt-5">
-                    <CircleIcon className="w-2 text-[#FF6575]" /> {item}
-                  </p>
-                );
-              })}
+
+            <div className="p-5 border rounded-lg bg-white dark:bg-[#2E2E2E] dark:border-gray-700">
+              <h2 className="text-2xl text-[#002058] dark:text-[#E0E0E0]">
+                {t("learn")}
+              </h2>
+              {whatToLearnArray?.map((item) => (
+                <p
+                  key={item}
+                  className="max-w-[800px] text-gray-500 dark:text-gray-300 mt-5"
+                >
+                  <CircleIcon className="w-2 text-[#FF6575]" /> {item}
+                </p>
+              ))}
             </div>
 
             {/* <CourseComment id={course.id} /> */}
           </div>
 
           <div className="w-1/3 flex flex-col gap-5">
-            <ReviewModal isReviewed={isReviewed} courseId={courseId} />
+            <ReviewModal
+              lessonsTranslation={lessonsTranslation}
+              isReviewed={isReviewed}
+              courseId={courseId}
+            />
 
-            <div className=" bg-white border  rounded-lg shadow-md p-5 font-sans">
-              <ul className="flex flex-col gap-4 ">
-                <li className="flex gap-2 text-gray-500 font-semibold">
+            <div className="bg-white dark:bg-[#2E2E2E] border dark:border-gray-700 rounded-lg shadow-md p-5 font-sans">
+              <ul className="flex flex-col gap-4">
+                <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
                   <CastForEducationIcon className="text-[#b4a7f5]" />
-                  Lessons :
-                  <span className="font-bold text-black">{course.lessons}</span>
+                  {t("link")}:
+                  <span className="font-bold text-black dark:text-[#E0E0E0]">
+                    {course.lessons}
+                  </span>
                 </li>
-                <li className="flex gap-2 text-gray-500 font-semibold">
+                <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
                   <TimerIcon className="text-[#b4a7f5]" />
-                  duration :
-                  <span className="font-bold text-black">
+                  {t("duration")}:
+                  <span className="font-bold text-black dark:text-[#E0E0E0]">
                     {course.duration}
                   </span>
                 </li>
-                <li className="flex gap-2 text-gray-500 font-semibold">
+                <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
                   <TrendingUpIcon className="text-[#b4a7f5]" />
-                  Level :<span className="font-bold text-black">All Level</span>
+                  {t("level")}:
+                  <span className="font-bold text-black dark:text-[#E0E0E0]">
+                    All Level
+                  </span>
                 </li>
-                <li className="flex gap-2 text-gray-500 font-semibold">
-                  <GroupIcon className="text-[#b4a7f5]" /> Maximum Studentss :
-                  <span className="font-bold text-black">150</span>
+                <li className="flex gap-2 text-gray-500 dark:text-gray-300 font-semibold">
+                  <GroupIcon className="text-[#b4a7f5]" />
+                  {t("maximum")}:
+                  <span className="font-bold text-black dark:text-[#E0E0E0]">
+                    150
+                  </span>
                 </li>
               </ul>
             </div>
