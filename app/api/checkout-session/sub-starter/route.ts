@@ -18,8 +18,8 @@ export async function POST() {
         },
       ],
       mode: "subscription",
-      success_url: `${URL}/test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${URL}/?canceled=true`,
+      success_url: `https://tbc-academy-opal.vercel.app//test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://tbc-academy-opal.vercel.app/?canceled=true`,
     });
 
     if (!session.url) {
