@@ -1,5 +1,5 @@
 "use client";
-import { addUser } from "../../../app/actions";
+// import { addUser } from "../../../app/actions";
 import { AddUserProps } from "../../../types/types";
 
 export default function UserModal({
@@ -28,7 +28,7 @@ export default function UserModal({
                   age: Number(formData.get("age")) as number,
                 };
                 addUserOptimistic(user);
-                await addUser(formData);
+                // await addUser(formData);
               }}
               className="flex flex-col gap-3 text-orange-500"
             >

@@ -1,101 +1,56 @@
-import React from "react";
+// import { useTranslations } from "next-intl";
+import Link from "next/link";
+import ContactInfo from "../../../../components/contact/ContactInfo";
+import ContactForm from "../../../../components/contact/ContactForm";
 import { useTranslations } from "next-intl";
 
+export const metadata = {
+  title: "DreamLMS - Contact Us",
+  description:
+    "Get in touch with the DreamLMS team for any inquiries, support, or feedback.",
+  keywords:
+    "contact us, DreamLMS, support, inquiries, feedback, customer service",
+};
+
 const Contact = () => {
-  const t = useTranslations("Contact");
+  const t = useTranslations("Contactus");
+
+  const formnObj = {
+    header: t("form.header"),
+    name: t("form.name"),
+    lastname: t("form.lastname"),
+    email: t("form.email"),
+    phone: t("form.phone"),
+    text: t("form.text"),
+    send: t("form.send"),
+  };
 
   return (
     <>
-      <div className="bg-[#07212e] flex items-center justify-center h-[450px]">
-        <div className="flex-col gap-8  flex ">
-          <h1 className="text-[#F28123] text-center tracking-widest text-xl">
-            GET 24/7 SUPPORT
-          </h1>
-          <h1 className="text-center text-white text-4xl sm:text-5xl ">
-            {t("contactus")}
-          </h1>
+      <div>
+        <div
+          className="mt-20 w-full h-[190px] relative bg-center bg-no-repeat bg-cover pt-12 "
+          style={{
+            backgroundImage: "url('/images/bg-about.png')",
+            backgroundColor: "rgba(250, 246, 246, .9)",
+          }}
+        >
+          <div className="flex flex-col  gap-3 items-center justify-center">
+            <h1 className="text-5xl text-[#002058]"> {t("banner.main")}</h1>
+            <div className="flex gap-2 text-lg">
+              <Link href="/" className="text-[#002058]">
+                {t("banner.home")}
+              </Link>
+              <span className="text-red-500 text-xl">-</span>
+              <span className="text-[#685f78]"> {t("banner.main")}</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r lg:mt-8 flex flex-col items-center justify-center ">
-        <div className="bg-white py-3 px-4 md:px-8 rounded-lg shadow-lg sm:w-2/3 lg:w-1/2 xl:w-1/3 dark:bg-gray-800">
-          <div>
-            <div className="mb-4 gap-2 flex flex-col md:flex-row md:justify-between">
-              <div className="mb-2 md:mb-0">
-                <h2 className="text-xl font-semibold dark:text-white">
-                  {t("address")}
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300">
-                  123 Main Street, City, Country
-                </p>
-              </div>
-              <div className="mb-2 md:mb-0">
-                <h2 className="text-xl font-semibold dark:text-white">
-                  {t("number")}
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300">
-                  +1 234 567 890
-                </p>
-              </div>
-              <div className="mb-2 md:mb-0">
-                <h2 className="text-xl font-semibold dark:text-white">
-                  {t("email")}
-                </h2>
-                <p className="text-gray-700 dark:text-gray-300">
-                  info@example.com
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <form className="mb-4">
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                {t("name")}
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm dark:bg-gray-700 dark:text-white"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                {t("email")}
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm dark:bg-gray-700 dark:text-white"
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-              >
-                {t("message")}
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={3}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm dark:bg-gray-700 dark:text-white"
-              ></textarea>
-            </div>
-            <button className="w-full bg-slate-700 dark:bg-slate-500 dark:hover:bg-slate-700 text-white py-2 px-4 rounded-md hover:bg-slate-800 focus:outline-none">
-              {t("submit")}
-            </button>
-          </form>
-        </div>
+      <div>
+        <ContactInfo />
+        <ContactForm formObj={formnObj} />
       </div>
     </>
   );

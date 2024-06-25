@@ -14,60 +14,218 @@
   "Index": {
     "navigation": {
       "home": "Home",
-      "profile": "Profile",
-      "about": "About",
-      "contact": "Contact",
+      "courses": "Courses",
+      "about": "About Us",
+      "instructors": "Instructors",
+      "students": "Students",
       "blog": "Blog",
+      "contact": "Contact Us",
+      "profile": "Profile",
+      "package": "Packages",
       "logout": "Logout"
     },
-    "banner": {
-      "name": "SMART & SUSTAINABLE",
-      "header": "Discover the Joy of Shopping",
-      "collection": "Product Collection",
-      "contact": "Contact Us"
+    "mainbanner": {
+      "leader": "The Leader in Online Learning",
+      "engaging": "Engaging & Accessible Online Courses For All",
+      "trusted": "Trusted by over 15K Users worldwide since 2022",
+      "search": "Search Course..."
     },
-    "features": {
-      "shipping": {
-        "name": "Free Shipping",
-        "text": "When order over $75"
-      },
-      "support": {
-        "name": "24/7 Support",
-        "text": "Get support all day"
-      },
-      "refund": {
-        "name": "Refund",
-        "text": "Get refund within 3 days!"
-      }
+    "maininfo": {
+      "courses": "Online Courses",
+      "tutors": "Expert Tutors",
+      "certified": "Certified Courses",
+      "students": "Online Students"
     },
-    "product": {
-      "name": "Our",
-      "text": "Products"
+    "favourite": {
+      "courses": "Favourite Course",
+      "top": "Top Category",
+      "text": "Explore our top categories to elevate your skills and career. Our expert-led courses are designed to provide comprehensive knowledge and hands-on experience."
     },
-    "subscription": {
-      "newsletter": "Subscribe to our newsletter",
-      "subscribe": "Subscribe"
+
+    "topcourses": {
+      "courses": "Courses"
+    },
+    "featured": {
+      "new": "What’s New",
+      "name": "Featured Courses",
+      "text": "Discover our hand-picked featured courses to advance your skills and career. Whether you're looking to dive into new technologies or refine your existing knowledge, our curated selection has something for everyone."
     }
   },
-  "Profile": {
-    "profileinfo": "Profile Info",
-    "name": "Name",
-    "lastname": "Last Name",
-    "email": "Email",
-    "password": "Password",
-    "confirmpassword": "Confirm Password",
-    "save": "Save"
+  "Aboutus": {
+    "banner": {
+      "main": "About Us",
+      "home": "Home"
+    },
+    "company": {
+      "about": "About Our Company",
+      "header": "Master the skills to drive your career",
+      "text": "At DreamLMS, we are dedicated to empowering individuals with the knowledge and skills needed to excel in today's competitive job market. Our comprehensive courses are designed by industry experts to provide you with practical, hands-on experience in a variety of fields.We believe in the power of education to transform lives and drive career growth. That's why our curriculum is constantly updated to reflect the latest trends and technologies. Whether you're looking to start a new career, advance in your current role, or simply expand your knowledge, we have the right course for you.Join our community of learners and gain access to resources, support, and guidance from our experienced instructors. With flexible learning options, you can study at your own pace and on your own schedule.At DreamLMS, your success is our priority. We are committed to providing you with the tools and knowledge you need to achieve your goals and reach new heights in your career."
+    },
+    "mentor": {
+      "header": "Want to share your knowledge? Join us a Mentor",
+      "text": "Explore a wide range of courses designed by industry experts to help you achieve your career goals. Whether you're starting a new career or advancing in your current role, DreamLMS has the right course for you.",
+      "courses": "Best Courses",
+      "instructors": "Top rated Instructors",
+      "become": "Become An Instructor",
+      "top": "Top instructors from around the world teach millions of students on Mentoring",
+      "education": "Transform Access To Education",
+      "account": "Create an account to receive our newsletter, course recommendations and promotions."
+    }
+  },
+  "Contactus": {
+    "banner": {
+      "main": "Contact Us",
+      "home": "Home"
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email Address",
+      "address": "Address"
+    },
+    "form": {
+      "header": "Get In Touch",
+      "name": "Name",
+      "lastname": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "text": "Text",
+      "send": "Send a Message"
+    }
+  },
+  "Footer": {
+    "touch": "Get In Touch",
+    "navigation": "Navigation",
+    "updates": "Get More Updates",
+    "email": "Enter your email address",
+    "submit": "Submit"
+  },
+  "Instructors": {
+    "link": "Instructors",
+    "home": "Home",
+    "showing": "Showing",
+    "result": "results",
+    "instructor": "Instructor",
+    "course": "Course"
   },
   "Blog": {
-    "showmore": "Show More"
+    "link": "Blog List",
+    "home": "Home",
+    "search": "Search...",
+    "read": "Read More"
   },
-  "Contact": {
-    "contactus": "Contact Us",
-    "address": "Out Adress",
-    "number": "Phone Number",
-    "email": "Email",
-    "name": "Name",
-    "message": "Message",
-    "submit": "Submit"
+  "Dashboard": {
+    "link": "Dashboard",
+    "home": "Home",
+    "myprofile": "My Profile",
+    "courses": "My Courses",
+    "edit": "Edit Profile"
+  },
+  "Courses": {
+    "course": {
+      "instructor": "Instructor",
+      "lessons": "Lessons",
+      "overview": "Overview",
+      "content": "Course Content",
+      "review": "Reviews",
+      "comments": "Comments",
+      "leavecomment": "Leave Comment",
+      "yourcomment": "Leave your comment",
+      "postcomment": "Post Comment",
+      "cart": "Add To Cart",
+      "share": "Share",
+      "duration": "Duration",
+      "maximum": "Maximum Students",
+      "category": "Course Category",
+      "processing": "Processing",
+      "viewcart": "View Cart",
+      "startcourse": "Start The Course"
+    },
+    "link": "Courses",
+    "home": "Home",
+    "filter": "Filter",
+    "showing": "Showing",
+    "courses": "Courses",
+    "search": "Search Course",
+    "category": "Course Categories",
+    "tags": "Tags",
+    "level": "Level",
+    "price": "Price",
+    "view": "View Course",
+    "instructor": "Instructor",
+    "lessons": "Lessons"
+  },
+  "Profile": {
+    "myprofile": {
+      "profile": "My profile",
+      "name": "First Name",
+      "lastname": "Last Name",
+      "date": "Registration Date",
+      "email": "Email"
+    },
+    "editprofile": {
+      "details": "Profile Details",
+      "control": "You have full control to manage your own account setting.",
+      "avatar": "Your avatar",
+      "image": "PNG or JPG no bigger than 800px width and height.",
+      "personal": "Personal Details",
+      "editpersonal": "Edit your personal information.",
+      "update": "Update Profile",
+      "upload": "Upload",
+      "updating": "Updating..."
+    },
+    "courses": {
+      "purchased": "Recently Purchased Courses",
+      "lessons": "Lessons",
+      "remove": "Remove Course",
+      "sure": "Are you sure you want to delete this Course?",
+      "close": "No, Close",
+      "delete": "Yes, I'm sure",
+      "deleting": "Deleting..."
+    }
+  },
+  "Lessons": {
+    "link": "Lessons",
+    "home": "Home",
+    "overview": "Overview",
+    "requirements": "Requirements",
+    "audience": "Audience",
+    "learn": "What Will I Learn?",
+    "complete": "Complete The Course",
+    "duration": "Duration",
+    "level": "Level",
+    "maximum": "Maximum Students",
+    "completed": "You already Completed and Reviewed this Course!",
+    "rate": "How would you rate this course?",
+    "rating": "Select Rating"
+  },
+  "Admin": {
+    "courses": {
+      "all": "All Course",
+      "course": "Course",
+      "instructor": "Instructor",
+      "duration": "Duration",
+      "price": "Price"
+    },
+    "users": {
+      "all": "All User",
+      "user": "User",
+      "email": "Email",
+      "role": "Role",
+      "date": "Created At"
+    },
+    "blogs": {
+      "all": "All Blog",
+      "blog": "Blog",
+      "tag": "Tag",
+      "date": "Date Added"
+    },
+    "purchases": {
+      "all": "All Purchase",
+      "purchased": "Purchased Course",
+      "name": "Student Name",
+      "quantity": "Quantity",
+      "price": "Price",
+      "date": "Purchase Date"
+    }
   }
 }

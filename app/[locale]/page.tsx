@@ -1,37 +1,29 @@
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import Footer from "../../components/footer/Footer";
-import Header from "../../components/header/Header";
-import MainProduct from "../../components/main-product/MainProduct";
-import { ProductsResponse } from "../../types/types";
-import FeaturesSection from "../../components/main-product/FeaturesSection";
-import MainBanner from "../../components/banner/MainBanner";
-import { getCartQuantity } from "../actions";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-const URL = "https://dummyjson.com/products?limit=10";
+import MainBanner from "../../components/banner/MainBanner";
+
+import FeaturedCourses from "../../components/main-info/FeaturedCourses";
+import TopCategories from "../../components/top-courses/TopCategories";
+import { getCourses } from "../actions";
+import { Course } from "../../types/types";
+import { QueryResultRow } from "@vercel/postgres";
+
+export const revalidate = 0;
 
 export default async function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslations("Index");
-  const response = await fetch(URL);
-  const data: ProductsResponse = await response.json();
-  const products = data.products;
+  const courses: Course[] | QueryResultRow[] = await getCourses();
 
   unstable_setRequestLocale(locale);
-  const quantity = await getCartQuantity();
 
   return (
     <div className="flex flex-col  min-h-screen">
-      <Header quantity={quantity} />
       <MainBanner />
-      <FeaturesSection />
-      <MainProduct
-        name={{ name: t("product.name"), text: t("product.text") }}
-        data={products}
-      />
-      <Footer />
+      <TopCategories />
+      <FeaturedCourses courses={courses} />
     </div>
   );
 }

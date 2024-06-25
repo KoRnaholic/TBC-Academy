@@ -1,27 +1,28 @@
-import { revalidatePath } from "next/cache";
-import AddUser from "../../../../components/UI/admin-ui/AddUser";
-import { User } from "../../../../types/types";
-import { getUsers } from "../../../actions";
+import React from "react";
 
-export const baseUrl = process.env.BASE_URL;
-export default async function AdminPage() {
-  const users: User[] = await getUsers();
-  revalidatePath("/users");
-
+export default function AdminPage() {
   return (
     <>
-      <div className="bg-[#07212e] flex items-center justify-center h-[450px]">
-        <div className="flex-col gap-8  flex ">
-          <h1 className="text-[#F28123] tracking-widest text-xl">
-            {/* WE DELIVER TECH DREAMS */}
-          </h1>
-          <h1 className="text-center text-white text-4xl sm:text-5xl ">
-            Admin Panel
-          </h1>
+      {/* <div>
+        <div
+          className="mt-20 w-full h-[190px] relative bg-center bg-no-repeat bg-cover pt-12 "
+          style={{
+            backgroundImage: "url('/images/bg-about.png')",
+            backgroundColor: "rgba(250, 246, 246, .9)",
+          }}
+        >
+          <div className="flex flex-col  gap-3 items-center justify-center">
+            <h1 className="text-5xl text-[#002058]">Admin Panel</h1>
+            <div className="flex gap-2 text-lg">
+              <Link href="/" className="text-[#002058]">
+                Home
+              </Link>
+              <span className="text-red-500 text-xl">-</span>
+              <span className="text-[#685f78]">Admin Panel</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <AddUser users={users} />
+      </div> */}
     </>
   );
 }

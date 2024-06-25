@@ -1,46 +1,6 @@
+import { QueryResultRow } from "@vercel/postgres";
+
 //Products page
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-  quantity?: number | undefined;
-}
-
-export interface ProductsResponse {
-  products: Product[];
-}
-
-//Blog page
-export interface Recipes {
-  id: number;
-  name: string;
-  ingredients: string[];
-  instructions: string[];
-  prepTimeMinutes: number;
-  cookTimeMinutes: number;
-  servings: number;
-  difficulty: string;
-  cuisine: string;
-  caloriesPerServing: number;
-  tags: string[];
-  userId: number;
-  image: string;
-  rating: number;
-  reviewCount: number;
-  mealType: string[];
-}
-
-export interface BlogObject {
-  recipes: Recipes[];
-}
 
 //Profile info component
 
@@ -56,27 +16,6 @@ export interface SearchProps {
   sortBy: string;
   search: string;
   setSearch: (search: string) => void;
-}
-
-export interface DataResponse {
-  data: Product[];
-  name: {
-    name: string;
-    text: string;
-  };
-}
-
-//Button
-export interface ButtonProps {
-  children: React.ReactNode;
-  styles?: string;
-  product: Product;
-  onClick: (id: number) => void;
-}
-
-//SingleProduct component
-export interface SingleProductProps {
-  data: Product;
 }
 
 //Admin page
@@ -103,20 +42,95 @@ export interface AddUserProps {
   addUserOptimistic: (action: User) => void;
 }
 
-//Cart Context
-export interface Action {
-  payload: Product;
-  type: "INCREMENT" | "DECREMENT" | "RESET";
+//new
+export interface Course {
+  id: number;
+  name: string;
+  instructor_id: number;
+  lessons: number;
+  duration: string;
+  rating: number;
+  image: string;
+  price: string;
+  quantity: number;
+  overview: string;
+  instructor_name: string;
+  instructor_surname: string;
+  instructor_email: string;
+  instructor_image: string;
+  student_id: string;
+  course_id: number;
+}
+export interface Courses {
+  courses: Course[] | QueryResultRow[];
 }
 
-export interface State {
-  id: number;
-  product: Product;
-  quantity: number;
+//SingleProductPage
+export interface SingleProductParam {
+  locale: string;
+  id: string;
 }
-export interface InitialState {
-  quantity: number | undefined;
-  products: Product[] | State[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (product: Product) => void;
+
+//Created course
+
+export interface CreatedCourse {
+  name: string;
+  lessons: number;
+  duration: string;
+  image: string;
+  price: string;
+  overview: string;
+  course_link: string;
+  requirements: string;
+  audience: string;
+  what_to_learn: string;
+  instructor_image?: string;
+  instructor_name?: string;
+  instructor_surname?: string;
+  rating?: number;
+}
+
+//Blog
+export interface BlogPost {
+  // id: number;
+  title: string;
+  overview: string;
+  tag: string;
+  blogImage: {
+    title: string;
+    width: number;
+    height: number;
+    url: string;
+  };
+  slug: string;
+  date: string;
+}
+
+//Blog query
+export interface BlogPostCollection {
+  blogPostCollection: {
+    items: {
+      title: string;
+      overview: string;
+      tag: string;
+      blogImage: {
+        title: string;
+        width: number;
+        height: number;
+        url: string;
+      };
+      date: string;
+      slug: string;
+    }[];
+  };
+}
+
+//User Profile
+export interface UserInfo {
+  name: string;
+  surname: string;
+  email: string;
+  image?: string;
+  role: string;
+  userId: string;
 }

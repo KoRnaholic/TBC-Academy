@@ -27,6 +27,16 @@ code {
   background-image: url("https://images.pexels.com/photos/1145434/pexels-photo-1145434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 } */
 
+.background {
+  position: relative;
+  background-image: url(../../public/images/error/error-bg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 200px;
+  padding-bottom: 150px;
+}
+
 .flag-discount {
   border-radius: 6px 0 0 6px;
   color: #fff;
@@ -91,7 +101,7 @@ code {
 .circle {
   width: 8vmax;
   height: 8vmax;
-  border-right: 4px solid #000;
+  border-right: 4px solid #4b3869;
   border-radius: 50%;
   -webkit-animation: spinRight 800ms linear infinite;
   animation: spinRight 800ms linear infinite;
@@ -105,7 +115,7 @@ code {
   position: absolute;
   top: calc(50% - 3vmax);
   left: calc(50% - 3vmax);
-  border-left: 3px solid #f28123;
+  border-left: 3px solid #ff6575;
   border-radius: 100%;
   -webkit-animation: spinLeft 800ms linear infinite;
   animation: spinLeft 800ms linear infinite;
@@ -119,7 +129,7 @@ code {
   position: absolute;
   top: calc(50% - 3vmax);
   left: calc(50% - 3vmax);
-  border-left: 3px solid #f28123;
+  border-left: 3px solid #ff6575;
   border-radius: 100%;
   -webkit-animation: spinLeft 800ms linear infinite;
   animation: spinLeft 800ms linear infinite;
@@ -128,7 +138,7 @@ code {
   top: calc(50% - 2vmax);
   left: calc(50% - 2vmax);
   border: 0;
-  border-right: 2px solid #000;
+  border-right: 2px solid #ff6575;
   -webkit-animation: none;
   animation: none;
 }
@@ -174,5 +184,55 @@ code {
   to {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
+  }
+}
+
+/* stars */
+:root {
+  --star-size: 22px;
+  --star-color: #ffffff53;
+  --star-background: #fc0;
+}
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+
+  &::before {
+    content: "★★★★★";
+    letter-spacing: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--star-background) var(--percent),
+      var(--star-color) var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Image Float */
+.girl-image {
+  animation: float 4.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* max-width: 300px; */
+}
+
+@keyframes float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  /* 45% {
+    transform: translate3d(0, -10%, 0);
+  } */
+  50% {
+    transform: translate3d(0, -12%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }

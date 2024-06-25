@@ -1,50 +1,82 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-export default function Footer() {
-  const t = useTranslations("Index");
+interface Navigation {
+  navigation: {
+    home: string;
+    courses: string;
+    about: string;
+    instructors: string;
+    students: string;
+    blog: string;
+    contact: string;
+  };
+}
 
+export default function Footer({ navigation }: Navigation) {
+  const t = useTranslations("Footer");
   return (
-    <footer className=" bg-gray-600 text-white p-8">
-      <div className="flex flex-col lg:flex-row lg:justify-between">
-        <div className="flex flex-col justify-center items-center w-full mb-4 lg:mb-0">
-          <h4 className="text-lg font-semibold mb-2">
-            {t("subscription.newsletter")}
-          </h4>
-          <div className="flex">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="bg-gray-900 text-white rounded-l py-2 px-4 focus:outline-none"
-            />
-            <button className="bg-slate-800 hover:bg-slate-500 rounded-r px-4 py-2">
-              {t("subscription.subscribe")}
-            </button>
+    <footer className=" bg-white dark:bg-[#1E1E2E] text-inherit py-8">
+      <div className="flex flex-col md:flex-row justify-around gap-10 px-4 md:px-0">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">{t("touch")}</h2>
+          <p className="max-w-[250px] text-gray-700 dark:text-gray-300">
+            3556 Beech Street, San Francisco, California, CA 94108
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">+19 123-456-7890</p>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">{t("navigation")}</h2>
+          <div className="flex flex-col md:flex-row gap-6">
+            <ul className="space-y-2">
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/">{navigation.home}</Link>
+              </li>
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/courses">{navigation.courses}</Link>
+              </li>
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/about">{navigation.about}</Link>
+              </li>
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/instructors">{navigation.instructors}</Link>
+              </li>
+            </ul>
+            <ul className="space-y-3">
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/students">{navigation.students}</Link>
+              </li>
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/blog">{navigation.blog}</Link>
+              </li>
+              <li className="hover:text-[#FF6575] px-5 lg:px-0">
+                - <Link href="/contact">{navigation.contact}</Link>
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="hidden lg:flex lg:items-center ">
-          <ul className="flex gap-8 text-lg">
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/">{t("navigation.home")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/profile">{t("navigation.profile")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/about">{t("navigation.about")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/contact">{t("navigation.contact")}</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-black">
-              <Link href="/blog">{t("navigation.blog")}</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="w-full lg:flex lg:justify-center lg:items-center  text-center lg:text-right">
-          &copy; 2024 OpenMarket
+
+        <div className="flex flex-col gap-5">
+          <h2 className="text-2xl text-red-400">{t("updates")}</h2>
+          <div className="relative w-full max-w-sm">
+            <input
+              placeholder={`${t("email")}`}
+              type="text"
+              className="w-full border pl-6 pr-12 py-2 rounded-lg focus:ring-0 text-gray-700 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-700 shadow-md"
+            />
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FF6575] text-white px-3 py-1.5 rounded-lg hover:bg-[#fa5566] dark:hover:bg-[#FF85A1] transition duration-300">
+              {t("submit")}
+            </button>
+          </div>
+          <p className="max-w-md text-gray-700 dark:text-gray-300">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+            consequat mauris Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Ut consequat mauris
+          </p>
         </div>
       </div>
+      <div></div>
     </footer>
   );
 }

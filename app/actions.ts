@@ -1,17 +1,23 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-import { baseUrl } from "./[locale]/(dashboard)/admin/page";
+// import { redirect } from "next/navigation";
+// import { baseUrl } from "./[locale]/(dashboard)/admin/page";
 import {
-  sqlCreateUser,
-  sqlCreateUserCart,
   sqlDecrementQuantity,
-  sqlGetCartList,
   sqlGetCartQuantity,
+  sqlGetCourses,
+  sqlGetInstructors,
+  sqlGetSingleCourse,
   sqlIncrementQuantity,
-  sqlResetCart,
+  sqlClearCart,
 } from "./sql/sqlRequests";
+import { sqlAddCourse } from "./sql/sql-courses/sqlAddCourse";
+import { put } from "@vercel/blob";
+import { z } from "zod";
+import { CreatedCourse, UserInfo } from "../types/types";
+import { sqlUpdateUserProfile } from "./sql/sq-profile/sqlUpdateUserProfile";
+import { getSession } from "@auth0/nextjs-auth0";
 
 async function getUserId() {
   const cookieStore = cookies();
@@ -26,155 +32,6 @@ async function getUserId() {
       console.error("Failed to parse authObject:", error);
     }
   }
-}
-
-async function getUserObj(): Promise<
-  | {
-      id: number;
-      name: string;
-      lastName: string;
-      email: string;
-    }
-  | undefined
-> {
-  const cookieStore = cookies();
-
-  const authObject = cookieStore.get("auth")?.value;
-  if (authObject) {
-    const valueObject = JSON.parse(authObject);
-    const userObj = {
-      id: valueObject?.id,
-      name: valueObject?.firstName,
-      lastName: valueObject?.lastName,
-      email: valueObject?.email,
-    };
-
-    console.log(userObj);
-    return userObj;
-  } else {
-    return;
-  }
-}
-
-//Login server action
-export async function Login(formData: FormData) {
-  const response = await fetch("https://dummyjson.com/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: formData.get("username"),
-      password: formData.get("password"),
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to log in");
-  }
-
-  const user = await response.json();
-  const cookieStore = cookies();
-  cookieStore.set("auth", JSON.stringify(user));
-
-  //Creating user in database
-  const userObj = await getUserObj();
-  await sqlCreateUser(userObj);
-
-  if (user.username === formData.get("username")) {
-    return redirect("/");
-  }
-}
-
-//LogOut server action
-export async function Logout() {
-  const cookieStore = cookies();
-  cookieStore.delete("auth");
-
-  return redirect("/login");
-}
-
-//Add user
-export async function addUser(formData: FormData) {
-  "use server";
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const age = formData.get("age");
-  await fetch(
-    `${baseUrl}/api/add-user?name=${name}&email=${email}&age=${age}`,
-    {
-      method: "GET",
-      cache: "no-cache",
-    }
-  );
-
-  revalidatePath("/users");
-}
-
-//Delete user
-export async function handleUserDelete(id?: number) {
-  "use server";
-  await fetch(`${baseUrl}/api/delete-user/${id}`, {
-    method: "DELETE",
-  });
-
-  revalidatePath("/users");
-}
-
-//Edit user
-export async function editUser(id: number, formData: FormData) {
-  "use server";
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const age = formData.get("age");
-  await fetch(
-    `${baseUrl}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
-    {
-      method: "POST",
-      next: { revalidate: 0 },
-    }
-  );
-
-  revalidatePath("/admin");
-}
-
-//Get all users
-export async function getUsers() {
-  const response = await fetch(`${baseUrl}/api/get-users`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-    next: { revalidate: 0 },
-  });
-
-  let data;
-  if (response.headers.get("Content-Type")?.includes("application/json")) {
-    data = await response.json();
-  } else {
-    data = await response.text(); // Treat non-JSON responses as text
-  }
-
-  if (data.users) {
-    revalidatePath("/users");
-    return data.users.rows; // Assuming the JSON structure contains 'users' object
-  } else {
-    // Handle HTML response or other non-JSON data
-    console.error("Received unexpected data:", data);
-    return [];
-  }
-}
-
-//creating cart
-export async function createUserCart(productId: number) {
-  const userId = await getUserId();
-  await sqlCreateUserCart(userId, productId);
-  revalidatePath("/checkout");
-}
-
-//get cart list
-export async function getCartList() {
-  const userId = await getUserId();
-  const cartList = await sqlGetCartList(userId);
-  revalidatePath("/checkout");
-
-  return cartList;
 }
 
 //get cart quantity
@@ -198,9 +55,157 @@ export async function decrementQuantity(productId: number) {
   revalidatePath("/checkout");
 }
 
-//reset cart
-export async function resetCart() {
-  const userId = await getUserId();
-  await sqlResetCart(userId);
-  revalidatePath("/checkout");
+export async function getCourses() {
+  const courses = await sqlGetCourses();
+  revalidatePath("/");
+
+  return courses;
+}
+export async function getSingleCourse(course_id: number) {
+  const course = await sqlGetSingleCourse(course_id);
+  revalidatePath("/courses");
+  return course;
+}
+
+export async function getInstructors() {
+  const instructors = await sqlGetInstructors();
+  return instructors;
+}
+
+// server action for Adding Course
+const schema = z.object({
+  name: z.string().trim().min(10, "Name must be at least 10 chars long"),
+  lessons: z
+    .number({ invalid_type_error: "Lessons must be a number" })
+    .gt(0)
+    .min(1, "Lessons are required"),
+  price: z
+    .number({ invalid_type_error: "Price must be a number" })
+    .gt(0)
+    .lt(100)
+    .min(1, "Price is required"),
+  duration: z.string().min(1, "Duration is required"),
+  overview: z
+    .string()
+    .trim()
+    .min(40, "Overview must be at least 20 chars long")
+    .max(1000, "Overview must be less then 1000 chars long"),
+  courseLink: z.string(),
+  requirements: z.string().min(10),
+  audience: z.string().min(1, "Audience is required"),
+  whatToLearn: z.string().min(1, "What to learn is required"),
+});
+
+const initialState = {
+  name: "",
+  lessons: "",
+  price: "",
+  duration: "",
+  overview: "",
+  courseLink: "",
+  requirements: "",
+  audience: "",
+  whatToLearn: "",
+  errors: {
+    name: [""],
+    price: [""],
+    duration: [""],
+    lessons: [""],
+    overview: [""],
+    courseLink: [""],
+    requirements: [""],
+    audience: [""],
+    whatToLearn: [""],
+  },
+  success: false,
+};
+export async function uploadCourse(_: any, formData: FormData) {
+  "use server";
+
+  //validation
+  const result = schema.safeParse({
+    name: formData.get("name"),
+    lessons: Number(formData.get("lessons")),
+    price: Number(formData.get("price")),
+    duration: formData.get("duration"),
+    overview: formData.get("overview"),
+    course_link: formData.get("link"),
+    requirements: formData.get("requirements"),
+    audience: formData.get("audience"),
+    what_to_learn: formData.get("learn"),
+  });
+
+  if (result.success) {
+    const imageFile = formData.get("image") as File;
+    const blob = await put(imageFile.name, imageFile, {
+      access: "public",
+    });
+    revalidatePath("/");
+
+    const courseInfo: CreatedCourse = {
+      name: formData.get("name") as string,
+      lessons: Number(formData.get("lessons")) as number,
+      price: formData.get("price") as string,
+      duration: formData.get("duration") as string,
+      overview: formData.get("overview") as string,
+      image: blob.url,
+      course_link: formData.get("link") as string,
+      requirements: formData.get("requirements") as string,
+      audience: formData.get("audience") as string,
+      what_to_learn: formData.get("learn") as string,
+    };
+
+    await sqlAddCourse(courseInfo);
+
+    return { success: true, errors: initialState };
+  } else {
+    return { success: false, errors: result.error.flatten().fieldErrors };
+  }
+
+  // return initialState;
+}
+
+//Update user info
+export async function updateUserInfo(
+  role: string,
+  sub: string,
+  blobImage: string,
+  formData: FormData
+) {
+  const imageFile = formData.get("image") as File;
+  const blob = await put(imageFile.name, imageFile, {
+    access: "public",
+  });
+
+  if (blob.pathname === "undefined") {
+    const userInfo: UserInfo = {
+      name: formData.get("name") as string,
+      surname: formData.get("surname") as string,
+      email: formData.get("email") as string,
+      image: blobImage,
+      role: role,
+      userId: sub,
+    };
+
+    await sqlUpdateUserProfile(userInfo);
+  } else {
+    const userInfo: UserInfo = {
+      name: formData.get("name") as string,
+      surname: formData.get("surname") as string,
+      email: formData.get("email") as string,
+      image: blob.url,
+      role: role,
+      userId: sub,
+    };
+
+    await sqlUpdateUserProfile(userInfo);
+  }
+
+  revalidatePath("/");
+}
+
+//clear cart
+export async function clearCart() {
+  const data = await getSession();
+  await sqlClearCart(data?.user.sub);
 }
