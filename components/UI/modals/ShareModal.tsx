@@ -4,7 +4,7 @@ import ShareTelegram from "../../social-share/ShareTelegram";
 import ShareTwitter from "../../social-share/ShareTwitter";
 import ShareWhatsapp from "../../social-share/ShareWhatsapp";
 
-const URL = process.env.BASE_URL;
+// const URL = process.env.BASE_URL;
 
 export default function ShareModal({
   setIsOpen,
