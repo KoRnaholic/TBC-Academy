@@ -22,20 +22,20 @@ const initialState = {
   price: "",
   duration: "",
   overview: "",
-  courseLink: "",
+  course_link: "",
   requirements: "",
   audience: "",
-  whatToLearn: "",
+  what_to_learn: "",
   errors: {
     name: [""],
     price: [""],
     duration: [""],
     lessons: [""],
     overview: [""],
-    courseLink: [""],
+    course_link: [""],
     requirements: [""],
     audience: [""],
-    whatToLearn: [""],
+    what_to_learn: [""],
   },
   success: false,
 };
@@ -110,9 +110,9 @@ export default function AddCourseForm({ addFormTransl }: AddFormTransl) {
               id="link"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-400 leading-tight focus:outline-none focus:border-gray-700 dark:focus:border-gray-600"
             />
-            {errors.courseLink && (
+            {errors.course_link && (
               <label className="ml-1 font-sans text-red-500">
-                {errors.courseLink[0] ? errors.courseLink[0] + " *" : ""}
+                {errors.course_link[0] ? errors.course_link[0] + " *" : ""}
               </label>
             )}
           </div>
@@ -248,9 +248,9 @@ export default function AddCourseForm({ addFormTransl }: AddFormTransl) {
             id="learn"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-400 leading-tight focus:outline-none focus:border-gray-700 dark:focus:border-gray-600"
           />
-          {errors.whatToLearn && (
+          {errors.what_to_learn && (
             <label className="ml-1 font-sans text-red-500">
-              {errors.whatToLearn[0] ? errors.whatToLearn[0] + " *" : ""}
+              {errors.what_to_learn[0] ? errors.what_to_learn[0] + " *" : ""}
             </label>
           )}
         </div>

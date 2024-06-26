@@ -90,10 +90,10 @@ const schema = z.object({
     .trim()
     .min(40, "Overview must be at least 20 chars long")
     .max(1000, "Overview must be less then 1000 chars long"),
-  courseLink: z.string(),
+  course_link: z.string(),
   requirements: z.string().min(10),
   audience: z.string().min(1, "Audience is required"),
-  whatToLearn: z.string().min(1, "What to learn is required"),
+  what_to_learn: z.string().min(1, "What to learn is required"),
 });
 
 const initialState = {
@@ -102,20 +102,20 @@ const initialState = {
   price: "",
   duration: "",
   overview: "",
-  courseLink: "",
+  course_link: "",
   requirements: "",
   audience: "",
-  whatToLearn: "",
+  what_to_learn: "",
   errors: {
     name: [""],
     price: [""],
     duration: [""],
     lessons: [""],
     overview: [""],
-    courseLink: [""],
+    course_link: [""],
     requirements: [""],
     audience: [""],
-    whatToLearn: [""],
+    what_to_learn: [""],
   },
   success: false,
 };
