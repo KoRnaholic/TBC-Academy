@@ -27,11 +27,21 @@ export default function ShareModal({
             Share to Socials
           </h1>
           <div className="text-center p-4 flex gap-6 justify-center">
-            <ShareFacebook shareUrl={`${URL}/courses/${courseId}`} />
-            <ShareTwitter shareUrl={`${URL}/courses/${courseId}`} />
-            <ShareLinkedin shareUrl={`${URL}/courses/${courseId}`} />
-            <ShareTelegram shareUrl={`${URL}/courses/${courseId}`} />
-            <ShareWhatsapp shareUrl={`${URL}/courses/${courseId}`} />
+            <ShareFacebook
+              shareUrl={`https://tbc-academy-opal.vercel.app//courses/${courseId}`}
+            />
+            <ShareTwitter
+              shareUrl={`https://tbc-academy-opal.vercel.app//courses/${courseId}`}
+            />
+            <ShareLinkedin
+              shareUrl={`https://tbc-academy-opal.vercel.app//courses/${courseId}`}
+            />
+            <ShareTelegram
+              shareUrl={`https://tbc-academy-opal.vercel.app//courses/${courseId}`}
+            />
+            <ShareWhatsapp
+              shareUrl={`https://tbc-academy-opal.vercel.app//courses/${courseId}`}
+            />
           </div>
           <button
             onClick={() => setIsOpen(false)}
