@@ -129,7 +129,7 @@
       "name": "Course Name",
       "lessons": "Lessons",
       "price": "Price",
-      "Duration": "Duration (5hours)",
+      "duration": "Duration (5hours)",
       "audience": "Audience (separate with semicolon)",
       "requirements": "Requirements (separate with semicolon)",
       "learn": "What To Learn? (separate with semicolon)",
@@ -172,7 +172,12 @@
     "price": "Price",
     "view": "View Course",
     "instructor": "Instructor",
-    "lessons": "Lessons"
+    "lessons": "Lessons",
+    "new": "Newly published (new)",
+    "old": "Newly published (old)",
+    "az": "Course Title (a-z)",
+    "za": "Course Title (z-a)",
+    "filer": "Filter"
   },
   "Profile": {
     "myprofile": {

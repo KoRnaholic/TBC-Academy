@@ -13,7 +13,7 @@ export default function AddCoursePage() {
     lessons: t("lessons"),
     price: t("price"),
     duration: t("duration"),
-    audience: "audience",
+    audience: t("audience"),
     requirements: t("requirements"),
     learn: t("learn"),
     overview: t("overview"),

@@ -16,7 +16,7 @@ export default function CoursesFilter() {
           <FormatListBulletedIcon />
         </button>
         <p>
-          {t("showing")} 1–9 of 21 {t("courses")}
+          {t("showing")} 1–6 of 7 {t("courses")}
         </p>
       </div>
 
@@ -30,16 +30,16 @@ export default function CoursesFilter() {
             <option value="" disabled>
               Select an option
             </option>
-            <option value="new">Newly published (new)</option>
-            <option value="old">Newly published (old)</option>
-            <option value="asc">Course Title (a-z)</option>
-            <option value="desc">Course Title (z-a)</option>
+            <option value="new">{t("new")}</option>
+            <option value="old">{t("old")}</option>
+            <option value="asc">{t("az")}</option>
+            <option value="desc">{t("za")}</option>
           </select>
         </div>
 
         <span className="text-xl font-semibold">
           <FilterAltIcon className="text-[#FF6575] w-12 h-10" />
-          Filter
+          {t("filter")}
         </span>
       </div>
     </div>
