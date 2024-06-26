@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getSession } from "@auth0/nextjs-auth0";
 import { sqlGetUser } from "../../app/sql/sqlGetUser";
 import { DashboardObj } from "../../app/[locale]/(dashboard)/dashboard/layout";
+import { getTranslations } from "next-intl/server";
 
 export default async function UserDashboard({
   dashboardObj,
@@ -13,6 +14,8 @@ export default async function UserDashboard({
   const { sub } = data?.user || { sub: null };
   const user = await sqlGetUser(sub);
   const userInfo = user?.userInfo;
+
+  const t = await getTranslations("Dashboard");
 
   return (
     <div className="flex flex-col justify-start items-center">
@@ -38,7 +41,7 @@ export default async function UserDashboard({
               href={"/dashboard/add-course"}
               className="w-full  py-3 bg-[#FF6575] text-white font-medium rounded-md hover:bg-[#e72f41] focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
             >
-              Add New Course
+              {t("add")}
             </Link>
           )}
         </div>

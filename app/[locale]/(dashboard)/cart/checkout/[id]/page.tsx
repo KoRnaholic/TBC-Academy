@@ -2,11 +2,20 @@ import Stripe from "stripe";
 import { sqlGetCartItems } from "../../../../../sql/sqlGetCartItems";
 import CheckoutForm from "../_components/CheckoutForm";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 export default async function PurchasePage() {
   const courses = await sqlGetCartItems();
+  const t = await getTranslations("Cart.checkout");
+
+  const cartCheckoutTr = {
+    price: t("price"),
+    quantity: t("quantity"),
+    purchase: t("purchase"),
+    purchasing: t("purchasing"),
+  };
 
   if (!courses || courses.length === 0) {
     return notFound();
@@ -27,9 +36,9 @@ export default async function PurchasePage() {
     throw Error("Stripe failed to create payment intent");
   }
 
-  console.log(paymentIntent);
   return (
     <CheckoutForm
+      cartCheckoutTr={cartCheckoutTr}
       courses={courses}
       clientSecret={paymentIntent.client_secret}
     />

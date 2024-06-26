@@ -1,3 +1,4 @@
+import { getSession } from "@auth0/nextjs-auth0";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
@@ -8,6 +9,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 const URL = process.env.BASE_URL;
 
 export async function POST() {
+  const data = await getSession();
+
+  const email = data?.user.email;
   try {
     const session = await stripe.checkout.sessions.create({
       billing_address_collection: "auto",
@@ -20,6 +24,7 @@ export async function POST() {
       mode: "subscription",
       success_url: `${URL}/test/?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${URL}?canceled=true`,
+      customer_email: email,
     });
 
     if (!session.url) {

@@ -1,6 +1,16 @@
-import React from "react";
+import { getSession } from "@auth0/nextjs-auth0";
+import { redirect } from "next/navigation";
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const session = await getSession();
+
+  const user = session?.user.role[0];
+
+  // const role = session?.user.role[0];
+
+  if (user !== "Admin") {
+    redirect("/");
+  }
   return (
     <>
       {/* <div>

@@ -22,7 +22,8 @@
       "contact": "Contact Us",
       "profile": "Profile",
       "package": "Packages",
-      "logout": "Logout"
+      "logout": "Logout",
+      "admin": "Admin Panel"
     },
     "mainbanner": {
       "leader": "The Leader in Online Learning",
@@ -118,7 +119,26 @@
     "home": "Home",
     "myprofile": "My Profile",
     "courses": "My Courses",
-    "edit": "Edit Profile"
+    "edit": "Edit Profile",
+    "add": "Add New Course",
+    "addcourse": {
+      "upload": "Upload Course Image",
+      "choose": "Choose Image",
+      "button": "Upload",
+      "link": "Course Link",
+      "name": "Course Name",
+      "lessons": "Lessons",
+      "price": "Price",
+      "Duration": "Duration (5hours)",
+      "audience": "Audience (separate with semicolon)",
+      "requirements": "Requirements (separate with semicolon)",
+      "learn": "What To Learn? (separate with semicolon)",
+      "overview": "Overview",
+      "add": "Add Course",
+      "checking": "Checking...",
+      "success": "Course Successfully Added!",
+      "goto": "Go to Courses page"
+    }
   },
   "Courses": {
     "course": {
@@ -227,5 +247,47 @@
       "price": "Price",
       "date": "Purchase Date"
     }
+  },
+  "Packages": {
+    "link": "Packages",
+    "home": "Home",
+    "month": "Monthly",
+    "quarter": "Quartlerly",
+    "annual": "Semi-Annual",
+    "free": "Month Free",
+    "purchased": "You already Purchased Package",
+    "buy": "Buy Package"
+  },
+  "Cart": {
+    "checkout": {
+      "price": "Price",
+      "quantity": "Quantity",
+      "purchase": "Purchase",
+      "purchasing": "Purchasing..."
+    },
+    "purchase": {
+      "success": "Purchase Successful!",
+      "thanks": "Thank you for your purchase!",
+      "courses": "Go To My Courses"
+    },
+    "link": "Cart",
+    "home": "Home",
+    "product": "Product",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "remove": "Remove",
+    "removing": "Removing",
+    "totals": "Cart Totals",
+    "total": "Total",
+    "cartcheckout": "Proceed To Checkout"
+  },
+  "Adminpanel": {
+    "link": "Admin Panel",
+    "home": "Home",
+    "courses": "Courses",
+    "users": "Users",
+    "blogs": "Blogs",
+    "purchases": "Purchases"
   }
 }

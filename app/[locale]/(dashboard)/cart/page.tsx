@@ -4,9 +4,12 @@ import { sqlGetCartItems } from "../../../sql/sqlGetCartItems";
 
 import CartTable from "../../../../components/cart/CartTable";
 import CartTotal from "../../../../components/cart/CartTotal";
+import { getTranslations } from "next-intl/server";
 
 export default async function CartPage() {
   const courses = await sqlGetCartItems();
+
+  const t = await getTranslations("Cart");
 
   const totalPrice = courses?.reduce((sum, course) => {
     return sum + course.quantity * parseFloat(course.price);
@@ -23,13 +26,13 @@ export default async function CartPage() {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Cart</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Cart</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>

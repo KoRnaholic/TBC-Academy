@@ -39,7 +39,9 @@ interface NavProps {
     students: string;
     blog: string;
     contact: string;
+    admin: string;
   };
+  role: string;
 }
 
 export default function Navigation({
@@ -48,13 +50,12 @@ export default function Navigation({
   cartQuantity,
   courses,
   navigation,
+  role,
 }: NavProps) {
   const [scrolling, setScrolling] = useState(false);
   const [isCartOpen, setCartIsOpen] = useState(false);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const pathname = usePathname();
-
-  console.log(pathname);
 
   const navRef = useRef<HTMLUListElement | null>(null);
 
@@ -147,7 +148,7 @@ export default function Navigation({
           <li className=" lg:hidden">
             {user ? (
               <div className="items-center gap-3 flex lg:hidden justify-center">
-                <UserDropDown navigation={navigation} user={user} />
+                <UserDropDown navigation={navigation} user={user} role={role} />
               </div>
             ) : (
               <div className=" gap-3 flex justify-center">
@@ -262,7 +263,7 @@ export default function Navigation({
       </div>
       {user ? (
         <div className="items-center gap-3 hidden xl:flex">
-          <UserDropDown navigation={navigation} user={user} />
+          <UserDropDown navigation={navigation} user={user} role={role} />
         </div>
       ) : (
         <div className=" gap-3 hidden xl:flex">

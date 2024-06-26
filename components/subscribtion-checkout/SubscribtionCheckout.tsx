@@ -4,80 +4,94 @@ import React, { useState, useEffect } from "react";
 import success from "../../public/icons/success.svg";
 import { sqlSubExists } from "../../app/sql/sql-subscription/sqlSubExists";
 
-const ProductDisplay = ({ exists }: { exists: boolean | undefined }) => (
+interface PackageTransl {
+  month: string;
+  quarter: string;
+  annual: string;
+  free: string;
+  purchased: string;
+  buy: string;
+}
+
+const ProductDisplay = ({
+  exists,
+  packageTransl,
+}: {
+  exists: boolean | undefined;
+  packageTransl: PackageTransl;
+}) => (
   <>
-    <div className="mt-40 flex flex-col md:flex-row justify-center gap-5 px-10 ">
-      <div className="group gap-8 hover:bg-[#FF6575] transition-all  duration-500 bg-white flex flex-col justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
-        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
-          Monthly
+    <div className="mt-40 flex flex-col md:flex-row justify-center gap-5 px-10">
+      <div className="group gap-8 hover:bg-[#FF6575] transition-all duration-500 bg-white dark:bg-gray-800 flex flex-col justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
+        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white dark:text-white ">
+          {packageTransl.month}
         </h2>
-        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white">
+        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white dark:text-white ">
           $9.49
         </div>
-        <div className="text-[#FF6575]  text-xl font-medium group-hover:text-white">
-          / 1 month free
+        <div className="text-[#FF6575] text-xl font-medium group-hover:text-white dark:text-white ">
+          / 1 {packageTransl.free}
         </div>
 
         {exists ? (
-          <span className="text-green-400 group-hover:text-white">
-            You alrady Purchased Package
+          <span className="text-green-400 group-hover:text-white dark:text-green-400 ">
+            {packageTransl.purchased}
           </span>
         ) : (
           <form action="/api/checkout-session/sub-starter" method="POST">
-            {/* Add a hidden field with the lookup_key of your Price */}
             <input type="hidden" name="lookup_key" value="Starter-e5d15c0" />
             <button
-              className="bg-[#FF6575] hover:-translate-y-2 transition-all  group-hover:bg-white group-hover:text-[#FF6575] py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468]  duration-300"
+              className="bg-[#FF6575] hover:-translate-y-2 transition-all group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >
-              Buy Package
+              {packageTransl.buy}
             </button>
           </form>
         )}
       </div>
-      <div className="bg-white flex group flex-col transition-all  duration-500 hover:bg-[#FF6575] justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
-        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
-          Quarterly
+      <div className="bg-white dark:bg-gray-800 flex group flex-col transition-all duration-500 hover:bg-[#FF6575] justify-between border border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
+        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white dark:text-white ">
+          {packageTransl.quarter}
         </h2>
-        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white">
+        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white dark:text-white ">
           $25.99
         </div>
-        <div className="text-[#FF6575] text-xl font-medium group-hover:text-white">
-          / 3 month free
+        <div className="text-[#FF6575] text-xl font-medium group-hover:text-white dark:text-white ">
+          / 3 {packageTransl.free}
         </div>
 
         {exists ? (
-          <span className="text-green-400 group-hover:text-white">
-            You alrady Purchased Package
+          <span className="text-green-400 group-hover:text-white dark:text-green-400 ">
+            {packageTransl.purchased}
           </span>
         ) : (
           <form action="/api/checkout-session/sub-quarterly" method="POST">
             <input type="hidden" name="lookup_key" value="Quarterly-79c3a43" />
             <button
-              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468] duration-300"
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >
-              Buy Package
+              {packageTransl.buy}
             </button>
           </form>
         )}
       </div>
-      <div className="bg-white border group flex transition-all  duration-500 hover:bg-[#FF6575] flex-col justify-between border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
-        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white">
-          Semi-Annual
+      <div className="bg-white dark:bg-gray-800 border group flex transition-all duration-500 hover:bg-[#FF6575] flex-col justify-between border-[#FF6575] p-6 rounded-xl md:w-1/4 text-center space-y-4">
+        <h2 className="text-[#FF6575] text-lg font-bold group-hover:text-white dark:text-white ">
+          {packageTransl.annual}
         </h2>
-        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white">
+        <div className="text-[#FF6575] text-4xl font-extrabold group-hover:text-white dark:text-white ">
           $34.99
         </div>
-        <div className="text-[#FF6575] text-xl font-medium group-hover:text-white">
-          / 6 month free
+        <div className="text-[#FF6575] text-xl font-medium group-hover:text-white dark:text-white ">
+          / 6 {packageTransl.free}
         </div>
 
         {exists ? (
-          <span className="text-green-400 group-hover:text-white">
-            You alrady Purchased Package
+          <span className="text-green-400 group-hover:text-white dark:text-green-400 ">
+            {packageTransl.purchased}
           </span>
         ) : (
           <form action="/api/checkout-session/sub-semi-annual" method="POST">
@@ -87,11 +101,11 @@ const ProductDisplay = ({ exists }: { exists: boolean | undefined }) => (
               value="Semi-Annual-7d5ce48"
             />
             <button
-              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] shadow-md hover:bg-[#ff5468]  duration-300"
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >
-              Buy Package
+              {packageTransl.buy}
             </button>
           </form>
         )}
@@ -123,7 +137,11 @@ const Message = ({ message }: { message: string }) => (
   </section>
 );
 
-export default function SubscriptionCheckout() {
+export default function SubscriptionCheckout({
+  packageTransl,
+}: {
+  packageTransl: PackageTransl;
+}) {
   let [message, setMessage] = useState("");
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState("");
@@ -157,7 +175,7 @@ export default function SubscriptionCheckout() {
   }, [sessionId]);
 
   if (!success && message === "") {
-    return <ProductDisplay exists={exists} />;
+    return <ProductDisplay packageTransl={packageTransl} exists={exists} />;
   } else if (success && sessionId !== "") {
     return <SuccessDisplay />;
   } else {

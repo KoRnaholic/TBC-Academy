@@ -1,8 +1,19 @@
 import Link from "next/link";
-import React from "react";
+
 import SubscriptionCheckout from "../../../../components/subscribtion-checkout/SubscribtionCheckout";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
+  const t = useTranslations("Packages");
+
+  const packageTransl = {
+    month: t("month"),
+    quarter: t("quarter"),
+    annual: t("annual"),
+    free: t("free"),
+    purchased: t("purchased"),
+    buy: t("buy"),
+  };
   return (
     <>
       <div>
@@ -14,19 +25,19 @@ export default function Page() {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Packages</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Packages</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      <SubscriptionCheckout />
+      <SubscriptionCheckout packageTransl={packageTransl} />
     </>
   );
 }

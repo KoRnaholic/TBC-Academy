@@ -13,6 +13,7 @@ interface HeaderProps {
     students: string;
     blog: string;
     contact: string;
+    admin: string;
   };
   courses: Course[] | null;
 }
@@ -21,13 +22,16 @@ export default async function Header({ navigation, courses }: HeaderProps) {
   const data = await getSession();
   const user = await sqlGetUser(data?.user.sub);
   const cartQuantity = await sqlGetCartQuantity(data?.user.sub);
+  const role = data?.user.role[0];
 
+  console.log(role);
   return (
     <Navigation
       user={user}
       cartQuantity={cartQuantity}
       navigation={navigation}
       courses={courses}
+      role={role}
     >
       {/* <nav className="flex justify-between sm:gap-10 xl:gap-32 "></nav> */}
       <div className="hidden"></div>

@@ -12,15 +12,24 @@ import { FormEvent, useState } from "react";
 import { Course } from "../../../../../../types/types";
 import { sqlCreatePurchase } from "../../../../../sql/sql-purchases/sqlCreatePurchase";
 
+interface CartCheckoutTr {
+  price: string;
+  quantity: string;
+  purchase: string;
+  purchasing: string;
+}
+
 const stripe = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
 );
 export default function CheckoutForm({
+  cartCheckoutTr,
   courses,
   clientSecret,
 }: {
   courses: Course[] | null;
   clientSecret: string;
+  cartCheckoutTr: CartCheckoutTr;
 }) {
   const totalPrice = courses?.reduce(
     (acc, course) => acc + parseFloat(course.price) * course.quantity,
@@ -47,8 +56,11 @@ export default function CheckoutForm({
               </div>
               <div className="flex flex-col gap-5">
                 <div className="text-xl flex gap-4">
-                  Price - ${Number(course.price) * course.quantity}{" "}
-                  <span>Quantity : {course.quantity}</span>
+                  {cartCheckoutTr.price} - $
+                  {Number(course.price) * course.quantity}{" "}
+                  <span>
+                    {cartCheckoutTr.quantity} : {course.quantity}
+                  </span>
                 </div>
                 <h1 className="text-xl">{course.name}</h1>
               </div>
@@ -57,7 +69,11 @@ export default function CheckoutForm({
         })}
 
         <Elements options={{ clientSecret }} stripe={stripe}>
-          <Form price={totalPrice} courses={courses} />
+          <Form
+            cartCheckoutTr={cartCheckoutTr}
+            price={totalPrice}
+            courses={courses}
+          />
         </Elements>
       </div>
     </div>
@@ -65,11 +81,13 @@ export default function CheckoutForm({
 }
 
 function Form({
+  cartCheckoutTr,
   price,
   courses,
 }: {
   price: number | undefined;
   courses: Course[] | null;
+  cartCheckoutTr: CartCheckoutTr;
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -126,7 +144,9 @@ function Form({
           isLoading && "bg-[#b12d3a]"
         }w-full text-lg mt-5 rounded-md py-3 px-3 bg-[#FF6575] text-white`}
       >
-        {isLoading ? "Puchasing..." : `Purchase - $${price}`}
+        {isLoading
+          ? cartCheckoutTr.purchasing
+          : `${cartCheckoutTr.purchase} - $${price}`}
       </button>
     </form>
   );

@@ -1,7 +1,12 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-export default function RemoveButton() {
+import { RemoveTransl } from "./SingleCartItem";
+export default function RemoveButton({
+  removeTransl,
+}: {
+  removeTransl: RemoveTransl;
+}) {
   const { pending } = useFormStatus();
   return (
     <button
@@ -10,7 +15,7 @@ export default function RemoveButton() {
     >
       {pending ? (
         <span className="flex w-[100px] justify-center gap-1">
-          Removing
+          {removeTransl.removing}
           <div className="flex">
             <div className="relative">
               <div className="w-4 h-4 rounded-full absolute inset-1 border-4 border-dashed border-gray-200"></div>
@@ -20,7 +25,7 @@ export default function RemoveButton() {
           </div>
         </span>
       ) : (
-        <div className="w-[100px]">Remove</div>
+        <div className="w-[100px]">{removeTransl.remove}</div>
       )}
     </button>
   );

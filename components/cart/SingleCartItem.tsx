@@ -4,6 +4,11 @@ import Image from "next/image";
 import { Course } from "../../types/types";
 import RemoveButton from "./RemoveButton";
 
+export interface RemoveTransl {
+  remove: string;
+  removing: string;
+}
+
 import {
   sqlDecrementQuantity,
   sqlIncrementQuantity,
@@ -11,7 +16,13 @@ import {
 import IncrementButton from "./IncrementButton";
 import DecrementButton from "./DecrementButton";
 
-export default function SingleCartItem({ course }: { course: Course }) {
+export default function SingleCartItem({
+  course,
+  removeTransl,
+}: {
+  course: Course;
+  removeTransl: RemoveTransl;
+}) {
   const removeFromCart = sqlDeleteFromCart.bind(null, course.id);
   const incrementQuantity = sqlIncrementQuantity.bind(
     null,
@@ -47,7 +58,7 @@ export default function SingleCartItem({ course }: { course: Course }) {
       </td>
       <td className="py-5 px-4  text-right ">
         <form action={removeFromCart}>
-          <RemoveButton />
+          <RemoveButton removeTransl={removeTransl} />
         </form>
       </td>
     </tr>

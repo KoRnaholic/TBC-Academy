@@ -14,6 +14,7 @@ import { sqlReviewExists } from "../../../../../sql/sql-review/sqlReviewExists";
 import { getTranslations } from "next-intl/server";
 import { sqlExistsInPurchase } from "../../../../../sql/sql-purchases/sqlExistsInPurchase";
 import { redirect } from "next/navigation";
+import { sqlSubExists } from "../../../../../sql/sql-subscription/sqlSubExists";
 
 export const revalidate = 0;
 
@@ -31,12 +32,17 @@ export default async function LessonsPage({
   const courseId = Number(params.id);
   const exists = await sqlReviewExists(courseId);
   const isReviewed = exists[0].exists;
+  const subscription = await sqlSubExists();
 
   const t = await getTranslations("Lessons");
 
   const purchExists = await sqlExistsInPurchase(Number(params.id));
 
-  if (purchExists.exists === false && course.price !== "free") {
+  if (
+    purchExists.exists === false &&
+    course.price !== "free" &&
+    subscription?.exists === false
+  ) {
     redirect("/");
   }
 

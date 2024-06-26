@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
+  const t = useTranslations("Adminpanel");
   return (
     <>
       <div>
@@ -21,13 +23,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           }}
         >
           <div className="flex flex-col  gap-3 items-center justify-center">
-            <h1 className="text-5xl text-[#002058]">Admin Panel</h1>
+            <h1 className="text-5xl text-[#002058]">{t("link")}</h1>
             <div className="flex gap-2 text-lg">
               <Link href="/" className="text-[#002058]">
-                Home
+                {t("home")}
               </Link>
               <span className="text-red-500 text-xl">-</span>
-              <span className="text-[#685f78]">Admin Panel</span>
+              <span className="text-[#685f78]">{t("link")}</span>
             </div>
           </div>
         </div>
@@ -35,18 +37,18 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
       <div className="flex">
         <nav className="w-full bg-gradient-to-r from-gray-700 to-gray-900 text-white p-6 shadow-lg">
-          <ul className="flex justify-center gap-20">
-            <li className="mb-4">
-              <Link href="/admin/courses">Courses</Link>
+          <ul className="flex justify-center items-center gap-20">
+            <li className="hover:text-red-400">
+              <Link href="/admin/courses">{t("courses")}</Link>
             </li>
-            <li className="mb-4">
-              <Link href="/admin/users">Users</Link>
+            <li className="hover:text-red-400">
+              <Link href="/admin/users">{t("users")}</Link>
             </li>
-            <li className="mb-4">
-              <Link href="/admin/blogs">Blogs</Link>
+            <li className="hover:text-red-400">
+              <Link href="/admin/blogs">{t("blogs")}</Link>
             </li>
-            <li className="mb-4">
-              <Link href="/admin/purchases">Purchases</Link>
+            <li className="hover:text-red-400">
+              <Link href="/admin/purchases">{t("purchases")}</Link>
             </li>
           </ul>
         </nav>

@@ -10,9 +10,11 @@ import { UserObject } from "../../../app/sql/sqlGetUser";
 export default function UserDropDown({
   user,
   navigation,
+  role,
 }: {
   user: UserObject;
   navigation: any;
+  role: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -73,11 +75,12 @@ export default function UserDropDown({
           {navigation.profile}
         </Link>
         <Link
-          href="/packages"
+          href={`${role === "Admin" ? "/admin/courses" : "/packages"}`}
           className="flex w-full items-center justify-start gap-1.5 px-2 py-2 text-[#002058] dark:text-[#E0E0E0] hover:text-red-500 dark:hover:text-red-500"
         >
           <Image src={packages} alt="settings" className="dark:invert" />
-          {navigation.package}
+          {/* {navigation.package} */}
+          {role === "Admin" ? navigation.admin : navigation.package}
         </Link>
         <button className="flex w-full items-center justify-start gap-2 px-[9px] py-2 text-[#002058] dark:text-[#E0E0E0] hover:text-red-500 dark:hover:text-red-500">
           <Image src={logout} alt="logout" className="dark:invert" />
