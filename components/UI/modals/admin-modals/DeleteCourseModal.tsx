@@ -1,13 +1,16 @@
 import { sqlDeleteCourse } from "../../../../app/sql/sql-courses/sqlDeleteCourse";
+import { CourseTransl } from "../../Edit-DelDropdown";
 
 export interface CourseModal {
   courseId: number;
   setDeleteModal: (arg: boolean) => void;
+  courseTransl: CourseTransl;
 }
 
 export default function DeleteCourseModal({
   courseId,
   setDeleteModal,
+  courseTransl,
 }: CourseModal) {
   const deleteCourse = sqlDeleteCourse.bind(null, courseId);
   return (
@@ -18,10 +21,10 @@ export default function DeleteCourseModal({
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg relative mx-auto"
+          className="w-full max-w-lg p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg relative mx-auto"
         >
-          <h1 className="text-center text-2xl text-red-500 mb-6">
-            Are you sure you want to delete this course?
+          <h1 className="text-center text-2xl text-red-500 dark:text-red-400 mb-6">
+            {courseTransl.sure}
           </h1>
 
           <form
@@ -30,20 +33,20 @@ export default function DeleteCourseModal({
               setDeleteModal(false);
             }}
           >
-            <div className="flex">
+            <div className="flex justify-around">
               <button
                 type="button"
                 onClick={() => setDeleteModal(false)}
-                className="mt-6 py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300 mx-auto block"
+                className="mt-6 py-2 px-4 bg-green-500 dark:bg-green-600 text-white rounded-lg hover:bg-green-600 dark:hover:bg-green-700 transition-colors duration-300"
               >
-                No, Close
+                {courseTransl.no}
               </button>
 
               <button
                 type="submit"
-                className="mt-6 py-2 px-4 bg-red-400 text-white rounded-lg hover:bg-red-600 transition-colors duration-300 mx-auto block"
+                className="mt-6 py-2 px-4 bg-red-400 dark:bg-red-500 text-white rounded-lg hover:bg-red-600 dark:hover:bg-red-600 transition-colors duration-300"
               >
-                Yes, Delete
+                {courseTransl.yes}
               </button>
             </div>
           </form>

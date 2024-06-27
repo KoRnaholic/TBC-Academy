@@ -22,7 +22,6 @@ export async function sqlGetUserPurchases() {
       WHERE 
       p.student_id = ${studentId};
   `;
-      console.log(rows);
 
       return rows;
     }

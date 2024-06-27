@@ -14,7 +14,5 @@ export async function sqlExistsInPurchase(courseId: number) {
     );
     `;
 
-  console.log(rows);
-
   return rows[0];
 }

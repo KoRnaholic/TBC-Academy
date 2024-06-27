@@ -6,20 +6,21 @@ import { editCourse } from "../../../../app/actions/editCourse-action";
 import EditCourseButton from "../../buttons/EditCourseButton";
 import { CreatedCourse } from "../../../../types/types";
 import SuccessModal from "./SuccessModal";
+import { CourseTransl } from "../../Edit-DelDropdown";
 
 interface CourseEditModal {
   courseId: number;
   setModalIsOpen: (arg: boolean) => void;
+  courseTransl: CourseTransl;
 }
 
 export default function CourseEditModal({
+  courseTransl,
   courseId,
   setModalIsOpen,
 }: CourseEditModal) {
   const [course, setCourse] = useState<CreatedCourse>();
   const [successModal, setSuccessModal] = useState(false);
-
-  console.log(successModal);
 
   const editCourseBind = editCourse.bind(null, courseId);
 
@@ -43,97 +44,99 @@ export default function CourseEditModal({
         action={async (formData: FormData) => {
           setSuccessModal(true);
           await editCourseBind(formData);
-
           setModalIsOpen(false);
         }}
-        className="mt-5 p-6 w-full  lg:w-1/2 bg-white flex flex-col gap-6 rounded shadow-md text-lg"
+        className="mt-5 p-6 w-full lg:w-1/2 bg-white dark:bg-gray-900 flex flex-col gap-6 rounded shadow-md text-lg"
       >
         {successModal && <SuccessModal />}
         <h1 className="text-3xl text-red-400 font-bold mb-4 text-center">
-          Edit Course
+          {courseTransl.editcourse}
         </h1>
 
-        <div className="mb-4 flex flex-col md:flex-row  gap-6">
+        <div className="mb-4 flex flex-col md:flex-row gap-6">
           <div className="md:w-1/2 flex flex-col gap-2">
             <label
-              className="block text-gray-700 text-start  font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-300 text-start font-bold mb-2"
               htmlFor="name"
             >
-              Course Name
+              {courseTransl.name}
             </label>
             <input
               defaultValue={course?.name}
               name="name"
               type="text"
               id="name"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
           <div className="md:w-1/2 flex flex-col gap-2">
             <label
-              className="block text-gray-700 text-start  font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-300 text-start font-bold mb-2"
               htmlFor="lessons"
             >
-              Lessons
+              {courseTransl.lessons}
             </label>
             <input
               defaultValue={course?.lessons}
               name="lessons"
               type="text"
               id="lessons"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
         </div>
         <div className="mb-4 flex flex-col md:flex-row gap-6">
-          <div className=" md:w-1/2 flex flex-col gap-2">
+          <div className="md:w-1/2 flex flex-col gap-2">
             <label
-              className="block text-gray-700 text-start  font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-300 text-start font-bold mb-2"
               htmlFor="price"
             >
-              Price
+              {courseTransl.price}
             </label>
             <input
               defaultValue={course?.price}
               name="price"
               type="price"
               id="price"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
           <div className="md:w-1/2 flex flex-col gap-2">
             <label
-              className="block text-gray-700 text-start  font-bold mb-2"
+              className="block text-gray-700 dark:text-gray-300 text-start font-bold mb-2"
               htmlFor="duration"
             >
-              Duration (5 hours)
+              {courseTransl.editcourse} (5 hours)
             </label>
             <input
               defaultValue={course?.duration}
               name="duration"
               type="duration"
               id="duration"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
         </div>
 
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-start  font-bold mb-2"
+            className="block text-gray-700 dark:text-gray-300 text-start font-bold mb-2"
             htmlFor="overview"
           >
-            Overview
+            {courseTransl.overview}
           </label>
           <textarea
             defaultValue={course?.overview}
             name="overview"
             id="overview"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 leading-tight focus:outline-none focus:shadow-outline h-32"
           ></textarea>
         </div>
 
-        <EditCourseButton />
+        <EditCourseButton
+          save={courseTransl.save}
+          saving={courseTransl.saving}
+        />
       </form>
     </div>
   );

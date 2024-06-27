@@ -18,93 +18,108 @@ export default async function AdminCoursesPage() {
     redirect("/");
   }
 
-  console.log("role-", user);
-
   const t = await getTranslations("Admin.courses");
 
+  const courseTransl = {
+    duration: t("duration"),
+    price: t("price"),
+    edit: t("edit"),
+    delete: t("delete"),
+    editcourse: t("editcourse"),
+    name: t("name"),
+    lessons: t("lessons"),
+    overview: t("overview"),
+    save: t("save"),
+    saving: t("saving"),
+    sure: t("sure"),
+    no: t("no"),
+    yes: t("yes"),
+  };
+
   return (
-    <div className="container mx-auto lg:px-4 ">
+    <div className="container mx-auto lg:px-4">
       <div className="py-8">
         <div>
-          <h2 className="text-2xl font-semibold leading-tight">{t("all")}</h2>
+          <h2 className="text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100">
+            {t("all")}
+          </h2>
         </div>
-        <div className="-mx-4 sm:-mx-8   py-4 overflow-x-auto">
-          <div className="inline-block min-w-full shadow-md rounded-lg  overflow-auto max-h-[550px]">
+        <div className="-mx-4 sm:-mx-8 py-4 overflow-x-auto">
+          <div className="inline-block min-w-full shadow-md rounded-lg overflow-auto max-h-[550px] bg-white dark:bg-gray-800">
             <table className="min-w-full leading-normal">
               <thead>
                 <tr>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("course")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("instructor")}
                   </th>
-                  <th className="px-5 py-3 hidden md:flex border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden md:table-cell border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("duration")}
                   </th>
-                  <th className="px-5 py-3  border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("price")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400"></th>
                 </tr>
               </thead>
-              <tbody className="bg-white">
-                {courses?.map((course) => {
-                  return (
-                    <tr key={course.id}>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white ">
-                        <div className="flex items-center ">
-                          <div className="flex-shrink-0 w-10 h-10">
-                            <Image
-                              src={course.image}
-                              className="w-full h-full rounded-full"
-                              width={50}
-                              height={50}
-                              alt="course-avatar"
-                            />
-                          </div>
-                          <div className="ml-3 hidden lg:flex">
-                            <p className="text-[#002058] whitespace-no-wrap">
-                              {course.name}
-                            </p>
-                          </div>
+              <tbody className="bg-white dark:bg-gray-800">
+                {courses?.map((course) => (
+                  <tr key={course.id}>
+                    <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0 w-10 h-10">
+                          <Image
+                            src={course.image}
+                            className="w-full h-full rounded-full"
+                            width={50}
+                            height={50}
+                            alt="course-avatar"
+                          />
                         </div>
-                      </td>
-                      <td className="px-5 py-5 border-b  border-gray-200 bg-white ">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {course.instructor_name}
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 hidden  md:table-cell border-b border-gray-200 bg-white ">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {course.duration}
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white ">
+                        <div className="ml-3 hidden lg:flex">
+                          <p className="text-[#002058] dark:text-gray-200 whitespace-no-wrap">
+                            {course.name}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                      <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
+                        {course.instructor_name}
+                      </p>
+                    </td>
+                    <td className="px-5 py-5 hidden md:table-cell border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                      <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
+                        {course.duration}
+                      </p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                      <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <span
-                          className={`relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight`}
-                        >
-                          <span
-                            aria-hidden
-                            className={`${
-                              course.price === "free"
-                                ? "bg-green-200"
-                                : "bg-orange-200"
-                            } absolute inset-0  opacity-50 rounded-full`}
-                          ></span>
-                          <span className="relative">
-                            {course.price === "free"
-                              ? "Free"
-                              : `$${course.price}`}
-                          </span>
+                          aria-hidden
+                          className={`absolute inset-0 opacity-50 rounded-full ${
+                            course.price === "free"
+                              ? "bg-green-200 dark:bg-green-700"
+                              : "bg-orange-200 dark:bg-red-700"
+                          }`}
+                        ></span>
+                        <span className="relative text-green-900 dark:text-green-200">
+                          {course.price === "free"
+                            ? "Free"
+                            : `$${course.price}`}
                         </span>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                        <EditDeltDropdown courseId={course.id} />
-                      </td>
-                    </tr>
-                  );
-                })}
+                      </span>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-right">
+                      <EditDeltDropdown
+                        courseTransl={courseTransl}
+                        courseId={course.id}
+                      />
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

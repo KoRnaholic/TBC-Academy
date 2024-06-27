@@ -123,7 +123,7 @@ export default async function CourseCard({
                   />
                 )}
                 <ShareButton
-                  share={overviewTranslate.share}
+                  overviewTranslate={overviewTranslate}
                   courseId={course.id}
                 />
               </div>

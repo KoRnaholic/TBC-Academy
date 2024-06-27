@@ -6,7 +6,6 @@ export async function sqlAdminDeletePurchase(
   studentId: string,
   purchaseId: number
 ) {
-  console.log("deleting purchase");
   if (studentId) {
     await sql`
     DELETE FROM

@@ -60,6 +60,7 @@ export interface Course {
   instructor_image: string;
   student_id: string;
   course_id: number;
+  what_to_learn: string;
 }
 export interface Courses {
   courses: Course[] | QueryResultRow[];

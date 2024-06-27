@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import CoursesFilter from "../../../../components/courses/CoursesFilter";
 import CoursesGrid from "../../../../components/courses/CoursesGrid";
 import { getCourses } from "../../../actions";
 import { Course } from "../../../../types/types";
@@ -25,6 +24,10 @@ export interface CourseTranslate {
   view: string;
   instructor: string;
   lessons: string;
+  new: string;
+  old: string;
+  az: string;
+  za: string;
 }
 
 export default async function CoursesPage() {
@@ -40,6 +43,10 @@ export default async function CoursesPage() {
     view: t("view"),
     instructor: t("instructor"),
     lessons: t("lessons"),
+    new: t("new"),
+    old: t("old"),
+    az: t("az"),
+    za: t("za"),
   };
 
   return (
@@ -65,8 +72,7 @@ export default async function CoursesPage() {
         </div>
       </div>
 
-      <CoursesFilter />
-      <div className="mt-14 flex flex-col md:flex-row  items-center md:items-start md:justify-center mb-20">
+      <div className="mb-20">
         <CoursesGrid courseTranslate={courseTranslate} courses={courses} />
       </div>
     </>

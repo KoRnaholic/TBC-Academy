@@ -3,7 +3,6 @@ import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
 export async function sqlDeleteUser(role: string, userId: string) {
-  console.log("deleted");
   try {
     if (role === "student")
       await sql`DELETE FROM students

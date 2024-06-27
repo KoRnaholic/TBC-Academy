@@ -7,8 +7,6 @@ export async function sqlSubscription() {
   const data = await getSession();
   const studentId = data?.user.sub;
 
-  console.log(studentId);
-
   try {
     // Check if the subscription already exists
     const { rowCount } = await sql`

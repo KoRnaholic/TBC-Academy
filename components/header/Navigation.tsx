@@ -40,6 +40,11 @@ interface NavProps {
     blog: string;
     contact: string;
     admin: string;
+    login: string;
+    register: string;
+    quantity: string;
+    cart: string;
+    empty: string;
   };
   role: string;
 }
@@ -160,11 +165,11 @@ export default function Navigation({
                         : "bg-[#EDEDED] dark:bg-[#3A3A3A]"
                     } py-2.5 px-5 rounded-full text-black hover:bg-[#FF8B94] hover:text-white transition-all duration-500`}
                   >
-                    Login
+                    {navigation.login}
                   </button>
                 </a>
                 <button className="py-2.5 px-4 border-2 border-white dark:border-[#EDEDED] rounded-full text-white dark:text-[#EDEDED] hover:bg-[#FF8B94] hover:text-white transition-all duration-300 hover:border-[#FF8B94]">
-                  Register
+                  {navigation.register}
                 </button>
               </div>
             )}
@@ -248,6 +253,9 @@ export default function Navigation({
 
         <div>
           <CartDropDown
+            quantity={navigation.quantity}
+            empty={navigation.empty}
+            cart={navigation.cart}
             courses={courses}
             isCartOpen={isCartOpen}
             setCartIsOpen={setCartIsOpen}
@@ -275,11 +283,11 @@ export default function Navigation({
                   : "bg-[#f4f4f4] dark:bg-[#282A36]"
               } py-2.5 px-9 rounded-full  hover:bg-[#FF6575] hover:text-white transition-all duration-500`}
             >
-              Login
+              {navigation.login}
             </button>
           </a>
           <button className="py-2.5 px-9 border-2 border-[#B4A7F5] dark:border-[#F8F8F2] rounded-full text-[#B4A7F5] dark:text-[#F8F8F2] hover:bg-[#FF6575] hover:text-white transition-all duration-300 hover:border-[#FF6575]">
-            Register
+            {navigation.register}
           </button>
         </div>
       )}

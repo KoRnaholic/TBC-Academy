@@ -9,6 +9,8 @@ export async function sqlExistsInCart(courseId: number) {
 
   const userRole = data?.user["metadata/role"];
 
+  if (userRole) {
+  }
   const { rows } = await sql`SELECT EXISTS (
         SELECT 1
         FROM cart
@@ -17,7 +19,7 @@ export async function sqlExistsInCart(courseId: number) {
     );
     `;
 
-  if (userRole === undefined || "Student") {
+  if (userRole === undefined || userRole === "Student") {
     return { exists: rows[0], role: "Student" };
   } else if (userRole === "Instructor") {
     return { exists: rows[0], role: "Instructor" };

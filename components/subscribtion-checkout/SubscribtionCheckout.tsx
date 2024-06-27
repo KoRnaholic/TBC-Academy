@@ -41,7 +41,7 @@ const ProductDisplay = ({
           <form action="/api/checkout-session/sub-starter" method="POST">
             <input type="hidden" name="lookup_key" value="Starter-e5d15c0" />
             <button
-              className="bg-[#FF6575] hover:-translate-y-2 transition-all group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white py-3 px-6 text-white rounded-lg shadow-md hover:bg-[#ff5468] duration-300"
+              className="bg-[#FF6575] hover:-translate-y-2 transition-all group-hover:bg-white group-hover:text-[#FF6575]  dark:group-hover:bg-white py-3 px-6  text-white rounded-lg shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >
@@ -69,7 +69,7 @@ const ProductDisplay = ({
           <form action="/api/checkout-session/sub-quarterly" method="POST">
             <input type="hidden" name="lookup_key" value="Quarterly-79c3a43" />
             <button
-              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575]  dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >
@@ -101,7 +101,7 @@ const ProductDisplay = ({
               value="Semi-Annual-7d5ce48"
             />
             <button
-              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575] dark:bg-gray-800 dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
+              className="bg-[#FF6575] py-3 px-6 hover:-translate-y-2 transition-all text-white rounded-lg group-hover:bg-white group-hover:text-[#FF6575]  dark:group-hover:bg-white shadow-md hover:bg-[#ff5468] duration-300"
               id="checkout-and-portal-button"
               type="submit"
             >

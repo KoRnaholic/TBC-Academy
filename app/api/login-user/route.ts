@@ -5,7 +5,6 @@ import { NextRequest } from "next/server";
 
 export const GET = async (_: NextRequest) => {
   const data = await getSession();
-  console.log(data);
 
   if (data?.user) {
     try {
@@ -20,8 +19,6 @@ export const GET = async (_: NextRequest) => {
       }
       const role = data.user["metadata/role"];
       const surname = data.user["metadata/surname"];
-
-      console.log(sub, name, email, role, surname, picture, data.user);
 
       //adding to instructos table if role is instructor
       if (role === "Instructor") {

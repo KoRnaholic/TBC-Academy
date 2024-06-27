@@ -14,6 +14,11 @@ interface HeaderProps {
     blog: string;
     contact: string;
     admin: string;
+    login: string;
+    register: string;
+    quantity: string;
+    cart: string;
+    empty: string;
   };
   courses: Course[] | null;
 }
@@ -24,7 +29,6 @@ export default async function Header({ navigation, courses }: HeaderProps) {
   const cartQuantity = await sqlGetCartQuantity(data?.user.sub);
   const role = data?.user.role[0];
 
-  console.log(role);
   return (
     <Navigation
       user={user}

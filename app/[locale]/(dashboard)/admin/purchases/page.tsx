@@ -25,32 +25,34 @@ export default async function PurchasesPage() {
     <div className="container mx-auto px-4 sm:px-8">
       <div className="py-8">
         <div>
-          <h2 className="text-2xl font-semibold leading-tight">{t("all")}</h2>
+          <h2 className="text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-100">
+            {t("all")}
+          </h2>
         </div>
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-          <div className="inline-block min-w-full shadow-md rounded-lg  overflow-auto max-h-[550px]">
+          <div className="inline-block min-w-full shadow-md rounded-lg overflow-auto max-h-[550px] bg-white dark:bg-gray-800">
             <table className="min-w-full leading-normal">
               <thead>
                 <tr>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("purchased")}
                   </th>
-                  <th className="px-5 py-3 hidden sm:table-cell border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden sm:table-cell border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("name")}
                   </th>
-                  <th className="px-5 py-3  hidden md:table-cell  border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden md:table-cell border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("quantity")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("price")}
                   </th>
-                  <th className="px-5 py-3 hidden lg:table-cell border-b-2 border-gray-200 bg-red-200 text-left text-xs font-semibold text-[#002058] uppercase tracking-wider">
+                  <th className="px-5 py-3 hidden lg:table-cell border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400 text-left text-xs font-semibold text-[#002058] dark:text-gray-200 uppercase tracking-wider">
                     {t("date")}
                   </th>
-                  <th className="px-5 py-3 border-b-2 border-gray-200 bg-red-200"></th>
+                  <th className="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-red-200 dark:bg-red-400"></th>
                 </tr>
               </thead>
-              <tbody className="bg-white">
+              <tbody>
                 {purchases?.map((purchase, idx) => {
                   const date = new Date(purchase.purchase_date);
 
@@ -68,9 +70,9 @@ export default async function PurchasesPage() {
                   };
                   const formattedDate = date.toLocaleString("en-US", options);
                   return (
-                    <tr key={idx}>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white ">
-                        <div className="flex items-center ">
+                    <tr key={idx} className="bg-white dark:bg-gray-800">
+                      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center">
                           <div className="flex-shrink-0 w-22 h-14">
                             <Image
                               src={purchase.image}
@@ -80,40 +82,40 @@ export default async function PurchasesPage() {
                               alt="user-avatar"
                             />
                           </div>
-                          <div className="ml-3  hidden md:flex">
-                            <p className="text-gray-900 whitespace-no-wrap">
+                          <div className="ml-3 hidden md:flex">
+                            <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
                               {purchase.name}
                             </p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-5 py-5 border-b hidden sm:table-cell border-gray-200 bg-white ">
-                        <p className="text-gray-900  whitespace-no-wrap">
+                      <td className="px-5 py-5 border-b hidden sm:table-cell border-gray-200 dark:border-gray-700">
+                        <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
                           {purchase.student_name}
                         </p>
                       </td>
-                      <td className="px-5 py-5 mt-5   hidden  md:table-cell  border-b border-gray-200 bg-white ">
-                        <p className="text-gray-900 whitespace-no-wrap">
+                      <td className="px-5 py-5 mt-5 hidden md:table-cell border-b border-gray-200 dark:border-gray-700">
+                        <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
                           {purchase.quantity}
                         </p>
                       </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white ">
-                        <p className="text-gray-900 whitespace-no-wrap">
+                      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700">
+                        <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
                           ${purchase.price}
                         </p>
                       </td>
-                      <td className="px-5 py-5 border-b  hidden  lg:table-cell  border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
+                      <td className="px-5 py-5 border-b hidden lg:table-cell border-gray-200 dark:border-gray-700 text-sm">
+                        <p className="text-gray-900 dark:text-gray-200 whitespace-no-wrap">
                           {formattedDate}
                         </p>
                       </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+                      <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-700 text-sm text-right">
                         <form action={deletePurchase}>
                           <button
                             type="submit"
-                            className="inline-block text-red-400 p-2 border rounded-md hover:text-red-500"
+                            className="inline-block text-red-400 dark:text-red-500 p-2 border dark:border-gray-500 rounded-md hover:text-red-500 dark:hover:text-red-600"
                           >
-                            Delete
+                            {t("delete")}
                           </button>
                         </form>
                       </td>

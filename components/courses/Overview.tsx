@@ -9,6 +9,7 @@ import StarsComponent from "../UI/StarsComponent";
 import LikeButton from "../UI/buttons/LikeButton";
 import DisslikeButton from "../UI/buttons/DislikeButton";
 import { getTranslations } from "next-intl/server";
+import CircleIcon from "@mui/icons-material/Circle";
 
 export const revalidate = 0;
 
@@ -26,6 +27,8 @@ export interface OverviewTranslate {
   processing: string;
   viewcart: string;
   startcourse: string;
+  sharesoc: string;
+  close: string;
 }
 
 export default async function Overview({
@@ -35,6 +38,7 @@ export default async function Overview({
 }) {
   const reviews = await sqlGetReviews(course.id);
   const t = await getTranslations("Courses.course");
+  const whatToLearnArray = course.what_to_learn?.split("; ");
 
   const overviewTranslate = {
     comments: t("comments"),
@@ -50,7 +54,10 @@ export default async function Overview({
     processing: t("processing"),
     viewcart: t("viewcart"),
     startcourse: t("startcourse"),
+    sharesoc: t("sharesoc"),
+    close: t("close"),
   };
+
   return (
     <div className="flex flex-col xl:flex-row justify-center gap-10 mx-5 bg-[#fafafa] dark:bg-[#1A1A1A] pb-10">
       <div className="flex flex-col gap-8 mt-20">
@@ -67,9 +74,17 @@ export default async function Overview({
           <h2 className="text-2xl text-[#002058] dark:text-white">
             {t("content")}
           </h2>
+          {whatToLearnArray?.map((item: string) => (
+            <p
+              key={item}
+              className="max-w-[800px] text-gray-500 flex gap-3 dark:text-gray-300 mt-5"
+            >
+              <CircleIcon className="w-2 text-[#FF6575]" /> {item}
+            </p>
+          ))}
         </div>
 
-        <div className="p-5 border  dark:border-gray-500 rounded-lg bg-white dark:bg-[#2A2A2A]">
+        {/* <div className="p-5 border  dark:border-gray-500 rounded-lg bg-white dark:bg-[#2A2A2A]">
           <h2 className="text-2xl text-[#002058] dark:text-white">
             About Instructor
           </h2>
@@ -120,7 +135,7 @@ export default async function Overview({
               View Details
             </button>
           </div>
-        </div>
+        </div> */}
 
         <h2 className="text-3xl text-[#002058] dark:text-white ">
           {" "}

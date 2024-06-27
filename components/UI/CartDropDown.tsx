@@ -9,9 +9,15 @@ interface CartDropDownProps {
   courses: Course[] | null;
   isCartOpen: boolean;
   setCartIsOpen: (arg: boolean) => void;
+  quantity: string;
+  cart: string;
+  empty: string;
 }
 
 export default function CartDropDown({
+  quantity,
+  cart,
+  empty,
   courses,
   isCartOpen,
   setCartIsOpen,
@@ -45,7 +51,7 @@ export default function CartDropDown({
          }`}
         >
           <div className="mx-auto text-lg font-semibold text-red-400">
-            Cart is empty!
+            {empty}
           </div>
         </div>
       </div>
@@ -79,7 +85,7 @@ export default function CartDropDown({
                     {course.name}
                   </p>
                   <span className="text-black dark:text-gray-300">
-                    Quantity: {course.quantity}
+                    {quantity}: {course.quantity}
                   </span>
                   <span className="text-red-400">${course.price}</span>
                 </div>
@@ -92,7 +98,7 @@ export default function CartDropDown({
           className="bg-red-400 hover:bg-red-500 dark:bg-red-500 dark:hover:bg-red-600 px-2 py-2 flex justify-center rounded-md text-white"
           href="/cart"
         >
-          View Cart
+          {cart}
         </Link>
       </div>
     </div>
